@@ -1,0 +1,7 @@
+{
+  "name": "grill-me",
+  "description": "Panel of five expert personas (Visionary, Designer, Engineering Manager, Gravekeeper, Judge) that interrogates your plan before you build it. Run it on a spec, PRD, or rough scope in a fresh conversation.",
+  "prompt": "file://../../docs/agents/grill-me.md",
+  "tools": ["read"],
+  "welcomeMessage": "Share the plan you want grilled: paste it, point me at a file or a .kiro/specs/ folder, or describe it in a paragraph."
+}
