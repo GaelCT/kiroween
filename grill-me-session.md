@@ -5,7 +5,7 @@ Saved on 2026-11-15 from a Kiro CLI session in `/home/gael/readerKiro`. Last upd
 ## Where we left off
 
 - **Current step:** the grill is complete. The verdict is in the Verdict section below.
-- **Next:** build the skeleton described in the verdict, starting with the `/.kiro` spec and steering doc. From session 1, GitHub setup is still pending: run `gh auth login`, then `gh repo clone GaelCT/kiroween`.
+- **Next:** build the skeleton described in the verdict. This folder is now the `GaelCT/kiroween` repo, with the steering docs, the comparison pipeline spec, and the grill-me agent in `/.kiro`. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues), grouped into five milestones. Start with issue #1.
 - **Deadline:** Kiroween 2026 submissions close Friday, December 4, 2026 at 2:00 PM PT ([Devpost](https://kiroween.devpost.com/)).
 - **This file:** you asked for it to be updated after every round, partly so it can show your development process with Kiro in the submission.
 

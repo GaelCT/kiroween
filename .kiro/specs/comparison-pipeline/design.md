@@ -64,13 +64,13 @@ Let F(a) be the set of fact IDs in article a, P the primary article, and R the s
 
 ### Worked example: the fictional Corvid RV-90 launch
 
-Primary article: Gridline (f01 to f05).
+Primary article: Byteward (f01 to f05).
 
 | After reading | Launch Desk | FrameTime | Ohm & Bit |
 |---|---|---|---|
-| Gridline | f06, f07 | f08, f09, f10 | f06, f07, f08, f10, f11, f12, f13 |
-| Gridline, FrameTime | f06, f07 | read | f06, f07, f11, f12, f13 |
-| Gridline, FrameTime, Ohm & Bit | No significant new information | read | read |
+| Byteward | f06, f07 | f08, f09, f10 | f06, f07, f08, f10, f11, f12, f13 |
+| Byteward, FrameTime | f06, f07 | read | f06, f07, f11, f12, f13 |
+| Byteward, FrameTime, Ohm & Bit | No significant new information | read | read |
 
 f08 (38% faster at 4K) and f10 (320 W) appear under both FrameTime and Ohm & Bit until the user reads one of them. A rule that only kept facts unique to one source would hide them from both lists.
 
