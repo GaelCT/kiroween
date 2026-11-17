@@ -1,0 +1,62 @@
+{
+  "id": "corvid-rv90",
+  "title": "Corvid announces the RV-90 GPU",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Corvid announced the RV-90, its new flagship graphics card",
+    "f02": "Built on Corvid's new Nocturne architecture",
+    "f03": "Has 24 GB of GDDR7 memory",
+    "f04": "Corvid claims it's twice as fast as the RV-80 at ray tracing",
+    "f05": "Made on a 3 nm process",
+    "f06": "Costs $899",
+    "f07": "Goes on sale December 10",
+    "f08": "38% faster than the RV-80 at 4K in testing",
+    "f09": "Averaged 142 fps across ray-traced games at 1440p",
+    "f10": "Draws 320 W under load",
+    "f11": "Corvid recommends an 850 W power supply",
+    "f12": "Runs at 84 °C under sustained load",
+    "f13": "Only 14 games support its frame generation at launch"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Corvid announces its new RV-90 GPU",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-16T14:05:00Z",
+      "body": [
+        "[f01: Corvid announced the RV-90 on Monday, its new flagship graphics card for desktop PCs.] [f02: The card is built on Nocturne, Corvid's new graphics architecture.]",
+        "[f03: It ships with 24 GB of GDDR7 memory.] [f05: The chip is made on a 3 nm process.]",
+        "[f04: Corvid says the RV-90 is twice as fast as last year's RV-80 at ray tracing.] That's a big claim, and independent testing will show whether it holds up."
+      ]
+    },
+    "launch-desk": {
+      "title": "Corvid launches the RV-90 graphics card",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-16T14:20:00Z",
+      "body": [
+        "[f01: Corvid has launched the RV-90, its new flagship graphics card.] [f06: The card will cost $899.] [f07: It goes on sale December 10.]",
+        "[f02: Under the hood is Nocturne, the company's new graphics architecture.] [f03: The card carries 24 GB of GDDR7 memory.] [f04: Corvid claims the RV-90 doubles the RV-80's ray-tracing performance.]"
+      ]
+    },
+    "frametime": {
+      "title": "Corvid's new RV-90 GPU revealed",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-16T15:00:00Z",
+      "body": [
+        "[f01: Corvid revealed the RV-90 today, its new flagship graphics card.] Here's how it performs.",
+        "[f08: At 4K, the RV-90 ran 38% faster than the RV-80 in our testing.] [f09: Across our ray-traced games, it averaged 142 frames per second at 1440p.]",
+        "[f10: Our power meter showed the card drawing 320 W under load.] [f03: Its 24 GB of GDDR7 memory leaves plenty of headroom at high resolutions.]"
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Corvid unveils its next-generation RV-90 GPU",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-16T16:30:00Z",
+      "body": [
+        "[f01: Corvid unveiled the RV-90 on Monday, its new flagship graphics card.] [f02: The card uses Corvid's new Nocturne architecture.] [f05: Corvid makes the chip on a 3 nm process.]",
+        "[f06: Corvid has set the price at $899.] [f07: Cards arrive in stores on December 10.]",
+        "[f08: In our benchmarks, it was 38 percent faster than the RV-80 at 4K.] [f10: We measured 320 W of power draw under load.]",
+        "Those numbers come with trade-offs. [f11: Corvid recommends an 850 W power supply for the card.] [f12: Under sustained load, the GPU ran at 84 °C.] [f13: At launch, only 14 games support the card's frame generation feature.]"
+      ]
+    }
+  }
+}

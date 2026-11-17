@@ -1,0 +1,26 @@
+[
+  {
+    "id": "byteward",
+    "name": "Byteward",
+    "homepage": "https://byteward.example/",
+    "description": "General tech news"
+  },
+  {
+    "id": "launch-desk",
+    "name": "Launch Desk",
+    "homepage": "https://launchdesk.example/",
+    "description": "Product launches and business news"
+  },
+  {
+    "id": "frametime",
+    "name": "FrameTime",
+    "homepage": "https://frametime.example/",
+    "description": "Benchmarks and gaming hardware"
+  },
+  {
+    "id": "ohm-and-bit",
+    "name": "Ohm & Bit",
+    "homepage": "https://ohmandbit.example/",
+    "description": "Hardware deep dives"
+  }
+]
