@@ -1,0 +1,72 @@
+{
+  "id": "wayline-robotaxi-port-ellery",
+  "title": "Wayline robotaxis start paid rides in Port Ellery",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Wayline began paid robotaxi rides in Port Ellery",
+    "f02": "Starts with 40 cars",
+    "f03": "Covers 31 square miles of the city",
+    "f04": "The cars have no safety driver",
+    "f05": "Runs from 6 a.m. to midnight",
+    "f06": "Fares are $3 plus $1.90 per mile",
+    "f07": "Wayline raised $600 million in September",
+    "f08": "Wayline plans 200 cars by mid-2027",
+    "f09": "The city permit caps the fleet at 100 cars",
+    "f10": "Crashes must be reported to the city within 12 hours",
+    "f11": "Wayline pays the city 25 cents per ride",
+    "f12": "Each car uses 5 lidar sensors",
+    "f13": "Remote operators can't steer the cars",
+    "f14": "The cars are capped at 45 mph",
+    "f15": "The city will review the permit in May"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Wayline robotaxis start paid rides in Port Ellery",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-14T18:00:00Z",
+      "body": [
+        "[f01: Wayline began charging for robotaxi rides in Port Ellery on Saturday.] [f04: The cars have no safety driver behind the wheel.]",
+        "[f02: The service launches with 40 cars.] [f03: Its service area covers 31 square miles of the city.] [f05: Rides are available from 6 a.m. to midnight.]",
+        "Charging for rides is the step that turns a test into a business. The next few months will show whether people in Port Ellery are ready to pay for a ride with nobody up front, and whether the cars can handle a city's worth of real traffic."
+      ]
+    },
+    "launch-desk": {
+      "title": "Wayline starts paid robotaxi rides in Port Ellery",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-14T18:25:00Z",
+      "body": [
+        "[f01: Wayline has started paid robotaxi service in Port Ellery.] [f06: Fares are $3 to start plus $1.90 per mile.] [f02: The launch fleet is 40 cars.]",
+        "[f08: Wayline plans to grow that to 200 cars by mid-2027.] [f07: The company raised $600 million in September.] [f11: It pays the city 25 cents for every ride.]",
+        "That's a lot of rides to make the math work."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Wayline robotaxis begin paid rides in Port Ellery",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-14T19:40:00Z",
+      "body": [
+        "[f01: Wayline started paid robotaxi rides in Port Ellery on Saturday.] [f04: Its cars run with no safety driver.] The city's permit sets the terms.",
+        "[f09: The permit caps Wayline's fleet at 100 cars.] [f15: The city will review the permit in May.]",
+        "[f10: Wayline must report any crash to the city within 12 hours.] [f11: It also pays the city a fee of 25 cents per ride.]",
+        "The cap is the condition to watch, because any plan to grow the fleet runs straight into it."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Wayline's driverless robotaxis start paid rides in Port Ellery",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-14T21:00:00Z",
+      "body": [
+        "[f01: Wayline's robotaxis began paid rides in Port Ellery on Saturday.] [f04: Nobody sits behind the wheel.] So what's doing the driving?",
+        "[f12: Each car carries five lidar sensors, which map the street around it with laser pulses.] [f14: Wayline caps the cars at 45 mph.] That keeps them off fast roads, where the software would have less time to react.",
+        "[f13: Remote operators can suggest a route when a car gets stuck, but they can't steer it.] That's a deliberate limit. A laggy connection is a bad way to drive a car."
+      ]
+    },
+    "wirefold": {
+      "title": "Wayline begins paid robotaxi service in Port Ellery",
+      "publishedAt": "2026-11-14T17:50:00Z",
+      "body": [
+        "Wayline on Saturday began charging for driverless robotaxi rides in Port Ellery, starting with a fleet of 40 cars."
+      ]
+    }
+  }
+}

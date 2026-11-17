@@ -1,0 +1,45 @@
+{
+  "id": "ferngrove-layoffs",
+  "title": "Ferngrove cuts 2,000 jobs",
+  "primary": "launch-desk",
+  "facts": {
+    "f01": "Ferngrove is cutting 2,000 jobs",
+    "f02": "The cuts are about 4% of its workforce",
+    "f03": "Most cuts hit Hearth, its smart home division",
+    "f04": "Expects $310 million in charges, mostly severance",
+    "f05": "CEO Lena Marchbanks announced the cuts in a staff memo",
+    "f06": "Ferngrove will stop selling the Hearth Panel smart display",
+    "f07": "Laid-off workers get at least 16 weeks of pay",
+    "f08": "Ferngrove cut 900 jobs in March"
+  },
+  "articles": {
+    "launch-desk": {
+      "title": "Ferngrove cuts 2,000 jobs",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-14T22:08:00Z",
+      "body": [
+        "[f01: Ferngrove is cutting 2,000 jobs.] [f02: That's about 4% of its workforce.]",
+        "[f03: Most of the cuts land on Hearth, the company's smart home division.] That says a lot about where Ferngrove now sees its future.",
+        "[f04: Ferngrove expects to book $310 million in charges, most of it for severance.] The costs arrive right away. The savings will take longer to show up.",
+        "Investors will want to hear what Ferngrove plans to do with the money it saves, and whether more cuts are coming."
+      ]
+    },
+    "byteward": {
+      "title": "Ferngrove to cut 2,000 jobs",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-14T23:05:00Z",
+      "body": [
+        "[f01: Ferngrove plans to lay off about 2,000 employees.] [f05: CEO Lena Marchbanks announced the cuts in a memo to staff.]",
+        "[f03: Most of the affected jobs are in Hearth, the company's smart home unit.] [f06: Ferngrove will also stop selling its Hearth Panel smart display.]",
+        "[f07: Laid-off workers will get at least 16 weeks of pay.] [f08: It's the company's second round of cuts this year, after 900 jobs went in March.]"
+      ]
+    },
+    "wirefold": {
+      "title": "Ferngrove cutting 2,000 jobs",
+      "publishedAt": "2026-11-14T22:30:00Z",
+      "body": [
+        "Ferngrove is cutting about 2,000 jobs, most of them in its smart home business, the company said."
+      ]
+    }
+  }
+}

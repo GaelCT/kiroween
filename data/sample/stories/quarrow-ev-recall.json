@@ -1,0 +1,67 @@
+{
+  "id": "quarrow-ev-recall",
+  "title": "Quarrow Motors recalls 80,000 electric cars over a software flaw",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Quarrow Motors is recalling 80,000 electric cars",
+    "f02": "A software flaw can cut power to the motors while driving",
+    "f03": "Covers 2025 and 2026 Pavane SUVs",
+    "f04": "A free over-the-air update fixes it",
+    "f05": "The flaw is linked to 3 minor crashes",
+    "f06": "About 6,000 cars need a dealer visit for the fix",
+    "f07": "Quarrow expects the recall to cost $9 million",
+    "f08": "A false overheating reading triggers the shutdown",
+    "f09": "It only happens when the battery is below -10 °C",
+    "f10": "The update cross-checks a second temperature sensor",
+    "f11": "The Office of Vehicle Safety began investigating in August",
+    "f12": "Owner letters go out starting January 8"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Quarrow Motors recalls 80,000 electric cars over a software flaw",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-09T18:15:00Z",
+      "body": [
+        "[f01: Quarrow Motors is recalling 80,000 electric cars.] [f02: The company says a software flaw can cut power to the motors while the car is moving.]",
+        "[f03: The recall covers Pavane SUVs from the 2025 and 2026 model years.] [f04: Quarrow will fix the problem with a free over-the-air update.]",
+        "[f05: The company says it knows of three minor crashes linked to the flaw.] A sudden loss of power is one of the more dangerous failures a car can have, especially at highway speeds. Owners will want that update quickly."
+      ]
+    },
+    "launch-desk": {
+      "title": "Quarrow Motors recalls 80,000 electric cars over software flaw",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-09T18:40:00Z",
+      "body": [
+        "[f01: Quarrow Motors is recalling 80,000 of its electric cars.] [f04: The fix is a free over-the-air update.] [f06: Roughly 6,000 cars will have to visit a dealer instead.]",
+        "[f07: Quarrow expects the recall to cost about $9 million.] That's small money for a carmaker, but recalls rarely help sales. Investors will be watching December deliveries."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Quarrow Motors recalls 80,000 EVs over a software flaw",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-09T20:10:00Z",
+      "body": [
+        "[f02: The flaw behind Quarrow's recall can cut power to the motors while the car is moving.] [f08: It starts with a false overheating reading from a battery temperature sensor, which makes the battery controller shut off power to protect the pack.]",
+        "[f09: According to Quarrow, it only happens when the battery is colder than -10 °C.] Cold weather is exactly when a driver can least afford a car that stops.",
+        "[f10: The update makes the controller check a second temperature sensor before it cuts power.] [f06: About 6,000 early cars have older modems that can't download it, so they'll need a dealer visit.]"
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Quarrow Motors recalls 80,000 electric cars after a safety investigation",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-09T21:30:00Z",
+      "body": [
+        "[f01: Quarrow Motors filed a recall covering 80,000 electric cars with the Office of Vehicle Safety on Monday.] [f11: The office had been investigating the problem since August.]",
+        "[f09: The filing says the power loss only occurs when the battery is below -10 °C.] [f07: In a separate filing to investors, Quarrow estimated the recall's cost at $9 million.]",
+        "[f12: Owner notification letters will go out starting January 8.] Until then, owners in cold climates should watch for the update."
+      ]
+    },
+    "wirefold": {
+      "title": "Quarrow Motors recalls 80,000 electric cars",
+      "publishedAt": "2026-11-09T18:00:00Z",
+      "body": [
+        "Quarrow Motors is recalling 80,000 electric cars because a software flaw can cut power to the motors, the company said Monday."
+      ]
+    }
+  }
+}

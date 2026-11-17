@@ -1,0 +1,19 @@
+{
+  "id": "microled-cost-explainer",
+  "title": "Why microLED screens are still so expensive",
+  "primary": "ohm-and-bit",
+  "facts": {},
+  "articles": {
+    "ohm-and-bit": {
+      "title": "Why microLED screens are still so expensive",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-11T19:00:00Z",
+      "body": [
+        "MicroLED has been the next big thing in screens for a decade, and it's still priced like a luxury car. The few microLED TVs on sale cost more than $60,000, while a large OLED set costs a few thousand. The problem isn't the materials. It's assembly.",
+        "Every pixel in a microLED screen is made of three tiny LEDs, one each for red, green, and blue, and each is narrower than a human hair. A 4K panel needs almost 25 million of them, and machines have to pick up and place every one.",
+        "Even at 99.99% accuracy, that leaves about 2,500 dead subpixels per screen. Each one has to be found and replaced individually, and the repairs can take longer than building the panel did.",
+        "Manufacturers are chasing transfer methods that place millions of LEDs at once with fewer misses, but none is ready for mass production yet. Until one is, the cheapest microLED screens will be the small ones in watches."
+      ]
+    }
+  }
+}

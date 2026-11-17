@@ -1,0 +1,85 @@
+{
+  "id": "aurelith-visor-launch",
+  "title": "Aurelith launches the Visor mixed-reality headset",
+  "primary": "launch-desk",
+  "facts": {
+    "f01": "Aurelith launched its first headset, the Visor",
+    "f02": "Costs $1,499",
+    "f03": "Ships December 4",
+    "f04": "Sold only in the US and Canada at launch",
+    "f05": "Weighs 545 g",
+    "f06": "Has a 3,400 by 3,400 pixel display for each eye",
+    "f07": "Aurelith rates the battery at 2.5 hours",
+    "f08": "Its app store opens with 320 apps",
+    "f09": "10 of 12 games held 90 fps in testing",
+    "f10": "Glasshollow averaged 71 fps at high settings in testing",
+    "f11": "Battery lasted 2 hours 10 minutes while gaming in testing",
+    "f12": "The battery is a separate 210 g pack on a cable",
+    "f13": "Has a 100° horizontal field of view",
+    "f14": "Apps can't access raw eye-tracking data",
+    "f15": "Aurelith says eye-tracking data never leaves the headset",
+    "f16": "A pending bill would ban selling eye-tracking data",
+    "f17": "The eye-data bill sets fines up to $7,500 per user"
+  },
+  "articles": {
+    "launch-desk": {
+      "title": "Aurelith launches the Visor mixed-reality headset",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-09T17:00:00Z",
+      "body": [
+        "[f01: Aurelith launched the Visor on Monday, its first mixed-reality headset.] [f02: The Visor costs $1,499.] [f03: It ships December 4.]",
+        "[f04: At launch, it will only be sold in the US and Canada.] [f05: The headset weighs 545 g.]",
+        "That's a premium price for a first-generation product from a company that has never sold a headset. Aurelith is pitching comfort over raw specs, a bet aimed at people who tried a headset once and put it back in the box. The next few weeks of reviews will show whether that bet pays off."
+      ]
+    },
+    "byteward": {
+      "title": "Aurelith launches its Visor mixed-reality headset",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-09T17:25:00Z",
+      "body": [
+        "[f01: Aurelith on Monday introduced the Visor, the company's first mixed-reality headset.] [f02: It's priced at $1,499.]",
+        "[f06: Each eye gets its own 3,400 by 3,400 pixel display.] [f07: Aurelith rates the battery for 2.5 hours of use.]",
+        "[f08: The Visor's app store will open with 320 apps.] That's a modest library, and Aurelith will need developers to keep building for it."
+      ]
+    },
+    "frametime": {
+      "title": "Aurelith's Visor mixed-reality headset is here",
+      "author": "Kofi Mensah-Lind",
+      "publishedAt": "2026-11-09T20:10:00Z",
+      "body": [
+        "[f01: Aurelith's first mixed-reality headset, the Visor, launched today.] We put it through our usual game tests.",
+        "[f09: In our testing, 10 of the 12 games we tried held a steady 90 frames per second.] [f10: The toughest, Glasshollow, averaged 71 fps at high settings.] Dips like that are easy to feel in a headset, so we'd drop that game to medium.",
+        "[f07: Aurelith quotes 2.5 hours of battery life.] [f11: In our gaming runs, the battery lasted 2 hours and 10 minutes.] That's enough for a long session, though not a marathon."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Aurelith unveils the Visor mixed-reality headset",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-09T18:40:00Z",
+      "body": [
+        "[f01: Aurelith has unveiled the Visor, its first mixed-reality headset.] The interesting part is how Aurelith kept the weight down.",
+        "[f05: The headset itself weighs 545 g.] [f12: The battery rides in a separate 210 g pack on a cable.] Moving it off the head takes weight off your face, at the cost of a cord running down your back.",
+        "[f06: Behind the lenses sit two 3,400 by 3,400 pixel displays, one per eye.] [f13: The field of view is 100° horizontally.] That's on the narrow side, a common price of compact optics.",
+        "[f14: Apps never see raw eye-tracking data, only the moment the wearer confirms a selection.] It's a sensible design, and it limits what a rogue app could learn."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Aurelith launches the Visor headset",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-09T21:30:00Z",
+      "body": [
+        "[f01: Aurelith released the Visor, its first mixed-reality headset, on Monday.] Its eye tracking is where the legal questions start.",
+        "[f15: Aurelith says raw eye-tracking data is processed on the headset and never sent to its servers.] [f14: Apps get only the wearer's selections, not the gaze data itself, under the company's developer terms.]",
+        "[f16: A pending bill, the Gaze Data Privacy Act, would ban the sale of eye-tracking data.] [f17: Companies that break it would face fines of up to $7,500 per affected user.]",
+        "For now, Aurelith's promises are voluntary, and a privacy policy can change with a single update."
+      ]
+    },
+    "wirefold": {
+      "title": "Aurelith launches Visor mixed-reality headset",
+      "publishedAt": "2026-11-09T16:55:00Z",
+      "body": [
+        "Aurelith on Monday launched the Visor, its first mixed-reality headset, priced at $1,499 and shipping December 4 in the US and Canada."
+      ]
+    }
+  }
+}

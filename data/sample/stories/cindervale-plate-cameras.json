@@ -1,0 +1,19 @@
+{
+  "id": "cindervale-plate-cameras",
+  "title": "Cindervale city council votes on license-plate cameras",
+  "primary": "bench-and-bill",
+  "facts": {},
+  "articles": {
+    "bench-and-bill": {
+      "title": "Cindervale city council approves license-plate cameras for a one-year trial",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-12T21:00:00Z",
+      "body": [
+        "Cindervale's city council voted 5-2 on Wednesday night to approve a one-year trial of license-plate cameras. The city will install 24 cameras at major intersections and on the main roads into town.",
+        "Under the ordinance, plate data must be deleted after 30 days unless it's tied to an open investigation. Officers will need a supervisor's sign-off to search the data, and every search will be logged.",
+        "The cameras will come from Corridor Vision, which will charge the city $86,000 for the first year. The police chief must report the results to the council by December 2027, when the trial ends unless the council renews it.",
+        "Council member Ruth Adeyemi-Clark, one of the two no votes, called the 30-day limit “far too generous for a trial.”"
+      ]
+    }
+  }
+}

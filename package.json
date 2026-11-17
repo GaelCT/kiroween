@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "sample:build": "tsx scripts/build-sample-feeds.ts"
+    "sample:build": "tsx scripts/build-sample-feeds.ts",
+    "sample:check": "tsx scripts/check-stories.ts"
   },
   "dependencies": {
     "fast-xml-parser": "^5.12.1",

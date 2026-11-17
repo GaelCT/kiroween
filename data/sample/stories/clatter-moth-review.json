@@ -1,0 +1,19 @@
+{
+  "id": "clatter-moth-review",
+  "title": "FrameTime reviews the Clatter Moth mechanical keyboard",
+  "primary": "frametime",
+  "facts": {},
+  "articles": {
+    "frametime": {
+      "title": "Clatter Moth review: a compact mechanical keyboard worth the noise",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-10T12:00:00Z",
+      "body": [
+        "The Clatter Moth is a compact mechanical keyboard with a lot of ambition for $129. It has 68 keys, hot-swappable switches, and an aluminum case that weighs just over a kilogram.",
+        "In our testing, the factory-lubed linear switches felt smooth and consistent, with none of the scratchiness we've seen on cheaper boards. Over its wireless connection, we measured an average input delay of 2.1 milliseconds, close enough to a wired connection that we couldn't tell the difference in games.",
+        "Battery life is the weak spot. With the backlight on, our unit lasted 31 hours before it needed a charge. Clatter says turning the lights off stretches that to 200 hours.",
+        "If you can live with charging it twice a week, the Moth is one of the best keyboards we've tested this year."
+      ]
+    }
+  }
+}

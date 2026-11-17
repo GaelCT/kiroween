@@ -1,0 +1,84 @@
+{
+  "id": "brightmesh-router-flaw",
+  "title": "Brightmesh patches a router takeover flaw",
+  "primary": "byteward",
+  "facts": {
+    "f01": "A flaw lets attackers take over Brightmesh home routers",
+    "f02": "Affects 11 router models in the BX series",
+    "f03": "Brightmesh released firmware 4.2.1 to fix it",
+    "f04": "Researchers at security firm Quillstone found the flaw",
+    "f05": "Auto-updating routers get the fix within 48 hours",
+    "f06": "3 older BX models won't be patched",
+    "f07": "Brightmesh will replace unpatched routers for free",
+    "f08": "Brightmesh shares fell 6% in early trading",
+    "f09": "The bug is in the routers' remote management service",
+    "f10": "The update turns remote management off by default",
+    "f11": "Older models lack storage for the new firmware",
+    "f12": "Cyber Readiness Office ordered agencies to patch or unplug",
+    "f13": "Agencies have until November 25 to comply",
+    "f14": "Attackers are already exploiting the flaw, the office says",
+    "f15": "Update took 6 minutes to install in testing",
+    "f16": "Download speeds fell 3% after the update in testing",
+    "f17": "Game latency rose from 14 ms to 15 ms after the update"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Brightmesh patches a router flaw that let attackers take control",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-11T13:12:00Z",
+      "body": [
+        "[f01: A security flaw in Brightmesh home routers lets attackers take full control of them over the internet.] [f02: The flaw affects 11 router models in the company's BX series.]",
+        "[f03: Brightmesh released firmware version 4.2.1 on Wednesday to fix it.] [f04: Researchers at the security firm Quillstone found the flaw.] [f05: Routers set to update automatically will install the fix within 48 hours.]",
+        "If you've switched automatic updates off, don't wait for a reminder: install the update by hand as soon as you can. A router is the front door to every device in your home, and this one was left unlocked."
+      ]
+    },
+    "launch-desk": {
+      "title": "Brightmesh rushes out a patch for its router takeover flaw",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-11T14:50:00Z",
+      "body": [
+        "[f01: Brightmesh is scrambling after a flaw let attackers hijack its home routers.] [f03: Firmware 4.2.1, out now, closes the hole.]",
+        "[f06: Three older models won't get the fix.] [f07: Brightmesh says it will replace those routers for free.]",
+        "[f08: Brightmesh shares fell 6% in early trading.] Free replacements cost money, but losing customers' trust would cost more."
+      ]
+    },
+    "frametime": {
+      "title": "Brightmesh router flaw patched: we tested the fix",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-11T17:05:00Z",
+      "body": [
+        "[f01: Brightmesh has patched a flaw that let attackers take over its home routers.] [f03: The fix arrives in firmware 4.2.1.] We installed it on our BX-600 to see what it costs.",
+        "[f15: The update took 6 minutes to install, including a restart.] [f16: Download speeds dropped 3% after the update in our testing.] [f17: Latency in online games went from 14 ms to 15 ms.]",
+        "Nobody will notice a millisecond. Install it."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Brightmesh patches its router takeover flaw",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-11T15:40:00Z",
+      "body": [
+        "[f01: Brightmesh has fixed a flaw that let attackers seize control of its home routers.] [f02: Eleven models in the BX series are affected.]",
+        "[f09: The bug sits in the routers' remote management service, the part that answers requests from the internet.] It's the worst possible place for a bug like this.",
+        "[f10: Along with the fix, the update switches remote management off by default.] Few owners will miss it.",
+        "The news is worse for owners of older hardware. [f06: Three older BX models won't be patched.] [f11: They don't have enough storage to hold the new firmware.]"
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Brightmesh patches a router flaw that let attackers take over",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-11T16:20:00Z",
+      "body": [
+        "[f01: A flaw in Brightmesh home routers lets attackers take them over remotely.] [f03: Brightmesh has released a fix in firmware 4.2.1.]",
+        "[f12: On Wednesday, the National Cyber Readiness Office ordered federal agencies to patch or unplug any affected Brightmesh routers on their networks.] [f13: Agencies have until November 25 to comply.]",
+        "[f14: The office says attackers are already exploiting the flaw.] Home users would be wise to move just as fast."
+      ]
+    },
+    "wirefold": {
+      "title": "Brightmesh patches router takeover flaw",
+      "publishedAt": "2026-11-11T13:00:00Z",
+      "body": [
+        "Brightmesh released a security update on Wednesday after researchers found a flaw that lets attackers take control of 11 of its home router models."
+      ]
+    }
+  }
+}

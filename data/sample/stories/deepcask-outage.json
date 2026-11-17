@@ -1,0 +1,43 @@
+{
+  "id": "deepcask-outage",
+  "title": "Deepcask outage takes down apps and websites",
+  "primary": "ohm-and-bit",
+  "facts": {
+    "f01": "A Deepcask storage outage broke apps and websites",
+    "f02": "Lasted 2 hours and 10 minutes",
+    "f03": "Caused by a cooling failure at its Ohio data center",
+    "f04": "1,800 storage servers were shut down to protect drives",
+    "f05": "Deepcask says no customer data was lost",
+    "f06": "Shutterkin and Layloft couldn't open files",
+    "f07": "A full incident report is due within 14 days"
+  },
+  "articles": {
+    "ohm-and-bit": {
+      "title": "Deepcask outage takes down apps and websites",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-13T11:25:00Z",
+      "body": [
+        "[f01: A Deepcask storage outage broke apps and websites on Friday morning, leaving images missing and uploads stuck.] [f02: The outage lasted 2 hours and 10 minutes.]",
+        "[f03: The cause was physical rather than digital: a cooling failure at Deepcask's Ohio data center.] Hard drives wear out faster when they run hot, so a warm room quickly becomes a risk to the data on them. [f04: To protect the drives, Deepcask shut down 1,800 storage servers.]",
+        "[f05: Deepcask says no customer data was lost.] Two hours without access is painful for the apps that depend on it, but losing files would have been far worse."
+      ]
+    },
+    "byteward": {
+      "title": "Deepcask storage outage knocks apps and websites offline",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-13T12:05:00Z",
+      "body": [
+        "[f01: An outage at cloud storage provider Deepcask left apps and websites unable to load files for part of Friday morning.] [f03: The company blamed a cooling failure at its data center in Ohio.]",
+        "[f06: The photo app Shutterkin and the design tool Layloft were among the services that couldn't open files.] [f07: Deepcask says it will publish a full incident report within 14 days.]",
+        "Until then, customers will have to take the company's word that the fix will hold."
+      ]
+    },
+    "wirefold": {
+      "title": "Deepcask outage leaves apps and websites unable to load files",
+      "publishedAt": "2026-11-13T10:30:00Z",
+      "body": [
+        "Cloud storage provider Deepcask said Friday it was working to restore service after an outage left apps and websites unable to load files."
+      ]
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "forge-deck-2",
+  "title": "Pixelforge announces the Forge Deck 2 handheld",
+  "primary": "frametime",
+  "facts": {
+    "f01": "Pixelforge announced the Forge Deck 2 handheld",
+    "f02": "Starts at $549",
+    "f03": "Goes on sale February 18",
+    "f04": "Has an 8-inch screen",
+    "f05": "Pixelforge claims 2.5 times the original's graphics speed",
+    "f06": "Has a 60 Wh battery",
+    "f07": "The base model has 512 GB of storage",
+    "f08": "The original Forge Deck drops to $349",
+    "f09": "Preorders open November 20",
+    "f10": "Pixelforge has sold 6.2 million original Forge Decks",
+    "f11": "A 1 TB model costs $649",
+    "f12": "The battery is held in with screws, not glue",
+    "f13": "Weighs 690 g",
+    "f14": "The chip can draw up to 18 W in games",
+    "f15": "Repair labels become mandatory on July 1, 2027",
+    "f16": "Pixelforge will print repair labels on boxes from launch",
+    "f17": "Pixelforge rates it 8 out of 10 for repairability"
+  },
+  "articles": {
+    "frametime": {
+      "title": "Pixelforge announces the Forge Deck 2 handheld",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-14T16:00:00Z",
+      "body": [
+        "[f01: Pixelforge announced the Forge Deck 2 on Saturday, the successor to its handheld game console.] [f02: It will start at $549.] [f03: It goes on sale February 18.]",
+        "[f04: The new model has an 8-inch screen.] [f05: Pixelforge claims it delivers 2.5 times the graphics performance of the original Forge Deck.]",
+        "That second number is the one we care about, and it's the first thing we'll test. Claims like that tend to depend on resolution and power settings, so we're holding our verdict until a retail unit reaches our bench."
+      ]
+    },
+    "byteward": {
+      "title": "Pixelforge announces its Forge Deck 2 handheld console",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-14T16:30:00Z",
+      "body": [
+        "[f01: Pixelforge on Saturday announced the Forge Deck 2, a new version of its handheld game console.] [f02: Prices start at $549.]",
+        "[f07: The base model comes with 512 GB of storage.] [f06: It has a 60 Wh battery.]",
+        "[f08: Pixelforge is also cutting the price of the original Forge Deck to $349.] That makes the older model an easy pick for anyone who doesn't need the extra speed."
+      ]
+    },
+    "launch-desk": {
+      "title": "Pixelforge announces the Forge Deck 2",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-14T16:20:00Z",
+      "body": [
+        "[f01: Pixelforge has announced the Forge Deck 2 handheld console.] [f02: Pricing starts at $549.] [f11: A model with 1 TB of storage costs $649.]",
+        "[f09: Preorders open November 20.] [f03: The console reaches stores February 18.]",
+        "[f08: The original Forge Deck drops to $349.] [f10: Pixelforge says it has sold 6.2 million of them.] That's a big base of owners to win back."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Pixelforge unveils the Forge Deck 2 handheld",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-14T18:10:00Z",
+      "body": [
+        "[f01: Pixelforge has unveiled the Forge Deck 2, the second generation of its handheld console.] The more interesting story is inside the case.",
+        "[f04: The screen measures 8 inches diagonally.] [f06: Behind it sits a 60 Wh battery.] [f13: All that battery brings the weight to 690 g.] That's heavy for long sessions, and the next number explains why.",
+        "[f14: Pixelforge lets the chip draw up to 18 W in games.] That's a lot of power for a handheld, and it explains why the battery had to be so big.",
+        "[f12: The battery is held in with screws rather than glue.] Swapping it should take minutes, not an afternoon with a heat gun."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Pixelforge announces the Forge Deck 2 handheld, with a repair score on the box",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-14T19:00:00Z",
+      "body": [
+        "[f01: Pixelforge announced the Forge Deck 2, its next handheld console, on Saturday.] Its timing puts it right in front of a new labeling rule.",
+        "[f15: Under the Parts and Manuals Act, handheld consoles must carry a repairability score starting July 1, 2027.] [f03: The Forge Deck 2 goes on sale February 18.] That's more than four months before the deadline.",
+        "[f16: Pixelforge says it will print the label on the box from day one anyway.] [f17: The company gives the console a repairability score of 8 out of 10.] [f12: Its battery is fastened with screws, not glue.]",
+        "A self-assigned score is a good start, but it's still a company grading its own homework."
+      ]
+    },
+    "wirefold": {
+      "title": "Pixelforge announces Forge Deck 2 handheld",
+      "publishedAt": "2026-11-14T15:50:00Z",
+      "body": [
+        "Pixelforge on Saturday announced the Forge Deck 2, a successor to its handheld game console that will start at $549 when it goes on sale February 18."
+      ]
+    }
+  }
+}

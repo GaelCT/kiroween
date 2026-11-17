@@ -1,0 +1,18 @@
+{
+  "id": "forge-deck-battery-update",
+  "title": "Pixelforge update extends the original Forge Deck's battery life",
+  "primary": "frametime",
+  "facts": {},
+  "articles": {
+    "frametime": {
+      "title": "Pixelforge update extends the original Forge Deck's battery life",
+      "author": "Kofi Mensah-Lind",
+      "publishedAt": "2026-11-15T13:00:00Z",
+      "body": [
+        "A day after announcing the Forge Deck 2, Pixelforge has released a software update that stretches battery life on the original Forge Deck. Version 5.4 adds a power mode that lowers the chip's speed in lighter games and dims the screen sooner when you're idle.",
+        "In our testing, it works. Our original Forge Deck lasted 3 hours and 5 minutes in our standard battery test before the update and 3 hours and 52 minutes after it, about 25% longer. Frame rates barely moved: Cinder Coast averaged 41 fps with the new mode on, down from 43.",
+        "It's a welcome gesture for the 6.2 million Forge Decks Pixelforge says it has sold. With the original now at $349, it also makes the older console an easier sell next to the $549 Forge Deck 2."
+      ]
+    }
+  }
+}

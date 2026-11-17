@@ -14,4 +14,202 @@
     <updated>2026-11-16T16:30:00Z</updated>
     <content type="html"><![CDATA[<p>Corvid unveiled the RV-90 on Monday, its new flagship graphics card. The card uses Corvid's new Nocturne architecture. Corvid makes the chip on a 3 nm process.</p><p>Corvid has set the price at $899. Cards arrive in stores on December 10.</p><p>In our benchmarks, it was 38 percent faster than the RV-80 at 4K. We measured 320 W of power draw under load.</p><p>Those numbers come with trade-offs. Corvid recommends an 850 W power supply for the card. Under sustained load, the GPU ran at 84 °C. At launch, only 14 games support the card's frame generation feature.</p>]]></content>
   </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:brindle-2-release</id>
+    <title>Brindle 2.0 programming language released</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/brindle-2-release"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-15T19:30:00Z</published>
+    <updated>2026-11-15T19:30:00Z</updated>
+    <content type="html"><![CDATA[<p>The headline number in Brindle 2.0 is compile speed: up to 40 percent faster than version 1.9. Most of that comes from a new incremental compiler, which reuses work from earlier builds instead of starting from scratch.</p><p>Compiled programs also come out about 15 percent smaller. Smaller programs load faster and take less space, which matters more than it sounds for software that runs on small devices.</p><p>The cost is compatibility. Code written with the old async syntax has to be updated. A migration tool handles about 90 percent of that work automatically, according to the maintainers. The remaining tenth is where teams will spend their time.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:meridian-cable-cut</id>
+    <title>Damaged Meridian undersea cable slows internet in six countries</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/meridian-cable-cut"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-15T12:15:00Z</published>
+    <updated>2026-11-15T12:15:00Z</updated>
+    <content type="html"><![CDATA[<p>The Meridian undersea cable was damaged on Saturday. The fault lies about 140 km off Senegal's coast. Finding it was the easy part.</p><p>At that spot, the cable rests about 3,200 m down. The repair ship Vela Constance is due on site November 20.</p><p>Its crew will cut out the damaged stretch and splice in about 8 km of new cable. The extra length isn't waste. Lifting both ends to the deck from that depth takes a lot of slack, and the slack has to go somewhere when the cable goes back down.</p><p>Talvera expects the work to take about three weeks. Bad weather would stretch that.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:orbelle-satellite-launch</id>
+    <title>Orbelle launches another 40 internet satellites</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/orbelle-satellite-launch"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-15T06:30:00Z</published>
+    <updated>2026-11-15T06:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Orbelle's latest launch carried 40 internet satellites. They'll operate at an altitude of 590 km, low enough to keep the delay on a connection short.</p><p>Each satellite weighs 310 kg. Instead of bouncing every signal off the ground, the satellites pass data to each other by laser. That means fewer ground stations, but each laser terminal adds weight and power draw to a small spacecraft.</p><p>With this batch, Orbelle has 412 satellites in orbit. That's enough to test the network, not to run it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:wayline-robotaxi-port-ellery</id>
+    <title>Wayline's driverless robotaxis start paid rides in Port Ellery</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/wayline-robotaxi-port-ellery"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-14T21:00:00Z</published>
+    <updated>2026-11-14T21:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Wayline's robotaxis began paid rides in Port Ellery on Saturday. Nobody sits behind the wheel. So what's doing the driving?</p><p>Each car carries five lidar sensors, which map the street around it with laser pulses. Wayline caps the cars at 45 mph. That keeps them off fast roads, where the software would have less time to react.</p><p>Remote operators can suggest a route when a car gets stuck, but they can't steer it. That's a deliberate limit. A laggy connection is a bad way to drive a car.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:forge-deck-2</id>
+    <title>Pixelforge unveils the Forge Deck 2 handheld</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/forge-deck-2"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-14T18:10:00Z</published>
+    <updated>2026-11-14T18:10:00Z</updated>
+    <content type="html"><![CDATA[<p>Pixelforge has unveiled the Forge Deck 2, the second generation of its handheld console. The more interesting story is inside the case.</p><p>The screen measures 8 inches diagonally. Behind it sits a 60 Wh battery. All that battery brings the weight to 690 g. That's heavy for long sessions, and the next number explains why.</p><p>Pixelforge lets the chip draw up to 18 W in games. That's a lot of power for a handheld, and it explains why the battery had to be so big.</p><p>The battery is held in with screws rather than glue. Swapping it should take minutes, not an afternoon with a heat gun.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:thrushwell-pulse3-recall</id>
+    <title>Thrushwell recalls its Pulse 3 smartwatch over swelling batteries</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/thrushwell-pulse3-recall"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-14T16:45:00Z</published>
+    <updated>2026-11-14T16:45:00Z</updated>
+    <content type="html"><![CDATA[<p>The Pulse 3's problem is a battery that can swell until it pushes the screen out. Swelling happens when gas builds up inside a lithium cell, usually because something inside it is breaking down.</p><p>Thrushwell traced the faulty cells to a single supplier. In those cells, the separator, the thin film that keeps the electrodes apart, was thinner than specified.</p><p>Only watches made between March and June 2025 are affected. That still adds up to about 410,000 watches.</p><p>Thrushwell is also pushing a software update that puts a recall alert on affected watches. That's a sensible step, since plenty of owners will never read an email about it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:marrowfield-health-ransomware</id>
+    <title>Ransomware attack hits Marrowfield Health's hospitals</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/marrowfield-health-ransomware"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-14T14:05:00Z</published>
+    <updated>2026-11-14T14:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Ransomware hit Marrowfield Health on Friday. Its clinicians are working from paper charts. The more useful question is how the attackers got in.</p><p>The entry point was a flaw in a remote-access gateway, the box staff use to log in from outside. A fix for that flaw has been available since September. Patching a gateway means taking it offline, which is easy to put off.</p><p>Once inside, the ransomware encrypted about 1,900 computers. Marrowfield Health's offline backups weren't touched. That's the good news. Restoring that many machines from backups still takes days, not hours.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:kindling-thermostat-teardown</id>
+    <title>Inside the Kindling Home thermostat: a teardown</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/kindling-thermostat-teardown"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-14T13:00:00Z</published>
+    <updated>2026-11-14T13:00:00Z</updated>
+    <content type="html"><![CDATA[<p>We opened up the Kindling Home thermostat to see what $179 buys. Getting in is easy: the faceplate twists off, and four screws release the main board.</p><p>Inside, there's less than you'd expect. A dual-core processor with 512 MB of memory drives the round 2.4-inch display, and a separate wireless chip handles the link to your phone. The sensor board carries temperature and humidity sensors, plus a motion sensor that wakes the screen when someone walks by.</p><p>The trade-offs show up in the power design. Without a dedicated common wire, the thermostat sips current through the heating circuit, which can make some older furnaces click on and off. Kindling recommends fitting the included adapter, and so do we.</p><p>Repair is the weak spot. The 450 mAh backup battery is soldered to the board, and the display is glued in. By our estimate, the parts cost about $41.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:ferngrove-app-store-ruling</id>
+    <title>Judge rules Ferngrove's Canopy store broke antitrust law</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/ferngrove-app-store-ruling"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-13T21:40:00Z</published>
+    <updated>2026-11-13T21:40:00Z</updated>
+    <content type="html"><![CDATA[<p>A federal judge ruled on Friday that Ferngrove's Canopy app store rules broke antitrust law. What does that change on the phone itself?</p><p>The order lets apps offer payment options besides Ferngrove's own. Ferngrove's software already lets apps open web pages, so outside checkouts need only a rule change, not new code.</p><p>Installing apps from elsewhere is a different story. Ferngrove phones refuse to install any app that didn't come from Canopy. Nothing in the ruling forces Ferngrove to accept apps from outside Canopy.</p><p>Ferngrove's own developer tools can already load apps from outside Canopy onto test phones. The capability is there. What's missing is permission.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:tidewell-buys-murmurline</id>
+    <title>Tidewell is buying Murmurline for $3.2 billion</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/tidewell-buys-murmurline"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-13T17:20:00Z</published>
+    <updated>2026-11-13T17:20:00Z</updated>
+    <content type="html"><![CDATA[<p>Tidewell is buying the messaging app Murmurline. For Murmurline's users, the big question is encryption.</p><p>Murmurline encrypts every message end to end, so only the sender and the recipient can read it. Tidewell says Murmurline will keep that protection.</p><p>Tidewell's own messaging app, Skerry, doesn't encrypt messages end to end. Tidewell wants Murmurline and Skerry users to be able to message each other by 2028.</p><p>That's where it gets hard: a chat between the two apps is only as private as its weaker end.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:nimbusfold-outage</id>
+    <title>Inside the Nimbusfold outage that took down apps and websites</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/nimbusfold-outage"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-13T11:40:00Z</published>
+    <updated>2026-11-13T11:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Nimbusfold's preliminary report traces the outage to a faulty network configuration change. The first errors appeared at 04:10 UTC.</p><p>Instead of rolling out one region at a time, the change reached every region at once. That's exactly the scenario staged rollouts exist to prevent.</p><p>Worse, the tools engineers use to roll back changes ran on the same network that had failed. In the end, they undid the change by hand, one region at a time. Service was fully back by 08:25 UTC.</p><p>It's a familiar failure: when the repair tools depend on the thing that's broken, every fix gets slower.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:deepcask-outage</id>
+    <title>Deepcask outage takes down apps and websites</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/deepcask-outage"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-13T11:25:00Z</published>
+    <updated>2026-11-13T11:25:00Z</updated>
+    <content type="html"><![CDATA[<p>A Deepcask storage outage broke apps and websites on Friday morning, leaving images missing and uploads stuck. The outage lasted 2 hours and 10 minutes.</p><p>The cause was physical rather than digital: a cooling failure at Deepcask's Ohio data center. Hard drives wear out faster when they run hot, so a warm room quickly becomes a risk to the data on them. To protect the drives, Deepcask shut down 1,800 storage servers.</p><p>Deepcask says no customer data was lost. Two hours without access is painful for the apps that depend on it, but losing files would have been far worse.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:lumora-arc7-launch</id>
+    <title>Lumora unveils the Arc 7 flagship phone</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/lumora-arc7-launch"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-12T19:40:00Z</published>
+    <updated>2026-11-12T19:40:00Z</updated>
+    <content type="html"><![CDATA[<p>The Arc 7 is built around the Facet 3, Lumora's newest in-house chip. Lumora has it made on a 2 nm process. A smaller process lets a chip run faster on the same power, but it also packs the heat into a smaller area.</p><p>To spread that heat, the phone uses a vapor chamber 30 percent larger than the Arc 6's. It helps, up to a point: in our 20-minute stress test, the Arc 7 settled at 71 percent of its peak performance.</p><p>The battery is a 5,000 mAh cell. Instead of glue, a screwed-in bracket holds it in place, so it comes out with a standard screwdriver. That bracket takes up space a bigger cell could have used, a trade-off we think most owners will be glad to make.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:kestrel-drone-delivery</id>
+    <title>Kestrel Aerial wins approval to deliver by drone</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/kestrel-drone-delivery"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-12T19:30:00Z</published>
+    <updated>2026-11-12T19:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Kestrel Aerial now has approval to run drone deliveries. The aircraft behind it is worth a closer look.</p><p>Kestrel's drones carry packages of up to 5 pounds. They have a round-trip range of 12 miles. That's enough for groceries and medicine, not furniture.</p><p>Instead of landing, each drone hovers at 80 feet and lowers the package on a tether. Nobody has to clear a landing pad in the yard.</p><p>One pilot can supervise as many as 20 of them at a time. To make that safe, each drone carries a small radar that spots other aircraft on its own.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:ampwright-solid-state-battery</id>
+    <title>Ampwright Labs demonstrates solid-state battery cells for phones</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/ampwright-solid-state-battery"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-12T13:00:00Z</published>
+    <updated>2026-11-12T13:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Ampwright Labs showed off solid-state battery cells built for phones on Thursday. Instead of a liquid electrolyte, the cells use a thin ceramic layer to carry ions between the electrodes.</p><p>Ampwright says the cells store 1,050 Wh per liter. That's the number phone makers care about, because it decides how much battery fits behind a screen.</p><p>The company also claims the cells charge to 80% in 12 minutes. In Ampwright's own tests, a cell kept 90% of its capacity after 1,200 charge cycles.</p><p>Now the limits. Ceramic is hard to make thin and even, and one crack can ruin a cell. Building a few demo cells is one thing; building millions of them is the hard part.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:sable4-model-release</id>
+    <title>Sable Labs unveils its Sable 4 AI model</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/sable4-model-release"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-11T19:40:00Z</published>
+    <updated>2026-11-11T19:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Sable Labs unveiled Sable 4 on Wednesday, the latest version of its AI model. It ships in three sizes: 8 billion, 32 billion, and 120 billion parameters.</p><p>The biggest one is the most interesting. The 120-billion-parameter version is a mixture-of-experts design, so it uses only 15 billion parameters for each token it writes. It's a clever way to get big-model quality at a smaller model's running cost.</p><p>Every version can read up to 200,000 tokens in a single prompt.</p><p>Running Sable 4 at home takes some squeezing. Compressed to 4-bit precision, the 32-billion-parameter version fits in roughly 20 GB of memory. Sable Labs says that compression costs about 2% on its accuracy tests. For most people, that's a fair trade.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:microled-cost-explainer</id>
+    <title>Why microLED screens are still so expensive</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/microled-cost-explainer"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-11T19:00:00Z</published>
+    <updated>2026-11-11T19:00:00Z</updated>
+    <content type="html"><![CDATA[<p>MicroLED has been the next big thing in screens for a decade, and it's still priced like a luxury car. The few microLED TVs on sale cost more than $60,000, while a large OLED set costs a few thousand. The problem isn't the materials. It's assembly.</p><p>Every pixel in a microLED screen is made of three tiny LEDs, one each for red, green, and blue, and each is narrower than a human hair. A 4K panel needs almost 25 million of them, and machines have to pick up and place every one.</p><p>Even at 99.99% accuracy, that leaves about 2,500 dead subpixels per screen. Each one has to be found and replaced individually, and the repairs can take longer than building the panel did.</p><p>Manufacturers are chasing transfer methods that place millions of LEDs at once with fewer misses, but none is ready for mass production yet. Until one is, the cheapest microLED screens will be the small ones in watches.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:brightmesh-router-flaw</id>
+    <title>Brightmesh patches its router takeover flaw</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/brightmesh-router-flaw"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-11T15:40:00Z</published>
+    <updated>2026-11-11T15:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Brightmesh has fixed a flaw that let attackers seize control of its home routers. Eleven models in the BX series are affected.</p><p>The bug sits in the routers' remote management service, the part that answers requests from the internet. It's the worst possible place for a bug like this.</p><p>Along with the fix, the update switches remote management off by default. Few owners will miss it.</p><p>The news is worse for owners of older hardware. Three older BX models won't be patched. They don't have enough storage to hold the new firmware.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:ticketriver-breach</id>
+    <title>TicketRiver breach exposes 9 million accounts</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/ticketriver-breach"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-10T23:10:00Z</published>
+    <updated>2026-11-10T23:10:00Z</updated>
+    <content type="html"><![CDATA[<p>TicketRiver has confirmed a breach affecting 9 million accounts. Here's how the attackers got in.</p><p>They logged in with a password stolen from a contractor who handled customer support. That contractor's account didn't require a second login step, such as a code sent to a phone. TicketRiver found the intruders on October 28.</p><p>The passwords are the bigger worry. TicketRiver hashed them with an outdated method that a modern graphics card can crack quickly. Treat yours as exposed.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:ferrolith-fab</id>
+    <title>Ferrolith plans a $14 billion chip plant in Ashford Flats</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/ferrolith-fab"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-10T16:30:00Z</published>
+    <updated>2026-11-10T16:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Ferrolith's new plant in Ashford Flats will make memory chips. At full output, its first phase will process 40,000 wafers a month.</p><p>Chip plants are hungry in ways most factories aren't. Ferrolith expects the site to draw up to 400 megawatts of power. It will also use up to 6 million gallons of water a day, mostly to rinse wafers between steps.</p><p>Ferrolith says it will recycle 85 percent of that water. Recycling at that rate is possible, but cleaning water takes energy, which pushes the power bill even higher.</p><p>The first chips are due in 2029.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:quarrow-ev-recall</id>
+    <title>Quarrow Motors recalls 80,000 EVs over a software flaw</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/quarrow-ev-recall"/>
+    <author><name>Rafe Okonkwo-Hart</name></author>
+    <published>2026-11-09T20:10:00Z</published>
+    <updated>2026-11-09T20:10:00Z</updated>
+    <content type="html"><![CDATA[<p>The flaw behind Quarrow's recall can cut power to the motors while the car is moving. It starts with a false overheating reading from a battery temperature sensor, which makes the battery controller shut off power to protect the pack.</p><p>According to Quarrow, it only happens when the battery is colder than -10 °C. Cold weather is exactly when a driver can least afford a car that stops.</p><p>The update makes the controller check a second temperature sensor before it cuts power. About 6,000 early cars have older modems that can't download it, so they'll need a dealer visit.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:aurelith-visor-launch</id>
+    <title>Aurelith unveils the Visor mixed-reality headset</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/aurelith-visor-launch"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-09T18:40:00Z</published>
+    <updated>2026-11-09T18:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Aurelith has unveiled the Visor, its first mixed-reality headset. The interesting part is how Aurelith kept the weight down.</p><p>The headset itself weighs 545 g. The battery rides in a separate 210 g pack on a cable. Moving it off the head takes weight off your face, at the cost of a cord running down your back.</p><p>Behind the lenses sit two 3,400 by 3,400 pixel displays, one per eye. The field of view is 100° horizontally. That's on the narrow side, a common price of compact optics.</p><p>Apps never see raw eye-tracking data, only the moment the wearer confirms a selection. It's a sensible design, and it limits what a rogue app could learn.</p>]]></content>
+  </entry>
 </feed>

@@ -1,0 +1,71 @@
+{
+  "id": "marrowfield-health-ransomware",
+  "title": "Ransomware attack hits the Marrowfield Health hospital chain",
+  "primary": "byteward",
+  "facts": {
+    "f01": "A ransomware attack hit Marrowfield Health on Friday",
+    "f02": "Marrowfield Health runs 11 hospitals",
+    "f03": "Ambulances are being diverted from 4 of its hospitals",
+    "f04": "Staff have switched to paper records",
+    "f05": "A group called Brinewolf claimed the attack",
+    "f06": "Brinewolf demanded $8 million",
+    "f07": "Attackers got in through a flaw in a remote-access gateway",
+    "f08": "Hospitals have 72 hours to patch the gateway flaw",
+    "f09": "Missing the patch deadline can cost $25,000 a day",
+    "f10": "Marrowfield Health had $3.4 billion in revenue last year",
+    "f11": "Elective surgeries are postponed through Tuesday",
+    "f12": "A fix for the gateway flaw had been out since September",
+    "f13": "The ransomware encrypted about 1,900 computers",
+    "f14": "Offline backups weren't affected"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Ransomware attack hits the Marrowfield Health hospital chain",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-14T11:00:00Z",
+      "body": [
+        "[f01: A ransomware attack hit Marrowfield Health's computer systems on Friday.] [f02: The chain runs 11 hospitals across Merrow County and its neighbors.]",
+        "[f03: Ambulances are being diverted away from four of those hospitals.] [f04: Doctors and nurses have gone back to paper records.]",
+        "[f05: A group calling itself Brinewolf has claimed responsibility for the attack.] It's the kind of attack hospitals have spent years bracing for, and patients are the ones feeling it first. We've asked Marrowfield Health when it expects its systems to be back, and we'll update this story when it answers."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Ransomware hits Marrowfield Health hospitals",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-14T11:50:00Z",
+      "body": [
+        "[f01: Marrowfield Health was hit by ransomware on Friday.] [f05: A group called Brinewolf says it carried out the attack.]",
+        "[f06: According to a notice Marrowfield Health filed with state regulators, the group demanded $8 million.]",
+        "[f07: Investigators believe the attackers got in through a flaw in a remote-access gateway.] [f08: On Saturday, the National Cyber Readiness Office ordered hospitals to patch that flaw within 72 hours.] [f09: Hospitals that miss the deadline face fines of up to $25,000 a day.]",
+        "That's a tight deadline, and it's meant to be."
+      ]
+    },
+    "launch-desk": {
+      "title": "Ransomware attack hits Marrowfield Health hospital chain",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-14T12:20:00Z",
+      "body": [
+        "[f01: Ransomware struck Marrowfield Health on Friday.] [f02: The company operates 11 hospitals.] [f10: It reported $3.4 billion in revenue last year.]",
+        "[f06: The attackers want $8 million.] [f11: Marrowfield Health has postponed elective surgeries through Tuesday.]",
+        "Every cancelled surgery costs money, and so does every day the systems stay down. The bigger bill may still be ahead."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Ransomware attack hits Marrowfield Health's hospitals",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-14T14:05:00Z",
+      "body": [
+        "[f01: Ransomware hit Marrowfield Health on Friday.] [f04: Its clinicians are working from paper charts.] The more useful question is how the attackers got in.",
+        "[f07: The entry point was a flaw in a remote-access gateway, the box staff use to log in from outside.] [f12: A fix for that flaw has been available since September.] Patching a gateway means taking it offline, which is easy to put off.",
+        "[f13: Once inside, the ransomware encrypted about 1,900 computers.] [f14: Marrowfield Health's offline backups weren't touched.] That's the good news. Restoring that many machines from backups still takes days, not hours."
+      ]
+    },
+    "wirefold": {
+      "title": "Ransomware attack disrupts Marrowfield Health hospital chain",
+      "publishedAt": "2026-11-14T10:40:00Z",
+      "body": [
+        "A ransomware attack has disrupted Marrowfield Health, which runs 11 hospitals, forcing staff onto paper records and diverting ambulances from four of its hospitals."
+      ]
+    }
+  }
+}

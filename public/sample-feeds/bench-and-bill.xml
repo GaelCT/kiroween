@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:bench-and-bill</id>
+  <title>Bench &amp; Bill</title>
+  <subtitle>Sample data: a fictional outlet (Tech policy, courts, and regulation).</subtitle>
+  <link rel="alternate" href="https://benchandbill.example/"/>
+  <updated>2026-11-15T19:00:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:spectrum-auction-schedule</id>
+    <title>Federal Spectrum Office schedules a spectrum auction</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/spectrum-auction-schedule"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-15T19:00:00Z</published>
+    <updated>2026-11-15T19:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Federal Spectrum Office has scheduled its next spectrum auction for March 9, 2027. Bidding will cover 300 MHz of airwaves between 7.1 and 7.4 GHz, split into 1,140 licenses that each cover a single county.</p><p>Companies that want to bid must file applications by January 15. The office set a reserve price of $4.2 billion across all licenses, and if bids fall short, the licenses stay unsold.</p><p>Winners must cover 45% of the people in each license area within four years or lose the license. Small carriers get a 15% bidding credit.</p><p>That leaves less than two months to line up financing, a tight window for smaller bidders. The first applications will show who is serious.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:meridian-cable-cut</id>
+    <title>Meridian undersea cable damage slows internet in six nations</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/meridian-cable-cut"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-15T13:05:00Z</published>
+    <updated>2026-11-15T13:05:00Z</updated>
+    <content type="html"><![CDATA[<p>The Meridian undersea cable was damaged on Saturday. The question now is whether anyone will pay for it.</p><p>Under the Seabed Infrastructure Council's rules, ships may not anchor within 2 nautical miles of a charted cable. A ship found responsible for damage can be fined up to $2 million.</p><p>Operators must report damage to the council within 24 hours. In its report, Talvera asked the council to identify every ship that passed near the cable that day. If one turns up, a fine could follow.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:orbelle-satellite-launch</id>
+    <title>Orbelle launches 40 internet satellites as a license deadline looms</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/orbelle-satellite-launch"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-15T08:15:00Z</published>
+    <updated>2026-11-15T08:15:00Z</updated>
+    <content type="html"><![CDATA[<p>The latest launch brings Orbelle to 412 satellites in orbit. Under its Federal Spectrum Office license, the company must have 1,200 in orbit by March 2030.</p><p>If it falls short, the office can shrink the license to cover 600 satellites. The license also requires Orbelle to move dead satellites out of orbit within five years.</p><p>The deadline leaves Orbelle little room for a failed launch.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:wayline-robotaxi-port-ellery</id>
+    <title>Wayline robotaxis begin paid rides in Port Ellery</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/wayline-robotaxi-port-ellery"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-14T19:40:00Z</published>
+    <updated>2026-11-14T19:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Wayline started paid robotaxi rides in Port Ellery on Saturday. Its cars run with no safety driver. The city's permit sets the terms.</p><p>The permit caps Wayline's fleet at 100 cars. The city will review the permit in May.</p><p>Wayline must report any crash to the city within 12 hours. It also pays the city a fee of 25 cents per ride.</p><p>The cap is the condition to watch, because any plan to grow the fleet runs straight into it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:forge-deck-2</id>
+    <title>Pixelforge announces the Forge Deck 2 handheld, with a repair score on the box</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/forge-deck-2"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-14T19:00:00Z</published>
+    <updated>2026-11-14T19:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Pixelforge announced the Forge Deck 2, its next handheld console, on Saturday. Its timing puts it right in front of a new labeling rule.</p><p>Under the Parts and Manuals Act, handheld consoles must carry a repairability score starting July 1, 2027. The Forge Deck 2 goes on sale February 18. That's more than four months before the deadline.</p><p>Pixelforge says it will print the label on the box from day one anyway. The company gives the console a repairability score of 8 out of 10. Its battery is fastened with screws, not glue.</p><p>A self-assigned score is a good start, but it's still a company grading its own homework.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:thrushwell-pulse3-recall</id>
+    <title>Thrushwell recalls the Pulse 3 smartwatch, citing swelling batteries</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/thrushwell-pulse3-recall"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-14T17:30:00Z</published>
+    <updated>2026-11-14T17:30:00Z</updated>
+    <content type="html"><![CDATA[<p>The Consumer Device Safety Office today posted Thrushwell's recall of its Pulse 3 smartwatch. According to the notice, the office has received 37 reports of batteries swelling. Four people reported minor burns.</p><p>The recall covers only watches made between March and June 2025. They were sold from April 2025 through October 2026.</p><p>Owners are entitled to a full refund. They shouldn't wait to claim it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:marrowfield-health-ransomware</id>
+    <title>Ransomware hits Marrowfield Health hospitals</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/marrowfield-health-ransomware"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-14T11:50:00Z</published>
+    <updated>2026-11-14T11:50:00Z</updated>
+    <content type="html"><![CDATA[<p>Marrowfield Health was hit by ransomware on Friday. A group called Brinewolf says it carried out the attack.</p><p>According to a notice Marrowfield Health filed with state regulators, the group demanded $8 million.</p><p>Investigators believe the attackers got in through a flaw in a remote-access gateway. On Saturday, the National Cyber Readiness Office ordered hospitals to patch that flaw within 72 hours. Hospitals that miss the deadline face fines of up to $25,000 a day.</p><p>That's a tight deadline, and it's meant to be.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:ferngrove-app-store-ruling</id>
+    <title>Judge rules Ferngrove's app store rules broke antitrust law</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/ferngrove-app-store-ruling"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-13T19:05:00Z</published>
+    <updated>2026-11-13T19:05:00Z</updated>
+    <content type="html"><![CDATA[<p>A federal judge ruled on Friday that Ferngrove's rules for its Canopy app store broke antitrust law. The case was brought by Kettlebrook Games, a mobile game publisher.</p><p>The judge ordered Ferngrove to let apps offer payment options other than its own. Ferngrove has 90 days to comply.</p><p>“We strongly disagree with this decision, which puts the people who use our phones at risk, and we will appeal,” a Ferngrove spokesperson said. Either way, this fight is far from over, and the order itself is the part app developers will read most closely.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:tidewell-buys-murmurline</id>
+    <title>Tidewell agrees to buy Murmurline for $3.2 billion</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/tidewell-buys-murmurline"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-13T16:00:00Z</published>
+    <updated>2026-11-13T16:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Tidewell has agreed to buy Murmurline, the messaging app. The deal is worth $3.2 billion. Getting it approved may be the hard part.</p><p>Tidewell already owns Skerry, a messaging app with 140 million users. Two lawmakers have already asked antitrust regulators to take a close look at the deal.</p><p>If regulators block it, Tidewell owes Murmurline a $250 million breakup fee. Tidewell has also promised to keep Murmurline's end-to-end encryption. That pledge seems aimed at the same regulators.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:nimbusfold-outage</id>
+    <title>Nimbusfold outage that took down apps and websites draws regulator scrutiny</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/nimbusfold-outage"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-13T12:50:00Z</published>
+    <updated>2026-11-13T12:50:00Z</updated>
+    <content type="html"><![CDATA[<p>Nimbusfold's cloud outage took down apps and websites for hours on Friday. By midday, the National Cyber Readiness Office had asked the company for a written report by November 20.</p><p>Under Nimbusfold's standard contract, affected customers qualify for a 10% credit on the month's bill. They have 30 days to claim it.</p><p>For businesses that lost a morning of sales, a 10% credit may feel small. Expect some of them to read the fine print closely.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:lumora-arc7-launch</id>
+    <title>Lumora announces the Arc 7 phone, with a repair plan attached</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/lumora-arc7-launch"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-12T21:05:00Z</published>
+    <updated>2026-11-12T21:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Lumora announced the Arc 7 on Thursday, the newest phone in its flagship line. The same day, it filed a repair plan for the phone under the Parts and Manuals Act.</p><p>In the filing, Lumora commits to selling spare parts for the Arc 7 for seven years. Repair manuals will be free to download from the day the phone goes on sale.</p><p>The plan also says the battery can be removed with a standard screwdriver. Independent repair shops will be watching to see whether the parts actually show up.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:cindervale-plate-cameras</id>
+    <title>Cindervale city council approves license-plate cameras for a one-year trial</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/cindervale-plate-cameras"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-12T21:00:00Z</published>
+    <updated>2026-11-12T21:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Cindervale's city council voted 5-2 on Wednesday night to approve a one-year trial of license-plate cameras. The city will install 24 cameras at major intersections and on the main roads into town.</p><p>Under the ordinance, plate data must be deleted after 30 days unless it's tied to an open investigation. Officers will need a supervisor's sign-off to search the data, and every search will be logged.</p><p>The cameras will come from Corridor Vision, which will charge the city $86,000 for the first year. The police chief must report the results to the council by December 2027, when the trial ends unless the council renews it.</p><p>Council member Ruth Adeyemi-Clark, one of the two no votes, called the 30-day limit “far too generous for a trial.”</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:kestrel-drone-delivery</id>
+    <title>Kestrel Aerial wins approval for drone deliveries</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/kestrel-drone-delivery"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-12T16:05:00Z</published>
+    <updated>2026-11-12T16:05:00Z</updated>
+    <content type="html"><![CDATA[<p>The Aviation Operations Board on Thursday approved Kestrel Aerial's drone delivery service. Under the approval, a single pilot can oversee up to 20 drones at once.</p><p>The board attached conditions. Flights are allowed only between sunrise and sunset. Kestrel must report any crash or injury to the board within 24 hours.</p><p>The approval lasts 2 years, after which Kestrel will have to apply again. That's a lot of trust to place in software, and the board has left itself room to change its mind.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:moorlark-browser-trackers</id>
+    <title>Moorlark browser blocks third-party trackers by default, drawing a complaint</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/moorlark-browser-trackers"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-11T20:30:00Z</published>
+    <updated>2026-11-11T20:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Moorlark now blocks third-party trackers by default. The browser has about 48 million users. Advertisers noticed.</p><p>On Wednesday, the Open Ad Markets Coalition filed a complaint with competition regulators, arguing that the change shuts small ad firms out of the market.</p><p>The change also lands ahead of the Online Tracking Consent Act, which takes effect March 1. The law will fine websites up to $5,000 per violation for tracking people without opt-in consent.</p><p>Moorlark's default makes compliance easier for the sites its users visit, which may be the strongest answer to the complaint.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:sable4-model-release</id>
+    <title>Sable Labs releases the Sable 4 AI model</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/sable4-model-release"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-11T17:30:00Z</published>
+    <updated>2026-11-11T17:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Sable Labs released Sable 4 on Wednesday, its newest AI model. The company also sent a 48-page safety report to the National Cyber Readiness Office.</p><p>In that report, outside testers say Sable 4 refused 96% of requests to write malware. Sable Labs committed to telling the office about serious misuse within 72 hours of finding it.</p><p>No rule required the filing, and Sable Labs made it voluntarily. Promises like these are only as strong as the follow-through.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:brightmesh-router-flaw</id>
+    <title>Brightmesh patches a router flaw that let attackers take over</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/brightmesh-router-flaw"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-11T16:20:00Z</published>
+    <updated>2026-11-11T16:20:00Z</updated>
+    <content type="html"><![CDATA[<p>A flaw in Brightmesh home routers lets attackers take them over remotely. Brightmesh has released a fix in firmware 4.2.1.</p><p>On Wednesday, the National Cyber Readiness Office ordered federal agencies to patch or unplug any affected Brightmesh routers on their networks. Agencies have until November 25 to comply.</p><p>The office says attackers are already exploiting the flaw. Home users would be wise to move just as fast.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:ticketriver-breach</id>
+    <title>TicketRiver discloses breach of 9 million accounts</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/ticketriver-breach"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-10T21:45:00Z</published>
+    <updated>2026-11-10T21:45:00Z</updated>
+    <content type="html"><![CDATA[<p>Attackers accessed 9 million TicketRiver accounts, the company said on Tuesday. It disclosed the breach in a regulatory filing.</p><p>According to the filing, TicketRiver discovered the intrusion on October 28. Customers will want to know why it took so long to tell them.</p><p>TicketRiver is offering affected customers 2 years of free credit monitoring. Two customers have already filed a class-action lawsuit over the breach. More are likely to follow.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:gloamstream-price-increase</id>
+    <title>Gloamstream raises streaming prices for current subscribers</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/gloamstream-price-increase"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-10T19:15:00Z</published>
+    <updated>2026-11-10T19:15:00Z</updated>
+    <content type="html"><![CDATA[<p>Gloamstream is raising prices on every plan. Existing subscribers will pay more starting December 12. That date isn't an accident.</p><p>The Subscription Exit Act requires 30 days' notice before a subscription's price goes up. Gloamstream's December 12 date clears that bar by two days.</p><p>The same law requires services to let customers cancel online in two steps or fewer. Customers who would rather stay can lock in the current price by buying an annual plan before December 12.</p><p>Either way, subscribers who want out have a clean exit.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:ferrolith-fab</id>
+    <title>Ferrolith's $14 billion Ashford Flats chip plant wins county tax breaks</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/ferrolith-fab"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-10T17:40:00Z</published>
+    <updated>2026-11-10T17:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Ferrolith's plant in Ashford Flats is expected to employ 2,200 people. On Monday, Varden County commissioners approved $1.1 billion in property tax breaks for the project.</p><p>The county can claw back the breaks if the plant has fewer than 1,800 workers by 2031.</p><p>According to Ferrolith's permit application, the plant would use up to 6 million gallons of water a day. A public hearing on the water permit is set for January 14. Expect that hearing to draw a crowd.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:aurelith-visor-launch</id>
+    <title>Aurelith launches the Visor headset</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/aurelith-visor-launch"/>
+    <author><name>Celia Marchetti</name></author>
+    <published>2026-11-09T21:30:00Z</published>
+    <updated>2026-11-09T21:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Aurelith released the Visor, its first mixed-reality headset, on Monday. Its eye tracking is where the legal questions start.</p><p>Aurelith says raw eye-tracking data is processed on the headset and never sent to its servers. Apps get only the wearer's selections, not the gaze data itself, under the company's developer terms.</p><p>A pending bill, the Gaze Data Privacy Act, would ban the sale of eye-tracking data. Companies that break it would face fines of up to $7,500 per affected user.</p><p>For now, Aurelith's promises are voluntary, and a privacy policy can change with a single update.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:bench-and-bill:quarrow-ev-recall</id>
+    <title>Quarrow Motors recalls 80,000 electric cars after a safety investigation</title>
+    <link rel="alternate" href="https://benchandbill.example/2026/11/quarrow-ev-recall"/>
+    <author><name>Owen Brightwater</name></author>
+    <published>2026-11-09T21:30:00Z</published>
+    <updated>2026-11-09T21:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Quarrow Motors filed a recall covering 80,000 electric cars with the Office of Vehicle Safety on Monday. The office had been investigating the problem since August.</p><p>The filing says the power loss only occurs when the battery is below -10 °C. In a separate filing to investors, Quarrow estimated the recall's cost at $9 million.</p><p>Owner notification letters will go out starting January 8. Until then, owners in cold climates should watch for the update.</p>]]></content>
+  </entry>
+</feed>

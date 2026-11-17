@@ -1,0 +1,18 @@
+{
+  "id": "calloway-museum-archive",
+  "title": "Calloway Museum puts 2 million archive photos online",
+  "primary": "byteward",
+  "facts": {},
+  "articles": {
+    "byteward": {
+      "title": "Calloway Museum puts 2 million archive photos online",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-13T15:00:00Z",
+      "body": [
+        "The Calloway Museum in Port Halden has put 2 million photos from its archive online, free to browse and download. The collection spans 1868 to 1994 and includes glass plate negatives, newspaper darkroom prints, and family albums donated over decades.",
+        "Scanning took 6 years. A team of 14 staff and volunteers used two custom camera rigs that each capture a print in about 15 seconds. Software read the handwritten captions on the backs of the prints, so most of the collection can be searched by name, street, and year.",
+        "About 1.4 million of the photos are in the public domain and can be reused for any purpose. The rest are free for noncommercial use. The $3.1 million project was paid for mostly by the Hollin Foundation, a local charity."
+      ]
+    }
+  }
+}

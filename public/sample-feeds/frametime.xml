@@ -14,4 +14,103 @@
     <updated>2026-11-16T15:00:00Z</updated>
     <content type="html"><![CDATA[<p>Corvid revealed the RV-90 today, its new flagship graphics card. Here's how it performs.</p><p>At 4K, the RV-90 ran 38% faster than the RV-80 in our testing. Across our ray-traced games, it averaged 142 frames per second at 1440p.</p><p>Our power meter showed the card drawing 320 W under load. Its 24 GB of GDDR7 memory leaves plenty of headroom at high resolutions.</p>]]></content>
   </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:forge-deck-battery-update</id>
+    <title>Pixelforge update extends the original Forge Deck's battery life</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/forge-deck-battery-update"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-15T13:00:00Z</published>
+    <updated>2026-11-15T13:00:00Z</updated>
+    <content type="html"><![CDATA[<p>A day after announcing the Forge Deck 2, Pixelforge has released a software update that stretches battery life on the original Forge Deck. Version 5.4 adds a power mode that lowers the chip's speed in lighter games and dims the screen sooner when you're idle.</p><p>In our testing, it works. Our original Forge Deck lasted 3 hours and 5 minutes in our standard battery test before the update and 3 hours and 52 minutes after it, about 25% longer. Frame rates barely moved: Cinder Coast averaged 41 fps with the new mode on, down from 43.</p><p>It's a welcome gesture for the 6.2 million Forge Decks Pixelforge says it has sold. With the original now at $349, it also makes the older console an easier sell next to the $549 Forge Deck 2.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:meridian-cable-cut</id>
+    <title>Meridian cable damage slows internet across West Africa</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/meridian-cable-cut"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-15T11:20:00Z</published>
+    <updated>2026-11-15T11:20:00Z</updated>
+    <content type="html"><![CDATA[<p>The Meridian undersea cable was damaged on Saturday. Since then, six West African countries have seen slower internet. For online games, slower means lag, so we measured it.</p><p>From a test machine in Accra, our ping to a London game server rose from 98 ms to 231 ms. Packet loss reached 3% during the evening peak in our testing. At those numbers, fast shooters are close to unplayable.</p><p>Bramblefire Games has opened temporary servers in Johannesburg for players in the region. That helps, but normal ping won't come back until the cable is fixed.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:forge-deck-2</id>
+    <title>Pixelforge announces the Forge Deck 2 handheld</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/forge-deck-2"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-14T16:00:00Z</published>
+    <updated>2026-11-14T16:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Pixelforge announced the Forge Deck 2 on Saturday, the successor to its handheld game console. It will start at $549. It goes on sale February 18.</p><p>The new model has an 8-inch screen. Pixelforge claims it delivers 2.5 times the graphics performance of the original Forge Deck.</p><p>That second number is the one we care about, and it's the first thing we'll test. Claims like that tend to depend on resolution and power settings, so we're holding our verdict until a retail unit reaches our bench.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:ferngrove-app-store-ruling</id>
+    <title>Judge says Ferngrove's app store rules broke antitrust law</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/ferngrove-app-store-ruling"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-13T22:15:00Z</published>
+    <updated>2026-11-13T22:15:00Z</updated>
+    <content type="html"><![CDATA[<p>A federal judge says Ferngrove's Canopy app store rules broke antitrust law. For game studios, this one is about money.</p><p>Today, Ferngrove's standard cut is 30% of each in-app purchase. Developers earning under $1 million a year pay a reduced 15% rate. Kettlebrook, which brought the case, paid Ferngrove $214 million in commissions last year, according to trial testimony.</p><p>Under the order, games can offer players their own checkout instead of Ferngrove's. That sounds like a windfall. But the ruling doesn't say whether Ferngrove can still take a fee on those outside purchases. Studios shouldn't redo their budgets just yet.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:nimbusfold-outage</id>
+    <title>Nimbusfold outage takes game servers down for hours</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/nimbusfold-outage"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-13T09:55:00Z</published>
+    <updated>2026-11-13T09:55:00Z</updated>
+    <content type="html"><![CDATA[<p>A Nimbusfold cloud outage knocked apps and websites offline for hours this morning. Games weren't spared. Servers for Embercoast and Quenmoor Online went down with it.</p><p>Thornwick Games, which publishes Embercoast, says no player accounts or purchases were lost. To make up for the downtime, every Embercoast player gets three days of free premium time.</p><p>Nimbusfold has blamed a faulty network configuration change. Three free days is a decent apology, though not everyone stuck at a login screen will see it that way.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:lumora-arc7-launch</id>
+    <title>Lumora's new Arc 7 phone, tested</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/lumora-arc7-launch"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-12T18:20:00Z</published>
+    <updated>2026-11-12T18:20:00Z</updated>
+    <content type="html"><![CDATA[<p>Lumora announced the Arc 7 today, its new flagship phone. We've had one on our bench, so here's how it performs.</p><p>Driving it is the Facet 3, Lumora's newest in-house chip. In our multi-core CPU test, the Arc 7 finished 24% ahead of the Arc 6.</p><p>In Pinefall Arena at maximum settings, it averaged 58 frames per second. That's smooth enough that you'll rarely notice a hitch.</p><p>Sustained load is another story: after 20 minutes of our stress test, the phone was holding just 71% of its peak speed. Long gaming sessions will feel that drop.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:sable4-model-release</id>
+    <title>Sable Labs' new Sable 4 AI model released</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/sable4-model-release"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-11T18:45:00Z</published>
+    <updated>2026-11-11T18:45:00Z</updated>
+    <content type="html"><![CDATA[<p>Sable Labs released Sable 4 today, its newest AI model. Its 8-billion and 32-billion-parameter versions are free to download. So we put both on gaming PCs.</p><p>Squeezed to 4-bit precision, the 32-billion-parameter version needs about 20 GB of graphics memory. On a 24 GB card, it generated 41 tokens per second in our testing.</p><p>The 8-billion-parameter version hit 118 tokens per second on a 12 GB card. Both felt instant in a chat window, which is more than we expected from a home PC.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:brightmesh-router-flaw</id>
+    <title>Brightmesh router flaw patched: we tested the fix</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/brightmesh-router-flaw"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-11T17:05:00Z</published>
+    <updated>2026-11-11T17:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Brightmesh has patched a flaw that let attackers take over its home routers. The fix arrives in firmware 4.2.1. We installed it on our BX-600 to see what it costs.</p><p>The update took 6 minutes to install, including a restart. Download speeds dropped 3% after the update in our testing. Latency in online games went from 14 ms to 15 ms.</p><p>Nobody will notice a millisecond. Install it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:gloamstream-price-increase</id>
+    <title>Gloamstream raises streaming prices on every plan</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/gloamstream-price-increase"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-10T18:30:00Z</published>
+    <updated>2026-11-10T18:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Gloamstream is raising prices across all three of its plans. So we checked what each tier actually streams, playing the same three films on a fast home connection.</p><p>In our testing, the ad plan's 1080p streams averaged 4.1 Mbps. Standard's 1080p streams averaged 7.8 Mbps, nearly double. Same resolution, very different picture.</p><p>Premium's 4K streams averaged 16.2 Mbps. If you'd rather lock in today's price, annual plans bought before December 12 keep the old rate.</p><p>For most people, Standard is still the sweet spot.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:clatter-moth-review</id>
+    <title>Clatter Moth review: a compact mechanical keyboard worth the noise</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/clatter-moth-review"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-10T12:00:00Z</published>
+    <updated>2026-11-10T12:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Clatter Moth is a compact mechanical keyboard with a lot of ambition for $129. It has 68 keys, hot-swappable switches, and an aluminum case that weighs just over a kilogram.</p><p>In our testing, the factory-lubed linear switches felt smooth and consistent, with none of the scratchiness we've seen on cheaper boards. Over its wireless connection, we measured an average input delay of 2.1 milliseconds, close enough to a wired connection that we couldn't tell the difference in games.</p><p>Battery life is the weak spot. With the backlight on, our unit lasted 31 hours before it needed a charge. Clatter says turning the lights off stretches that to 200 hours.</p><p>If you can live with charging it twice a week, the Moth is one of the best keyboards we've tested this year.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:frametime:aurelith-visor-launch</id>
+    <title>Aurelith's Visor mixed-reality headset is here</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/aurelith-visor-launch"/>
+    <author><name>Kofi Mensah-Lind</name></author>
+    <published>2026-11-09T20:10:00Z</published>
+    <updated>2026-11-09T20:10:00Z</updated>
+    <content type="html"><![CDATA[<p>Aurelith's first mixed-reality headset, the Visor, launched today. We put it through our usual game tests.</p><p>In our testing, 10 of the 12 games we tried held a steady 90 frames per second. The toughest, Glasshollow, averaged 71 fps at high settings. Dips like that are easy to feel in a headset, so we'd drop that game to medium.</p><p>Aurelith quotes 2.5 hours of battery life. In our gaming runs, the battery lasted 2 hours and 10 minutes. That's enough for a long session, though not a marathon.</p>]]></content>
+  </entry>
 </feed>

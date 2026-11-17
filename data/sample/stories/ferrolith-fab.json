@@ -1,0 +1,68 @@
+{
+  "id": "ferrolith-fab",
+  "title": "Ferrolith will build a $14 billion chip plant in Ashford Flats",
+  "primary": "launch-desk",
+  "facts": {
+    "f01": "Ferrolith will build a chip plant in Ashford Flats",
+    "f02": "The plant will cost $14 billion",
+    "f03": "Production is set to start in 2029",
+    "f04": "The plant will employ 2,200 people",
+    "f05": "Construction starts in March 2027",
+    "f06": "Varden County approved $1.1 billion in tax breaks",
+    "f07": "The first phase will process 40,000 wafers a month",
+    "f08": "The site will draw up to 400 megawatts of power",
+    "f09": "The plant will use up to 6 million gallons of water a day",
+    "f10": "Ferrolith says it will recycle 85% of its water",
+    "f11": "The breaks can be clawed back below 1,800 jobs by 2031",
+    "f12": "A water permit hearing is set for January 14"
+  },
+  "articles": {
+    "launch-desk": {
+      "title": "Ferrolith to build a $14 billion chip plant in Ashford Flats",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-10T14:15:00Z",
+      "body": [
+        "[f01: Memory chipmaker Ferrolith will build a chip plant in Ashford Flats, Texas.] [f02: The price tag: $14 billion.]",
+        "[f05: Construction starts in March 2027.] [f03: Production is set to begin in 2029.] That's a long runway, and memory prices will rise and fall more than once before the first wafer leaves the building.",
+        "[f04: Once it's running at full speed, the plant will employ 2,200 people.] For Ashford Flats, the jobs are the headline. For Ferrolith, the bet is that demand for memory will still be there when the plant is ready."
+      ]
+    },
+    "byteward": {
+      "title": "Ferrolith will build a $14 billion chip plant in Ashford Flats",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-10T14:50:00Z",
+      "body": [
+        "[f01: Ferrolith plans to build a memory chip plant in the town of Ashford Flats, Texas.] [f02: The company puts the cost at $14 billion.]",
+        "[f06: Varden County, which includes Ashford Flats, has approved $1.1 billion in tax breaks for the project.] Projects this size tend to reshape the towns around them, for better and for worse."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Ferrolith plans a $14 billion chip plant in Ashford Flats",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-10T16:30:00Z",
+      "body": [
+        "[f01: Ferrolith's new plant in Ashford Flats will make memory chips.] [f07: At full output, its first phase will process 40,000 wafers a month.]",
+        "Chip plants are hungry in ways most factories aren't. [f08: Ferrolith expects the site to draw up to 400 megawatts of power.] [f09: It will also use up to 6 million gallons of water a day, mostly to rinse wafers between steps.]",
+        "[f10: Ferrolith says it will recycle 85 percent of that water.] Recycling at that rate is possible, but cleaning water takes energy, which pushes the power bill even higher.",
+        "[f03: The first chips are due in 2029.]"
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Ferrolith's $14 billion Ashford Flats chip plant wins county tax breaks",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-10T17:40:00Z",
+      "body": [
+        "[f04: Ferrolith's plant in Ashford Flats is expected to employ 2,200 people.] [f06: On Monday, Varden County commissioners approved $1.1 billion in property tax breaks for the project.]",
+        "[f11: The county can claw back the breaks if the plant has fewer than 1,800 workers by 2031.]",
+        "[f09: According to Ferrolith's permit application, the plant would use up to 6 million gallons of water a day.] [f12: A public hearing on the water permit is set for January 14.] Expect that hearing to draw a crowd."
+      ]
+    },
+    "wirefold": {
+      "title": "Ferrolith to build $14 billion chip plant in Ashford Flats",
+      "publishedAt": "2026-11-10T14:00:00Z",
+      "body": [
+        "Memory chipmaker Ferrolith said Tuesday it will build a $14 billion plant in Ashford Flats, Texas, that will employ about 2,200 people."
+      ]
+    }
+  }
+}

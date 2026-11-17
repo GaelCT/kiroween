@@ -1,0 +1,73 @@
+{
+  "id": "thrushwell-pulse3-recall",
+  "title": "Thrushwell recalls the Pulse 3 smartwatch over swelling batteries",
+  "primary": "byteward",
+  "notes": "Launch Desk's Pulse 4 article is grouped here on purpose, so the demo can show X.",
+  "facts": {
+    "f01": "Thrushwell is recalling its Pulse 3 smartwatch",
+    "f02": "Its battery can swell and push the screen out",
+    "f03": "About 410,000 watches are covered",
+    "f04": "Owners should stop using it right away",
+    "f05": "Owners get a full refund",
+    "f06": "The faulty cells came from a single supplier",
+    "f07": "Only watches made from March to June 2025 are affected",
+    "f08": "The cells' separator film was thinner than specified",
+    "f09": "A software update puts a recall alert on the watch",
+    "f10": "The safety office has 37 reports of swelling batteries",
+    "f11": "4 people reported minor burns",
+    "f12": "Sold from April 2025 through October 2026",
+    "f13": "Thrushwell unveiled the Pulse 4 smartwatch",
+    "f14": "The Pulse 4 costs $299",
+    "f15": "The Pulse 4 ships December 3",
+    "f16": "The Pulse 4's battery lasts up to 4 days"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Thrushwell recalls the Pulse 3 smartwatch over swelling batteries",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-14T15:20:00Z",
+      "body": [
+        "[f01: Thrushwell is recalling its Pulse 3 smartwatch, the company announced today.] [f02: It says the watch's battery can swell and push the screen out of the case.]",
+        "[f03: About 410,000 watches are covered by the recall.] [f04: Thrushwell is telling owners to stop using the watch right away.]",
+        "[f05: Owners who return the watch will get a full refund.] It's an expensive mistake, and owners will want to know how a fault like this got past testing. Thrushwell will be hoping the news doesn't follow it into the holiday season."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Thrushwell recalls its Pulse 3 smartwatch over swelling batteries",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-14T16:45:00Z",
+      "body": [
+        "[f02: The Pulse 3's problem is a battery that can swell until it pushes the screen out.] Swelling happens when gas builds up inside a lithium cell, usually because something inside it is breaking down.",
+        "[f06: Thrushwell traced the faulty cells to a single supplier.] [f08: In those cells, the separator, the thin film that keeps the electrodes apart, was thinner than specified.]",
+        "[f07: Only watches made between March and June 2025 are affected.] [f03: That still adds up to about 410,000 watches.]",
+        "[f09: Thrushwell is also pushing a software update that puts a recall alert on affected watches.] That's a sensible step, since plenty of owners will never read an email about it."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Thrushwell recalls the Pulse 3 smartwatch, citing swelling batteries",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-14T17:30:00Z",
+      "body": [
+        "[f01: The Consumer Device Safety Office today posted Thrushwell's recall of its Pulse 3 smartwatch.] [f10: According to the notice, the office has received 37 reports of batteries swelling.] [f11: Four people reported minor burns.]",
+        "[f07: The recall covers only watches made between March and June 2025.] [f12: They were sold from April 2025 through October 2026.]",
+        "[f05: Owners are entitled to a full refund.] They shouldn't wait to claim it."
+      ]
+    },
+    "wirefold": {
+      "title": "Thrushwell recalls Pulse 3 smartwatches over battery swelling",
+      "publishedAt": "2026-11-14T15:00:00Z",
+      "body": [
+        "Thrushwell is recalling about 410,000 Pulse 3 smartwatches because their batteries can swell and push the screen out, the company said."
+      ]
+    },
+    "launch-desk": {
+      "title": "Thrushwell unveils the Pulse 4 smartwatch",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-14T18:10:00Z",
+      "body": [
+        "[f13: Thrushwell has unveiled the Pulse 4, its next smartwatch.] [f14: It costs $299.] [f15: It ships December 3.]",
+        "[f16: Thrushwell says the battery lasts up to four days on a charge.] That's the number Thrushwell wants buyers to remember. At that price, the Pulse 4 lands in the middle of the premium watch market, where battery life is still the easiest way to stand out."
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "gloamstream-price-increase",
+  "title": "Gloamstream raises streaming prices",
+  "primary": "launch-desk",
+  "facts": {
+    "f01": "Gloamstream is raising prices on all 3 of its plans",
+    "f02": "The ad plan rises from $7.99 to $8.99",
+    "f03": "Standard rises from $13.99 to $15.99",
+    "f04": "Premium rises from $19.99 to $22.99",
+    "f05": "Current subscribers pay more from December 12",
+    "f06": "The ad plan's 1080p streams averaged 4.1 Mbps in testing",
+    "f07": "Standard's 1080p streams averaged 7.8 Mbps in testing",
+    "f08": "Premium's 4K streams averaged 16.2 Mbps in testing",
+    "f09": "Annual plans bought before December 12 keep the old price",
+    "f10": "Cancelling online must take 2 steps or fewer by law",
+    "f11": "A law requires 30 days' notice before price rises"
+  },
+  "articles": {
+    "launch-desk": {
+      "title": "Gloamstream raises streaming prices",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-10T16:00:00Z",
+      "body": [
+        "[f01: Gloamstream is raising prices on all three of its streaming plans.]",
+        "[f02: The ad-supported plan goes from $7.99 to $8.99 a month.] [f03: Standard rises from $13.99 to $15.99.] [f04: Premium climbs from $19.99 to $22.99.]",
+        "[f05: Current subscribers will pay the new prices from December 12.]",
+        "Premium takes the biggest jump. The message is clear: Gloamstream wants more money from its most committed customers, and it's betting few of them will leave over a few dollars. Watch the cancellation numbers next quarter to see whether that bet holds."
+      ]
+    },
+    "byteward": {
+      "title": "Gloamstream raises its streaming prices",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-10T16:45:00Z",
+      "body": [
+        "[f01: Gloamstream is increasing the price of every plan it offers.] [f03: The Standard plan moves from $13.99 to $15.99 a month.]",
+        "[f05: People who already subscribe will see the higher price starting December 12.]",
+        "It's another reminder that streaming isn't the cheap alternative it once was. If you're on the fence, now is a good time to check how often you actually watch."
+      ]
+    },
+    "frametime": {
+      "title": "Gloamstream raises streaming prices on every plan",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-10T18:30:00Z",
+      "body": [
+        "[f01: Gloamstream is raising prices across all three of its plans.] So we checked what each tier actually streams, playing the same three films on a fast home connection.",
+        "[f06: In our testing, the ad plan's 1080p streams averaged 4.1 Mbps.] [f07: Standard's 1080p streams averaged 7.8 Mbps, nearly double.] Same resolution, very different picture.",
+        "[f08: Premium's 4K streams averaged 16.2 Mbps.] [f09: If you'd rather lock in today's price, annual plans bought before December 12 keep the old rate.]",
+        "For most people, Standard is still the sweet spot."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Gloamstream raises streaming prices for current subscribers",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-10T19:15:00Z",
+      "body": [
+        "[f01: Gloamstream is raising prices on every plan.] [f05: Existing subscribers will pay more starting December 12.] That date isn't an accident.",
+        "[f11: The Subscription Exit Act requires 30 days' notice before a subscription's price goes up.] Gloamstream's December 12 date clears that bar by two days.",
+        "[f10: The same law requires services to let customers cancel online in two steps or fewer.] [f09: Customers who would rather stay can lock in the current price by buying an annual plan before December 12.]",
+        "Either way, subscribers who want out have a clean exit."
+      ]
+    },
+    "wirefold": {
+      "title": "Gloamstream raises prices on streaming plans",
+      "publishedAt": "2026-11-10T16:10:00Z",
+      "body": [
+        "Gloamstream is raising prices on all three of its streaming plans, with its Standard plan going from $13.99 to $15.99 a month."
+      ]
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "kestrel-drone-delivery",
+  "title": "Kestrel Aerial wins approval for drone deliveries",
+  "primary": "bench-and-bill",
+  "facts": {
+    "f01": "Aviation Operations Board approved Kestrel drone deliveries",
+    "f02": "One pilot can oversee up to 20 drones at once",
+    "f03": "Flights are allowed only in daylight",
+    "f04": "Kestrel must report any crash within 24 hours",
+    "f05": "The approval lasts 2 years",
+    "f06": "Deliveries start December 1",
+    "f07": "Service starts in the Phoenix and Dallas suburbs",
+    "f08": "Each delivery costs $3.99",
+    "f09": "Grocery chain Pantryfield is the first retail partner",
+    "f10": "Kestrel raised $180 million in May",
+    "f11": "Drones carry packages of up to 5 pounds",
+    "f12": "Drones have a 12-mile round-trip range",
+    "f13": "Drones lower packages on a tether from 80 feet",
+    "f14": "Each drone carries a radar to spot other aircraft"
+  },
+  "articles": {
+    "bench-and-bill": {
+      "title": "Kestrel Aerial wins approval for drone deliveries",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-12T16:05:00Z",
+      "body": [
+        "[f01: The Aviation Operations Board on Thursday approved Kestrel Aerial's drone delivery service.] [f02: Under the approval, a single pilot can oversee up to 20 drones at once.]",
+        "The board attached conditions. [f03: Flights are allowed only between sunrise and sunset.] [f04: Kestrel must report any crash or injury to the board within 24 hours.]",
+        "[f05: The approval lasts 2 years, after which Kestrel will have to apply again.] That's a lot of trust to place in software, and the board has left itself room to change its mind."
+      ]
+    },
+    "byteward": {
+      "title": "Kestrel Aerial gets approval for drone deliveries",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-12T16:40:00Z",
+      "body": [
+        "[f01: Kestrel Aerial has won approval from the Aviation Operations Board to deliver packages by drone.] [f06: Deliveries start December 1.]",
+        "[f07: Kestrel will launch first in the suburbs of Phoenix and Dallas.] [f03: The drones will only fly during daylight.]",
+        "For now, you'll need to live in the right neighborhood, and to order before dark."
+      ]
+    },
+    "launch-desk": {
+      "title": "Kestrel Aerial cleared for drone deliveries",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-12T17:15:00Z",
+      "body": [
+        "[f01: Kestrel Aerial is cleared to start drone deliveries.] [f06: The first orders fly on December 1.]",
+        "[f08: Each delivery will cost customers $3.99.] [f09: Grocery chain Pantryfield is Kestrel's first retail partner.]",
+        "[f10: Kestrel raised $180 million from investors in May.] Now it has to show that a drone can beat a delivery van on cost."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Kestrel Aerial wins approval to deliver by drone",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-12T19:30:00Z",
+      "body": [
+        "[f01: Kestrel Aerial now has approval to run drone deliveries.] The aircraft behind it is worth a closer look.",
+        "[f11: Kestrel's drones carry packages of up to 5 pounds.] [f12: They have a round-trip range of 12 miles.] That's enough for groceries and medicine, not furniture.",
+        "[f13: Instead of landing, each drone hovers at 80 feet and lowers the package on a tether.] Nobody has to clear a landing pad in the yard.",
+        "[f02: One pilot can supervise as many as 20 of them at a time.] [f14: To make that safe, each drone carries a small radar that spots other aircraft on its own.]"
+      ]
+    },
+    "wirefold": {
+      "title": "Kestrel Aerial wins drone delivery approval",
+      "publishedAt": "2026-11-12T16:20:00Z",
+      "body": [
+        "The Aviation Operations Board on Thursday approved drone deliveries by Kestrel Aerial, allowing a single pilot to oversee as many as 20 drones."
+      ]
+    }
+  }
+}

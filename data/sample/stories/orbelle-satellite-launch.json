@@ -1,0 +1,68 @@
+{
+  "id": "orbelle-satellite-launch",
+  "title": "Orbelle launches 40 internet satellites",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Orbelle launched 40 internet satellites",
+    "f02": "Orbelle now has 412 satellites in orbit",
+    "f03": "All 40 satellites have contacted ground control",
+    "f04": "Service is set to start in mid-2027",
+    "f05": "It was Orbelle's 11th launch",
+    "f06": "Service will cost $89 a month",
+    "f07": "Orbelle has raised $2.3 billion to date",
+    "f08": "Must have 1,200 satellites up by March 2030",
+    "f09": "The satellites orbit at 590 km",
+    "f10": "Each satellite weighs 310 kg",
+    "f11": "The satellites pass data to each other by laser",
+    "f12": "Falling short could cut the license to 600 satellites",
+    "f13": "Dead satellites must leave orbit within 5 years"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Orbelle launches 40 internet satellites",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-15T03:20:00Z",
+      "body": [
+        "[f01: Orbelle launched 40 internet satellites overnight.] [f05: It was the company's 11th launch.]",
+        "[f03: All 40 satellites have made contact with ground control, Orbelle said.] [f02: That brings the company's fleet to 412 satellites in orbit.] That's a solid start for a network this young, if a long way from finished.",
+        "[f04: Orbelle plans to start selling internet service in mid-2027.] Until then, each launch is mostly about proving the system works. The pace of launches matters more than any single one, and Orbelle will need to keep it up."
+      ]
+    },
+    "launch-desk": {
+      "title": "Orbelle launches 40 more internet satellites",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-15T04:05:00Z",
+      "body": [
+        "[f01: Orbelle put 40 more internet satellites into orbit overnight.] [f04: Service starts in mid-2027.] [f06: It will cost $89 a month.]",
+        "[f07: The company has raised $2.3 billion so far.] [f08: It needs 1,200 satellites in orbit by March 2030 to keep its spectrum license.] That's a lot of launches, and a lot of money, still to come."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Orbelle launches another 40 internet satellites",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-15T06:30:00Z",
+      "body": [
+        "[f01: Orbelle's latest launch carried 40 internet satellites.] [f09: They'll operate at an altitude of 590 km, low enough to keep the delay on a connection short.]",
+        "[f10: Each satellite weighs 310 kg.] [f11: Instead of bouncing every signal off the ground, the satellites pass data to each other by laser.] That means fewer ground stations, but each laser terminal adds weight and power draw to a small spacecraft.",
+        "[f02: With this batch, Orbelle has 412 satellites in orbit.] That's enough to test the network, not to run it."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Orbelle launches 40 internet satellites as a license deadline looms",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-15T08:15:00Z",
+      "body": [
+        "[f02: The latest launch brings Orbelle to 412 satellites in orbit.] [f08: Under its Federal Spectrum Office license, the company must have 1,200 in orbit by March 2030.]",
+        "[f12: If it falls short, the office can shrink the license to cover 600 satellites.] [f13: The license also requires Orbelle to move dead satellites out of orbit within five years.]",
+        "The deadline leaves Orbelle little room for a failed launch."
+      ]
+    },
+    "wirefold": {
+      "title": "Orbelle launches 40 internet satellites",
+      "publishedAt": "2026-11-15T03:00:00Z",
+      "body": [
+        "Orbelle launched 40 internet satellites overnight, bringing its fleet to 412 as it prepares to start service in 2027."
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "brindle-2-release",
+  "title": "Version 2.0 of the Brindle programming language is released",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Version 2.0 of the Brindle language is out",
+    "f02": "Adds an official package manager",
+    "f03": "Compiles code up to 40% faster than Brindle 1.9",
+    "f04": "First major release since 2022",
+    "f05": "Brindle 1 gets security fixes until June 2028",
+    "f06": "A new incremental compiler reuses earlier build work",
+    "f07": "Code using the old async syntax must be updated",
+    "f08": "A migration tool does about 90% of that work",
+    "f09": "Compiled programs are about 15% smaller"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Version 2.0 of the Brindle programming language is released",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-15T17:00:00Z",
+      "body": [
+        "[f01: Version 2.0 of Brindle, the open-source programming language, was released on Sunday.] [f04: It's the language's first major release since 2022.]",
+        "[f03: Brindle's maintainers say the new version compiles code up to 40% faster than Brindle 1.9.] [f02: The release also adds an official package manager.] That alone may win over developers who found setting up a project a chore.",
+        "[f05: Brindle 1 will keep getting security fixes until June 2028.] That gives teams with large codebases time to plan the move, and they'll probably need it."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Brindle 2.0 programming language released",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-15T19:30:00Z",
+      "body": [
+        "[f03: The headline number in Brindle 2.0 is compile speed: up to 40 percent faster than version 1.9.] [f06: Most of that comes from a new incremental compiler, which reuses work from earlier builds instead of starting from scratch.]",
+        "[f09: Compiled programs also come out about 15 percent smaller.] Smaller programs load faster and take less space, which matters more than it sounds for software that runs on small devices.",
+        "The cost is compatibility. [f07: Code written with the old async syntax has to be updated.] [f08: A migration tool handles about 90 percent of that work automatically, according to the maintainers.] The remaining tenth is where teams will spend their time."
+      ]
+    }
+  }
+}

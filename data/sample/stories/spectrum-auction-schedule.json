@@ -1,0 +1,19 @@
+{
+  "id": "spectrum-auction-schedule",
+  "title": "Federal Spectrum Office schedules a spectrum auction",
+  "primary": "bench-and-bill",
+  "facts": {},
+  "articles": {
+    "bench-and-bill": {
+      "title": "Federal Spectrum Office schedules a spectrum auction",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-15T19:00:00Z",
+      "body": [
+        "The Federal Spectrum Office has scheduled its next spectrum auction for March 9, 2027. Bidding will cover 300 MHz of airwaves between 7.1 and 7.4 GHz, split into 1,140 licenses that each cover a single county.",
+        "Companies that want to bid must file applications by January 15. The office set a reserve price of $4.2 billion across all licenses, and if bids fall short, the licenses stay unsold.",
+        "Winners must cover 45% of the people in each license area within four years or lose the license. Small carriers get a 15% bidding credit.",
+        "That leaves less than two months to line up financing, a tight window for smaller bidders. The first applications will show who is serious."
+      ]
+    }
+  }
+}

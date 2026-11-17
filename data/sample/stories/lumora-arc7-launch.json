@@ -1,0 +1,85 @@
+{
+  "id": "lumora-arc7-launch",
+  "title": "Lumora announces the Arc 7 phone",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Lumora announced the Arc 7, its new flagship phone",
+    "f02": "Has a 6.4-inch display",
+    "f03": "Runs on Lumora's new Facet 3 chip",
+    "f04": "Has a 50-megapixel main camera",
+    "f05": "Has a 5,000 mAh battery",
+    "f06": "Costs $799",
+    "f07": "Goes on sale November 20",
+    "f08": "Sold in 14 countries at launch",
+    "f09": "24% faster than the Arc 6 at multi-core tasks in testing",
+    "f10": "Averaged 58 fps in Pinefall Arena at max settings",
+    "f11": "Held 71% of its peak speed in a 20-minute stress test",
+    "f12": "The Facet 3 is made on a 2 nm process",
+    "f13": "Its vapor chamber is 30% larger than the Arc 6's",
+    "f14": "The battery comes out with a standard screwdriver",
+    "f15": "Lumora filed a repair plan under the Parts and Manuals Act",
+    "f16": "Spare parts will be sold for 7 years",
+    "f17": "Repair manuals are free to download from launch day"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Lumora announces the Arc 7 phone",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-12T17:12:00Z",
+      "body": [
+        "[f01: Lumora on Thursday announced the Arc 7, its new flagship phone.] On paper, it's a steady update rather than a reinvention.",
+        "[f03: At its center is the Facet 3, the latest chip Lumora designs in-house.] [f02: The display measures 6.4 inches diagonally.] [f04: On the back, the main camera uses a 50-megapixel sensor.]",
+        "[f05: Powering it all is a 5,000 mAh battery.] How long that lasts will depend on how efficient the new chip turns out to be.",
+        "That makes the Arc 7 a phone to judge in reviews rather than on a spec sheet."
+      ]
+    },
+    "launch-desk": {
+      "title": "Lumora launches the Arc 7 phone",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-12T17:30:00Z",
+      "body": [
+        "[f01: Lumora has launched the Arc 7, its latest flagship phone.] [f06: It costs $799.] [f07: Sales start November 20.]",
+        "[f08: The phone will be sold in 14 countries at launch.] [f03: Inside is the Facet 3, Lumora's newest in-house chip.]",
+        "At that price, the Arc 7 goes straight at the year's other big flagships, and the new chip will have to carry the pitch."
+      ]
+    },
+    "frametime": {
+      "title": "Lumora's new Arc 7 phone, tested",
+      "author": "Kofi Mensah-Lind",
+      "publishedAt": "2026-11-12T18:20:00Z",
+      "body": [
+        "[f01: Lumora announced the Arc 7 today, its new flagship phone.] We've had one on our bench, so here's how it performs.",
+        "[f03: Driving it is the Facet 3, Lumora's newest in-house chip.] [f09: In our multi-core CPU test, the Arc 7 finished 24% ahead of the Arc 6.]",
+        "[f10: In Pinefall Arena at maximum settings, it averaged 58 frames per second.] That's smooth enough that you'll rarely notice a hitch.",
+        "[f11: Sustained load is another story: after 20 minutes of our stress test, the phone was holding just 71% of its peak speed.] Long gaming sessions will feel that drop."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Lumora unveils the Arc 7 flagship phone",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-12T19:40:00Z",
+      "body": [
+        "[f03: The Arc 7 is built around the Facet 3, Lumora's newest in-house chip.] [f12: Lumora has it made on a 2 nm process.] A smaller process lets a chip run faster on the same power, but it also packs the heat into a smaller area.",
+        "[f13: To spread that heat, the phone uses a vapor chamber 30 percent larger than the Arc 6's.] [f11: It helps, up to a point: in our 20-minute stress test, the Arc 7 settled at 71 percent of its peak performance.]",
+        "[f05: The battery is a 5,000 mAh cell.] [f14: Instead of glue, a screwed-in bracket holds it in place, so it comes out with a standard screwdriver.] That bracket takes up space a bigger cell could have used, a trade-off we think most owners will be glad to make."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Lumora announces the Arc 7 phone, with a repair plan attached",
+      "author": "Owen Brightwater",
+      "publishedAt": "2026-11-12T21:05:00Z",
+      "body": [
+        "[f01: Lumora announced the Arc 7 on Thursday, the newest phone in its flagship line.] [f15: The same day, it filed a repair plan for the phone under the Parts and Manuals Act.]",
+        "[f16: In the filing, Lumora commits to selling spare parts for the Arc 7 for seven years.] [f17: Repair manuals will be free to download from the day the phone goes on sale.]",
+        "[f14: The plan also says the battery can be removed with a standard screwdriver.] Independent repair shops will be watching to see whether the parts actually show up."
+      ]
+    },
+    "wirefold": {
+      "title": "Lumora unveils Arc 7 flagship phone",
+      "publishedAt": "2026-11-12T17:00:00Z",
+      "body": [
+        "Phone maker Lumora on Thursday unveiled the Arc 7, a $799 flagship built around its new in-house Facet 3 chip. The phone goes on sale Nov. 20."
+      ]
+    }
+  }
+}

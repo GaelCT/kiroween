@@ -1,0 +1,69 @@
+{
+  "id": "ticketriver-breach",
+  "title": "TicketRiver breach exposes 9 million accounts",
+  "primary": "byteward",
+  "facts": {
+    "f01": "A breach exposed 9 million TicketRiver accounts",
+    "f02": "TicketRiver hired an outside security firm to investigate",
+    "f03": "Exposed names, emails, phone numbers, and hashed passwords",
+    "f04": "No payment card numbers were taken, TicketRiver says",
+    "f05": "All users must reset their passwords",
+    "f06": "TicketRiver will pay for 2 years of credit monitoring",
+    "f07": "TicketRiver shares fell 9% in afternoon trading",
+    "f08": "TicketRiver disclosed the breach in a regulatory filing",
+    "f09": "TicketRiver discovered the breach on October 28",
+    "f10": "2 customers have filed a class-action lawsuit",
+    "f11": "Attackers used a stolen contractor password",
+    "f12": "The contractor's account had no second login step",
+    "f13": "Passwords were hashed with an outdated, crackable method"
+  },
+  "articles": {
+    "byteward": {
+      "title": "TicketRiver data breach exposes 9 million accounts",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-10T20:05:00Z",
+      "body": [
+        "[f01: Hackers stole data from 9 million TicketRiver accounts, the ticket seller said on Tuesday.] [f02: The company says it has hired an outside security firm to investigate.]",
+        "[f03: The stolen data includes names, email addresses, phone numbers, and hashed passwords.] [f04: TicketRiver says no payment card numbers were taken.]",
+        "[f05: Every TicketRiver user will have to reset their password the next time they log in.] If you used the same password anywhere else, change it there as well, starting with your email account. Scammers tend to follow breaches like this with convincing fake emails, so be wary of messages about your tickets."
+      ]
+    },
+    "launch-desk": {
+      "title": "TicketRiver breach hits 9 million accounts",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-10T20:40:00Z",
+      "body": [
+        "[f01: TicketRiver says a breach exposed 9 million customer accounts.]",
+        "[f06: The company will pay for 2 years of credit monitoring for affected customers.] [f07: TicketRiver shares fell 9% in afternoon trading.]",
+        "The timing could hardly be worse. Cleanup bills come next, and they won't be small, but winning back nervous buyers may cost even more."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "TicketRiver breach exposes 9 million accounts",
+      "author": "Rafe Okonkwo-Hart",
+      "publishedAt": "2026-11-10T23:10:00Z",
+      "body": [
+        "[f01: TicketRiver has confirmed a breach affecting 9 million accounts.] Here's how the attackers got in.",
+        "[f11: They logged in with a password stolen from a contractor who handled customer support.] [f12: That contractor's account didn't require a second login step, such as a code sent to a phone.] [f09: TicketRiver found the intruders on October 28.]",
+        "The passwords are the bigger worry. [f13: TicketRiver hashed them with an outdated method that a modern graphics card can crack quickly.] Treat yours as exposed."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "TicketRiver discloses breach of 9 million accounts",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-10T21:45:00Z",
+      "body": [
+        "[f01: Attackers accessed 9 million TicketRiver accounts, the company said on Tuesday.] [f08: It disclosed the breach in a regulatory filing.]",
+        "[f09: According to the filing, TicketRiver discovered the intrusion on October 28.] Customers will want to know why it took so long to tell them.",
+        "[f06: TicketRiver is offering affected customers 2 years of free credit monitoring.] [f10: Two customers have already filed a class-action lawsuit over the breach.] More are likely to follow."
+      ]
+    },
+    "wirefold": {
+      "title": "TicketRiver says breach exposed 9 million accounts",
+      "publishedAt": "2026-11-10T19:52:00Z",
+      "body": [
+        "Ticket seller TicketRiver said on Tuesday that hackers stole names, email addresses, and other data from 9 million customer accounts."
+      ]
+    }
+  }
+}

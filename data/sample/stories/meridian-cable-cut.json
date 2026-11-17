@@ -1,0 +1,83 @@
+{
+  "id": "meridian-cable-cut",
+  "title": "Meridian undersea cable damage slows internet in six countries",
+  "primary": "byteward",
+  "facts": {
+    "f01": "The Meridian undersea cable was damaged on Saturday",
+    "f02": "Internet slowed in 6 West African countries",
+    "f03": "Damaged about 140 km off the coast of Senegal",
+    "f04": "Owned by a group led by Talvera Networks",
+    "f05": "Runs 8,700 km from Portugal to South Africa",
+    "f06": "Repairs could take about 3 weeks",
+    "f07": "Repair ship Vela Constance is due on site November 20",
+    "f08": "Ping from Accra to London rose from 98 to 231 ms in testing",
+    "f09": "Packet loss hit 3% at evening peak in testing",
+    "f10": "Bramblefire Games opened temporary servers in Johannesburg",
+    "f11": "The damaged section lies about 3,200 m deep",
+    "f12": "Crews will splice in about 8 km of new cable",
+    "f13": "Ships may not anchor within 2 nautical miles of a cable",
+    "f14": "A ship found responsible can be fined up to $2 million",
+    "f15": "Operators must report cable damage within 24 hours",
+    "f16": "Talvera asked for a list of ships that passed near the cable"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Meridian undersea cable damage slows internet in six countries",
+      "author": "Dana Whitlock",
+      "publishedAt": "2026-11-15T09:00:00Z",
+      "body": [
+        "[f01: The Meridian undersea cable was damaged on Saturday.] [f02: Internet service has slowed in six West African countries as a result.]",
+        "[f03: The fault is about 140 km off the coast of Senegal.] [f05: Meridian runs 8,700 km along the Atlantic floor, from Portugal to South Africa.]",
+        "[f04: The cable is owned by a group of carriers led by Talvera Networks.] It's a reminder of how much of the internet rides on a handful of cables. Details are still thin, and we'll update this story as Talvera shares more."
+      ]
+    },
+    "launch-desk": {
+      "title": "Meridian cable damage slows internet in six countries",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-15T09:35:00Z",
+      "body": [
+        "[f01: The Meridian undersea cable was damaged on Saturday.] [f04: Talvera Networks leads the group of carriers that owns it.]",
+        "[f06: Talvera expects repairs to take about three weeks.] [f07: The repair ship Vela Constance is due at the site on November 20.]",
+        "Until then, the carriers that depend on Meridian have a slow few weeks ahead."
+      ]
+    },
+    "frametime": {
+      "title": "Meridian cable damage slows internet across West Africa",
+      "author": "Kofi Mensah-Lind",
+      "publishedAt": "2026-11-15T11:20:00Z",
+      "body": [
+        "[f01: The Meridian undersea cable was damaged on Saturday.] [f02: Since then, six West African countries have seen slower internet.] For online games, slower means lag, so we measured it.",
+        "[f08: From a test machine in Accra, our ping to a London game server rose from 98 ms to 231 ms.] [f09: Packet loss reached 3% during the evening peak in our testing.] At those numbers, fast shooters are close to unplayable.",
+        "[f10: Bramblefire Games has opened temporary servers in Johannesburg for players in the region.] That helps, but normal ping won't come back until the cable is fixed."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Damaged Meridian undersea cable slows internet in six countries",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-15T12:15:00Z",
+      "body": [
+        "[f01: The Meridian undersea cable was damaged on Saturday.] [f03: The fault lies about 140 km off Senegal's coast.] Finding it was the easy part.",
+        "[f11: At that spot, the cable rests about 3,200 m down.] [f07: The repair ship Vela Constance is due on site November 20.]",
+        "[f12: Its crew will cut out the damaged stretch and splice in about 8 km of new cable.] The extra length isn't waste. Lifting both ends to the deck from that depth takes a lot of slack, and the slack has to go somewhere when the cable goes back down.",
+        "[f06: Talvera expects the work to take about three weeks.] Bad weather would stretch that."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Meridian undersea cable damage slows internet in six nations",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-15T13:05:00Z",
+      "body": [
+        "[f01: The Meridian undersea cable was damaged on Saturday.] The question now is whether anyone will pay for it.",
+        "[f13: Under the Seabed Infrastructure Council's rules, ships may not anchor within 2 nautical miles of a charted cable.] [f14: A ship found responsible for damage can be fined up to $2 million.]",
+        "[f15: Operators must report damage to the council within 24 hours.] [f16: In its report, Talvera asked the council to identify every ship that passed near the cable that day.] If one turns up, a fine could follow."
+      ]
+    },
+    "wirefold": {
+      "title": "Damage to Meridian undersea cable slows internet in six countries",
+      "publishedAt": "2026-11-15T08:40:00Z",
+      "body": [
+        "Damage to the Meridian undersea cable, which runs from Portugal to South Africa, has slowed internet service in six West African countries since Saturday."
+      ]
+    }
+  }
+}

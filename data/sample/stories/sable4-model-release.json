@@ -1,0 +1,81 @@
+{
+  "id": "sable4-model-release",
+  "title": "Sable Labs releases the Sable 4 AI model",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Sable Labs released Sable 4, its newest AI model",
+    "f02": "Comes in 8B, 32B, and 120B parameter sizes",
+    "f03": "Sable Labs claims 18% higher coding scores than Sable 3",
+    "f04": "API access costs $1.20 per million input tokens",
+    "f05": "The 8B and 32B versions are free to download",
+    "f06": "Sent a 48-page safety report to the Cyber Readiness Office",
+    "f07": "Outside testers say it refused 96% of malware requests",
+    "f08": "Pledged to report serious misuse within 72 hours",
+    "f09": "The safety filing was voluntary",
+    "f10": "32B version needs about 20 GB of memory at 4-bit precision",
+    "f11": "32B version ran at 41 tokens per second on a 24 GB card",
+    "f12": "8B version ran at 118 tokens per second on a 12 GB card",
+    "f13": "120B version uses only 15B parameters per token",
+    "f14": "Reads up to 200,000 tokens in one prompt",
+    "f15": "4-bit versions score about 2% lower, Sable Labs says"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Sable Labs releases its Sable 4 AI model",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-11T16:10:00Z",
+      "body": [
+        "[f01: Sable Labs released Sable 4 on Wednesday, the newest version of its AI model.] [f02: It comes in three sizes, with 8 billion, 32 billion, and 120 billion parameters.]",
+        "[f03: The company says Sable 4 scores 18% higher than Sable 3 on its in-house coding tests.] Companies tend to pick the tests that flatter their models, so independent results will matter more.",
+        "[f04: Developers can use Sable 4 through the company's API for $1.20 per million input tokens.] [f05: The 8 billion and 32 billion parameter versions are also free to download and run on your own computer.] That openness should make it a favorite with hobbyists."
+      ]
+    },
+    "launch-desk": {
+      "title": "Sable Labs launches its Sable 4 AI model",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-11T16:25:00Z",
+      "body": [
+        "[f01: Sable Labs has launched Sable 4, the latest version of its AI model.] [f04: Developers pay $1.20 per million input tokens to use it through the API.]",
+        "[f05: The two smaller versions, with 8 billion and 32 billion parameters, cost nothing to download.] That's aggressive pricing for a model this capable, and rivals will have to answer it."
+      ]
+    },
+    "frametime": {
+      "title": "Sable Labs' new Sable 4 AI model released",
+      "author": "Kofi Mensah-Lind",
+      "publishedAt": "2026-11-11T18:45:00Z",
+      "body": [
+        "[f01: Sable Labs released Sable 4 today, its newest AI model.] [f05: Its 8-billion and 32-billion-parameter versions are free to download.] So we put both on gaming PCs.",
+        "[f10: Squeezed to 4-bit precision, the 32-billion-parameter version needs about 20 GB of graphics memory.] [f11: On a 24 GB card, it generated 41 tokens per second in our testing.]",
+        "[f12: The 8-billion-parameter version hit 118 tokens per second on a 12 GB card.] Both felt instant in a chat window, which is more than we expected from a home PC."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Sable Labs unveils its Sable 4 AI model",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-11T19:40:00Z",
+      "body": [
+        "[f01: Sable Labs unveiled Sable 4 on Wednesday, the latest version of its AI model.] [f02: It ships in three sizes: 8 billion, 32 billion, and 120 billion parameters.]",
+        "The biggest one is the most interesting. [f13: The 120-billion-parameter version is a mixture-of-experts design, so it uses only 15 billion parameters for each token it writes.] It's a clever way to get big-model quality at a smaller model's running cost.",
+        "[f14: Every version can read up to 200,000 tokens in a single prompt.]",
+        "Running Sable 4 at home takes some squeezing. [f10: Compressed to 4-bit precision, the 32-billion-parameter version fits in roughly 20 GB of memory.] [f15: Sable Labs says that compression costs about 2% on its accuracy tests.] For most people, that's a fair trade."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Sable Labs releases the Sable 4 AI model",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-11T17:30:00Z",
+      "body": [
+        "[f01: Sable Labs released Sable 4 on Wednesday, its newest AI model.] [f06: The company also sent a 48-page safety report to the National Cyber Readiness Office.]",
+        "[f07: In that report, outside testers say Sable 4 refused 96% of requests to write malware.] [f08: Sable Labs committed to telling the office about serious misuse within 72 hours of finding it.]",
+        "[f09: No rule required the filing, and Sable Labs made it voluntarily.] Promises like these are only as strong as the follow-through."
+      ]
+    },
+    "wirefold": {
+      "title": "Sable Labs releases Sable 4 AI model",
+      "publishedAt": "2026-11-11T16:00:00Z",
+      "body": [
+        "Sable Labs on Wednesday released Sable 4, the latest version of its AI model, in three sizes ranging up to 120 billion parameters."
+      ]
+    }
+  }
+}

@@ -30,3 +30,7 @@ The marker says which fact the sentence states. The brackets and fact ID are rem
 ## Feeds
 
 `npm run sample:build` publishes the story files as Atom feeds in `public/sample-feeds/`, one per outlet. The app reads those feeds with the same parser it uses for real feeds, then attaches the facts from the story files. A test fails if the feeds are out of date or if a marked sentence doesn't appear verbatim in the parsed article.
+
+## Writing new stories
+
+Follow [WRITING.md](WRITING.md). `npm run sample:check -- <story files>` validates stories without writing anything, and prints what each outlet adds once a story is opened.

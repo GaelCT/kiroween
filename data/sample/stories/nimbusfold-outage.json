@@ -1,0 +1,81 @@
+{
+  "id": "nimbusfold-outage",
+  "title": "Nimbusfold outage takes down apps and websites for hours",
+  "primary": "byteward",
+  "facts": {
+    "f01": "A Nimbusfold cloud outage took down apps and websites",
+    "f02": "Started at 04:10 UTC",
+    "f03": "All services were restored by 08:25 UTC",
+    "f04": "About 3,100 business customers were affected",
+    "f05": "Hit the delivery app Tinbowl and online bank Brassmint",
+    "f06": "Took down servers for Embercoast and Quenmoor Online",
+    "f07": "No Embercoast accounts or purchases were lost",
+    "f08": "Embercoast players get 3 days of free premium time",
+    "f09": "Caused by a faulty network configuration change",
+    "f10": "The change reached every region at once",
+    "f11": "Its rollback tools ran on the network that failed",
+    "f12": "Engineers undid the change by hand in each region",
+    "f13": "The Cyber Readiness Office wants a report by November 20",
+    "f14": "Affected customers qualify for a 10% service credit",
+    "f15": "Credits must be claimed within 30 days"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Nimbusfold outage takes down apps and websites for hours",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-13T08:50:00Z",
+      "body": [
+        "[f01: A Nimbusfold cloud outage took down apps and websites for hours on Friday.] [f02: Problems started at 04:10 UTC, according to the company's status page.] [f03: Nimbusfold said all services were restored by 08:25 UTC.]",
+        "[f04: “About 3,100 business customers were affected,” the company said in a statement.] [f05: Among them were the food delivery app Tinbowl and the online bank Brassmint.]",
+        "For many people who woke up to broken apps, it was a reminder of how much of the internet now runs on a handful of cloud providers."
+      ]
+    },
+    "launch-desk": {
+      "title": "Nimbusfold outage knocks apps and sites offline for hours",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-13T09:10:00Z",
+      "body": [
+        "[f01: Apps and websites went dark for hours Friday when Nimbusfold's cloud failed.] [f05: Delivery app Tinbowl and online bank Brassmint were among the casualties.]",
+        "[f03: Everything was back up by 08:25 UTC.] It was a rough morning for anyone who rents servers from Nimbusfold. Expect questions about who pays for the lost orders."
+      ]
+    },
+    "frametime": {
+      "title": "Nimbusfold outage takes game servers down for hours",
+      "author": "Wren Halloway",
+      "publishedAt": "2026-11-13T09:55:00Z",
+      "body": [
+        "[f01: A Nimbusfold cloud outage knocked apps and websites offline for hours this morning.] Games weren't spared. [f06: Servers for Embercoast and Quenmoor Online went down with it.]",
+        "[f07: Thornwick Games, which publishes Embercoast, says no player accounts or purchases were lost.] [f08: To make up for the downtime, every Embercoast player gets three days of free premium time.]",
+        "[f09: Nimbusfold has blamed a faulty network configuration change.] Three free days is a decent apology, though not everyone stuck at a login screen will see it that way."
+      ]
+    },
+    "ohm-and-bit": {
+      "title": "Inside the Nimbusfold outage that took down apps and websites",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-13T11:40:00Z",
+      "body": [
+        "[f09: Nimbusfold's preliminary report traces the outage to a faulty network configuration change.] [f02: The first errors appeared at 04:10 UTC.]",
+        "[f10: Instead of rolling out one region at a time, the change reached every region at once.] That's exactly the scenario staged rollouts exist to prevent.",
+        "[f11: Worse, the tools engineers use to roll back changes ran on the same network that had failed.] [f12: In the end, they undid the change by hand, one region at a time.] [f03: Service was fully back by 08:25 UTC.]",
+        "It's a familiar failure: when the repair tools depend on the thing that's broken, every fix gets slower."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Nimbusfold outage that took down apps and websites draws regulator scrutiny",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-13T12:50:00Z",
+      "body": [
+        "[f01: Nimbusfold's cloud outage took down apps and websites for hours on Friday.] [f13: By midday, the National Cyber Readiness Office had asked the company for a written report by November 20.]",
+        "[f14: Under Nimbusfold's standard contract, affected customers qualify for a 10% credit on the month's bill.] [f15: They have 30 days to claim it.]",
+        "For businesses that lost a morning of sales, a 10% credit may feel small. Expect some of them to read the fine print closely."
+      ]
+    },
+    "wirefold": {
+      "title": "Nimbusfold outage takes apps and websites offline",
+      "publishedAt": "2026-11-13T08:30:00Z",
+      "body": [
+        "A cloud outage at Nimbusfold knocked apps and websites offline for more than four hours early Friday, the company said, adding that service had been restored."
+      ]
+    }
+  }
+}

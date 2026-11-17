@@ -1,0 +1,19 @@
+{
+  "id": "kindling-thermostat-teardown",
+  "title": "Inside the Kindling Home thermostat: a teardown",
+  "primary": "ohm-and-bit",
+  "facts": {},
+  "articles": {
+    "ohm-and-bit": {
+      "title": "Inside the Kindling Home thermostat: a teardown",
+      "author": "Imogen Vale",
+      "publishedAt": "2026-11-14T13:00:00Z",
+      "body": [
+        "We opened up the Kindling Home thermostat to see what $179 buys. Getting in is easy: the faceplate twists off, and four screws release the main board.",
+        "Inside, there's less than you'd expect. A dual-core processor with 512 MB of memory drives the round 2.4-inch display, and a separate wireless chip handles the link to your phone. The sensor board carries temperature and humidity sensors, plus a motion sensor that wakes the screen when someone walks by.",
+        "The trade-offs show up in the power design. Without a dedicated common wire, the thermostat sips current through the heating circuit, which can make some older furnaces click on and off. Kindling recommends fitting the included adapter, and so do we.",
+        "Repair is the weak spot. The 450 mAh backup battery is soldered to the board, and the display is glued in. By our estimate, the parts cost about $41."
+      ]
+    }
+  }
+}

@@ -14,4 +14,238 @@
     <updated>2026-11-16T14:05:00Z</updated>
     <content type="html"><![CDATA[<p>Corvid announced the RV-90 on Monday, its new flagship graphics card for desktop PCs. The card is built on Nocturne, Corvid's new graphics architecture.</p><p>It ships with 24 GB of GDDR7 memory. The chip is made on a 3 nm process.</p><p>Corvid says the RV-90 is twice as fast as last year's RV-80 at ray tracing. That's a big claim, and independent testing will show whether it holds up.</p>]]></content>
   </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:port-ellery-library-hotspots</id>
+    <title>Port Ellery libraries start lending internet hotspots</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/port-ellery-library-hotspots"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-16T09:00:00Z</published>
+    <updated>2026-11-16T09:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Port Ellery Public Library has started lending mobile internet hotspots the same way it lends books. All 12 branches have them, 400 devices in total.</p><p>Anyone with a library card can borrow one for 3 weeks, with unlimited data and no fees. The program is aimed at the roughly 1 in 6 Port Ellery households that don't have internet at home.</p><p>The city council paid for it with a $280,000 grant, which covers the devices and 2 years of cellular service. Library director Monique Harrow says students and job seekers already fill the branches' computer rooms every afternoon. “If they can take the internet home, they don't have to fight for a seat,” she said.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:brindle-2-release</id>
+    <title>Version 2.0 of the Brindle programming language is released</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/brindle-2-release"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-15T17:00:00Z</published>
+    <updated>2026-11-15T17:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Version 2.0 of Brindle, the open-source programming language, was released on Sunday. It's the language's first major release since 2022.</p><p>Brindle's maintainers say the new version compiles code up to 40% faster than Brindle 1.9. The release also adds an official package manager. That alone may win over developers who found setting up a project a chore.</p><p>Brindle 1 will keep getting security fixes until June 2028. That gives teams with large codebases time to plan the move, and they'll probably need it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:meridian-cable-cut</id>
+    <title>Meridian undersea cable damage slows internet in six countries</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/meridian-cable-cut"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-15T09:00:00Z</published>
+    <updated>2026-11-15T09:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Meridian undersea cable was damaged on Saturday. Internet service has slowed in six West African countries as a result.</p><p>The fault is about 140 km off the coast of Senegal. Meridian runs 8,700 km along the Atlantic floor, from Portugal to South Africa.</p><p>The cable is owned by a group of carriers led by Talvera Networks. It's a reminder of how much of the internet rides on a handful of cables. Details are still thin, and we'll update this story as Talvera shares more.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:orbelle-satellite-launch</id>
+    <title>Orbelle launches 40 internet satellites</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/orbelle-satellite-launch"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-15T03:20:00Z</published>
+    <updated>2026-11-15T03:20:00Z</updated>
+    <content type="html"><![CDATA[<p>Orbelle launched 40 internet satellites overnight. It was the company's 11th launch.</p><p>All 40 satellites have made contact with ground control, Orbelle said. That brings the company's fleet to 412 satellites in orbit. That's a solid start for a network this young, if a long way from finished.</p><p>Orbelle plans to start selling internet service in mid-2027. Until then, each launch is mostly about proving the system works. The pace of launches matters more than any single one, and Orbelle will need to keep it up.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:ferngrove-layoffs</id>
+    <title>Ferngrove to cut 2,000 jobs</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/ferngrove-layoffs"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-14T23:05:00Z</published>
+    <updated>2026-11-14T23:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Ferngrove plans to lay off about 2,000 employees. CEO Lena Marchbanks announced the cuts in a memo to staff.</p><p>Most of the affected jobs are in Hearth, the company's smart home unit. Ferngrove will also stop selling its Hearth Panel smart display.</p><p>Laid-off workers will get at least 16 weeks of pay. It's the company's second round of cuts this year, after 900 jobs went in March.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:wayline-robotaxi-port-ellery</id>
+    <title>Wayline robotaxis start paid rides in Port Ellery</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/wayline-robotaxi-port-ellery"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-14T18:00:00Z</published>
+    <updated>2026-11-14T18:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Wayline began charging for robotaxi rides in Port Ellery on Saturday. The cars have no safety driver behind the wheel.</p><p>The service launches with 40 cars. Its service area covers 31 square miles of the city. Rides are available from 6 a.m. to midnight.</p><p>Charging for rides is the step that turns a test into a business. The next few months will show whether people in Port Ellery are ready to pay for a ride with nobody up front, and whether the cars can handle a city's worth of real traffic.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:forge-deck-2</id>
+    <title>Pixelforge announces its Forge Deck 2 handheld console</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/forge-deck-2"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-14T16:30:00Z</published>
+    <updated>2026-11-14T16:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Pixelforge on Saturday announced the Forge Deck 2, a new version of its handheld game console. Prices start at $549.</p><p>The base model comes with 512 GB of storage. It has a 60 Wh battery.</p><p>Pixelforge is also cutting the price of the original Forge Deck to $349. That makes the older model an easy pick for anyone who doesn't need the extra speed.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:thrushwell-pulse3-recall</id>
+    <title>Thrushwell recalls the Pulse 3 smartwatch over swelling batteries</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/thrushwell-pulse3-recall"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-14T15:20:00Z</published>
+    <updated>2026-11-14T15:20:00Z</updated>
+    <content type="html"><![CDATA[<p>Thrushwell is recalling its Pulse 3 smartwatch, the company announced today. It says the watch's battery can swell and push the screen out of the case.</p><p>About 410,000 watches are covered by the recall. Thrushwell is telling owners to stop using the watch right away.</p><p>Owners who return the watch will get a full refund. It's an expensive mistake, and owners will want to know how a fault like this got past testing. Thrushwell will be hoping the news doesn't follow it into the holiday season.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:marrowfield-health-ransomware</id>
+    <title>Ransomware attack hits the Marrowfield Health hospital chain</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/marrowfield-health-ransomware"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-14T11:00:00Z</published>
+    <updated>2026-11-14T11:00:00Z</updated>
+    <content type="html"><![CDATA[<p>A ransomware attack hit Marrowfield Health's computer systems on Friday. The chain runs 11 hospitals across Merrow County and its neighbors.</p><p>Ambulances are being diverted away from four of those hospitals. Doctors and nurses have gone back to paper records.</p><p>A group calling itself Brinewolf has claimed responsibility for the attack. It's the kind of attack hospitals have spent years bracing for, and patients are the ones feeling it first. We've asked Marrowfield Health when it expects its systems to be back, and we'll update this story when it answers.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:ferngrove-app-store-ruling</id>
+    <title>Ferngrove's app store rules broke antitrust law, judge rules</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/ferngrove-app-store-ruling"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-13T19:30:00Z</published>
+    <updated>2026-11-13T19:30:00Z</updated>
+    <content type="html"><![CDATA[<p>A federal judge has ruled that the rules for Ferngrove's Canopy app store violate antitrust law. Ferngrove says it will appeal.</p><p>Canopy is currently the only way to install apps on Ferngrove phones. The ruling doesn't require Ferngrove to allow apps from other sources. That leaves the biggest question for another day, and probably another case.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:calloway-museum-archive</id>
+    <title>Calloway Museum puts 2 million archive photos online</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/calloway-museum-archive"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-13T15:00:00Z</published>
+    <updated>2026-11-13T15:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Calloway Museum in Port Halden has put 2 million photos from its archive online, free to browse and download. The collection spans 1868 to 1994 and includes glass plate negatives, newspaper darkroom prints, and family albums donated over decades.</p><p>Scanning took 6 years. A team of 14 staff and volunteers used two custom camera rigs that each capture a print in about 15 seconds. Software read the handwritten captions on the backs of the prints, so most of the collection can be searched by name, street, and year.</p><p>About 1.4 million of the photos are in the public domain and can be reused for any purpose. The rest are free for noncommercial use. The $3.1 million project was paid for mostly by the Hollin Foundation, a local charity.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:tidewell-buys-murmurline</id>
+    <title>Tidewell to buy messaging app Murmurline for $3.2 billion</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/tidewell-buys-murmurline"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-13T14:30:00Z</published>
+    <updated>2026-11-13T14:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Tidewell is buying Murmurline, the popular messaging app. The deal values Murmurline at $3.2 billion.</p><p>About 85 million people use Murmurline every month. Those users will be watching closely to see what changes under a new owner, and how soon. Messaging apps run on trust, and acquisitions tend to test it.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:deepcask-outage</id>
+    <title>Deepcask storage outage knocks apps and websites offline</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/deepcask-outage"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-13T12:05:00Z</published>
+    <updated>2026-11-13T12:05:00Z</updated>
+    <content type="html"><![CDATA[<p>An outage at cloud storage provider Deepcask left apps and websites unable to load files for part of Friday morning. The company blamed a cooling failure at its data center in Ohio.</p><p>The photo app Shutterkin and the design tool Layloft were among the services that couldn't open files. Deepcask says it will publish a full incident report within 14 days.</p><p>Until then, customers will have to take the company's word that the fix will hold.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:nimbusfold-outage</id>
+    <title>Nimbusfold outage takes down apps and websites for hours</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/nimbusfold-outage"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-13T08:50:00Z</published>
+    <updated>2026-11-13T08:50:00Z</updated>
+    <content type="html"><![CDATA[<p>A Nimbusfold cloud outage took down apps and websites for hours on Friday. Problems started at 04:10 UTC, according to the company's status page. Nimbusfold said all services were restored by 08:25 UTC.</p><p>“About 3,100 business customers were affected,” the company said in a statement. Among them were the food delivery app Tinbowl and the online bank Brassmint.</p><p>For many people who woke up to broken apps, it was a reminder of how much of the internet now runs on a handful of cloud providers.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:lumora-arc7-launch</id>
+    <title>Lumora announces the Arc 7 phone</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/lumora-arc7-launch"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-12T17:12:00Z</published>
+    <updated>2026-11-12T17:12:00Z</updated>
+    <content type="html"><![CDATA[<p>Lumora on Thursday announced the Arc 7, its new flagship phone. On paper, it's a steady update rather than a reinvention.</p><p>At its center is the Facet 3, the latest chip Lumora designs in-house. The display measures 6.4 inches diagonally. On the back, the main camera uses a 50-megapixel sensor.</p><p>Powering it all is a 5,000 mAh battery. How long that lasts will depend on how efficient the new chip turns out to be.</p><p>That makes the Arc 7 a phone to judge in reviews rather than on a spec sheet.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:kestrel-drone-delivery</id>
+    <title>Kestrel Aerial gets approval for drone deliveries</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/kestrel-drone-delivery"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-12T16:40:00Z</published>
+    <updated>2026-11-12T16:40:00Z</updated>
+    <content type="html"><![CDATA[<p>Kestrel Aerial has won approval from the Aviation Operations Board to deliver packages by drone. Deliveries start December 1.</p><p>Kestrel will launch first in the suburbs of Phoenix and Dallas. The drones will only fly during daylight.</p><p>For now, you'll need to live in the right neighborhood, and to order before dark.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:ampwright-solid-state-battery</id>
+    <title>Ampwright Labs shows off solid-state battery cells for phones</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/ampwright-solid-state-battery"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-12T13:35:00Z</published>
+    <updated>2026-11-12T13:35:00Z</updated>
+    <content type="html"><![CDATA[<p>Ampwright Labs on Thursday showed solid-state battery cells designed for smartphones. The company says they store 1,050 Wh per liter.</p><p>Ampwright plans to begin mass production in 2028. That means the first phones with these cells are still a long way off.</p><p>Solid-state batteries have been promised for years, so the proof will be in shipping products.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:moorlark-browser-trackers</id>
+    <title>Moorlark browser blocks third-party trackers by default</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/moorlark-browser-trackers"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-11T18:00:00Z</published>
+    <updated>2026-11-11T18:00:00Z</updated>
+    <content type="html"><![CDATA[<p>The Moorlark browser now blocks third-party trackers by default. The change arrives in version 31, which the Moorlark Foundation released on Wednesday.</p><p>Third-party trackers are the scripts that follow people from site to site to build advertising profiles. In Moorlark's own tests, the browser blocked an average of 23 of them per page.</p><p>Users can switch blocking off for any site that breaks. Moorlark has about 48 million users. For a browser that size, changing the default is a bigger deal than adding another privacy setting most people never find.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:sable4-model-release</id>
+    <title>Sable Labs releases its Sable 4 AI model</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/sable4-model-release"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-11T16:10:00Z</published>
+    <updated>2026-11-11T16:10:00Z</updated>
+    <content type="html"><![CDATA[<p>Sable Labs released Sable 4 on Wednesday, the newest version of its AI model. It comes in three sizes, with 8 billion, 32 billion, and 120 billion parameters.</p><p>The company says Sable 4 scores 18% higher than Sable 3 on its in-house coding tests. Companies tend to pick the tests that flatter their models, so independent results will matter more.</p><p>Developers can use Sable 4 through the company's API for $1.20 per million input tokens. The 8 billion and 32 billion parameter versions are also free to download and run on your own computer. That openness should make it a favorite with hobbyists.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:brightmesh-router-flaw</id>
+    <title>Brightmesh patches a router flaw that let attackers take control</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/brightmesh-router-flaw"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-11T13:12:00Z</published>
+    <updated>2026-11-11T13:12:00Z</updated>
+    <content type="html"><![CDATA[<p>A security flaw in Brightmesh home routers lets attackers take full control of them over the internet. The flaw affects 11 router models in the company's BX series.</p><p>Brightmesh released firmware version 4.2.1 on Wednesday to fix it. Researchers at the security firm Quillstone found the flaw. Routers set to update automatically will install the fix within 48 hours.</p><p>If you've switched automatic updates off, don't wait for a reminder: install the update by hand as soon as you can. A router is the front door to every device in your home, and this one was left unlocked.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:ticketriver-breach</id>
+    <title>TicketRiver data breach exposes 9 million accounts</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/ticketriver-breach"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-10T20:05:00Z</published>
+    <updated>2026-11-10T20:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Hackers stole data from 9 million TicketRiver accounts, the ticket seller said on Tuesday. The company says it has hired an outside security firm to investigate.</p><p>The stolen data includes names, email addresses, phone numbers, and hashed passwords. TicketRiver says no payment card numbers were taken.</p><p>Every TicketRiver user will have to reset their password the next time they log in. If you used the same password anywhere else, change it there as well, starting with your email account. Scammers tend to follow breaches like this with convincing fake emails, so be wary of messages about your tickets.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:gloamstream-price-increase</id>
+    <title>Gloamstream raises its streaming prices</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/gloamstream-price-increase"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-10T16:45:00Z</published>
+    <updated>2026-11-10T16:45:00Z</updated>
+    <content type="html"><![CDATA[<p>Gloamstream is increasing the price of every plan it offers. The Standard plan moves from $13.99 to $15.99 a month.</p><p>People who already subscribe will see the higher price starting December 12.</p><p>It's another reminder that streaming isn't the cheap alternative it once was. If you're on the fence, now is a good time to check how often you actually watch.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:ferrolith-fab</id>
+    <title>Ferrolith will build a $14 billion chip plant in Ashford Flats</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/ferrolith-fab"/>
+    <author><name>Simone Achterberg</name></author>
+    <published>2026-11-10T14:50:00Z</published>
+    <updated>2026-11-10T14:50:00Z</updated>
+    <content type="html"><![CDATA[<p>Ferrolith plans to build a memory chip plant in the town of Ashford Flats, Texas. The company puts the cost at $14 billion.</p><p>Varden County, which includes Ashford Flats, has approved $1.1 billion in tax breaks for the project. Projects this size tend to reshape the towns around them, for better and for worse.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:tallow-db-license-change</id>
+    <title>Tallow DB moves to a source-available license</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/tallow-db-license-change"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-09T20:00:00Z</published>
+    <updated>2026-11-09T20:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Tallow DB, the popular open source database, is moving to a source-available license.</p><p>The new license applies starting with version 9.0. Under it, cloud providers can't sell Tallow DB as a hosted service without a commercial agreement with Tallow DB Inc., the company behind the project.</p><p>Versions released before 9.0 stay under the old open source license, so nobody loses access to code they already use.</p><p>Most developers won't notice the change. Companies that host Tallow DB for their own customers certainly will.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:quarrow-ev-recall</id>
+    <title>Quarrow Motors recalls 80,000 electric cars over a software flaw</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/quarrow-ev-recall"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-09T18:15:00Z</published>
+    <updated>2026-11-09T18:15:00Z</updated>
+    <content type="html"><![CDATA[<p>Quarrow Motors is recalling 80,000 electric cars. The company says a software flaw can cut power to the motors while the car is moving.</p><p>The recall covers Pavane SUVs from the 2025 and 2026 model years. Quarrow will fix the problem with a free over-the-air update.</p><p>The company says it knows of three minor crashes linked to the flaw. A sudden loss of power is one of the more dangerous failures a car can have, especially at highway speeds. Owners will want that update quickly.</p>]]></content>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:byteward:aurelith-visor-launch</id>
+    <title>Aurelith launches its Visor mixed-reality headset</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/aurelith-visor-launch"/>
+    <author><name>Arlo Pennick</name></author>
+    <published>2026-11-09T17:25:00Z</published>
+    <updated>2026-11-09T17:25:00Z</updated>
+    <content type="html"><![CDATA[<p>Aurelith on Monday introduced the Visor, the company's first mixed-reality headset. It's priced at $1,499.</p><p>Each eye gets its own 3,400 by 3,400 pixel display. Aurelith rates the battery for 2.5 hours of use.</p><p>The Visor's app store will open with 320 apps. That's a modest library, and Aurelith will need developers to keep building for it.</p>]]></content>
+  </entry>
 </feed>

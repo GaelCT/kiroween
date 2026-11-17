@@ -1,0 +1,19 @@
+{
+  "id": "quillnest-seed-round",
+  "title": "Quillnest raises a $6 million seed round",
+  "primary": "launch-desk",
+  "facts": {},
+  "articles": {
+    "launch-desk": {
+      "title": "Note-taking startup Quillnest raises $6 million",
+      "author": "Inez Calder",
+      "publishedAt": "2026-11-09T15:00:00Z",
+      "body": [
+        "Note-taking startup Quillnest has raised $6 million in seed funding. Larkhollow Partners led the round.",
+        "Quillnest's app turns meeting notes into task lists without sending them to a server, because everything runs on the user's own device. The company says it has 140,000 monthly users, up from 30,000 in March.",
+        "The money goes to hiring. Quillnest plans to grow from 9 employees to 25 by the end of 2027. A paid team plan arrives in the spring at $8 per user per month.",
+        "Co-founders Mara Lindqvist and Jonah Petrakis started the company in 2024. Privacy is the pitch, and so far it's working."
+      ]
+    }
+  }
+}

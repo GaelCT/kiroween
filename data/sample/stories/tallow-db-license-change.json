@@ -1,0 +1,37 @@
+{
+  "id": "tallow-db-license-change",
+  "title": "Tallow DB moves to a source-available license",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Tallow DB is moving to a source-available license",
+    "f02": "The new license applies from version 9.0",
+    "f03": "Cloud providers need a deal to sell it as a hosted service",
+    "f04": "Older versions stay under the old open source license",
+    "f05": "The company says cloud rivals undercut its hosted service",
+    "f06": "Its Tallow DB Cloud service makes up 70% of revenue",
+    "f07": "Tallow DB Inc. raised $95 million in July"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Tallow DB moves to a source-available license",
+      "author": "Arlo Pennick",
+      "publishedAt": "2026-11-09T20:00:00Z",
+      "body": [
+        "[f01: Tallow DB, the popular open source database, is moving to a source-available license.]",
+        "[f02: The new license applies starting with version 9.0.] [f03: Under it, cloud providers can't sell Tallow DB as a hosted service without a commercial agreement with Tallow DB Inc., the company behind the project.]",
+        "[f04: Versions released before 9.0 stay under the old open source license, so nobody loses access to code they already use.]",
+        "Most developers won't notice the change. Companies that host Tallow DB for their own customers certainly will."
+      ]
+    },
+    "launch-desk": {
+      "title": "Tallow DB switches to a source-available license",
+      "author": "Theo Marsh",
+      "publishedAt": "2026-11-09T20:45:00Z",
+      "body": [
+        "[f01: Tallow DB is switching to a source-available license.] [f03: Cloud companies will need a paid deal to offer it as a service.]",
+        "[f05: The company behind it, Tallow DB Inc., says rival cloud hosts were undercutting its own hosted service.] [f06: That service, Tallow DB Cloud, brings in 70% of the company's revenue.]",
+        "[f07: The company raised $95 million in July.] Follow the money, and the license change makes sense."
+      ]
+    }
+  }
+}

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:wirefold</id>
+  <title>Wirefold</title>
+  <subtitle>Sample data: a fictional outlet (Wire service summaries).</subtitle>
+  <link rel="alternate" href="https://wirefold.example/"/>
+  <updated>2026-11-15T08:40:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:wirefold:meridian-cable-cut</id>
+    <title>Damage to Meridian undersea cable slows internet in six countries</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/meridian-cable-cut"/>
+    <published>2026-11-15T08:40:00Z</published>
+    <updated>2026-11-15T08:40:00Z</updated>
+    <summary type="text">Damage to the Meridian undersea cable, which runs from Portugal to South Africa, has slowed internet service in six West African countries since Saturday.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:orbelle-satellite-launch</id>
+    <title>Orbelle launches 40 internet satellites</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/orbelle-satellite-launch"/>
+    <published>2026-11-15T03:00:00Z</published>
+    <updated>2026-11-15T03:00:00Z</updated>
+    <summary type="text">Orbelle launched 40 internet satellites overnight, bringing its fleet to 412 as it prepares to start service in 2027.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:ferngrove-layoffs</id>
+    <title>Ferngrove cutting 2,000 jobs</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/ferngrove-layoffs"/>
+    <published>2026-11-14T22:30:00Z</published>
+    <updated>2026-11-14T22:30:00Z</updated>
+    <summary type="text">Ferngrove is cutting about 2,000 jobs, most of them in its smart home business, the company said.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:wayline-robotaxi-port-ellery</id>
+    <title>Wayline begins paid robotaxi service in Port Ellery</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/wayline-robotaxi-port-ellery"/>
+    <published>2026-11-14T17:50:00Z</published>
+    <updated>2026-11-14T17:50:00Z</updated>
+    <summary type="text">Wayline on Saturday began charging for driverless robotaxi rides in Port Ellery, starting with a fleet of 40 cars.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:forge-deck-2</id>
+    <title>Pixelforge announces Forge Deck 2 handheld</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/forge-deck-2"/>
+    <published>2026-11-14T15:50:00Z</published>
+    <updated>2026-11-14T15:50:00Z</updated>
+    <summary type="text">Pixelforge on Saturday announced the Forge Deck 2, a successor to its handheld game console that will start at $549 when it goes on sale February 18.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:thrushwell-pulse3-recall</id>
+    <title>Thrushwell recalls Pulse 3 smartwatches over battery swelling</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/thrushwell-pulse3-recall"/>
+    <published>2026-11-14T15:00:00Z</published>
+    <updated>2026-11-14T15:00:00Z</updated>
+    <summary type="text">Thrushwell is recalling about 410,000 Pulse 3 smartwatches because their batteries can swell and push the screen out, the company said.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:marrowfield-health-ransomware</id>
+    <title>Ransomware attack disrupts Marrowfield Health hospital chain</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/marrowfield-health-ransomware"/>
+    <published>2026-11-14T10:40:00Z</published>
+    <updated>2026-11-14T10:40:00Z</updated>
+    <summary type="text">A ransomware attack has disrupted Marrowfield Health, which runs 11 hospitals, forcing staff onto paper records and diverting ambulances from four of its hospitals.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:ferngrove-app-store-ruling</id>
+    <title>Judge rules Ferngrove app store rules broke antitrust law</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/ferngrove-app-store-ruling"/>
+    <published>2026-11-13T18:55:00Z</published>
+    <updated>2026-11-13T18:55:00Z</updated>
+    <summary type="text">A federal judge ruled on Friday that Ferngrove's rules for its Canopy app store broke antitrust law, handing a win to the game publisher that sued the company.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:tidewell-buys-murmurline</id>
+    <title>Tidewell to acquire Murmurline for $3.2 billion</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/tidewell-buys-murmurline"/>
+    <published>2026-11-13T13:58:00Z</published>
+    <updated>2026-11-13T13:58:00Z</updated>
+    <summary type="text">Tidewell has agreed to buy the messaging app Murmurline for $3.2 billion in cash, the companies said on Friday.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:deepcask-outage</id>
+    <title>Deepcask outage leaves apps and websites unable to load files</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/deepcask-outage"/>
+    <published>2026-11-13T10:30:00Z</published>
+    <updated>2026-11-13T10:30:00Z</updated>
+    <summary type="text">Cloud storage provider Deepcask said Friday it was working to restore service after an outage left apps and websites unable to load files.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:nimbusfold-outage</id>
+    <title>Nimbusfold outage takes apps and websites offline</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/nimbusfold-outage"/>
+    <published>2026-11-13T08:30:00Z</published>
+    <updated>2026-11-13T08:30:00Z</updated>
+    <summary type="text">A cloud outage at Nimbusfold knocked apps and websites offline for more than four hours early Friday, the company said, adding that service had been restored.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:lumora-arc7-launch</id>
+    <title>Lumora unveils Arc 7 flagship phone</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/lumora-arc7-launch"/>
+    <published>2026-11-12T17:00:00Z</published>
+    <updated>2026-11-12T17:00:00Z</updated>
+    <summary type="text">Phone maker Lumora on Thursday unveiled the Arc 7, a $799 flagship built around its new in-house Facet 3 chip. The phone goes on sale Nov. 20.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:kestrel-drone-delivery</id>
+    <title>Kestrel Aerial wins drone delivery approval</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/kestrel-drone-delivery"/>
+    <published>2026-11-12T16:20:00Z</published>
+    <updated>2026-11-12T16:20:00Z</updated>
+    <summary type="text">The Aviation Operations Board on Thursday approved drone deliveries by Kestrel Aerial, allowing a single pilot to oversee as many as 20 drones.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:moorlark-browser-trackers</id>
+    <title>Moorlark browser now blocks third-party trackers by default</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/moorlark-browser-trackers"/>
+    <published>2026-11-11T17:45:00Z</published>
+    <updated>2026-11-11T17:45:00Z</updated>
+    <summary type="text">The Moorlark browser now blocks third-party trackers by default, starting with version 31, released on Wednesday.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:sable4-model-release</id>
+    <title>Sable Labs releases Sable 4 AI model</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/sable4-model-release"/>
+    <published>2026-11-11T16:00:00Z</published>
+    <updated>2026-11-11T16:00:00Z</updated>
+    <summary type="text">Sable Labs on Wednesday released Sable 4, the latest version of its AI model, in three sizes ranging up to 120 billion parameters.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:brightmesh-router-flaw</id>
+    <title>Brightmesh patches router takeover flaw</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/brightmesh-router-flaw"/>
+    <published>2026-11-11T13:00:00Z</published>
+    <updated>2026-11-11T13:00:00Z</updated>
+    <summary type="text">Brightmesh released a security update on Wednesday after researchers found a flaw that lets attackers take control of 11 of its home router models.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:ticketriver-breach</id>
+    <title>TicketRiver says breach exposed 9 million accounts</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/ticketriver-breach"/>
+    <published>2026-11-10T19:52:00Z</published>
+    <updated>2026-11-10T19:52:00Z</updated>
+    <summary type="text">Ticket seller TicketRiver said on Tuesday that hackers stole names, email addresses, and other data from 9 million customer accounts.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:gloamstream-price-increase</id>
+    <title>Gloamstream raises prices on streaming plans</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/gloamstream-price-increase"/>
+    <published>2026-11-10T16:10:00Z</published>
+    <updated>2026-11-10T16:10:00Z</updated>
+    <summary type="text">Gloamstream is raising prices on all three of its streaming plans, with its Standard plan going from $13.99 to $15.99 a month.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:ferrolith-fab</id>
+    <title>Ferrolith to build $14 billion chip plant in Ashford Flats</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/ferrolith-fab"/>
+    <published>2026-11-10T14:00:00Z</published>
+    <updated>2026-11-10T14:00:00Z</updated>
+    <summary type="text">Memory chipmaker Ferrolith said Tuesday it will build a $14 billion plant in Ashford Flats, Texas, that will employ about 2,200 people.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:quarrow-ev-recall</id>
+    <title>Quarrow Motors recalls 80,000 electric cars</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/quarrow-ev-recall"/>
+    <published>2026-11-09T18:00:00Z</published>
+    <updated>2026-11-09T18:00:00Z</updated>
+    <summary type="text">Quarrow Motors is recalling 80,000 electric cars because a software flaw can cut power to the motors, the company said Monday.</summary>
+  </entry>
+  <entry>
+    <id>urn:reader-sample:wirefold:aurelith-visor-launch</id>
+    <title>Aurelith launches Visor mixed-reality headset</title>
+    <link rel="alternate" href="https://wirefold.example/2026/11/aurelith-visor-launch"/>
+    <published>2026-11-09T16:55:00Z</published>
+    <updated>2026-11-09T16:55:00Z</updated>
+    <summary type="text">Aurelith on Monday launched the Visor, its first mixed-reality headset, priced at $1,499 and shipping December 4 in the US and Canada.</summary>
+  </entry>
+</feed>

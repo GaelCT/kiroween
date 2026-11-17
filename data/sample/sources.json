@@ -22,5 +22,18 @@
     "name": "Ohm & Bit",
     "homepage": "https://ohmandbit.example/",
     "description": "Hardware deep dives"
+  },
+  {
+    "id": "bench-and-bill",
+    "name": "Bench & Bill",
+    "homepage": "https://benchandbill.example/",
+    "description": "Tech policy, courts, and regulation"
+  },
+  {
+    "id": "wirefold",
+    "name": "Wirefold",
+    "homepage": "https://wirefold.example/",
+    "description": "Wire service summaries",
+    "excerptOnly": true
   }
 ]

@@ -1,0 +1,45 @@
+{
+  "id": "moorlark-browser-trackers",
+  "title": "Moorlark browser blocks third-party trackers by default",
+  "primary": "byteward",
+  "facts": {
+    "f01": "Moorlark now blocks third-party trackers by default",
+    "f02": "Arrives in version 31, released Wednesday",
+    "f03": "Moorlark has about 48 million users",
+    "f04": "Users can turn blocking off site by site",
+    "f05": "Blocks 23 trackers per page on average, Moorlark says",
+    "f06": "An ad group filed a complaint with competition regulators",
+    "f07": "A tracking consent law takes effect March 1",
+    "f08": "The tracking law fines sites up to $5,000 per violation"
+  },
+  "articles": {
+    "byteward": {
+      "title": "Moorlark browser blocks third-party trackers by default",
+      "author": "Simone Achterberg",
+      "publishedAt": "2026-11-11T18:00:00Z",
+      "body": [
+        "[f01: The Moorlark browser now blocks third-party trackers by default.] [f02: The change arrives in version 31, which the Moorlark Foundation released on Wednesday.]",
+        "Third-party trackers are the scripts that follow people from site to site to build advertising profiles. [f05: In Moorlark's own tests, the browser blocked an average of 23 of them per page.]",
+        "[f04: Users can switch blocking off for any site that breaks.] [f03: Moorlark has about 48 million users.] For a browser that size, changing the default is a bigger deal than adding another privacy setting most people never find."
+      ]
+    },
+    "bench-and-bill": {
+      "title": "Moorlark browser blocks third-party trackers by default, drawing a complaint",
+      "author": "Celia Marchetti",
+      "publishedAt": "2026-11-11T20:30:00Z",
+      "body": [
+        "[f01: Moorlark now blocks third-party trackers by default.] [f03: The browser has about 48 million users.] Advertisers noticed.",
+        "[f06: On Wednesday, the Open Ad Markets Coalition filed a complaint with competition regulators, arguing that the change shuts small ad firms out of the market.]",
+        "[f07: The change also lands ahead of the Online Tracking Consent Act, which takes effect March 1.] [f08: The law will fine websites up to $5,000 per violation for tracking people without opt-in consent.]",
+        "Moorlark's default makes compliance easier for the sites its users visit, which may be the strongest answer to the complaint."
+      ]
+    },
+    "wirefold": {
+      "title": "Moorlark browser now blocks third-party trackers by default",
+      "publishedAt": "2026-11-11T17:45:00Z",
+      "body": [
+        "The Moorlark browser now blocks third-party trackers by default, starting with version 31, released on Wednesday."
+      ]
+    }
+  }
+}
