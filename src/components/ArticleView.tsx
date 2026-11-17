@@ -40,6 +40,12 @@ export function ArticleView({ article, source, highlights, scrollTarget }: Props
         {article.author ? <> · {article.author}</> : null} · <time dateTime={article.publishedAt}>{formatDateTime(article.publishedAt)}</time>
       </p>
       <h3 className="article-title">{article.title}</h3>
+      {article.limited ? (
+        <p className="article-limited">
+          <strong>Limited source content.</strong> {source.name} only publishes a summary in its feed, so Reader can’t
+          compare this article with the other sources.
+        </p>
+      ) : null}
       <div className="article-body" ref={body}>
         {article.paragraphs.map((paragraph, index) => (
           <p key={index}>{withMarks(paragraph, marks)}</p>

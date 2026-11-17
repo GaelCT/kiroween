@@ -486,6 +486,14 @@ kbd {
   line-height: 1.3;
 }
 
+.article-limited {
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border-left: 3px solid #f0c36d;
+  background: #fff8e1;
+  color: #5f4b00;
+}
+
 .article-body p {
   margin: 0 0 12px;
   font-size: 15px;
@@ -538,6 +546,45 @@ kbd {
 .panel-note {
   margin: 4px 0 12px;
   color: var(--muted);
+}
+
+.panel-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #c8d3e6;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.panel-failed {
+  margin: 8px 0 12px;
+  padding: 8px 10px;
+  border-left: 3px solid #d93025;
+  background: #fce8e6;
+}
+
+.panel-failed p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.panel-source.is-limited .panel-status,
+.panel-source.is-waiting .panel-status {
+  font-style: italic;
 }
 
 .panel-sources {

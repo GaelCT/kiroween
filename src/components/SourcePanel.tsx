@@ -2,7 +2,7 @@
 
 import type { SourceComparison } from "@/lib/adds";
 import { formatPercent } from "@/lib/format";
-import type { Cluster, FactId, ReaderData } from "@/lib/types";
+import type { Cluster, ComparisonStatus, FactId, ReaderData } from "@/lib/types";
 
 interface Props {
   cluster: Cluster;
@@ -26,14 +26,24 @@ export function SourcePanel({ cluster, comparisons, data, currentArticleId, onOp
     );
   }
 
+  const status = cluster.comparison ?? "ready";
   const nothingLeft = comparisons.every((comparison) => comparison.status !== "adds");
 
   return (
-    <aside className="panel" aria-label="What each source adds">
+    <aside className="panel" aria-label="What each source adds" aria-busy={status === "pending"}>
       <h4 className="panel-title">What each source adds</h4>
-      <p className="panel-note">
-        {nothingLeft ? "Nothing new left in this story." : "Facts you haven’t read yet in this story."}
-      </p>
+      {status === "pending" ? (
+        <p className="panel-note panel-pending" role="status">
+          <span className="spinner" aria-hidden="true" /> Comparing {cluster.articleIds.length} sources…
+        </p>
+      ) : status === "failed" ? (
+        <div className="panel-failed" role="status">
+          <strong>Comparison unavailable</strong>
+          <p>The AI service didn’t respond, so Reader can’t say what each source adds. You can still read every article.</p>
+        </div>
+      ) : (
+        <p className="panel-note">{nothingLeft ? "Nothing new left in this story." : "Facts you haven’t read yet in this story."}</p>
+      )}
       <ol className="panel-sources">
         {comparisons.map((comparison) => (
           <li
@@ -44,7 +54,7 @@ export function SourcePanel({ cluster, comparisons, data, currentArticleId, onOp
               <button type="button" className="panel-source-name" onClick={() => onOpen(comparison.articleId)}>
                 {sourceName(comparison.articleId)}
               </button>
-              <span className="panel-status">{statusLabel(comparison)}</span>
+              <span className="panel-status">{statusLabel(comparison, status)}</span>
             </div>
             {comparison.duplicateScore !== null && (comparison.status === "adds" || comparison.status === "nothing-new") ? (
               <span className="meter" aria-hidden="true">
@@ -69,8 +79,10 @@ export function SourcePanel({ cluster, comparisons, data, currentArticleId, onOp
   );
 }
 
-function statusLabel({ status, duplicateScore }: SourceComparison): string {
+function statusLabel({ status, duplicateScore }: SourceComparison, comparison: ComparisonStatus): string {
   switch (status) {
+    case "waiting":
+      return comparison === "pending" ? "Comparing…" : "Not compared";
     case "primary":
       return "Opened first";
     case "read":

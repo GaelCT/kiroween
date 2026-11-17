@@ -58,7 +58,7 @@ Each task links to its GitHub issue on GaelCT/kiroween.
   - _Requirements: 9.2, 9.3_
 
 - [ ] 5. Live comparisons
-- [ ] 5.1 "Comparing N sources…" and "Comparison unavailable" states
+- [x] 5.1 "Comparing N sources…" and "Comparison unavailable" states
   - Issue #19
   - _Requirements: 11.1, 11.2_
 - [ ] 5.2 Add Feed runs the pipeline on the server

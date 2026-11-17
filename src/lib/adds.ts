@@ -10,7 +10,8 @@ export type History = readonly string[];
 
 export type ClusterState = "unread" | "partly-read" | "read";
 
-export type SourceStatus = "primary" | "read" | "adds" | "nothing-new" | "limited";
+/** "waiting" means the source hasn't been compared yet, or its comparison failed. */
+export type SourceStatus = "primary" | "read" | "adds" | "nothing-new" | "limited" | "waiting";
 
 export interface SourceComparison {
   articleId: string;
@@ -32,6 +33,11 @@ function articleIn(cluster: Cluster, articles: ArticleMap, articleId: string): A
     throw new Error(`Article ${articleId} isn't in cluster ${cluster.id}`);
   }
   return article;
+}
+
+/** Whether the cluster's facts are ready. Until then, reading state falls back to read and unread. */
+export function isCompared(cluster: Cluster): boolean {
+  return (cluster.comparison ?? "ready") === "ready";
 }
 
 /** The cluster's articles that the user has read. */
@@ -83,6 +89,7 @@ export function highlightsFor(cluster: Cluster, articles: ArticleMap, history: H
 export function clusterState(cluster: Cluster, articles: ArticleMap, history: History): ClusterState {
   const read = readInCluster(cluster, history);
   if (read.size === 0) return "unread";
+  if (!isCompared(cluster)) return read.size === cluster.articleIds.length ? "read" : "partly-read";
   if (!read.has(cluster.primaryArticleId)) return "partly-read";
   const somethingNew = cluster.articleIds.some((id) => addsFor(cluster, articles, history, id).length > 0);
   return somethingNew ? "partly-read" : "read";
@@ -92,7 +99,7 @@ export function clusterState(cluster: Cluster, articles: ArticleMap, history: Hi
 export function isWorthReading(cluster: Cluster, articles: ArticleMap, history: History, articleId: string): boolean {
   const read = readInCluster(cluster, history);
   if (read.has(articleId)) return false;
-  if (read.size === 0 || articleId === cluster.primaryArticleId) return true;
+  if (read.size === 0 || articleId === cluster.primaryArticleId || !isCompared(cluster)) return true;
   return addsFor(cluster, articles, history, articleId).length > 0;
 }
 
@@ -104,6 +111,7 @@ export function compareCluster(cluster: Cluster, articles: ArticleMap, history: 
     const score = duplicateScore(cluster, articles, history, articleId);
     if (articleId === cluster.primaryArticleId) return { articleId, status: "primary", adds: [], duplicateScore: score };
     if (read.has(articleId)) return { articleId, status: "read", adds: [], duplicateScore: score };
+    if (!isCompared(cluster)) return { articleId, status: "waiting", adds: [], duplicateScore: null };
     if (article.limited || score === null) return { articleId, status: "limited", adds: [], duplicateScore: null };
     const adds = addsFor(cluster, articles, history, articleId);
     return { articleId, status: adds.length > 0 ? "adds" : "nothing-new", adds, duplicateScore: score };
