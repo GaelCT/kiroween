@@ -21,7 +21,7 @@ Each task links to its GitHub issue on GaelCT/kiroween.
   - Unit tests for the worked example in `design.md`
   - Issue #7
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 6.1, 7.1, 7.2, 7.3_
-- [ ] 2.2 Write property tests P1 to P8
+- [x] 2.2 Write property tests P1 to P8
   - Issue #8
   - _Requirements: 4.1, 4.2, 4.3, 4.5, 5.2, 7.1, 7.2, 7.3_
 - [ ] 2.3 Pull an article out of its cluster (X)
