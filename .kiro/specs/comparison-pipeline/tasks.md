@@ -17,7 +17,7 @@ Each task links to its GitHub issue on GaelCT/kiroween.
   - _Requirements: 1.2, 10.3_
 
 - [ ] 2. Comparison in the browser
-- [ ] 2.1 Implement adds, duplicate score, highlights, and cluster state in `src/lib/adds.ts`
+- [x] 2.1 Implement adds, duplicate score, highlights, and cluster state in `src/lib/adds.ts`
   - Unit tests for the worked example in `design.md`
   - Issue #7
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 6.1, 7.1, 7.2, 7.3_
