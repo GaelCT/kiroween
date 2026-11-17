@@ -211,6 +211,22 @@ kbd {
   text-decoration: none;
 }
 
+.toolbar-button {
+  margin-left: auto;
+  padding: 4px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background: linear-gradient(#f8f8f8, #f1f1f1);
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+}
+
+.toolbar-button:hover {
+  border-color: #c6c6c6;
+  color: #222;
+}
+
 .list {
   flex: 1;
   overflow-y: auto;

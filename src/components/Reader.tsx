@@ -25,7 +25,7 @@ interface Position {
 
 interface Toast {
   message: string;
-  undoArticleId?: string;
+  undo?: () => void;
 }
 
 /** How long rows take to collapse into stories. Matches the CSS animation. */
@@ -138,7 +138,27 @@ export function Reader({ data }: { data: ReaderData }) {
     if (left) open(left, left.primaryArticleId);
     setToast({
       message: `Moved “${data.articles[articleId].title}” from ${sourceName(articleId)} into its own story.`,
-      undoArticleId: articleId,
+      undo: () => undoPull(articleId),
+    });
+  }
+
+  /** Google Reader's "Mark all as read" (Shift+A), for the stories or articles in this view. */
+  function markAllRead() {
+    const ids = grouped ? stories.flatMap((cluster) => cluster.articleIds) : articleIds;
+    const before = reading.history;
+    const after = markRead(reading, ids);
+    if (after === reading) {
+      setToast({ message: "Everything here is already read." });
+      return;
+    }
+    updateReading(() => after);
+    const what = grouped ? `${stories.length} ${stories.length === 1 ? "story" : "stories"}` : `${ids.length} articles`;
+    setToast({
+      message: `Marked ${what} as read.`,
+      undo: () => {
+        updateReading((state) => ({ ...state, history: before }));
+        setToast(null);
+      },
     });
   }
 
@@ -166,8 +186,9 @@ export function Reader({ data }: { data: ReaderData }) {
           p: () => moveSource(-1),
           x: pull,
           s: () => current && star(current.cluster.id),
+          A: markAllRead,
         }
-      : { j: () => groupIntoStories(stories[0] ?? null) };
+      : { j: () => groupIntoStories(stories[0] ?? null), A: markAllRead };
     const action = actions[event.key];
     if (!action) return;
     event.preventDefault();
@@ -231,6 +252,9 @@ export function Reader({ data }: { data: ReaderData }) {
                 Every article
               </button>
             </div>
+            <button type="button" className="toolbar-button" onClick={markAllRead} title="Shift+A">
+              Mark all as read
+            </button>
           </div>
 
           <div className="list" ref={listRef}>
@@ -315,8 +339,8 @@ export function Reader({ data }: { data: ReaderData }) {
       {toast ? (
         <div className="toast" role="status">
           <span>{toast.message}</span>
-          {toast.undoArticleId ? (
-            <button type="button" className="toast-undo" onClick={() => undoPull(toast.undoArticleId!)}>
+          {toast.undo ? (
+            <button type="button" className="toast-undo" onClick={toast.undo}>
               Undo
             </button>
           ) : null}

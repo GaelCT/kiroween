@@ -31,6 +31,17 @@ Journalists and researchers who monitor many news sources. The demo persona is a
 - J/K: next and previous cluster.
 - N/P: next and previous source in the current cluster.
 - X: pull the current article out of its cluster when it was grouped wrongly.
+- S: star or unstar the current story.
+- Shift+A: mark everything in the current view as read, with undo.
+
+## Google Reader look
+
+No Google logos or trademarks. These details make the resurrection recognizable in a screenshot (issue #23):
+
+- List rows laid out like Reader's list view: star, source, title in bold while unread, grey snippet, date on the right.
+- The sidebar starts with "All items" and "Starred items", then "Subscriptions". Names with unread items are bold, with counts in parentheses, capped at "1000+".
+- The toolbar shows the view title, "Show: Stories · Every article" (like Reader's "Show: Expanded · List"), and "Mark all as read".
+- The first visit shows every article, like the old Reader. Pressing J collapses them into stories.
 
 ## Scope
 
