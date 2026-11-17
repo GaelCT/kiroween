@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:frametime</id>
+  <title>FrameTime</title>
+  <subtitle>Sample data: a fictional outlet (Benchmarks and gaming hardware).</subtitle>
+  <link rel="alternate" href="https://frametime.example/"/>
+  <updated>2026-11-16T15:00:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:frametime:corvid-rv90</id>
+    <title>Corvid's new RV-90 GPU revealed</title>
+    <link rel="alternate" href="https://frametime.example/2026/11/corvid-rv90"/>
+    <author><name>Wren Halloway</name></author>
+    <published>2026-11-16T15:00:00Z</published>
+    <updated>2026-11-16T15:00:00Z</updated>
+    <content type="html"><![CDATA[<p>Corvid revealed the RV-90 today, its new flagship graphics card. Here's how it performs.</p><p>At 4K, the RV-90 ran 38% faster than the RV-80 in our testing. Across our ray-traced games, it averaged 142 frames per second at 1440p.</p><p>Our power meter showed the card drawing 320 W under load. Its 24 GB of GDDR7 memory leaves plenty of headroom at high resolutions.</p>]]></content>
+  </entry>
+</feed>

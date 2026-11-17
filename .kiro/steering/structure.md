@@ -6,9 +6,10 @@
 | `.kiro/specs/` | Specs: `requirements.md`, `design.md`, `tasks.md` per feature |
 | `.kiro/agents/` | Custom agents (JSON only; prompts live in `docs/agents/`) |
 | `.kiro/hooks/` | Agent hooks |
-| `data/sample/` | Fact tables for the starter pack. Each one is also the answer key for the accuracy check. |
+| `data/sample/` | Starter pack: `sources.json` (fictional outlets) and `stories/*.json` (one fact table per story, also the answer key for the accuracy check). Format in `data/sample/README.md`. |
 | `docs/agents/` | Prompts for custom agents |
-| `public/sample-feeds/` | Atom feeds for the fictional outlets |
+| `public/sample-feeds/` | Atom feeds generated from the story files by `npm run sample:build`. Never edit by hand. |
+| `scripts/` | Dev scripts, run with tsx |
 | `src/app/` | Next.js routes and global styles |
 | `src/components/` | React components |
 | `src/lib/` | Browser-safe logic and shared types |

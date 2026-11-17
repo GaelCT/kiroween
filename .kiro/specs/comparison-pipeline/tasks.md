@@ -2,16 +2,16 @@
 
 Each task links to its GitHub issue on GaelCT/kiroween.
 
-- [ ] 1. Sample data for one cluster
-- [ ] 1.1 Write the fact table for the fictional Corvid RV-90 launch
-  - `data/sample/corvid-rv90.json`, with a fact shared by two non-primary sources and a source that ends up adding nothing
+- [x] 1. Sample data for one cluster
+- [x] 1.1 Write the fact table for the fictional Corvid RV-90 launch
+  - `data/sample/stories/corvid-rv90.json`, with a fact shared by two non-primary sources and a source that ends up adding nothing
   - Issue #5
   - _Requirements: 9.1, 10.2_
-- [ ] 1.2 Write four fictional outlets' articles from the fact table as Atom feeds
+- [x] 1.2 Write four fictional outlets' articles from the fact table as Atom feeds
   - `public/sample-feeds/*.xml`, every evidence sentence copied verbatim into its article
   - Issue #6
   - _Requirements: 10.1, 10.2_
-- [ ] 1.3 Parse the feeds and load the sample cluster
+- [x] 1.3 Parse the feeds and load the sample cluster
   - Same `parseFeed` that will read real feeds. The loader throws when an evidence sentence isn't in its article.
   - Issue #6
   - _Requirements: 1.2, 10.3_

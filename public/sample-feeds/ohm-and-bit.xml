@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:ohm-and-bit</id>
+  <title>Ohm &amp; Bit</title>
+  <subtitle>Sample data: a fictional outlet (Hardware deep dives).</subtitle>
+  <link rel="alternate" href="https://ohmandbit.example/"/>
+  <updated>2026-11-16T16:30:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:ohm-and-bit:corvid-rv90</id>
+    <title>Corvid unveils its next-generation RV-90 GPU</title>
+    <link rel="alternate" href="https://ohmandbit.example/2026/11/corvid-rv90"/>
+    <author><name>Imogen Vale</name></author>
+    <published>2026-11-16T16:30:00Z</published>
+    <updated>2026-11-16T16:30:00Z</updated>
+    <content type="html"><![CDATA[<p>Corvid unveiled the RV-90 on Monday, its new flagship graphics card. The card uses Corvid's new Nocturne architecture. Corvid makes the chip on a 3 nm process.</p><p>Corvid has set the price at $899. Cards arrive in stores on December 10.</p><p>In our benchmarks, it was 38 percent faster than the RV-80 at 4K. We measured 320 W of power draw under load.</p><p>Those numbers come with trade-offs. Corvid recommends an 850 W power supply for the card. Under sustained load, the GPU ran at 84 °C. At launch, only 14 games support the card's frame generation feature.</p>]]></content>
+  </entry>
+</feed>

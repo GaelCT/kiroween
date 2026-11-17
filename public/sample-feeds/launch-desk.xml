@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:launch-desk</id>
+  <title>Launch Desk</title>
+  <subtitle>Sample data: a fictional outlet (Product launches and business news).</subtitle>
+  <link rel="alternate" href="https://launchdesk.example/"/>
+  <updated>2026-11-16T14:20:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:launch-desk:corvid-rv90</id>
+    <title>Corvid launches the RV-90 graphics card</title>
+    <link rel="alternate" href="https://launchdesk.example/2026/11/corvid-rv90"/>
+    <author><name>Theo Marsh</name></author>
+    <published>2026-11-16T14:20:00Z</published>
+    <updated>2026-11-16T14:20:00Z</updated>
+    <content type="html"><![CDATA[<p>Corvid has launched the RV-90, its new flagship graphics card. The card will cost $899. It goes on sale December 10.</p><p>Under the hood is Nocturne, the company's new graphics architecture. The card carries 24 GB of GDDR7 memory. Corvid claims the RV-90 doubles the RV-80's ray-tracing performance.</p>]]></content>
+  </entry>
+</feed>

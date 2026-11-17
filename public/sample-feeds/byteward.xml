@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:reader-sample:byteward</id>
+  <title>Byteward</title>
+  <subtitle>Sample data: a fictional outlet (General tech news).</subtitle>
+  <link rel="alternate" href="https://byteward.example/"/>
+  <updated>2026-11-16T14:05:00Z</updated>
+  <entry>
+    <id>urn:reader-sample:byteward:corvid-rv90</id>
+    <title>Corvid announces its new RV-90 GPU</title>
+    <link rel="alternate" href="https://byteward.example/2026/11/corvid-rv90"/>
+    <author><name>Dana Whitlock</name></author>
+    <published>2026-11-16T14:05:00Z</published>
+    <updated>2026-11-16T14:05:00Z</updated>
+    <content type="html"><![CDATA[<p>Corvid announced the RV-90 on Monday, its new flagship graphics card for desktop PCs. The card is built on Nocturne, Corvid's new graphics architecture.</p><p>It ships with 24 GB of GDDR7 memory. The chip is made on a 3 nm process.</p><p>Corvid says the RV-90 is twice as fast as last year's RV-80 at ray tracing. That's a big claim, and independent testing will show whether it holds up.</p>]]></content>
+  </entry>
+</feed>

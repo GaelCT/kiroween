@@ -6,6 +6,7 @@
 - Node.js LTS, installed with nvm.
 - Tests: Vitest. Property tests use fast-check.
 - Feed parsing: fast-xml-parser, for Atom and RSS 2.0.
+- Scripts: tsx.
 - AI provider: not chosen yet (issue #10). Options are OpenAI, Anthropic, and Amazon Bedrock.
 - Hosting: Vercel (issue #22).
 
@@ -15,6 +16,8 @@
 - `npm run build`: production build.
 - `npm test`: run all tests once.
 - `npm run lint`: lint.
+- `npm run typecheck`: type-check.
+- `npm run sample:build`: publish `data/sample/stories/` as Atom feeds in `public/sample-feeds/`. Run it after every story change; a test fails if the feeds are out of date.
 
 ## Conventions
 
