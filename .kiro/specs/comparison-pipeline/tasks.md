@@ -16,7 +16,7 @@ Each task links to its GitHub issue on GaelCT/kiroween.
   - Issue #6
   - _Requirements: 1.2, 10.3_
 
-- [ ] 2. Comparison in the browser
+- [x] 2. Comparison in the browser
 - [x] 2.1 Implement adds, duplicate score, highlights, and cluster state in `src/lib/adds.ts`
   - Unit tests for the worked example in `design.md`
   - Issue #7
@@ -24,16 +24,16 @@ Each task links to its GitHub issue on GaelCT/kiroween.
 - [x] 2.2 Write property tests P1 to P8
   - Issue #8
   - _Requirements: 4.1, 4.2, 4.3, 4.5, 5.2, 7.1, 7.2, 7.3_
-- [ ] 2.3 Pull an article out of its cluster (X)
+- [x] 2.3 Pull an article out of its cluster (X)
   - Issue #9
   - _Requirements: 8.1, 8.2_
 
-- [ ] 3. Skeleton screen
-- [ ] 3.1 Show one cluster with the primary article and the side panel
+- [x] 3. Skeleton screen
+- [x] 3.1 Show one cluster with the primary article and the side panel
   - "+" lines, duplicate scores, "No significant new information", highlighted sentences, and "+" lines that jump to their sentence
   - Issue #9
   - _Requirements: 4.2, 4.4, 5.1, 6.1, 6.2, 10.1_
-- [ ] 3.2 Keyboard and reading history
+- [x] 3.2 Keyboard and reading history
   - J/K, N/P, and X. Reading history in localStorage, with a reset control.
   - Issue #9
   - _Requirements: 4.1, 8.1_
