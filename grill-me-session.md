@@ -5,7 +5,7 @@ Saved on 2026-11-15 from a Kiro CLI session in `/home/gael/readerKiro`. Last upd
 ## Where we left off
 
 - **Current step:** the grill is complete. The verdict is in the Verdict section below.
-- **Next:** build the skeleton described in the verdict. This folder is now the `GaelCT/kiroween` repo, with the steering docs, the comparison pipeline spec, and the grill-me agent in `/.kiro`. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues), grouped into five milestones. Start with issue #1.
+- **Next:** the skeleton and the rest of label A are built. What's left is in [NEXT-STEPS.md](NEXT-STEPS.md).
 - **Deadline:** Kiroween 2026 submissions close Friday, December 4, 2026 at 2:00 PM PT ([Devpost](https://kiroween.devpost.com/)).
 - **This file:** you asked for it to be updated after every round, partly so it can show your development process with Kiro in the submission.
 
@@ -101,7 +101,7 @@ From the [official rules](https://kiroween.devpost.com/rules) and the [hackathon
 
 **Pitch candidate for the verdict (from your Round 2 reply):** "Google Reader helped you keep up with the web. We resurrected it for a web where 20 sources tell you the same thing. Instead of showing you 20 articles, Reader shows you the story—and what each source actually adds."
 
-**To pick up again:** the grill is complete. Open a Kiro session in the project repo, point it at this file, and ask it to help build the skeleton from the verdict.
+**To pick up again:** open a Kiro session in the repo and point it at [NEXT-STEPS.md](NEXT-STEPS.md).
 
 ## Verdict (2026-11-16)
 
