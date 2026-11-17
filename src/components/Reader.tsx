@@ -2,16 +2,20 @@
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
+import { articlesInView, storiesInView, unreadCounts, type View } from "@/lib/reader-view";
 import {
   EMPTY_READING_STATE,
   getReadingSnapshot,
   getServerReadingSnapshot,
   markRead,
   subscribeReading,
+  toggleStar,
   updateReading,
 } from "@/lib/reading-store";
 import type { Cluster, FactId, ReaderData } from "@/lib/types";
 import type { ScrollTarget } from "./ArticleView";
+import { Sidebar } from "./Sidebar";
+import { ArticleRow, StoryRow } from "./StoryRow";
 import { StoryView } from "./StoryView";
 
 interface Position {
@@ -23,6 +27,9 @@ interface Toast {
   message: string;
   undoArticleId?: string;
 }
+
+/** How long rows take to collapse into stories. Matches the CSS animation. */
+const COLLAPSE_MS = 650;
 
 /** Finds the open article's cluster, following it if X or an undo moved it. */
 function locate(clusters: Cluster[], position: Position | null): { cluster: Cluster; articleId: string } | null {
@@ -37,17 +44,33 @@ function isTyping(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
 }
 
+function viewTitle(view: View, data: ReaderData): string {
+  if (view.kind === "all") return "All items";
+  if (view.kind === "starred") return "Starred items";
+  return data.sources.find((source) => source.id === view.sourceId)?.name ?? "Feed";
+}
+
 export function Reader({ data }: { data: ReaderData }) {
   const reading = useSyncExternalStore(subscribeReading, getReadingSnapshot, getServerReadingSnapshot);
   const clusters = useMemo(
     () => applyDetached(data.clusters, data.articles, reading.detached),
     [data, reading.detached],
   );
+  const [view, setView] = useState<View>({ kind: "all" });
   const [position, setPosition] = useState<Position | null>(null);
   const [scrollTarget, setScrollTarget] = useState<ScrollTarget | null>(null);
   const [toast, setToast] = useState<Toast | null>(null);
+  const [collapsing, setCollapsing] = useState(false);
   const storyRef = useRef<HTMLDivElement>(null);
-  const current = locate(clusters, position);
+  const listRef = useRef<HTMLDivElement>(null);
+  const collapseTimer = useRef<number | undefined>(undefined);
+
+  const grouped = reading.grouped;
+  const stories = storiesInView(view, clusters, data.articles, reading.starred);
+  const articleIds = grouped ? [] : articlesInView(view, clusters, data.articles, reading.starred);
+  const clusterOf = new Map(clusters.flatMap((cluster) => cluster.articleIds.map((id) => [id, cluster] as const)));
+  const counts = unreadCounts(clusters, data.articles, reading.history, grouped);
+  const current = grouped ? locate(clusters, position) : null;
 
   const sourceName = (articleId: string) =>
     data.sources.find((source) => source.id === data.articles[articleId].sourceId)?.name ?? "Unknown source";
@@ -57,9 +80,32 @@ export function Reader({ data }: { data: ReaderData }) {
     updateReading((state) => markRead(state, [cluster.primaryArticleId, articleId]));
   }
 
+  /** Collapses every article into its story, then opens one: the old Reader becomes the new one. */
+  function groupIntoStories(then: Cluster | null) {
+    if (collapsing) return;
+    setCollapsing(true);
+    window.clearTimeout(collapseTimer.current);
+    collapseTimer.current = window.setTimeout(() => {
+      setCollapsing(false);
+      updateReading((state) => ({ ...state, grouped: true }));
+      if (then) open(then, then.primaryArticleId);
+    }, COLLAPSE_MS);
+  }
+
+  function showEveryArticle() {
+    setPosition(null);
+    updateReading((state) => ({ ...state, grouped: false }));
+  }
+
+  function changeView(next: View) {
+    setView(next);
+    setPosition(null);
+    listRef.current?.scrollTo({ top: 0 });
+  }
+
   function moveStory(step: 1 | -1) {
-    const index = current ? clusters.indexOf(current.cluster) : -1;
-    const next = clusters[index === -1 ? 0 : index + step];
+    const index = current ? stories.findIndex((cluster) => cluster.id === current.cluster.id) : -1;
+    const next = stories[index === -1 ? 0 : index + step];
     if (next) open(next, next.primaryArticleId);
   }
 
@@ -74,6 +120,10 @@ export function Reader({ data }: { data: ReaderData }) {
     if (!current) return;
     open(current.cluster, articleId);
     setScrollTarget((previous) => ({ articleId, factId, nonce: (previous?.nonce ?? 0) + 1 }));
+  }
+
+  function star(clusterId: string) {
+    updateReading((state) => toggleStar(state, clusterId));
   }
 
   function pull() {
@@ -99,21 +149,25 @@ export function Reader({ data }: { data: ReaderData }) {
   }
 
   function reset() {
-    if (!window.confirm("Clear your reading history and story changes?")) return;
+    if (!window.confirm("Clear your reading history, stars, and story changes?")) return;
     updateReading(() => EMPTY_READING_STATE);
     setPosition(null);
+    setView({ kind: "all" });
     setToast(null);
   }
 
   const onKey = useEffectEvent((event: KeyboardEvent) => {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || isTyping(event.target)) return;
-    const actions: Record<string, () => void> = {
-      j: () => moveStory(1),
-      k: () => moveStory(-1),
-      n: () => moveSource(1),
-      p: () => moveSource(-1),
-      x: pull,
-    };
+    const actions: Record<string, () => void> = grouped
+      ? {
+          j: () => moveStory(1),
+          k: () => moveStory(-1),
+          n: () => moveSource(1),
+          p: () => moveSource(-1),
+          x: pull,
+          s: () => current && star(current.cluster.id),
+        }
+      : { j: () => groupIntoStories(stories[0] ?? null) };
     const action = actions[event.key];
     if (!action) return;
     event.preventDefault();
@@ -123,7 +177,10 @@ export function Reader({ data }: { data: ReaderData }) {
   useEffect(() => {
     const handler = (event: KeyboardEvent) => onKey(event);
     window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+    return () => {
+      window.removeEventListener("keydown", handler);
+      window.clearTimeout(collapseTimer.current);
+    };
   }, []);
 
   const openClusterId = current?.cluster.id;
@@ -147,38 +204,113 @@ export function Reader({ data }: { data: ReaderData }) {
           </span>
         ) : null}
         <span className="key-hints">
-          <kbd>J</kbd>/<kbd>K</kbd> story · <kbd>N</kbd>/<kbd>P</kbd> source · <kbd>X</kbd> not this story
+          <kbd>J</kbd>/<kbd>K</kbd> story · <kbd>N</kbd>/<kbd>P</kbd> source · <kbd>S</kbd> star · <kbd>X</kbd> not this story
         </span>
         <button type="button" className="topbar-button" onClick={reset}>
           Reset reading
         </button>
       </header>
 
-      <main className="stories">
-        {clusters.map((cluster) =>
-          current && cluster.id === current.cluster.id ? (
-            <div key={cluster.id} ref={storyRef} className="story-slot">
-              <StoryView
-                cluster={cluster}
-                articleId={current.articleId}
-                data={data}
-                history={reading.history}
-                scrollTarget={scrollTarget}
-                onOpen={(articleId) => open(cluster, articleId)}
-                onPick={pickFact}
-              />
+      <div className="reader-body">
+        <Sidebar sources={data.sources} counts={counts} view={view} onView={changeView} />
+
+        <main className="list-pane">
+          <div className="toolbar">
+            <h1 className="view-title">{viewTitle(view, data)}</h1>
+            <div className="show-toggle" role="group" aria-label="Show">
+              Show:
+              <button
+                type="button"
+                aria-pressed={grouped}
+                className={grouped ? "is-on" : ""}
+                onClick={() => (grouped ? undefined : groupIntoStories(null))}
+              >
+                Stories
+              </button>
+              <button type="button" aria-pressed={!grouped} className={grouped ? "" : "is-on"} onClick={showEveryArticle}>
+                Every article
+              </button>
             </div>
-          ) : (
-            <button key={cluster.id} type="button" className="story-row" onClick={() => open(cluster, cluster.primaryArticleId)}>
-              <span className="story-row-title">{cluster.title}</span>
-              <span className="story-row-sources">
-                {cluster.articleIds.length === 1 ? sourceName(cluster.primaryArticleId) : `${cluster.articleIds.length} sources`}
-              </span>
-            </button>
-          ),
-        )}
-        {current ? null : <p className="empty-hint">Press J to open the first story.</p>}
-      </main>
+          </div>
+
+          <div className="list" ref={listRef}>
+            {grouped ? null : (
+              <div className="overload">
+                <strong>
+                  {articleIds.length} articles, {stories.length} stories.
+                </strong>{" "}
+                Most of these articles repeat each other. Press <kbd>J</kbd> to read them as stories.
+                <button type="button" className="overload-button" onClick={() => groupIntoStories(stories[0] ?? null)}>
+                  Group into stories
+                </button>
+              </div>
+            )}
+
+            {grouped
+              ? stories.map((cluster) =>
+                  current && cluster.id === current.cluster.id ? (
+                    <div key={cluster.id} ref={storyRef} className="story-slot">
+                      <StoryView
+                        cluster={cluster}
+                        articleId={current.articleId}
+                        data={data}
+                        history={reading.history}
+                        starred={reading.starred.includes(cluster.id)}
+                        scrollTarget={scrollTarget}
+                        onOpen={(articleId) => open(cluster, articleId)}
+                        onPick={pickFact}
+                        onStar={() => star(cluster.id)}
+                        onPull={pull}
+                      />
+                    </div>
+                  ) : (
+                    <StoryRow
+                      key={cluster.id}
+                      cluster={cluster}
+                      data={data}
+                      history={reading.history}
+                      starred={reading.starred.includes(cluster.id)}
+                      onOpen={() => open(cluster, cluster.primaryArticleId)}
+                      onStar={() => star(cluster.id)}
+                    />
+                  ),
+                )
+              : articleIds.map((articleId) => {
+                  const cluster = clusterOf.get(articleId)!;
+                  return (
+                    <ArticleRow
+                      key={articleId}
+                      articleId={articleId}
+                      cluster={cluster}
+                      data={data}
+                      read={reading.history.includes(articleId)}
+                      starred={reading.starred.includes(cluster.id)}
+                      collapsing={collapsing}
+                      onOpen={() => groupIntoStories(cluster)}
+                      onStar={() => star(cluster.id)}
+                    />
+                  );
+                })}
+
+            {grouped && stories.length === 0 ? (
+              <p className="empty-hint">
+                {view.kind === "starred" ? (
+                  <>
+                    No starred stories yet. Press <kbd>S</kbd> on a story to star it.
+                  </>
+                ) : (
+                  "No stories here."
+                )}
+              </p>
+            ) : null}
+            {grouped && stories.length > 0 && !current ? (
+              <p className="empty-hint">
+                Press <kbd>J</kbd> to open the first story.
+              </p>
+            ) : null}
+          </div>
+        </main>
+      </div>
 
       {toast ? (
         <div className="toast" role="status">

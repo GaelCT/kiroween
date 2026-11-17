@@ -6,11 +6,15 @@ export interface ReadingState {
   history: string[];
   /** Article IDs pulled out of their clusters with X, in order. */
   detached: string[];
+  /** Starred story IDs. */
+  starred: string[];
+  /** Show stories instead of every article. Off on the first visit, so the overload shows first. */
+  grouped: boolean;
 }
 
 const STORAGE_KEY = "reader:v1";
 
-export const EMPTY_READING_STATE: ReadingState = { history: [], detached: [] };
+export const EMPTY_READING_STATE: ReadingState = { history: [], detached: [], starred: [], grouped: false };
 
 function uniqueStrings(value: unknown): string[] {
   return Array.isArray(value) ? [...new Set(value.filter((item): item is string => typeof item === "string"))] : [];
@@ -23,10 +27,23 @@ export function parseReadingState(raw: string | null): ReadingState {
     const value: unknown = JSON.parse(raw);
     if (typeof value !== "object" || value === null) return EMPTY_READING_STATE;
     const record = value as Record<string, unknown>;
-    return { history: uniqueStrings(record.history), detached: uniqueStrings(record.detached) };
+    return {
+      history: uniqueStrings(record.history),
+      detached: uniqueStrings(record.detached),
+      starred: uniqueStrings(record.starred),
+      grouped: record.grouped === true,
+    };
   } catch {
     return EMPTY_READING_STATE;
   }
+}
+
+/** Stars or unstars a story. */
+export function toggleStar(state: ReadingState, clusterId: string): ReadingState {
+  const starred = state.starred.includes(clusterId)
+    ? state.starred.filter((id) => id !== clusterId)
+    : [...state.starred, clusterId];
+  return { ...state, starred };
 }
 
 /** Adds articles to the history in order, skipping ones already read. Returns the same state if nothing changed. */

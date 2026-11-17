@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { addsFor, compareCluster } from "@/lib/adds";
 import { applyDetached, pullOut, soloClusterId } from "@/lib/clusters";
-import { markRead, parseReadingState } from "@/lib/reading-store";
+import { EMPTY_READING_STATE, markRead, parseReadingState, toggleStar } from "@/lib/reading-store";
 import { buildCluster } from "./support/cluster";
 
 const { cluster, articles } = buildCluster([
@@ -47,18 +47,29 @@ describe("pullOut (X)", () => {
 
 describe("reading state", () => {
   it("parses stored state and drops bad values", () => {
-    expect(parseReadingState('{"history":["a","a",3,"b"],"detached":"x"}')).toEqual({ history: ["a", "b"], detached: [] });
-    expect(parseReadingState("not json")).toEqual({ history: [], detached: [] });
-    expect(parseReadingState(null)).toEqual({ history: [], detached: [] });
+    expect(parseReadingState('{"history":["a","a",3,"b"],"detached":"x","starred":["s1"],"grouped":"yes"}')).toEqual({
+      history: ["a", "b"],
+      detached: [],
+      starred: ["s1"],
+      grouped: false,
+    });
+    expect(parseReadingState("not json")).toEqual(EMPTY_READING_STATE);
+    expect(parseReadingState(null)).toEqual(EMPTY_READING_STATE);
   });
 
   it("appends new reads in order and keeps the first-read position", () => {
-    const state = markRead({ history: ["a"], detached: [] }, ["b", "a", "b", "c"]);
+    const state = markRead({ ...EMPTY_READING_STATE, history: ["a"] }, ["b", "a", "b", "c"]);
     expect(state.history).toEqual(["a", "b", "c"]);
   });
 
   it("returns the same state when nothing is new", () => {
-    const state = { history: ["a"], detached: [] };
+    const state = { ...EMPTY_READING_STATE, history: ["a"] };
     expect(markRead(state, ["a"])).toBe(state);
+  });
+
+  it("stars and unstars a story", () => {
+    const starred = toggleStar(EMPTY_READING_STATE, "story-1");
+    expect(starred.starred).toEqual(["story-1"]);
+    expect(toggleStar(starred, "story-1").starred).toEqual([]);
   });
 });
