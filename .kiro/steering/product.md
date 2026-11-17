@@ -33,6 +33,7 @@ Journalists and researchers who monitor many news sources. The demo persona is a
 - X: pull the current article out of its cluster when it was grouped wrongly.
 - S: star or unstar the current story.
 - Shift+A: mark everything in the current view as read, with undo.
+- /: search every article, including the archive. Esc clears the search.
 
 ## Google Reader look
 

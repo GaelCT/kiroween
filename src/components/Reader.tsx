@@ -45,9 +45,18 @@ function isTyping(target: EventTarget | null): boolean {
 }
 
 function viewTitle(view: View, data: ReaderData): string {
-  if (view.kind === "all") return "All items";
-  if (view.kind === "starred") return "Starred items";
-  return data.sources.find((source) => source.id === view.sourceId)?.name ?? "Feed";
+  switch (view.kind) {
+    case "all":
+      return "All items";
+    case "starred":
+      return "Starred items";
+    case "folder":
+      return view.folder;
+    case "search":
+      return `Search results for “${view.query.trim()}”`;
+    case "source":
+      return data.sources.find((source) => source.id === view.sourceId)?.name ?? "Feed";
+  }
 }
 
 export function Reader({ data }: { data: ReaderData }) {
@@ -61,13 +70,16 @@ export function Reader({ data }: { data: ReaderData }) {
   const [scrollTarget, setScrollTarget] = useState<ScrollTarget | null>(null);
   const [toast, setToast] = useState<Toast | null>(null);
   const [collapsing, setCollapsing] = useState(false);
+  const [query, setQuery] = useState("");
   const storyRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const collapseTimer = useRef<number | undefined>(undefined);
 
   const grouped = reading.grouped;
-  const stories = storiesInView(view, clusters, data.articles, reading.starred);
-  const articleIds = grouped ? [] : articlesInView(view, clusters, data.articles, reading.starred);
+  const context = { clusters, articles: data.articles, sources: data.sources, starred: reading.starred };
+  const stories = storiesInView(view, context);
+  const articleIds = grouped ? [] : articlesInView(view, context);
   const clusterOf = new Map(clusters.flatMap((cluster) => cluster.articleIds.map((id) => [id, cluster] as const)));
   const counts = unreadCounts(clusters, data.articles, reading.history, grouped);
   const current = grouped ? locate(clusters, position) : null;
@@ -100,7 +112,14 @@ export function Reader({ data }: { data: ReaderData }) {
   function changeView(next: View) {
     setView(next);
     setPosition(null);
+    if (next.kind !== "search") setQuery("");
     listRef.current?.scrollTo({ top: 0 });
+  }
+
+  /** Searches every article, including the whole archive, as you type. */
+  function search(text: string) {
+    setQuery(text);
+    changeView(text.trim() ? { kind: "search", query: text } : { kind: "all" });
   }
 
   function moveStory(step: 1 | -1) {
@@ -187,8 +206,9 @@ export function Reader({ data }: { data: ReaderData }) {
           x: pull,
           s: () => current && star(current.cluster.id),
           A: markAllRead,
+          "/": () => searchRef.current?.focus(),
         }
-      : { j: () => groupIntoStories(stories[0] ?? null), A: markAllRead };
+      : { j: () => groupIntoStories(stories[0] ?? null), A: markAllRead, "/": () => searchRef.current?.focus() };
     const action = actions[event.key];
     if (!action) return;
     event.preventDefault();
@@ -224,6 +244,23 @@ export function Reader({ data }: { data: ReaderData }) {
             Sample data
           </span>
         ) : null}
+        <form className="search" role="search" onSubmit={(event) => event.preventDefault()}>
+          <input
+            ref={searchRef}
+            type="search"
+            className="search-input"
+            placeholder="Search all items  /"
+            aria-label="Search all items"
+            value={query}
+            onChange={(event) => search(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                search("");
+                event.currentTarget.blur();
+              }
+            }}
+          />
+        </form>
         <span className="key-hints">
           <kbd>J</kbd>/<kbd>K</kbd> story · <kbd>N</kbd>/<kbd>P</kbd> source · <kbd>S</kbd> star · <kbd>X</kbd> not this story
         </span>
@@ -322,6 +359,8 @@ export function Reader({ data }: { data: ReaderData }) {
                   <>
                     No starred stories yet. Press <kbd>S</kbd> on a story to star it.
                   </>
+                ) : view.kind === "search" ? (
+                  `No articles match “${view.query.trim()}”.`
                 ) : (
                   "No stories here."
                 )}

@@ -3,37 +3,43 @@
     "id": "byteward",
     "name": "Byteward",
     "homepage": "https://byteward.example/",
-    "description": "General tech news"
+    "description": "General tech news",
+    "folder": "News"
   },
   {
     "id": "launch-desk",
     "name": "Launch Desk",
     "homepage": "https://launchdesk.example/",
-    "description": "Product launches and business news"
+    "description": "Product launches and business news",
+    "folder": "News"
   },
   {
     "id": "frametime",
     "name": "FrameTime",
     "homepage": "https://frametime.example/",
-    "description": "Benchmarks and gaming hardware"
+    "description": "Benchmarks and gaming hardware",
+    "folder": "Hardware"
   },
   {
     "id": "ohm-and-bit",
     "name": "Ohm & Bit",
     "homepage": "https://ohmandbit.example/",
-    "description": "Hardware deep dives"
+    "description": "Hardware deep dives",
+    "folder": "Hardware"
   },
   {
     "id": "bench-and-bill",
     "name": "Bench & Bill",
     "homepage": "https://benchandbill.example/",
-    "description": "Tech policy, courts, and regulation"
+    "description": "Tech policy, courts, and regulation",
+    "folder": "Policy"
   },
   {
     "id": "wirefold",
     "name": "Wirefold",
     "homepage": "https://wirefold.example/",
     "description": "Wire service summaries",
+    "folder": "News",
     "excerptOnly": true
   }
 ]

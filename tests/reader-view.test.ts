@@ -1,8 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { articlesInView, formatCount, storiesInView, unreadCounts } from "@/lib/reader-view";
+import {
+  articlesInView,
+  formatCount,
+  groupByFolder,
+  storiesInView,
+  unreadCounts,
+  type ViewContext,
+} from "@/lib/reader-view";
+import type { Source } from "@/lib/types";
 import { buildCluster } from "./support/cluster";
 
 // Two stories: "one" has three sources (a, b, c), "two" has one (d).
+// buildCluster gives each article its own source by position: source-0, source-1, ...
 const one = buildCluster(
   [
     { id: "a", facts: ["f01", "f02"] },
@@ -14,18 +23,48 @@ const one = buildCluster(
 const two = buildCluster([{ id: "d", facts: [] }], "two");
 const clusters = [one.cluster, two.cluster];
 const articles = { ...one.articles, ...two.articles };
-// buildCluster gives each article its own source: source-0, source-1, ...
+articles.c = { ...articles.c, title: "Benchmarks for the new card", paragraphs: ["It draws 320 W under load."] };
+
+const source = (id: string, folder?: string): Source => ({
+  id,
+  name: id,
+  homepage: `https://${id}.example/`,
+  feedUrl: `/${id}.xml`,
+  ...(folder ? { folder } : {}),
+});
+const sources = [source("source-0", "News"), source("source-1"), source("source-2", "Hardware"), source("source-3", "News")];
+const context: ViewContext = { clusters, articles, sources, starred: [] };
+const ids = (view: Parameters<typeof storiesInView>[0], starred: string[] = []) =>
+  storiesInView(view, { ...context, starred }).map((cluster) => cluster.id);
 
 describe("views", () => {
-  it("filters stories by feed and by star", () => {
-    expect(storiesInView({ kind: "all" }, clusters, articles, []).map((c) => c.id)).toEqual(["one", "two"]);
-    expect(storiesInView({ kind: "starred" }, clusters, articles, ["two"]).map((c) => c.id)).toEqual(["two"]);
-    expect(storiesInView({ kind: "source", sourceId: "source-2" }, clusters, articles, []).map((c) => c.id)).toEqual(["one"]);
+  it("filters stories by feed, folder, and star", () => {
+    expect(ids({ kind: "all" })).toEqual(["one", "two"]);
+    expect(ids({ kind: "starred" }, ["two"])).toEqual(["two"]);
+    expect(ids({ kind: "source", sourceId: "source-2" })).toEqual(["one"]);
+    expect(ids({ kind: "folder", folder: "Hardware" })).toEqual(["one"]);
+    expect(ids({ kind: "folder", folder: "News" })).toEqual(["one", "two"]);
   });
 
-  it("lists a feed's own articles when stories aren't grouped", () => {
-    expect(articlesInView({ kind: "source", sourceId: "source-1" }, clusters, articles, [])).toEqual(["b"]);
-    expect(articlesInView({ kind: "all" }, clusters, articles, [])).toHaveLength(4);
+  it("lists only a feed's or folder's own articles when stories aren't grouped", () => {
+    expect(articlesInView({ kind: "source", sourceId: "source-1" }, context)).toEqual(["b"]);
+    expect(articlesInView({ kind: "folder", folder: "Hardware" }, context)).toEqual(["c"]);
+    expect(articlesInView({ kind: "all" }, context)).toHaveLength(4);
+  });
+
+  it("searches titles and text, requiring every term", () => {
+    expect(ids({ kind: "search", query: "benchmarks" })).toEqual(["one"]);
+    expect(ids({ kind: "search", query: "320 W under" })).toEqual(["one"]);
+    expect(ids({ kind: "search", query: "320 W missing" })).toEqual([]);
+    expect(articlesInView({ kind: "search", query: "BENCHMARKS" }, context)).toEqual(["c"]);
+  });
+
+  it("groups feeds by folder, with loose feeds last", () => {
+    expect(groupByFolder(sources).map((group) => [group.folder, group.sources.map((member) => member.id)])).toEqual([
+      ["News", ["source-0", "source-3"]],
+      ["Hardware", ["source-2"]],
+      [null, ["source-1"]],
+    ]);
   });
 });
 
