@@ -1,0 +1,6 @@
+# Check out every text file with LF line endings, even on Windows with core.autocrlf=true.
+# The sample-data test compares public/sample-feeds/ byte for byte with freshly built feeds.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
