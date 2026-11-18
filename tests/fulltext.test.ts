@@ -49,10 +49,21 @@ describe("extractMainText", () => {
 
 describe("fullTextFor", () => {
   it("uses the feed's own content when it's the full article", async () => {
-    const result = await fullTextFor(entry({ contentKind: "full", html: "<p>One.</p><p>Two.</p>" }), {
+    const long = Array.from({ length: 8 }, () => body[0]);
+    const result = await fullTextFor(entry({ contentKind: "full", html: long.map((text) => `<p>${text}</p>`).join("") }), {
       fetchImpl: () => Promise.reject(new Error("should not fetch")),
     });
-    expect(result).toEqual({ paragraphs: ["One.", "Two."], limited: false });
+    expect(result).toEqual({ paragraphs: long, limited: false });
+  });
+
+  it("checks the page when a feed's full content is only a teaser", async () => {
+    const teaser = entry({ contentKind: "full", html: "<p>Harrow Labs raised $40 million. Read more.</p>" });
+    const result = await fullTextFor(teaser, { fetchImpl: serve(page), resolve: publicDns });
+    expect(result.paragraphs).toContain(body[2]);
+    expect(await fullTextFor(teaser, { fetchImpl: serve("<p>Paywall</p>"), resolve: publicDns })).toEqual({
+      paragraphs: ["Harrow Labs raised $40 million. Read more."],
+      limited: true,
+    });
   });
 
   it("fetches the article page for an excerpt", async () => {

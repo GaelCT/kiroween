@@ -38,18 +38,31 @@ export interface TextResult {
   limited: boolean;
 }
 
-/** The entry's text: the feed's own content when it's full, otherwise the article page's main text. */
+/**
+ * Feed content at least this long is taken as the whole article. Some feeds put a teaser in
+ * their full-content field, so shorter content gets checked against the article page.
+ */
+export const FULL_FEED_CHARS = 1500;
+
+function length(paragraphs: readonly string[]): number {
+  return paragraphs.reduce((sum, paragraph) => sum + paragraph.length, 0);
+}
+
+/** The entry's text: the feed's own content when it's the whole article, otherwise the article page's main text. */
 export async function fullTextFor(entry: FeedEntry, options: SafeFetchOptions = {}): Promise<TextResult> {
-  const excerpt = htmlToParagraphs(entry.html);
-  if (entry.contentKind === "full") return { paragraphs: excerpt, limited: false };
-  if (!entry.url) return { paragraphs: excerpt, limited: true };
+  const fromFeed = htmlToParagraphs(entry.html);
+  const feedChars = length(fromFeed);
+  if (entry.contentKind === "full" && feedChars >= FULL_FEED_CHARS) return { paragraphs: fromFeed, limited: false };
+  // Without the page, short feed text can still be compared if it's a real article, not a teaser.
+  const fallback = { paragraphs: fromFeed, limited: entry.contentKind === "summary" || feedChars < MIN_ARTICLE_CHARS };
+  if (!entry.url) return fallback;
   try {
     const page = await safeFetchText(entry.url, { accept: "text/html,application/xhtml+xml", ...options });
-    if (!/html/i.test(page.contentType)) return { paragraphs: excerpt, limited: true };
+    if (!/html/i.test(page.contentType)) return fallback;
     const paragraphs = extractMainText(page.text, page.url);
-    return paragraphs ? { paragraphs, limited: false } : { paragraphs: excerpt, limited: true };
+    return paragraphs && length(paragraphs) > feedChars ? { paragraphs, limited: false } : fallback;
   } catch {
-    return { paragraphs: excerpt, limited: true };
+    return fallback;
   }
 }
 
