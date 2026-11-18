@@ -77,7 +77,8 @@ describe("sample data", () => {
   });
 
   it("builds the RV-90 story with Byteward first, then by publish time", async () => {
-    const data = await loadSampleData(root);
+    const data = await loadSampleData(root, { useResults: false });
+    expect(data.sampleFacts).toBe("fact-tables");
     const story = data.clusters.find((cluster) => cluster.id === "corvid-rv90");
     expect(story?.articleIds).toEqual([
       "urn:reader-sample:byteward:corvid-rv90",

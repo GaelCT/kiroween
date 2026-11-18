@@ -55,6 +55,11 @@ export interface Cluster {
 
 export interface ReaderData {
   sample: boolean;
+  /**
+   * Where the sample stories' facts come from: the hand-written fact tables, saved AI pipeline
+   * results, or some of each. Missing when there's no sample data.
+   */
+  sampleFacts?: "fact-tables" | "pipeline" | "mixed";
   /** In sidebar order. */
   sources: Source[];
   articles: Record<string, Article>;

@@ -11,6 +11,10 @@ next-env.d.ts
 # Tests
 coverage/
 
+# Script output: cached AI replies, accuracy reruns, and real-feed reports.
+# Real publisher text must never be committed.
+.cache/
+
 # Secrets: keep keys in .env.local, never in git
 .env*
 !.env.example

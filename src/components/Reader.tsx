@@ -44,6 +44,17 @@ function isTyping(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
 }
 
+function sampleNote(data: ReaderData): string {
+  switch (data.sampleFacts) {
+    case "pipeline":
+      return "Fictional outlets and events. The AI pipeline extracted the facts ahead of time, so reading them makes no AI calls.";
+    case "mixed":
+      return "Fictional outlets and events. Some stories' facts were extracted by the AI pipeline ahead of time; the rest come from hand-written fact tables.";
+    default:
+      return "Fictional outlets and events. Facts come from hand-written fact tables.";
+  }
+}
+
 function viewTitle(view: View, data: ReaderData): string {
   switch (view.kind) {
     case "all":
@@ -240,7 +251,7 @@ export function Reader({ data }: { data: ReaderData }) {
       <header className="topbar">
         <span className="wordmark">Reader</span>
         {data.sample ? (
-          <span className="sample-badge" title="Fictional outlets and events. Facts come from hand-written fact tables.">
+          <span className="sample-badge" title={sampleNote(data)}>
             Sample data
           </span>
         ) : null}

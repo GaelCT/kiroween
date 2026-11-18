@@ -1,7 +1,7 @@
 // Loads the sample data. The story files are published as Atom feeds (npm run sample:build).
-// The loader reads those feeds with the same parser as real feeds, then attaches the facts
-// from the story files. Until the AI pipeline exists (issues #11 and #15), the hand-written
-// facts stand in for its output.
+// The loader reads those feeds with the same parser as real feeds, then attaches facts: the
+// saved AI pipeline results in data/sample/results/ when a story has them (npm run
+// pipeline:sample), and otherwise the hand-written facts from the story file.
 
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
@@ -16,6 +16,7 @@ import {
   type SampleSourceFile,
   type StoryFile,
 } from "./sample-format";
+import { readStoryResults, RESULTS_DIR, type StoryResult } from "./sample-results";
 
 export const SAMPLE_DIR = "data/sample";
 export const SAMPLE_FEEDS_DIR = "public/sample-feeds";
@@ -82,8 +83,15 @@ export function buildSampleFeeds({ sources, stories }: SampleFiles): Map<string,
   return feeds;
 }
 
-/** Builds the reader's data from the story files and the published feeds (source ID to XML). */
-export function assembleSampleData({ sources, stories }: SampleFiles, feedXml: Map<string, string>): ReaderData {
+/**
+ * Builds the reader's data from the story files and the published feeds (source ID to XML).
+ * Stories with an entry in `results` use the pipeline's facts instead of the story file's.
+ */
+export function assembleSampleData(
+  { sources, stories }: SampleFiles,
+  feedXml: Map<string, string>,
+  results: ReadonlyMap<string, StoryResult> = new Map(),
+): ReaderData {
   const entries = new Map<string, FeedEntry>();
   for (const source of sources) {
     const xml = feedXml.get(source.id);
@@ -93,16 +101,22 @@ export function assembleSampleData({ sources, stories }: SampleFiles, feedXml: M
 
   const articles: Record<string, Article> = {};
   const clusters: Cluster[] = [];
+  let fromPipeline = 0;
   for (const story of stories) {
+    const result = results.get(story.id);
+    if (result) fromPipeline++;
     for (const [sourceId, file] of Object.entries(story.articles)) {
       const id = sampleArticleId(sourceId, story.id);
       const entry = entries.get(id);
       if (!entry) throw new SampleDataError(`${id} isn't in the ${sourceId} feed: run npm run sample:build`);
       const paragraphs = htmlToParagraphs(entry.html);
-      const evidence = file.body.flatMap((paragraph) => parseMarkedParagraph(paragraph).evidence);
+      const evidence = result
+        ? (result.articles[sourceId] ?? [])
+        : file.body.flatMap((paragraph) => parseMarkedParagraph(paragraph).evidence);
       for (const { factId, sentence } of evidence) {
         if (!paragraphs.some((paragraph) => paragraph.includes(sentence))) {
-          throw new SampleDataError(`${id}: the sentence for ${factId} isn't in the parsed article: "${sentence}"`);
+          const fix = result ? "rerun npm run pipeline:sample for this story" : "fix the story file";
+          throw new SampleDataError(`${id}: the sentence for ${factId} isn't in the parsed article (${fix}): "${sentence}"`);
         }
       }
       articles[id] = {
@@ -124,7 +138,7 @@ export function assembleSampleData({ sources, stories }: SampleFiles, feedXml: M
       .filter((id) => id !== primaryArticleId)
       .sort((a, b) => articles[a].publishedAt.localeCompare(articles[b].publishedAt) || a.localeCompare(b));
     const facts: Record<string, Fact> = {};
-    for (const [factId, text] of Object.entries(story.facts)) facts[factId] = { id: factId, text };
+    for (const [factId, text] of Object.entries(result?.facts ?? story.facts)) facts[factId] = { id: factId, text };
     clusters.push({ id: story.id, title: story.title, primaryArticleId, articleIds: [primaryArticleId, ...others], facts });
   }
 
@@ -141,15 +155,27 @@ export function assembleSampleData({ sources, stories }: SampleFiles, feedXml: M
     ...(source.folder ? { folder: source.folder } : {}),
   }));
 
-  return { sample: true, sources: readerSources, articles, clusters };
+  const sampleFacts = fromPipeline === 0 ? "fact-tables" : fromPipeline === stories.length ? "pipeline" : "mixed";
+  return { sample: true, sampleFacts, sources: readerSources, articles, clusters };
 }
 
-export async function loadSampleData(root: string = process.cwd()): Promise<ReaderData> {
+export interface LoadOptions {
+  /** Use saved pipeline results where they exist. Defaults to true. */
+  useResults?: boolean;
+}
+
+export async function loadSampleData(root: string = process.cwd(), options: LoadOptions = {}): Promise<ReaderData> {
   const files = await readSampleFiles(root);
   const feedXml = new Map<string, string>();
   for (const source of files.sources) {
     const file = path.join(root, SAMPLE_FEEDS_DIR, sampleFeedFile(source.id));
     feedXml.set(source.id, await readFile(file, "utf8"));
   }
-  return assembleSampleData(files, feedXml);
+  const results = options.useResults === false ? new Map() : await readStoryResults(path.join(root, RESULTS_DIR));
+  for (const storyId of results.keys()) {
+    if (!files.stories.some((story) => story.id === storyId)) {
+      throw new SampleDataError(`${RESULTS_DIR}/${storyId}.json has no story file`);
+    }
+  }
+  return assembleSampleData(files, feedXml, results);
 }
