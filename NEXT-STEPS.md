@@ -1,66 +1,46 @@
 # Next steps
 
-Updated 2026-11-16. Kiroween submissions close **Friday, December 4, 2026 at 2:00 PM PT**. Aim to submit Thursday, December 3.
+Updated 2026-11-18. Kiroween submissions close **Friday, December 4, 2026 at 2:00 PM PT**. Aim to submit Thursday, December 3.
 
-Label A is done except two issues. Label B hasn't started. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues).
+The code for label B's pipeline is built. What's left mostly needs an AI key, an account, or a person. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues).
 
-## Decisions for you
+## The one thing blocking everything: the AI key (#10)
 
-1. **Pick the AI provider (#10):** OpenAI, Anthropic, or Amazon Bedrock. #11 needs it, and the Thursday test (#13) needs #11.
-2. **If B is a teammate,** add them as a collaborator on the GitHub repo so they can push.
-3. **Skim the sample stories for real names.** Helper agents wrote 33 of the 34 stories in `data/sample/stories/`. I renamed every invented name that matched a real company, but a second look before the video is worth it.
-4. **Optional:** npm blocked esbuild's install script. Everything works without it. To allow it anyway, run `npm install-scripts approve esbuild`.
+Pick Anthropic or OpenAI, get an API key, and put it in `.env.local` (copy `.env.example`; the README explains each line). Then note the choice in `.kiro/steering/tech.md`. Amazon Bedrock would need a third adapter in `src/pipeline/ai.ts`.
+
+Once the key is set, run these in order:
+
+1. `npm run pipeline:sample`: runs the AI on the starter pack, saves `data/sample/results/`, and prints the accuracy score. That's the first score for #11 and #14, and the AI half of A's #16.
+2. If the score is under 8 of 10, read the wrong lines it prints, fix the prompts in `src/pipeline/facts.ts`, and rerun. Never edit the results by hand.
+3. `npm run pipeline:try -- <4 to 6 tech feed URLs>`: the Day-3 test (#13). Mark each line in the checklist it writes to `.cache/day3/`, then post only the score on #13.
+4. Commit `data/sample/results/`.
+
+## Label B status
+
+| Issue | Status |
+|---|---|
+| #10 AI provider and key | Code supports Anthropic and OpenAI. **Needs your choice and a key.** |
+| #11 Extract facts | Built in `src/pipeline/facts.ts` and tested with a fake model. Needs a real run (step 1). |
+| #12 Full text for excerpt feeds | Done. Checked on The Verge, Ars Technica, TechCrunch, and Engadget. |
+| #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
+| #14 Accuracy-check hook | Done: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Needs a first real score. |
+| #15 Story clustering | Done, without AI: matches all 34 starter-pack stories, including keeping the Nimbusfold and Deepcask outages apart. X already fixes wrong groupings. |
+| #20 Add Feed | Done: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Comparisons show "Comparison unavailable" until the server has the key. |
+| #21 Archive | Done: live articles are kept in the browser and never deleted. |
+| #22 Deploy to Vercel | **Needs your Vercel account.** Import the GitHub repo at vercel.com/new, add the `.env.example` variables under Environment Variables, deploy, and test in a private window. |
+| #24 MCP | **Needs you.** Kiro can't write `.kiro/settings/` for you. Create a GitHub token, set it as an environment variable, add the GitHub MCP server to `.kiro/settings/mcp.json`, use it once, and add it to the write-up. |
+| #25 Journalist feedback | **Needs people.** |
+| #28 Kiro write-up | Draft in `docs/kiro-write-up.md`. Fill in the "To do" sections. |
+| #29 README | Done except screenshots. |
+| #30 Submit | **Needs you.** Checklist in the issue. |
+| #32 OPML import | Not started. It's on the cut list. |
 
 ## Left on label A
 
-- **#16, the AI half of the starter pack.** This is blocked on #11 and #15. Once the pipeline exists:
-  - Run it on the starter pack and save the results, so judging needs no AI calls.
-  - Check every "+" line against the fact tables. When a line is wrong, fix the pipeline and rerun it. Don't edit the output.
-  - Update the "Sample data" tooltip in `src/components/Reader.tsx` and the disclosure line in `docs/demo-script.md` so they say what's true.
-- **#27, the demo video.** This needs a person. Follow `docs/demo-script.md` and the recording checklist at its end. Record after #16 is finished, or change the disclosure to say the facts come from hand-written fact tables.
+- **#16, the AI half of the starter pack.** It's unblocked once step 1 above runs: the loader already uses `data/sample/results/` when it exists, and the "Sample data" tooltip updates itself. Still to do: check the "+" lines and update the disclosure line in `docs/demo-script.md`.
+- **#27, the demo video.** Record after #16. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
 
-## Label B, by milestone
+## Notes
 
-### Milestone 1: Skeleton, due Thursday, Nov 19
-
-- #10 Choose the AI provider and set up the API key (decision 1 above)
-- #11 Extract facts with the AI model
-- #12 Fetch full text for excerpt-only feeds
-- #13 Day-3 test: 8 of 10 "+" lines right on three real stories. Due Thursday, and it needs #10, #11, and #12 first.
-- #14 Agent hook: rerun the accuracy check when the pipeline changes
-
-### Milestone 2: Core reader, due Wednesday, Nov 25
-
-- #15 Story clustering
-- #20 Add Feed: live fetch, extract, and compare
-- #21 Keep the archive: never delete fetched articles
-- #22 Deploy to Vercel
-- #24 Use an MCP server during development
-
-### Milestone 3: Demo and write-up, due Tuesday, Dec 1
-
-- #25 Get feedback from three journalists or researchers
-- #28 Write the Kiro write-up
-- #29 Write the README
-
-### Milestone 4: Submit, due Thursday, Dec 3
-
-- #30 Submit to Devpost. The checklist is in the issue.
-
-### Stretch
-
-- #32 OPML import
-
-## Handoff notes for B
-
-- **#11:** match the story-file shape: facts, each with a sentence copied verbatim from the article. Drop any fact whose sentence isn't in the article text. `assembleSampleData` in `src/pipeline/sample.ts` shows how evidence attaches to articles.
-- **#13 and #14:** the story files in `data/sample/stories/` are the answer key. `npm run sample:check` prints what each outlet adds once a story is opened.
-- **#15:** the Nimbusfold and Deepcask outages happen the same morning to different companies, so clustering must keep them apart. The Thrushwell recall story includes Launch Desk's Pulse 4 article on purpose, for the X demo. Decide whether the starter pack's stories come from the story files or from #15's output, because that misgrouping only exists in the story files.
-- **#20:** for live comparisons, set `comparison` on the cluster to `"pending"` or `"failed"`. The UI already shows "Comparing N sources…" and "Comparison unavailable". Never save real article text to the repo.
-- **#22:** the page is static. Put the AI key in Vercel's environment variables, never in the repo.
-- **#28:** material for the write-up:
-  - the grill-me custom agent and `grill-me-session.md`
-  - the steering docs and the comparison pipeline spec in `.kiro/`
-  - the property tests P1 to P8, with the mutation checks described in commit 0a8fcf9
-  - the helper agents that wrote the starter pack in parallel
-- **#29:** `README.md` already explains how to run the app. It still needs the features, the sample-data note, and screenshots.
+- Story clustering uses word similarity, not AI, so it's free and gives the same answer every time. The starter pack groups exactly like the story files, including the Pulse 4 article in the Thrushwell story that the X demo relies on. If real feeds group badly in the Day-3 test, tune `DEFAULT_THRESHOLD` in `src/pipeline/cluster.ts` and rerun `npm run sample:cluster`.
+- The per-visitor cap lives in server memory, so on Vercel each instance counts separately. It's a soft limit.
