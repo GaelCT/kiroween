@@ -11,10 +11,16 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "sample:build": "tsx scripts/build-sample-feeds.ts",
-    "sample:check": "tsx scripts/check-stories.ts"
+    "sample:check": "tsx scripts/check-stories.ts",
+    "sample:cluster": "tsx scripts/check-clustering.ts",
+    "pipeline:sample": "tsx scripts/pipeline-sample.ts",
+    "pipeline:try": "tsx scripts/try-feeds.ts",
+    "accuracy": "tsx scripts/accuracy-check.ts"
   },
   "dependencies": {
+    "@mozilla/readability": "^0.6.0",
     "fast-xml-parser": "^5.12.1",
+    "linkedom": "^0.18.15",
     "next": "^16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
