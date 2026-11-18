@@ -13,7 +13,7 @@ import { formatReport, scoreStories } from "../src/pipeline/accuracy";
 import { mapWithLimit } from "../src/pipeline/fulltext";
 import { loadSampleData, readSampleFiles } from "../src/pipeline/sample";
 import { runStory } from "../src/pipeline/sample-pipeline";
-import { readStoryResults, RESULTS_DIR, writeStoryResult, type StoryResult } from "../src/pipeline/sample-results";
+import { readStoryResults, writeStoryResult, type StoryResult } from "../src/pipeline/sample-results";
 
 /** Three stories with several full-text sources and shared new facts: enough to catch a regression cheaply. */
 const CHECK_STORIES = ["corvid-rv90", "nimbusfold-outage", "quarrow-ev-recall"];
@@ -47,7 +47,7 @@ async function main(): Promise<void> {
       results.set(story.id, result);
     });
   } else {
-    results = await readStoryResults(RESULTS_DIR);
+    results = await readStoryResults();
     if (results.size === 0) {
       console.log("No saved results yet. Run npm run pipeline:sample, or npm run accuracy -- --rerun.");
       return;

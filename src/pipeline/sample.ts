@@ -171,7 +171,7 @@ export async function loadSampleData(root: string = process.cwd(), options: Load
     const file = path.join(root, SAMPLE_FEEDS_DIR, sampleFeedFile(source.id));
     feedXml.set(source.id, await readFile(file, "utf8"));
   }
-  const results = options.useResults === false ? new Map() : await readStoryResults(path.join(root, RESULTS_DIR));
+  const results = options.useResults === false ? new Map() : await readStoryResults(root);
   for (const storyId of results.keys()) {
     if (!files.stories.some((story) => story.id === storyId)) {
       throw new SampleDataError(`${RESULTS_DIR}/${storyId}.json has no story file`);

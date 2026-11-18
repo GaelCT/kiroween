@@ -37,7 +37,7 @@ async function main(): Promise<void> {
     }
   });
 
-  const results = await readStoryResults(RESULTS_DIR);
+  const results = await readStoryResults();
   console.log(`\n${formatReport(scoreStories(stories, results))}`);
   if (failed > 0) {
     console.error(`${failed} stories failed. Rerun the command to retry them.`);

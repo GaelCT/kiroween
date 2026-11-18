@@ -26,17 +26,20 @@ export async function writeStoryResult(dir: string, result: StoryResult): Promis
   await writeFile(path.join(dir, `${result.story}.json`), `${JSON.stringify(result, null, 2)}\n`);
 }
 
-/** Reads every results file in `dir`, keyed by story ID. A missing folder means no results yet. */
-export async function readStoryResults(dir: string): Promise<Map<string, StoryResult>> {
+/**
+ * Reads every results file in data/sample/results/ under `root`, keyed by story ID. A missing
+ * folder means no results yet. The path is spelled out so Next.js only bundles that folder.
+ */
+export async function readStoryResults(root: string = process.cwd()): Promise<Map<string, StoryResult>> {
   let names: string[];
   try {
-    names = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
+    names = (await readdir(path.join(root, "data", "sample", "results"))).filter((name) => name.endsWith(".json")).sort();
   } catch {
     return new Map();
   }
   const results = new Map<string, StoryResult>();
   for (const name of names) {
-    const result = JSON.parse(await readFile(path.join(dir, name), "utf8")) as StoryResult;
+    const result = JSON.parse(await readFile(path.join(root, "data", "sample", "results", name), "utf8")) as StoryResult;
     if (`${result.story}.json` !== name) throw new Error(`${name} must be named after its story ID`);
     results.set(result.story, result);
   }
