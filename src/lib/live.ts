@@ -1,0 +1,167 @@
+// Feeds the visitor added (issue #20) and their archive (issue #21). Pure functions, browser-safe.
+// Everything lives in this browser's localStorage. Fetched articles are never deleted, so the
+// archive reaches back past what a feed currently lists.
+
+import type { Article, Cluster, Evidence, Fact, FactId, ReaderData, Source } from "./types";
+
+export interface LiveSource extends Source {
+  /** ISO 8601. When the feed was last fetched. */
+  fetchedAt: string;
+}
+
+/** A story's members, from the server's clustering. Facts are kept separately, by signature. */
+export interface LiveStory {
+  id: string;
+  title: string;
+  primaryArticleId: string;
+  /** Primary first, then by publish time. */
+  articleIds: string[];
+}
+
+export interface SavedComparison {
+  facts: Record<FactId, Fact>;
+  /** Keyed by article ID. */
+  evidence: Record<string, Evidence[]>;
+}
+
+export interface LiveState {
+  sources: LiveSource[];
+  /** The archive: every article ever fetched, keyed by ID. */
+  articles: Record<string, Article>;
+  stories: LiveStory[];
+  /** Keyed by story signature, so a story that gains a source gets compared again. */
+  comparisons: Record<string, SavedComparison>;
+}
+
+export const EMPTY_LIVE_STATE: LiveState = { sources: [], articles: {}, stories: [], comparisons: {} };
+
+/** How many of the newest articles get regrouped after a fetch. Older stories keep their grouping. */
+export const REGROUP_LIMIT = 300;
+
+/** Paragraphs the server needs for grouping: the headline and lead are enough. */
+const GROUPING_PARAGRAPHS = 2;
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/** Reads stored state. Missing or damaged data gives an empty archive instead of an error. */
+export function parseLiveState(raw: string | null): LiveState {
+  if (!raw) return EMPTY_LIVE_STATE;
+  try {
+    const value: unknown = JSON.parse(raw);
+    if (!isRecord(value) || !Array.isArray(value.sources) || !isRecord(value.articles) || !Array.isArray(value.stories)) {
+      return EMPTY_LIVE_STATE;
+    }
+    const articles = value.articles as Record<string, Article>;
+    const stories = (value.stories as LiveStory[]).filter(
+      (story) => isRecord(story) && Array.isArray(story.articleIds) && story.articleIds.every((id) => id in articles),
+    );
+    return {
+      sources: value.sources as LiveSource[],
+      articles,
+      stories,
+      comparisons: isRecord(value.comparisons) ? (value.comparisons as Record<string, SavedComparison>) : {},
+    };
+  } catch {
+    return EMPTY_LIVE_STATE;
+  }
+}
+
+/** Story IDs match the server's: "live:" and the primary article's ID. */
+function soloStory(article: Article): LiveStory {
+  return { id: `live:${article.id}`, title: article.title, primaryArticleId: article.id, articleIds: [article.id] };
+}
+
+/** Adds a fetch to the archive. Articles already kept stay as they were; new ones join as their own story until regrouped. */
+export function addFetched(state: LiveState, source: Source, fetched: readonly Article[], now: Date): LiveState {
+  const saved: LiveSource = { ...source, fetchedAt: now.toISOString() };
+  const sources = state.sources.some((candidate) => candidate.id === source.id)
+    ? state.sources.map((candidate) => (candidate.id === source.id ? { ...candidate, name: source.name, fetchedAt: saved.fetchedAt } : candidate))
+    : [...state.sources, saved];
+  const added = fetched.filter((article) => !(article.id in state.articles));
+  if (added.length === 0) return { ...state, sources };
+  const articles = { ...state.articles };
+  for (const article of added) articles[article.id] = { ...article, evidence: [] };
+  const solo = added.map((article) => soloStory(article));
+  return { ...state, sources, articles, stories: [...state.stories, ...solo] };
+}
+
+/** The newest articles, trimmed to what grouping reads, for POST /api/stories. */
+export function articlesToGroup(state: LiveState): Article[] {
+  return Object.values(state.articles)
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt) || a.id.localeCompare(b.id))
+    .slice(0, REGROUP_LIMIT)
+    .map((article) => ({ ...article, paragraphs: article.paragraphs.slice(0, GROUPING_PARAGRAPHS), evidence: [] }));
+}
+
+/**
+ * Replaces the stories of the regrouped articles with the server's grouping. Other stories
+ * stay as they were. Saved comparisons no story uses any more are let go.
+ */
+export function applyGrouping(state: LiveState, regrouped: ReadonlySet<string>, stories: readonly LiveStory[]): LiveState {
+  const kept = state.stories.filter((story) => !story.articleIds.some((id) => regrouped.has(id)));
+  const placed = new Set([...kept, ...stories].flatMap((story) => story.articleIds));
+  const leftOver = [...regrouped]
+    .filter((id) => !placed.has(id) && id in state.articles)
+    .map((id) => soloStory(state.articles[id]));
+  const next = [...kept, ...stories.filter((story) => story.articleIds.every((id) => id in state.articles)), ...leftOver];
+  const used = new Set(next.map((story) => storySignature(story, state.articles)));
+  const comparisons = Object.fromEntries(Object.entries(state.comparisons).filter(([signature]) => used.has(signature)));
+  return { ...state, stories: next, comparisons };
+}
+
+/** The story's articles that can be compared: full text, not excerpts. */
+export function comparableIds(story: LiveStory, articles: Readonly<Record<string, Article>>): string[] {
+  return story.articleIds.filter((id) => !articles[id]?.limited);
+}
+
+/** Identifies what was compared: the primary and the comparable members. */
+export function storySignature(story: LiveStory, articles: Readonly<Record<string, Article>>): string {
+  const others = comparableIds(story, articles)
+    .filter((id) => id !== story.primaryArticleId)
+    .sort();
+  return [story.primaryArticleId, ...others].join("\n");
+}
+
+/** Stories with two or more full articles and no saved comparison. */
+export function storiesToCompare(state: LiveState): LiveStory[] {
+  return state.stories.filter(
+    (story) => comparableIds(story, state.articles).length > 1 && !(storySignature(story, state.articles) in state.comparisons),
+  );
+}
+
+export function saveComparison(state: LiveState, signature: string, comparison: SavedComparison): LiveState {
+  return { ...state, comparisons: { ...state.comparisons, [signature]: comparison } };
+}
+
+export type LiveData = Pick<ReaderData, "sources" | "articles" | "clusters">;
+
+/** The reader's view of the live archive. `failed` holds signatures whose comparison failed this visit. */
+export function liveReaderData(state: LiveState, failed: ReadonlySet<string> = new Set()): LiveData {
+  const articles: Record<string, Article> = { ...state.articles };
+  const clusters = state.stories.map((story): Cluster => {
+    const base = { id: story.id, title: story.title, primaryArticleId: story.primaryArticleId, articleIds: story.articleIds };
+    if (comparableIds(story, state.articles).length < 2) return { ...base, facts: {} };
+    const signature = storySignature(story, state.articles);
+    const saved = state.comparisons[signature];
+    if (!saved) return { ...base, facts: {}, comparison: failed.has(signature) ? "failed" : "pending" };
+    for (const id of story.articleIds) articles[id] = { ...state.articles[id], evidence: saved.evidence[id] ?? [] };
+    return { ...base, facts: saved.facts };
+  });
+  return { sources: state.sources, articles, clusters };
+}
+
+function newest(cluster: Cluster, articles: Readonly<Record<string, Article>>): string {
+  return cluster.articleIds.reduce((latest, id) => (articles[id].publishedAt > latest ? articles[id].publishedAt : latest), "");
+}
+
+/** The sample data and the live archive in one reader, stories newest first. */
+export function combineReaderData(sample: ReaderData, live: LiveData): ReaderData {
+  if (live.sources.length === 0) return sample;
+  const articles = { ...sample.articles, ...live.articles };
+  const clusters = [...sample.clusters, ...live.clusters].sort(
+    (a, b) => newest(b, articles).localeCompare(newest(a, articles)) || a.id.localeCompare(b.id),
+  );
+  return { ...sample, sources: [...sample.sources, ...live.sources], articles, clusters };
+}

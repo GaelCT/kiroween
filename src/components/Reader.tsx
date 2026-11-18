@@ -2,6 +2,8 @@
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
+import { combineReaderData, liveReaderData } from "@/lib/live";
+import { addFeed, getLiveSnapshot, getServerLiveSnapshot, refreshFeeds, subscribeLive } from "@/lib/live-store";
 import { articlesInView, storiesInView, unreadCounts, type View } from "@/lib/reader-view";
 import {
   EMPTY_READING_STATE,
@@ -70,8 +72,14 @@ function viewTitle(view: View, data: ReaderData): string {
   }
 }
 
-export function Reader({ data }: { data: ReaderData }) {
+export function Reader({ data: sample }: { data: ReaderData }) {
   const reading = useSyncExternalStore(subscribeReading, getReadingSnapshot, getServerReadingSnapshot);
+  const live = useSyncExternalStore(subscribeLive, getLiveSnapshot, getServerLiveSnapshot);
+  const data = useMemo(
+    () => combineReaderData(sample, liveReaderData(live.state, live.failed)),
+    [sample, live.state, live.failed],
+  );
+  const hasLiveFeeds = live.state.sources.length > 0;
   const clusters = useMemo(
     () => applyDetached(data.clusters, data.articles, reading.detached),
     [data, reading.detached],
@@ -198,6 +206,17 @@ export function Reader({ data }: { data: ReaderData }) {
     setToast(null);
   }
 
+  async function subscribe(url: string): Promise<boolean> {
+    const result = await addFeed(url);
+    setToast({ message: result.message });
+    return result.ok;
+  }
+
+  async function refresh() {
+    const result = await refreshFeeds(true);
+    if (result) setToast({ message: result.message });
+  }
+
   function reset() {
     if (!window.confirm("Clear your reading history, stars, and story changes?")) return;
     updateReading(() => EMPTY_READING_STATE);
@@ -225,6 +244,13 @@ export function Reader({ data }: { data: ReaderData }) {
     event.preventDefault();
     action();
   });
+
+  // Live feeds refresh once per visit when they're out of date, and finish any comparisons left over.
+  useEffect(() => {
+    void refreshFeeds().then((result) => {
+      if (result) setToast({ message: result.message });
+    });
+  }, []);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => onKey(event);
@@ -281,7 +307,7 @@ export function Reader({ data }: { data: ReaderData }) {
       </header>
 
       <div className="reader-body">
-        <Sidebar sources={data.sources} counts={counts} view={view} onView={changeView} />
+        <Sidebar sources={data.sources} counts={counts} view={view} onView={changeView} busy={live.busy} onAddFeed={subscribe} />
 
         <main className="list-pane">
           <div className="toolbar">
@@ -300,12 +326,27 @@ export function Reader({ data }: { data: ReaderData }) {
                 Every article
               </button>
             </div>
-            <button type="button" className="toolbar-button" onClick={markAllRead} title="Shift+A">
+            {hasLiveFeeds ? (
+              <button type="button" className="toolbar-button" onClick={() => void refresh()} disabled={live.busy}>
+                {live.busy ? "Refreshing…" : "Refresh"}
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className={`toolbar-button${hasLiveFeeds ? " toolbar-button-next" : ""}`}
+              onClick={markAllRead}
+              title="Shift+A"
+            >
               Mark all as read
             </button>
           </div>
 
           <div className="list" ref={listRef}>
+            {live.storageFull ? (
+              <p className="storage-note" role="status">
+                This browser’s storage is full, so new articles only last until you reload.
+              </p>
+            ) : null}
             {grouped ? null : (
               <div className="overload">
                 <strong>

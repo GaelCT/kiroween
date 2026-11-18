@@ -3,15 +3,19 @@
 import { useState } from "react";
 import { formatCount, groupByFolder, sameView, type UnreadCounts, type View } from "@/lib/reader-view";
 import type { Source } from "@/lib/types";
+import { AddSubscription } from "./AddSubscription";
 
 interface Props {
   sources: Source[];
   counts: UnreadCounts;
   view: View;
   onView: (view: View) => void;
+  /** True while live feeds are being fetched. */
+  busy: boolean;
+  onAddFeed: (url: string) => Promise<boolean>;
 }
 
-export function Sidebar({ sources, counts, view, onView }: Props) {
+export function Sidebar({ sources, counts, view, onView, busy, onAddFeed }: Props) {
   const [closed, setClosed] = useState<string[]>([]);
 
   const item = (target: View, label: string, count: number | null, className = "") => (
@@ -32,6 +36,7 @@ export function Sidebar({ sources, counts, view, onView }: Props) {
 
   return (
     <nav className="sidebar" aria-label="Feeds">
+      <AddSubscription busy={busy} onAdd={onAddFeed} />
       {item({ kind: "all" }, "All items", counts.all, "nav-all")}
       {item({ kind: "starred" }, "Starred items", null, "nav-starred")}
       <h2 className="nav-heading">Subscriptions</h2>

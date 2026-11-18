@@ -132,6 +132,72 @@ kbd {
   padding: 12px 8px 24px 12px;
 }
 
+/* Google Reader's red "Add a subscription" button. */
+.subscribe-button,
+.subscribe-add {
+  padding: 6px 12px;
+  border: 1px solid #b0281a;
+  border-radius: 2px;
+  background: linear-gradient(#dd4b39, #d14836);
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.subscribe-button {
+  margin: 0 0 12px 8px;
+}
+
+.subscribe-button:hover,
+.subscribe-add:hover:not(:disabled) {
+  background: linear-gradient(#dd4b39, #c53727);
+}
+
+.subscribe-add:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.subscribe-form {
+  margin: 0 0 12px 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.subscribe-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.subscribe-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #c0c0c0;
+  font: inherit;
+}
+
+.subscribe-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.subscribe-cancel {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-dark);
+  cursor: pointer;
+}
+
+.subscribe-note {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
 .nav-item {
   display: block;
   width: 100%;
@@ -268,6 +334,23 @@ kbd {
 .toolbar-button:hover {
   border-color: #c6c6c6;
   color: #222;
+}
+
+.toolbar-button:disabled {
+  color: var(--faint);
+  cursor: default;
+}
+
+.storage-note {
+  margin: 0;
+  padding: 8px 20px;
+  border-bottom: 1px solid #f0d78c;
+  background: #fff8e1;
+}
+
+/* When Refresh is shown, "Mark all as read" sits right next to it. */
+.toolbar-button-next {
+  margin-left: -16px;
 }
 
 .list {
