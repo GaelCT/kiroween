@@ -45,12 +45,64 @@ describe("extractMainText", () => {
   it("returns null for a page without an article", () => {
     expect(extractMainText("<html><body><p>Please enable cookies.</p></body></html>")).toBeNull();
   });
+
+  // Built like real pages that leaked page furniture into the text on Nov 19, with invented words.
+  // The byline is there twice, as on those pages, because Readability already removes the first one.
+  const furnished = `<!doctype html><html><head><title>Harrow Labs raises $40 million</title></head><body>
+    <div id="app" class="app-shell"><div class="entry-body">
+      <p><a class="cta-button" href="#content"><span>Skip to main content</span></a></p>
+      <p><span><span id="follow-author-byline_lead-1"><a href="/authors/dana-quill">Dana Quill</a></span></span></p>
+      <p><span><span id="follow-author-article_details-1"><a href="/authors/dana-quill">Dana Quill</a></span></span>
+        <span class="cms-markup">is a senior reporter covering energy and gadgets. She joined Example News in 2020.</span></p>
+      <div class="article__meta"><p><span class="post-primary-term">In Brief</span></p></div>
+      <div class="article__posted-date"><p>Posted:</p><p>9:26 AM PST · November 19, 2026</p></div>
+      <div id="content" class="entry-content">
+        <p>${body[0]}</p>
+        <div class="slide-key image-holder"><img src="plant.jpg" alt=""><p><span class="gallery-image-credit">Ari Lund for Example News</span></p></div>
+        <p>${body[1]}</p>
+        <figure><img src="cells.jpg" alt=""><figcaption>Credit: Ashcombe County Archive, 2026</figcaption></figure>
+        <p>${body[2]}</p>
+        <p>${body[3]}</p>
+      </div>
+    </div></div>
+  </body></html>`;
+
+  it("drops skip links, bylines, author bios, post labels, and image credits", () => {
+    const paragraphs = extractMainText(furnished, "https://news.example/harrow", "Dana Quill")!;
+    expect(paragraphs).toEqual(body);
+  });
+
+  it("keeps a sentence that only mentions the author or a credit", () => {
+    const mentions = [
+      ...body,
+      "Dana Quill, who covers energy for Example News, toured the site in October.",
+      "The image credit system at the plant tracks every pallet, the company said.",
+    ];
+    const page = `<html><body><article>${mentions.map((text) => `<p>${text}</p>`).join("")}</article></body></html>`;
+    expect(extractMainText(page, "https://news.example/harrow", "Dana Quill")).toEqual(mentions);
+  });
+
+  it("keeps the label of a box that isn't a picture, like a review's pros and cons", () => {
+    const review = `<html><body><article>${body.map((text) => `<p>${text}</p>`).join("")}
+      <div class="procon"><figure class="pro"><figcaption>Pros</figcaption><ul><li>Easy setup</li></ul></figure>
+      <figure class="con"><figcaption>Cons</figcaption><ul><li>Loud fan</li></ul></figure></div></article></body></html>`;
+    expect(extractMainText(review)).toEqual([...body, "Pros", "Easy setup", "Cons", "Loud fan"]);
+  });
 });
 
 describe("fullTextFor", () => {
   it("uses the feed's own content when it's the full article", async () => {
     const long = Array.from({ length: 8 }, () => body[0]);
     const result = await fullTextFor(entry({ contentKind: "full", html: long.map((text) => `<p>${text}</p>`).join("") }), {
+      fetchImpl: () => Promise.reject(new Error("should not fetch")),
+    });
+    expect(result).toEqual({ paragraphs: long, limited: false });
+  });
+
+  it("drops the same furniture from a feed that sends whole articles", async () => {
+    const long = Array.from({ length: 8 }, () => body[0]);
+    const html = ["Dana Quill", ...long, "Credit: Ashcombe County Archive, 2026"].map((text) => `<p>${text}</p>`).join("");
+    const result = await fullTextFor(entry({ contentKind: "full", author: "Dana Quill", html }), {
       fetchImpl: () => Promise.reject(new Error("should not fetch")),
     });
     expect(result).toEqual({ paragraphs: long, limited: false });
