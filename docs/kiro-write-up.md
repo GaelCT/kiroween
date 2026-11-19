@@ -45,15 +45,26 @@ We checked that the tests catch real bugs by breaking the code on purpose. Ignor
 
 That makes the Day-3 bar a check that runs while the pipeline is being edited, instead of a one-time test. The hook gives the check up to five minutes. It only fires on Kiro's own edits: file-save hooks don't run when you save a file in the editor.
 
-**To do:** add the first real score once the AI key is set.
+We checked the hook against Kiro's documentation on Nov 19 and found one real problem. When a hook command fails, Kiro passes only its stderr to the agent, but the check printed its report to stdout. So the agent would have learned that the check failed, but not which lines were wrong. The report now goes to stderr when the check fails. We confirmed it on a scratch copy with one broken results file: before the fix, all 29 report lines went to stdout and none to stderr; after it, the reverse.
+
+Until there's an AI key, the pipeline is tested with a fake model that answers from the fact tables. Run on the whole starter pack, a model that answered that well would get 235 of 235 "+" lines right. That only shows the scoring and plumbing work. It says nothing about a real model.
+
+**To do:** add the first real score once the AI key is set, and note whether the hook was seen firing in a session.
 
 ## Kiro IDE and Kiro CLI
 
-**To do:** describe how each was used and how they differed. For example, which tasks went to the IDE's spec workflow and which to `kiro-cli chat` in the terminal.
+**What we know so far:**
+- **Kiro IDE:** most of the comparison pipeline was built in Kiro's IDE chat on Nov 18 and 19. That includes full-text extraction, story grouping, fact extraction, the accuracy check and its hook, Add Feed, the browser archive, and the OpenRouter adapter.
+  - The steering docs came along into every chat, so the agent followed the project's rules without being reminded. One example is "never commit real publisher text".
+  - The agent created the accuracy-check hook with Kiro's hook tool.
+  - Before changing the hook, the agent checked Kiro's own documentation: where the timeout goes, when `PostFileSave` fires, and what a failing command sends back.
+- **Kiro CLI:** version 3.5.0 was installed on Nov 18, and a `kiro-cli chat` session was started in the repo.
+
+**To do:** say what the CLI was used for and how it differed from the IDE. Only describe work that actually happened in it.
 
 ## MCP
 
-**To do (issue #24):** configure the GitHub MCP server in `.kiro/settings/mcp.json`, with the token read from an environment variable, use it for at least one real workflow (such as updating issues), and describe it here.
+**To do (issue #24):** configure the GitHub MCP server, use it for at least one real workflow, and describe it here. The setup steps are in `NEXT-STEPS.md`, under #24.
 
 ## Agents working in parallel
 
