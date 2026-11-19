@@ -9,7 +9,7 @@
 - Full-text extraction: @mozilla/readability on linkedom, for feeds that only send excerpts.
 - Story clustering: TF-IDF similarity of headlines and leads in `src/pipeline/cluster.ts`, where no single shared word can carry a match. No AI call.
 - Scripts: tsx.
-- AI provider: not chosen yet (issue #10). `src/pipeline/ai.ts` supports Anthropic and OpenAI, picked with `AI_PROVIDER`, `AI_MODEL`, and the provider's key in `.env.local` (see `.env.example`). Amazon Bedrock would need a third adapter.
+- AI provider: OpenRouter (issue #10), set with `AI_PROVIDER=openrouter`, `AI_MODEL`, and `OPENROUTER_API_KEY` in `.env.local`. `src/pipeline/ai.ts` supports Anthropic and OpenAI so far. The OpenRouter adapter is still to be added (steps in `NEXT-STEPS.md`).
 - Hosting: Vercel (issue #22).
 
 ## Commands

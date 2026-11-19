@@ -6,7 +6,12 @@ The code for label B's pipeline is built. What's left mostly needs an AI key, an
 
 ## The one thing blocking everything: the AI key (#10)
 
-Pick Anthropic or OpenAI, get an API key, and put it in `.env.local` (copy `.env.example`; the README explains each line). Then note the choice in `.kiro/steering/tech.md`. Amazon Bedrock would need a third adapter in `src/pipeline/ai.ts`.
+**Decision (Nov 18): OpenRouter.** The code doesn't support it yet, so the first step is a third adapter:
+
+1. In `src/pipeline/ai.ts`, add an `openrouter` entry to `PROVIDERS`, next to `openai`. OpenRouter uses the OpenAI chat-completions format: POST to `https://openrouter.ai/api/v1/chat/completions` with `Authorization: Bearer <key>`, and the reply text is in `choices[0].message.content`. Send `max_tokens` rather than `max_completion_tokens`. The key variable is `OPENROUTER_API_KEY`. The optional `HTTP-Referer` and `X-Title` headers name the app on OpenRouter's dashboard. Keep the existing retry, timeout, and never-log-the-key rules.
+2. Add `OPENROUTER_API_KEY=` to `.env.example`, list `openrouter` under "Set up the AI key" in the README, and update the AI provider line in `.kiro/steering/tech.md`.
+3. Add a test with a fake `fetch` to `tests/ai.test.ts`, like the existing ones.
+4. Put `AI_PROVIDER=openrouter`, `AI_MODEL=<a model ID from openrouter.ai/models>`, and the key in `.env.local`, which is gitignored. Never commit the key. On Vercel, add the same three variables.
 
 Once the key is set, run these in order:
 
@@ -19,7 +24,7 @@ Once the key is set, run these in order:
 
 | Issue | Status |
 |---|---|
-| #10 AI provider and key | Code supports Anthropic and OpenAI. **Needs your choice and a key.** |
+| #10 AI provider and key | **OpenRouter chosen.** Needs the adapter in `src/pipeline/ai.ts` (steps above) and your key in `.env.local`. |
 | #11 Extract facts | Built in `src/pipeline/facts.ts` and tested with a fake model. Needs a real run (step 1). |
 | #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
