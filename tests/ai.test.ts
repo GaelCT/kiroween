@@ -1,5 +1,17 @@
+import { mkdtemp, readdir, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { modelConfigured, modelFromEnv, ModelError, ModelNotConfiguredError, parseJsonReply, withMemoryCache, type ModelClient } from "@/pipeline/ai";
+import {
+  modelConfigured,
+  modelFromEnv,
+  ModelError,
+  ModelNotConfiguredError,
+  parseJsonReply,
+  withDiskCache,
+  withMemoryCache,
+  type ModelClient,
+} from "@/pipeline/ai";
 
 describe("parseJsonReply", () => {
   it("reads plain JSON, fenced JSON, and JSON inside a sentence", () => {
@@ -153,6 +165,42 @@ describe("OpenRouter", () => {
       .completeJson({ system: "s", user: "u" })
       .catch((caught: Error) => caught);
     expect(error).toBeInstanceOf(ModelError);
+  });
+});
+
+describe("the reply's list", () => {
+  const env = { AI_PROVIDER: "openrouter", AI_MODEL: "vendor/m", OPENROUTER_API_KEY: "k" };
+
+  function answering(...contents: string[]): { fetchImpl: typeof fetch; calls: () => number } {
+    let calls = 0;
+    const fetchImpl = (async () => {
+      const content = contents[Math.min(calls++, contents.length - 1)];
+      return Response.json({ choices: [{ message: { content }, finish_reason: "stop" }] });
+    }) as unknown as typeof fetch;
+    return { fetchImpl, calls: () => calls };
+  }
+
+  it("accepts a bare list as the list the request asked for", async () => {
+    const { fetchImpl } = answering('[{"fact": "Costs $5", "sentence": "It costs $5."}]');
+    expect(await modelFromEnv(env, fetchImpl).completeJson({ system: "s", user: "u", listKey: "facts" })).toEqual({
+      facts: [{ fact: "Costs $5", sentence: "It costs $5." }],
+    });
+  });
+
+  it("rejects a reply without the list, so it never reaches the disk cache", async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), "reader-ai-cache-"));
+    try {
+      const { fetchImpl, calls } = answering('{"answer": "I found some facts"}', '{"facts": []}');
+      const cached = withDiskCache(modelFromEnv(env, fetchImpl), dir);
+      const request = { system: "s", user: "u", listKey: "facts" };
+      await expect(cached.completeJson(request)).rejects.toThrow(/"facts" list/);
+      expect(await readdir(dir)).toEqual([]);
+      // Rerunning asks the model again instead of replaying the bad reply.
+      expect(await cached.completeJson(request)).toEqual({ facts: [] });
+      expect(calls()).toBe(2);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
   });
 });
 

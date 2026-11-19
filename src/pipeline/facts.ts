@@ -112,6 +112,7 @@ export function extractRequest(article: ArticleText): ModelRequest {
     system: EXTRACT_SYSTEM,
     user: `Title: ${article.title}\n\nArticle:\n${article.paragraphs.join("\n\n")}`,
     maxTokens: 4096,
+    listKey: "facts",
   };
 }
 
@@ -170,6 +171,7 @@ export function matchRequest(articles: readonly ArticleText[], statements: reado
     system: MATCH_SYSTEM,
     user: `${titles.join("\n")}\n\nStatements:\n${lines.join("\n")}`,
     maxTokens: 4096,
+    listKey: "groups",
   };
 }
 

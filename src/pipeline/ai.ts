@@ -14,6 +14,11 @@ export interface ModelRequest {
   system: string;
   user: string;
   maxTokens?: number;
+  /**
+   * The reply must be an object with a list under this key, like {"facts": [...]}. A bare list
+   * counts as that list. Any other reply is an error, so the caches never keep it.
+   */
+  listKey?: string;
 }
 
 export interface ModelClient {
@@ -220,9 +225,17 @@ export function modelFromEnv(env: Env = process.env, fetchImpl: typeof fetch = f
   return {
     name: `${providerName}/${model}`,
     async completeJson(request) {
-      return parseJsonReply(await provider.send(key, model, request, fetchImpl));
+      return withList(parseJsonReply(await provider.send(key, model, request, fetchImpl)), request.listKey);
     },
   };
+}
+
+/** Checks a reply has the list the request asked for. */
+function withList(reply: unknown, listKey: string | undefined): unknown {
+  if (!listKey) return reply;
+  if (Array.isArray(reply)) return { [listKey]: reply };
+  if (Array.isArray((reply as Record<string, unknown> | null)?.[listKey])) return reply;
+  throw new ModelError(`The AI reply has no "${listKey}" list.`);
 }
 
 /**
