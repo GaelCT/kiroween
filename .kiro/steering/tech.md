@@ -9,7 +9,7 @@
 - Full-text extraction: @mozilla/readability on linkedom, for feeds that only send excerpts.
 - Story clustering: TF-IDF similarity of headlines and leads in `src/pipeline/cluster.ts`, where no single shared word can carry a match. No AI call.
 - Scripts: tsx.
-- AI provider: OpenRouter (issue #10), set with `AI_PROVIDER=openrouter`, `AI_MODEL`, and `OPENROUTER_API_KEY` in `.env.local`. `src/pipeline/ai.ts` supports Anthropic and OpenAI so far. The OpenRouter adapter is still to be added (steps in `NEXT-STEPS.md`).
+- AI provider: OpenRouter (issue #10), set with `AI_PROVIDER=openrouter`, `AI_MODEL` (a `vendor/model` ID from openrouter.ai/models), and `OPENROUTER_API_KEY` in `.env.local`. `src/pipeline/ai.ts` also keeps its Anthropic and OpenAI adapters.
 - Hosting: Vercel (issue #22).
 
 ## Commands

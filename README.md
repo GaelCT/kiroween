@@ -46,14 +46,16 @@ The starter pack works without any setup. Live feeds also work, but comparing th
 
 ## Set up the AI key
 
-Fact extraction uses an AI model. Reader supports Anthropic and OpenAI.
+Fact extraction uses an AI model. The project uses [OpenRouter](https://openrouter.ai/), and Anthropic and OpenAI also work.
 
 1. Copy `.env.example` to `.env.local`. `.env.local` is gitignored, so the key never gets committed.
 2. Fill in:
-   - `AI_PROVIDER`: `anthropic` or `openai`
-   - `AI_MODEL`: a model ID from your provider's model list
-   - `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`
+   - `AI_PROVIDER`: `openrouter` (or `anthropic` or `openai`)
+   - `AI_MODEL`: a model ID from your provider's model list. On OpenRouter it looks like `vendor/model`; pick one from [openrouter.ai/models](https://openrouter.ai/models). Reasoning models can spend the whole token limit thinking and return nothing, so prefer one without reasoning.
+   - `OPENROUTER_API_KEY` (or `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`), from your provider's dashboard. OpenRouter keys are at [openrouter.ai/settings/keys](https://openrouter.ai/settings/keys).
 3. Restart `npm run dev`.
+
+Scripts such as `npm run pipeline:sample` read `.env.local` on their own. When the provider fails, the error names the HTTP status and the provider's message, such as an OpenRouter account that's out of credits, and never the key.
 
 In production, set the same variables in your host's environment settings (on Vercel: Project → Settings → Environment Variables). `LIVE_ARTICLE_LIMIT` caps how many articles one visitor can send for comparison per day (default 60).
 

@@ -1,8 +1,8 @@
 // The AI model behind fact extraction and matching (issues #10 and #11). Server and scripts only.
-// The provider is still open (issue #10), so both OpenAI and Anthropic work, chosen by env vars:
-//   AI_PROVIDER=anthropic or openai
-//   AI_MODEL=<model ID from the provider's model list>
-//   ANTHROPIC_API_KEY or OPENAI_API_KEY
+// The team chose OpenRouter (issue #10). Anthropic and OpenAI also work. Chosen by env vars:
+//   AI_PROVIDER=openrouter, anthropic, or openai
+//   AI_MODEL=<model ID from the provider's model list, like vendor/model on openrouter.ai/models>
+//   OPENROUTER_API_KEY, ANTHROPIC_API_KEY, or OPENAI_API_KEY
 // Keys only come from the environment (.env.local locally, Vercel settings in production).
 // Never log a key or a request header.
 
@@ -68,17 +68,82 @@ const PROVIDERS: Record<string, ProviderConfig> = {
           { role: "user", content: request.user },
         ],
       });
-      const choices = (response as { choices?: { message?: { content?: string } }[] }).choices ?? [];
-      return choices[0]?.message?.content ?? "";
+      return chatCompletionText(response);
+    },
+  },
+  // OpenRouter speaks OpenAI's chat-completions format. Its optional HTTP-Referer and
+  // X-OpenRouter-Title headers would list the app in OpenRouter's public rankings, so they're
+  // left out until the team decides to be listed.
+  openrouter: {
+    keyVar: "OPENROUTER_API_KEY",
+    async send(key, model, request, fetchImpl) {
+      const response = await post(fetchImpl, "https://openrouter.ai/api/v1/chat/completions", {
+        Authorization: `Bearer ${key}`,
+      }, {
+        model,
+        max_tokens: request.maxTokens ?? 4096,
+        messages: [
+          { role: "system", content: request.system },
+          { role: "user", content: request.user },
+        ],
+      });
+      return chatCompletionText(response);
     },
   },
 };
 
 export const PROVIDER_NAMES = Object.keys(PROVIDERS);
 
+/** The reply text of a chat completion. An empty reply cut off at the token limit gets its own error. */
+function chatCompletionText(response: unknown): string {
+  const choices = (response as { choices?: { message?: { content?: string | null }; finish_reason?: string }[] }).choices ?? [];
+  const text = choices[0]?.message?.content ?? "";
+  if (!text && choices[0]?.finish_reason === "length") {
+    throw new ModelError(
+      "The model hit its token limit before answering. Reasoning models can spend the whole limit thinking; pick a model without reasoning or raise maxTokens.",
+    );
+  }
+  return text;
+}
+
+/** Errors worth retrying, as OpenRouter types them in `error.metadata.error_type`. */
+const RETRY_TYPES = new Set(["rate_limit_exceeded", "provider_overloaded", "provider_unavailable", "timeout", "server"]);
+
+interface ErrorBody {
+  status: number;
+  message: string;
+  retry: boolean;
+}
+
+/**
+ * An OpenAI-style error body: `{"error": {"code", "message", "metadata"}}`. OpenRouter also sends
+ * one with HTTP 200 when the model's provider fails after accepting the request, so success
+ * bodies get checked too.
+ */
+function errorBody(body: unknown, httpStatus: number): ErrorBody | null {
+  const error = (body as { error?: unknown } | null)?.error;
+  if (typeof error !== "object" || error === null) return null;
+  const { code, message, metadata } = error as { code?: unknown; message?: unknown; metadata?: { error_type?: unknown } };
+  const status = typeof code === "number" ? code : httpStatus;
+  const type = typeof metadata?.error_type === "string" ? metadata.error_type : "";
+  return {
+    status,
+    message: typeof message === "string" && message ? message.slice(0, 300) : "no details",
+    retry: RETRY_TYPES.has(type) || status === 408 || status === 429 || status >= 500,
+  };
+}
+
+/** Seconds from a Retry-After header, in milliseconds, capped so a script never stalls for long. */
+function retryAfterMs(response: Response): number | null {
+  const seconds = Number(response.headers.get("retry-after"));
+  return response.headers.has("retry-after") && Number.isFinite(seconds) && seconds >= 0 ? Math.min(seconds, 30) * 1000 : null;
+}
+
 async function post(fetchImpl: typeof fetch, url: string, headers: Record<string, string>, body: unknown): Promise<unknown> {
   for (let attempt = 0; ; attempt++) {
+    const wait = (ms: number | null) => new Promise((done) => setTimeout(done, ms ?? 2000 * (attempt + 1)));
     let response: Response;
+    let text: string;
     try {
       response = await fetchImpl(url, {
         method: "POST",
@@ -86,18 +151,32 @@ async function post(fetchImpl: typeof fetch, url: string, headers: Record<string
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(90_000),
       });
+      text = await response.text();
     } catch (error) {
       if (attempt < 2) continue;
       throw new ModelError(`The AI request failed: ${(error as Error).name}`);
     }
-    if (response.ok) return response.json();
-    const retry = response.status === 429 || response.status >= 500;
-    const detail = (await response.text()).slice(0, 300);
-    if (retry && attempt < 2) {
-      await new Promise((done) => setTimeout(done, 2000 * (attempt + 1)));
+
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      // Not JSON: reported below with the status.
+    }
+    const failure =
+      errorBody(parsed, response.status) ??
+      (response.ok
+        ? null
+        : { status: response.status, message: text.slice(0, 300), retry: response.status === 429 || response.status >= 500 });
+    if (!failure) {
+      if (parsed === null) throw new ModelError(`The AI provider sent a reply that isn't JSON (HTTP ${response.status}).`);
+      return parsed;
+    }
+    if (failure.retry && attempt < 2) {
+      await wait(retryAfterMs(response));
       continue;
     }
-    throw new ModelError(`The AI provider answered with HTTP ${response.status}: ${detail}`);
+    throw new ModelError(`The AI provider answered with HTTP ${failure.status}: ${failure.message}`);
   }
 }
 
@@ -132,7 +211,7 @@ export function modelFromEnv(env: Env = process.env, fetchImpl: typeof fetch = f
   const providerName = env.AI_PROVIDER ?? "";
   const provider = PROVIDERS[providerName];
   if (!provider) {
-    throw new ModelNotConfiguredError(`Set AI_PROVIDER to ${PROVIDER_NAMES.join(" or ")} in .env.local.`);
+    throw new ModelNotConfiguredError(`Set AI_PROVIDER to ${PROVIDER_NAMES.join(", ")} in .env.local.`);
   }
   const model = env.AI_MODEL;
   if (!model) throw new ModelNotConfiguredError("Set AI_MODEL in .env.local to a model ID from your provider.");
