@@ -29,7 +29,7 @@ Once the key is set, run these in order:
 | #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
 | #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Its `timeout` now sits where Kiro reads it, so the rerun gets five minutes instead of the default 60 seconds. Kiro loads hooks when a session starts, so check `/hooks` in a new session. Needs a first real score. |
-| #15 Story clustering | **Open, handed off.** Improved in 19db733, with one known wrong grouping left. See "Handoff: #15" below. Don't close it yet. |
+| #15 Story clustering | **Closed.** The known wrong grouping is separated. See "Resolution: #15" below. |
 | #20 Add Feed | Built: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Checked in a browser on Nov 18 with three real feeds: without the key, stories show "Comparison unavailable" and stay readable. Once the key is set, still to check: a real comparison and the per-visitor cap. |
 | #21 Archive | Closed. Checked in a browser: when a feed stops listing articles, Reader keeps them, even after a reload. |
 | #22 Deploy to Vercel | **Needs your Vercel account.** Import the GitHub repo at vercel.com/new, add the `.env.example` variables under Environment Variables, deploy, and test in a private window. |
@@ -45,14 +45,14 @@ Once the key is set, run these in order:
 - **#16, the AI half of the starter pack.** It's unblocked once step 1 above runs: the loader already uses `data/sample/results/` when it exists, and the "Sample data" tooltip updates itself. Still to do: check the "+" lines and update the disclosure line in `docs/demo-script.md`.
 - **#27, the demo video.** Record after #16. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
 
-## Handoff: #15 story clustering
+## Resolution: #15 story clustering
 
-- **Done (19db733):** `src/pipeline/cluster.ts` blocks a match when one shared term supplies more than 60% of a pair's similarity (`MAX_TERM_SHARE`). Names and numbers count twice as much as other words (`NAME_WEIGHT`), and `DEFAULT_THRESHOLD` is 0.22.
-- **Results:** on 495 real articles from 20 tech feeds (Nov 18), labeled by hand, grouped pairs that report the same event went from 55% to 89%. Same-event pairs that end up grouped went from 95% to 84%. The starter pack still matches its story files at any threshold from 0.06 to 0.24, and X works on live stories, with Undo.
-- **Left:** with only The Verge, Ars Technica, TechCrunch, and Tom's Hardware subscribed, two different Google Search stories still group. TechCrunch's extracted article starts with "Image Credits:…" and a timestamp, so only its headline counts, and that headline shares "Google" and "Search" with The Verge's.
-- **Tried and rejected:** counting a multi-word name like "Google Search" once, and skipping short paragraphs that don't end like a sentence. Both split that pair, but each kept more real same-event pairs apart without catching more wrong ones. A narrower fix that only drops image credits, bylines, and timestamps hasn't been tried.
-- **Tools:** the labeled snapshot and the evaluation scripts are in the gitignored `.cache/cluster-eval/` on the machine that made them, and its `README.md` lists them. Real article text can't be committed, so on another machine, refetch with `fetch-snapshot.mts` and label again.
-- **Rules:** any change must keep `npm run sample:cluster` exact and `npm test` passing.
+- **Shipped (19db733), unchanged:** `DEFAULT_THRESHOLD` is 0.22, names and numbers count twice (`NAME_WEIGHT`), and a match is blocked when one shared term supplies more than 60% of its similarity (`MAX_TERM_SHARE`).
+- **Fix:** otherwise eligible similarities below 0.24 are vetoed when fewer than two distinct shared ordinary terms support them. Ordinary means the term is not a name/number in both articles. The veto prevents both direct and transitive average-linkage merges.
+- **Verified on the local labeled snapshot:** all495 went from 84 TP/10 FP/16 FN (89.4% precision/84.0% recall) before this fix to 84/9/16 (90.3%/84.0%). The deterministic 40 small sets went from 122/30/40 (80.3%/75.3%) to 122/29/40 (about 80.8%/75.3%).
+- **More checks:** the four feeds now score 1 TP/0 FP/0 FN, with the two Google Search stories separate. Newest300 scores 43/4/8 and the feed halves 19/4/4 and 30/2/6, with no TP/FN regression. The starter pack remains exact at thresholds 0.06, 0.22, and 0.24, and all 125 tests pass.
+- **Tried and rejected:** narrow metadata filtering for image credits, bylines, and timestamps still grouped the Google pair and worsened broader precision.
+- **Local evaluation data:** the labeled snapshot and evaluation scripts remain in gitignored `.cache/cluster-eval/`; real publisher text must not be committed. Refetch and label it again on another machine.
 
 ## Notes
 

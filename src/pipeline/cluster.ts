@@ -4,8 +4,8 @@
 // morning share every word except the company name). It needs no AI call, so it's free,
 // fast, and gives the same answer every time.
 // Articles only join a story when they're clearly similar. When the score is below the
-// threshold, or one shared word supplies most of it, they stay separate, and X fixes any
-// wrong grouping that gets through.
+// threshold, one shared word supplies most of it, or a marginal score lacks ordinary evidence,
+// they stay separate, and X fixes any wrong grouping that gets through.
 
 export interface ClusterInput {
   id: string;
@@ -50,6 +50,9 @@ const NAME_WEIGHT = 2;
  */
 const MAX_TERM_SHARE = 0.6;
 
+/** Near the default threshold, require evidence beyond shared names and numbers. */
+const MARGINAL_SCORE_LIMIT = 0.24;
+
 const STOPWORDS = new Set(
   (
     "a about after again against all also an and any are as at be because been before being but by can could " +
@@ -91,6 +94,30 @@ function articleText(article: ClusterInput): string {
   return [article.title, article.title, ...article.paragraphs.slice(0, LEAD_PARAGRAPHS)].join(". ");
 }
 
+/** Terms written as a mid-sentence name or a number in the headline or selected lead. */
+function strongTerms(article: ClusterInput): Set<string> {
+  const strong = new Set<string>();
+  const text = [article.title, ...article.paragraphs.slice(0, LEAD_PARAGRAPHS)].join(". ");
+  for (const match of text.matchAll(/[\p{L}\p{N}](?:[\p{L}\p{N}'’.-]*[\p{L}\p{N}])?/gu)) {
+    const word = match[0].replace(/['’]s$/u, "").replace(/['’]/gu, "");
+    const lower = word.toLowerCase();
+    if ((lower.length < 2 && !/\d/.test(lower)) || STOPWORDS.has(lower)) continue;
+    const startsSentence = /(?:^|[.!?:]\s*)$/.test(text.slice(Math.max(0, match.index - 3), match.index));
+    if ((/^\p{Lu}/u.test(word) && !startsSentence) || /\d/.test(word)) {
+      strong.add(/\d/.test(word) ? lower : stem(lower));
+    }
+  }
+  return strong;
+}
+
+function ordinarySharedTerms(a: Vector, b: Vector, strongA: Set<string>, strongB: Set<string>): number {
+  let count = 0;
+  for (const term of a.keys()) {
+    if (b.has(term) && !(strongA.has(term) && strongB.has(term))) count++;
+  }
+  return count;
+}
+
 function tfidf(documents: Vector[]): Vector[] {
   const documentFrequency = new Map<string, number>();
   for (const document of documents) for (const term of document.keys()) documentFrequency.set(term, (documentFrequency.get(term) ?? 0) + 1);
@@ -124,9 +151,10 @@ function cosine(a: Vector, b: Vector): number {
   return sum > 0 && largest / sum > MAX_TERM_SHARE ? 0 : sum;
 }
 
-/** Similarity of every pair of articles. Zero across sources' own duplicates, outside the time window, or when one word carries the match. */
+/** Similarity of every pair of articles, with ineligible and weakly supported matches set to zero. */
 export function similarities(articles: readonly ClusterInput[], windowHours = DEFAULT_WINDOW_HOURS): number[][] {
   const vectors = tfidf(articles.map((article) => terms(articleText(article))));
+  const strong = articles.map((article) => strongTerms(article));
   const times = articles.map((article) => Date.parse(article.publishedAt));
   const window = windowHours * 3_600_000;
   return articles.map((a, i) =>
@@ -134,7 +162,14 @@ export function similarities(articles: readonly ClusterInput[], windowHours = DE
       if (i === j) return 1;
       if (a.sourceId === b.sourceId) return 0;
       if (Math.abs(times[i] - times[j]) > window) return 0;
-      return cosine(vectors[i], vectors[j]);
+      const score = cosine(vectors[i], vectors[j]);
+      if (
+        score < MARGINAL_SCORE_LIMIT &&
+        ordinarySharedTerms(vectors[i], vectors[j], strong[i], strong[j]) < 2
+      ) {
+        return 0;
+      }
+      return score;
     }),
   );
 }

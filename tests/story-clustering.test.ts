@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { choosePrimary, clusterArticles, similarities, type ClusterInput } from "@/pipeline/cluster";
+import { choosePrimary, clusterArticles, DEFAULT_THRESHOLD, similarities, type ClusterInput } from "@/pipeline/cluster";
 import { clusterInputs, scoreClustering } from "@/pipeline/cluster-check";
 import { loadSampleData } from "@/pipeline/sample";
 
@@ -56,6 +56,61 @@ describe("clusterArticles", () => {
       ...unrelated,
     ]);
     expect(groups).toHaveLength(4);
+  });
+
+  it("blocks a marginal name-driven match without affecting stronger scores", () => {
+    const marginal = [
+      { ...article("a", "one", "Schools question Nimbus Search AI feature amid privacy concerns across districts and classrooms nationwide this week following parent complaints about safety"), paragraphs: [] },
+      { ...article("b", "two", "Users welcome Nimbus Search AI feature with private controls for browsing activity and personalized results online"), paragraphs: [] },
+      ...unrelated,
+    ];
+    const strong = [
+      { ...article("a", "one", "Schools question Nimbus Search AI feature"), paragraphs: [] },
+      { ...article("b", "two", "Users welcome Nimbus Search AI feature"), paragraphs: [] },
+      ...unrelated,
+    ];
+    expect(similarities(marginal)[0][1]).toBe(0);
+    expect(similarities(strong)[0][1]).toBeGreaterThanOrEqual(0.24);
+    expect(clusterArticles(strong).find((group) => group.articleIds.includes("a"))?.articleIds).toEqual(["a", "b"]);
+    expect(clusterArticles(marginal)).toHaveLength(4);
+  });
+
+  it("counts a shared term as ordinary when either article uses it as an ordinary word", () => {
+    const marginal = [
+      { ...article("a", "one", "Schools question Nimbus Search AI feature amid privacy concerns across districts and classrooms nationwide this week following parent complaints about safety"), paragraphs: [] },
+      { ...article("b", "two", "Users welcome Nimbus Search AI feature with private controls for browsing activity and personalized results online"), paragraphs: [] },
+      ...unrelated,
+    ];
+    const supported = [
+      { ...article("a", "one", "Schools question Nimbus Search AI feature amid privacy concerns across districts and classrooms nationwide this week"), paragraphs: [] },
+      { ...article("b", "two", "Users welcome Nimbus Search ai feature with private controls for browsing activity and personalized results online locally"), paragraphs: [] },
+      ...unrelated,
+    ];
+    const supportedScore = similarities(supported)[0][1];
+    expect(supportedScore).toBeGreaterThanOrEqual(DEFAULT_THRESHOLD);
+    expect(supportedScore).toBeLessThan(0.24);
+    expect(clusterArticles(supported).find((group) => group.articleIds.includes("a"))?.articleIds).toEqual(["a", "b"]);
+    expect(clusterArticles(marginal)).toHaveLength(4);
+  });
+
+  it("does not let a subthreshold name-driven link absorb a third article", () => {
+    const filler = (prefix: string, n: number) => Array.from({ length: n }, (_, index) =>
+      `${prefix}${String.fromCharCode(97 + Math.floor(index / 26))}${String.fromCharCode(97 + (index % 26))}`,
+    ).join(" ");
+    const inputs = [
+      story("a", "one", "Contoso Search schools reconsider AI feature", `The Contoso Search ${filler("alpha", 30)}`),
+      story("b", "two", "Contoso Search schools reconsider AI feature", "The Contoso Search"),
+      story("c", "three", "Contoso Search adds private AI feature", `The Contoso Search ${filler("omega", 30)}`),
+      { ...unrelated[0], sourceId: "four" },
+      { ...unrelated[1], sourceId: "five" },
+    ];
+    const similarity = similarities(inputs);
+    expect(similarity[0][1]).toBeCloseTo(0.4886, 3);
+    expect(similarity[1][2]).toBeCloseTo(0.3369, 3);
+    const groups = clusterArticles(inputs);
+    expect(groups.find((group) => group.articleIds.includes("a"))?.articleIds).toEqual(["a", "b"]);
+    expect(groups.find((group) => group.articleIds.includes("c"))?.articleIds).toEqual(["c"]);
+    expect(similarity[0][2]).toBe(0);
   });
 
   it("groups the same event told in different words", () => {
