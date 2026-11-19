@@ -89,6 +89,14 @@ describe("parseFeed", () => {
     });
   });
 
+  it("shows the name from an RSS author written as an email address with a name", () => {
+    const item = (author: string) =>
+      `<rss version="2.0"><channel><title>T</title><item><title>A</title><link>https://launchdesk.example/a</link><author>${author}</author></item></channel></rss>`;
+    expect(parseFeed(item("desk@launchdesk.example (Theo Marsh)")).entries[0].author).toBe("Theo Marsh");
+    expect(parseFeed(item("Theo Marsh")).entries[0].author).toBe("Theo Marsh");
+    expect(parseFeed(item("desk@launchdesk.example")).entries[0].author).toBe("desk@launchdesk.example");
+  });
+
   it("rejects documents that aren't feeds", () => {
     expect(() => parseFeed("<html><body>Hi</body></html>")).toThrow(FeedParseError);
   });

@@ -91,7 +91,7 @@ function parseRss(channel: XmlNode): ParsedFeed {
       id: guid || link,
       title: plainTitle(textOf(item.title)),
       url: link || (isPermalink(item.guid) ? guid : ""),
-      author: textOf(item["dc:creator"]) || textOf(item.author) || undefined,
+      author: textOf(item["dc:creator"]) || rssAuthor(textOf(item.author)) || undefined,
       publishedAt: toIso(textOf(item.pubDate) || textOf(item["dc:date"])),
       html: encoded || textOf(item.description),
       contentKind: encoded ? "full" : "summary",
@@ -122,6 +122,11 @@ function firstAuthor(authors: unknown): string | undefined {
   const first = asList(authors)[0];
   const name = isNode(first) ? textOf(first.name) : textOf(first);
   return name || undefined;
+}
+
+/** RSS 2.0 writes authors as "email (Name)". Readers show the name, and full-text cleanup matches bylines against it. */
+function rssAuthor(value: string): string {
+  return value.match(/^\S+@\S+\s*\((.+)\)$/)?.[1].trim() ?? value;
 }
 
 function isPermalink(guid: unknown): boolean {
