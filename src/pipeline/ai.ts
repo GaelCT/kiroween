@@ -216,7 +216,7 @@ export function modelFromEnv(env: Env = process.env, fetchImpl: typeof fetch = f
   const providerName = env.AI_PROVIDER ?? "";
   const provider = PROVIDERS[providerName];
   if (!provider) {
-    throw new ModelNotConfiguredError(`Set AI_PROVIDER to ${PROVIDER_NAMES.join(", ")} in .env.local.`);
+    throw new ModelNotConfiguredError(`Set AI_PROVIDER to ${PROVIDER_NAMES.slice(0, -1).join(", ")}, or ${PROVIDER_NAMES.at(-1)} in .env.local.`);
   }
   const model = env.AI_MODEL;
   if (!model) throw new ModelNotConfiguredError("Set AI_MODEL in .env.local to a model ID from your provider.");
