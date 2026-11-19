@@ -42,5 +42,5 @@ Once the key is set, run these in order:
 
 ## Notes
 
-- Story clustering uses word similarity, not AI, so it's free and gives the same answer every time. The starter pack groups exactly like the story files, including the Pulse 4 article in the Thrushwell story that the X demo relies on. If real feeds group badly in the Day-3 test, tune `DEFAULT_THRESHOLD` in `src/pipeline/cluster.ts` and rerun `npm run sample:cluster`.
+- Story clustering uses word similarity, not AI, so it's free and gives the same answer every time. The starter pack groups exactly like the story files, including the Pulse 4 article in the Thrushwell story that the X demo relies on. A pair of articles can't match on one shared word, such as a company name. If real feeds group badly in the Day-3 test, tune `DEFAULT_THRESHOLD` (0.22) in `src/pipeline/cluster.ts` and rerun `npm run sample:cluster`: the starter pack only matches exactly from 0.06 to 0.24.
 - The per-visitor cap lives in server memory, so on Vercel each instance counts separately. It's a soft limit.

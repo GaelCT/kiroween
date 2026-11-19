@@ -4,7 +4,8 @@
 // morning share every word except the company name). It needs no AI call, so it's free,
 // fast, and gives the same answer every time.
 // Articles only join a story when they're clearly similar. When the score is below the
-// threshold, they stay separate, and X fixes any wrong grouping that gets through.
+// threshold, or one shared word supplies most of it, they stay separate, and X fixes any
+// wrong grouping that gets through.
 
 export interface ClusterInput {
   id: string;
@@ -30,13 +31,24 @@ export interface StoryGroup {
 }
 
 /**
- * On the starter pack, every threshold from 0.1 to 0.2 matches the story files exactly
- * (npm run sample:cluster). Real feeds are noisier, so this sits inside that range, on the
- * side of keeping articles apart.
+ * On the starter pack, every threshold from 0.06 to 0.24 matches the story files exactly
+ * (npm run sample:cluster). On 495 real articles from 20 tech feeds (Nov 18, 2026, labeled by
+ * hand and kept out of the repo), 0.22 grouped the fewest different events together without
+ * splitting many same-event pairs.
  */
-export const DEFAULT_THRESHOLD = 0.15;
+export const DEFAULT_THRESHOLD = 0.22;
 const DEFAULT_WINDOW_HOURS = 48;
 const LEAD_PARAGRAPHS = 2;
+
+/** Names and numbers count this many times as much as ordinary words. */
+const NAME_WEIGHT = 2;
+
+/**
+ * The largest share of a pair's similarity one shared term may supply. Above it, the articles
+ * have one word in common that matters, often a company name, and that doesn't make them the
+ * same event: a recall and a new chief executive at one company are two stories.
+ */
+const MAX_TERM_SHARE = 0.6;
 
 const STOPWORDS = new Set(
   (
@@ -58,7 +70,7 @@ function stem(word: string): string {
   return word;
 }
 
-/** Terms with weights: names and numbers count three times, ordinary words once. */
+/** Terms with weights: names and numbers count NAME_WEIGHT times, ordinary words once. */
 export function terms(text: string): Vector {
   const counts: Vector = new Map();
   for (const match of text.matchAll(/[\p{L}\p{N}](?:[\p{L}\p{N}'’.-]*[\p{L}\p{N}])?/gu)) {
@@ -69,7 +81,7 @@ export function terms(text: string): Vector {
     const isName = /^\p{Lu}/u.test(word) && !startsSentence;
     const isNumber = /\d/.test(word);
     const term = isNumber ? lower : stem(lower);
-    counts.set(term, (counts.get(term) ?? 0) + (isName || isNumber ? 3 : 1));
+    counts.set(term, (counts.get(term) ?? 0) + (isName || isNumber ? NAME_WEIGHT : 1));
   }
   return counts;
 }
@@ -99,14 +111,20 @@ function tfidf(documents: Vector[]): Vector[] {
   });
 }
 
+/** Cosine similarity, or 0 when a single shared term supplies more than MAX_TERM_SHARE of it. */
 function cosine(a: Vector, b: Vector): number {
   const [small, large] = a.size <= b.size ? [a, b] : [b, a];
   let sum = 0;
-  for (const [term, weight] of small) sum += weight * (large.get(term) ?? 0);
-  return sum;
+  let largest = 0;
+  for (const [term, weight] of small) {
+    const product = weight * (large.get(term) ?? 0);
+    sum += product;
+    largest = Math.max(largest, product);
+  }
+  return sum > 0 && largest / sum > MAX_TERM_SHARE ? 0 : sum;
 }
 
-/** Similarity of every pair of articles. Zero across sources' own duplicates or outside the time window. */
+/** Similarity of every pair of articles. Zero across sources' own duplicates, outside the time window, or when one word carries the match. */
 export function similarities(articles: readonly ClusterInput[], windowHours = DEFAULT_WINDOW_HOURS): number[][] {
   const vectors = tfidf(articles.map((article) => terms(articleText(article))));
   const times = articles.map((article) => Date.parse(article.publishedAt));

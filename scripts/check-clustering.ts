@@ -1,8 +1,9 @@
 // Runs story clustering on the starter pack and compares it with the story files:
 //   npm run sample:cluster
 //   npm run sample:cluster -- --threshold 0.25
-// The story files put Launch Desk's Pulse 4 article in the Thrushwell recall story on purpose,
-// for the X demo, so clustering is expected to keep that one article apart.
+// The story files put Launch Desk's Pulse 4 launch article in the Thrushwell recall story on
+// purpose, for the X demo. Clustering groups it there too, since it shares the brand and the
+// product line, so the demo shows X pulling out a grouping mistake the algorithm really makes.
 
 import { loadSampleData } from "../src/pipeline/sample";
 import { DEFAULT_THRESHOLD } from "../src/pipeline/cluster";

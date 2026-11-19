@@ -7,7 +7,7 @@
 - Tests: Vitest. Property tests use fast-check.
 - Feed parsing: fast-xml-parser, for Atom and RSS 2.0.
 - Full-text extraction: @mozilla/readability on linkedom, for feeds that only send excerpts.
-- Story clustering: TF-IDF similarity of headlines and leads in `src/pipeline/cluster.ts`. No AI call.
+- Story clustering: TF-IDF similarity of headlines and leads in `src/pipeline/cluster.ts`, where no single shared word can carry a match. No AI call.
 - Scripts: tsx.
 - AI provider: not chosen yet (issue #10). `src/pipeline/ai.ts` supports Anthropic and OpenAI, picked with `AI_PROVIDER`, `AI_MODEL`, and the provider's key in `.env.local` (see `.env.example`). Amazon Bedrock would need a third adapter.
 - Hosting: Vercel (issue #22).
