@@ -198,6 +198,36 @@ kbd {
   color: var(--muted);
 }
 
+.subscribe-import {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+
+.subscribe-import-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-dark);
+  text-align: left;
+  cursor: pointer;
+}
+
+.subscribe-import-button:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.subscribe-import-button:disabled,
+.subscribe-cancel:disabled {
+  color: var(--faint);
+  cursor: default;
+}
+
+.subscribe-progress {
+  margin: 6px 0 0;
+  font-weight: bold;
+}
+
 .nav-item {
   display: block;
   width: 100%;

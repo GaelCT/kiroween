@@ -13,9 +13,10 @@ interface Props {
   /** True while live feeds are being fetched. */
   busy: boolean;
   onAddFeed: (url: string) => Promise<boolean>;
+  onImport: (file: File, onProgress: (done: number, total: number) => void) => Promise<boolean>;
 }
 
-export function Sidebar({ sources, counts, view, onView, busy, onAddFeed }: Props) {
+export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onImport }: Props) {
   const [closed, setClosed] = useState<string[]>([]);
 
   const item = (target: View, label: string, count: number | null, className = "") => (
@@ -36,7 +37,7 @@ export function Sidebar({ sources, counts, view, onView, busy, onAddFeed }: Prop
 
   return (
     <nav className="sidebar" aria-label="Feeds">
-      <AddSubscription busy={busy} onAdd={onAddFeed} />
+      <AddSubscription busy={busy} onAdd={onAddFeed} onImport={onImport} />
       {item({ kind: "all" }, "All items", counts.all, "nav-all")}
       {item({ kind: "starred" }, "Starred items", null, "nav-starred")}
       <h2 className="nav-heading">Subscriptions</h2>

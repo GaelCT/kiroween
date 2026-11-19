@@ -1,7 +1,9 @@
-// Feeds the visitor added (issue #20) and their archive (issue #21). Pure functions, browser-safe.
+// Feeds the visitor added (issue #20), their archive (issue #21), and OPML imports (issue #32).
+// Pure functions, browser-safe.
 // Everything lives in this browser's localStorage. Fetched articles are never deleted, so the
 // archive reaches back past what a feed currently lists.
 
+import type { OpmlFeed } from "./opml";
 import type { Article, Cluster, Evidence, Fact, FactId, ReaderData, Source } from "./types";
 
 export interface LiveSource extends Source {
@@ -133,6 +135,50 @@ export function storiesToCompare(state: LiveState): LiveStory[] {
 
 export function saveComparison(state: LiveState, signature: string, comparison: SavedComparison): LiveState {
   return { ...state, comparisons: { ...state.comparisons, [signature]: comparison } };
+}
+
+/** Feeds from an imported file that aren't subscribed yet. */
+export function feedsToImport(state: LiveState, feeds: readonly OpmlFeed[]): OpmlFeed[] {
+  const subscribed = new Set(state.sources.map((source) => source.feedUrl));
+  return feeds.filter((feed) => !subscribed.has(feed.url));
+}
+
+export interface ImportOutcome {
+  /** Feeds in the file. */
+  listed: number;
+  /** Feeds in the file that were already subscribed, found before fetching or, after a redirect, by fetching. */
+  already: number;
+  added: number;
+  /** "<name>: <reason>" for each feed that couldn't be added. */
+  failures: string[];
+  /** True when the server's hourly feed limit stopped the import early. */
+  limited: boolean;
+  groupingError: string | null;
+  comparisonError: string | null;
+}
+
+function sentence(text: string): string {
+  return /[.!?]$/.test(text) ? text : `${text}.`;
+}
+
+/** The message shown after an import. */
+export function importMessage(outcome: ImportOutcome): string {
+  const { listed, already, added, failures, limited, groupingError, comparisonError } = outcome;
+  if (listed === 0) return "No feeds found in that file.";
+  if (already === listed) return "You're already subscribed to every feed in that file.";
+  const fresh = listed - already;
+  const feeds = (count: number) => `${count} ${count === 1 ? "feed" : "feeds"}`;
+  const parts: string[] = [];
+  if (added === fresh) parts.push(`Imported ${feeds(added)}.`);
+  else if (added > 0) parts.push(`Imported ${added} of ${feeds(fresh)}.`);
+  else parts.push("No feeds were imported.");
+  if (already > 0) parts.push(`You were already subscribed to ${already === 1 ? "one other feed" : `the other ${already}`}.`);
+  if (limited) parts.push("The hourly feed limit was reached, so import the file again later for the rest.");
+  if (failures.length > 0) parts.push(`Couldn't add ${sentence(failures[0])}`);
+  if (failures.length > 1) parts.push(`${failures.length - 1} more failed too.`);
+  if (groupingError) parts.push(`The new articles couldn't be grouped into stories: ${sentence(groupingError)}`);
+  if (comparisonError) parts.push(`Some stories couldn't be compared: ${sentence(comparisonError)}`);
+  return parts.join(" ");
 }
 
 export type LiveData = Pick<ReaderData, "sources" | "articles" | "clusters">;

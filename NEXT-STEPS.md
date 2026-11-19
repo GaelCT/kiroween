@@ -33,7 +33,7 @@ Once the key is set, run these in order:
 | #28 Kiro write-up | Draft in `docs/kiro-write-up.md`. Fill in the "To do" sections. |
 | #29 README | Closed. Screenshots would still help. |
 | #30 Submit | **Needs you.** Checklist in the issue. |
-| #32 OPML import | Not started. It's on the cut list. |
+| #32 OPML import | Closed. "Import subscriptions (OPML)" is in the "Add a subscription" form. Folders come along, and the hourly feed limit stops a big import early. |
 
 ## Left on label A
 

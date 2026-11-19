@@ -33,5 +33,6 @@
 - Any change to `src/lib/adds.ts` must keep the property tests in `tests/adds.property.test.ts` passing.
 - Secrets only come from environment variables (`.env.local` locally, Vercel settings in production). Never commit them, and never log them.
 - Every URL a visitor types goes through `src/pipeline/safe-fetch.ts`, which blocks private addresses and caps time and size.
+- OPML imports are parsed in the browser (`src/lib/opml.ts`, loaded on first use). Only their feed URLs go to the server, through `/api/feeds`, the same way a typed URL does.
 - `data/sample/results/` is pipeline output. Never edit it by hand: fix the pipeline and rerun `npm run pipeline:sample`.
 - Real publisher text only lives in memory, in the visitor's browser, and in the gitignored `.cache/`. Never commit it.

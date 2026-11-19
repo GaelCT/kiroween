@@ -1,17 +1,21 @@
 // The visitor's live feeds and archive in localStorage, and the calls that fill them
-// (issues #20 and #21). Browser only. Fetching, grouping, and AI comparison all run on the
+// (issues #20, #21, and #32). Browser only. Fetching, grouping, and AI comparison all run on the
 // server; this file only sends requests and keeps the results.
 
+import type { OpmlFeed } from "./opml";
 import type { Article, Source } from "./types";
 import {
   addFetched,
   applyGrouping,
   articlesToGroup,
   EMPTY_LIVE_STATE,
+  feedsToImport,
+  importMessage,
   parseLiveState,
   saveComparison,
   storiesToCompare,
   storySignature,
+  type ImportOutcome,
   type LiveState,
   type LiveStory,
   type SavedComparison,
@@ -80,17 +84,33 @@ function update(change: (state: LiveState) => LiveState): void {
   publish({ state: change(getLiveSnapshot().state) });
 }
 
+/** An error answer from one of the app's API routes. */
+class ApiError extends Error {
+  override name = "ApiError";
+
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+  }
+}
+
 async function post<T>(url: string, body: unknown): Promise<T> {
   const response = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
   const data = (await response.json().catch(() => ({}))) as T & { error?: string };
-  if (!response.ok) throw new Error(data.error ?? `The server answered with HTTP ${response.status}.`);
+  if (!response.ok) throw new ApiError(data.error ?? `The server answered with HTTP ${response.status}.`, response.status);
   return data;
 }
 
-async function fetchFeed(url: string): Promise<{ source: Source; articles: Article[] }> {
+/** Fetches a feed into the archive. `folder` only applies when the feed is new, and `isNew` says whether it was. */
+async function fetchFeed(url: string, folder?: string): Promise<{ source: Source; articles: Article[]; isNew: boolean }> {
   const fetched = await post<{ source: Source; articles: Article[] }>("/api/feeds", { url });
-  update((state) => addFetched(state, fetched.source, fetched.articles, new Date()));
-  return fetched;
+  // Sources are keyed by the feed's address after redirects, so this also catches an old http:// address.
+  const isNew = !getLiveSnapshot().state.sources.some((source) => source.id === fetched.source.id);
+  const source = folder ? { ...fetched.source, folder } : fetched.source;
+  update((state) => addFetched(state, source, fetched.articles, new Date()));
+  return { ...fetched, isNew };
 }
 
 async function regroup(): Promise<void> {
@@ -148,6 +168,80 @@ export async function addFeed(url: string): Promise<LiveResult> {
     publish({ busy: false });
     return { ok: false, message: `Couldn't add that feed: ${(error as Error).message}` };
   }
+}
+
+/** How many feeds an import fetches at once. Each fetch also reads up to 30 article pages on the server. */
+const IMPORT_CONCURRENCY = 3;
+
+/** Reads an OPML file the visitor picked and subscribes to its feeds. The file never leaves the browser. */
+export async function importOpmlFile(file: File, onProgress?: (done: number, total: number) => void): Promise<LiveResult> {
+  // Loaded on first use, so the XML parser isn't in the bundle every visitor downloads.
+  const { MAX_OPML_BYTES, OpmlParseError, parseOpml } = await import("./opml");
+  if (file.size > MAX_OPML_BYTES) return { ok: false, message: "That file is too big to be a subscription list." };
+  let text: string;
+  try {
+    text = await file.text();
+  } catch {
+    return { ok: false, message: "Couldn't read that file." };
+  }
+  let feeds: OpmlFeed[];
+  try {
+    feeds = parseOpml(text);
+  } catch (error) {
+    if (error instanceof OpmlParseError) return { ok: false, message: error.message };
+    throw error;
+  }
+  return importFeeds(feeds, onProgress);
+}
+
+/**
+ * Subscribes to the feeds that aren't subscribed yet, in their folders, then regroups and
+ * compares once. Stops early when the server's hourly feed limit is reached.
+ */
+async function importFeeds(feeds: readonly OpmlFeed[], onProgress?: (done: number, total: number) => void): Promise<LiveResult> {
+  const { state, busy } = getLiveSnapshot();
+  if (busy) return { ok: false, message: "Wait for the feeds that are loading to finish, then import the file again." };
+  const queue = feedsToImport(state, feeds);
+  const outcome: ImportOutcome = {
+    listed: feeds.length,
+    already: feeds.length - queue.length,
+    added: 0,
+    failures: [],
+    limited: false,
+    groupingError: null,
+    comparisonError: null,
+  };
+  if (queue.length === 0) return { ok: feeds.length > 0, message: importMessage(outcome) };
+
+  publish({ busy: true });
+  const pending = [...queue];
+  let done = 0;
+  let fetched = 0;
+  onProgress?.(done, queue.length);
+  const worker = async () => {
+    for (let feed = pending.shift(); feed && !outcome.limited; feed = pending.shift()) {
+      try {
+        const { isNew } = await fetchFeed(feed.url, feed.folder);
+        fetched++;
+        if (isNew) outcome.added++;
+        else outcome.already++;
+      } catch (error) {
+        if (error instanceof ApiError && error.status === 429) outcome.limited = true;
+        else outcome.failures.push(`${feed.title}: ${(error as Error).message}`);
+      }
+      onProgress?.(++done, queue.length);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(IMPORT_CONCURRENCY, queue.length) }, worker));
+
+  try {
+    if (fetched > 0) await regroup();
+  } catch (error) {
+    outcome.groupingError = (error as Error).message;
+  }
+  publish({ busy: false });
+  if (fetched > 0) outcome.comparisonError = await compareStories();
+  return { ok: outcome.added > 0 || outcome.already === outcome.listed, message: importMessage(outcome) };
 }
 
 /** Fetches every feed that's out of date (or all of them with `force`), then regroups and compares. */

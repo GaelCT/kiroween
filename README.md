@@ -13,7 +13,7 @@ When twenty outlets report the same event, most of what you read is repetition. 
 - **Lists shrink as you read.** Once you've read a fact anywhere in the story, it drops off every other source's list. A source with nothing left says "No significant new information".
 - **Duplicate scores** show how much of a source repeats what you've read.
 - **It's still Reader:** "All items", starred items, unread counts, "Mark all as read", and J/K/N/P keys. X pulls an article out of a story when it was grouped wrongly.
-- **Add your own feeds** with "Add a subscription". Real feeds run live: the server fetches them, gets the full text when a feed only sends excerpts, groups stories, and compares them with an AI model. Articles stay in your browser, and Reader never deletes them, so the archive reaches back past what a feed currently lists.
+- **Add your own feeds** with "Add a subscription", one URL at a time or from another reader's OPML export, folders included. Real feeds run live: the server fetches them, gets the full text when a feed only sends excerpts, groups stories, and compares them with an AI model. Articles stay in your browser, and Reader never deletes them, so the archive reaches back past what a feed currently lists.
 
 Reading history, stars, and added feeds live in your browser's localStorage. There are no accounts.
 

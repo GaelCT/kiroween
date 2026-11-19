@@ -3,7 +3,7 @@
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
 import { combineReaderData, liveReaderData } from "@/lib/live";
-import { addFeed, getLiveSnapshot, getServerLiveSnapshot, refreshFeeds, subscribeLive } from "@/lib/live-store";
+import { addFeed, getLiveSnapshot, getServerLiveSnapshot, importOpmlFile, refreshFeeds, subscribeLive } from "@/lib/live-store";
 import { articlesInView, storiesInView, unreadCounts, type View } from "@/lib/reader-view";
 import {
   EMPTY_READING_STATE,
@@ -212,6 +212,18 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     return result.ok;
   }
 
+  /** Google Reader's "Import your subscriptions", from an OPML file another reader exported. */
+  async function importSubscriptions(file: File, onProgress: (done: number, total: number) => void): Promise<boolean> {
+    try {
+      const result = await importOpmlFile(file, onProgress);
+      setToast({ message: result.message });
+      return result.ok;
+    } catch (error) {
+      setToast({ message: `Couldn't import that file: ${(error as Error).message}` });
+      return false;
+    }
+  }
+
   async function refresh() {
     const result = await refreshFeeds(true);
     if (result) setToast({ message: result.message });
@@ -307,7 +319,15 @@ export function Reader({ data: sample }: { data: ReaderData }) {
       </header>
 
       <div className="reader-body">
-        <Sidebar sources={data.sources} counts={counts} view={view} onView={changeView} busy={live.busy} onAddFeed={subscribe} />
+        <Sidebar
+          sources={data.sources}
+          counts={counts}
+          view={view}
+          onView={changeView}
+          busy={live.busy}
+          onAddFeed={subscribe}
+          onImport={importSubscriptions}
+        />
 
         <main className="list-pane">
           <div className="toolbar">

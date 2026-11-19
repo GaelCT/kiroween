@@ -6,11 +6,14 @@ import {
   articlesToGroup,
   combineReaderData,
   EMPTY_LIVE_STATE,
+  feedsToImport,
+  importMessage,
   liveReaderData,
   parseLiveState,
   saveComparison,
   storiesToCompare,
   storySignature,
+  type ImportOutcome,
   type LiveState,
 } from "@/lib/live";
 import type { Article, ReaderData, Source } from "@/lib/types";
@@ -126,6 +129,56 @@ describe("live stories", () => {
     expect(combined.sample).toBe(true);
     expect(combined.sources.map((item) => item.id)).toEqual(["byteward", "live-a", "live-b"]);
     expect(combined.clusters.at(-1)?.id).toBe("s");
+  });
+});
+
+describe("OPML import", () => {
+  it("only imports feeds that aren't subscribed yet", () => {
+    const state = addFetched(EMPTY_LIVE_STATE, source, [], now);
+    const feeds = [
+      { url: source.feedUrl, title: "Feed A" },
+      { url: "https://c.example/feed", title: "Feed C", folder: "Tech" },
+    ];
+    expect(feedsToImport(state, feeds)).toEqual([feeds[1]]);
+  });
+
+  it("puts a new feed in its folder, and leaves a subscribed feed's folder alone", () => {
+    let state = addFetched(EMPTY_LIVE_STATE, { ...source, folder: "Tech" }, [], now);
+    expect(state.sources[0].folder).toBe("Tech");
+    state = addFetched(state, { ...source, folder: "News" }, [], now);
+    expect(state.sources[0].folder).toBe("Tech");
+    // A refresh brings the source back from the server without a folder.
+    state = addFetched(state, source, [article("a1", "live-a", "2026-11-18T09:00:00Z")], now);
+    expect(state.sources[0].folder).toBe("Tech");
+  });
+
+  it("sums up the import in one message", () => {
+    const outcome = (changes: Partial<ImportOutcome>): ImportOutcome => ({
+      listed: 3,
+      already: 0,
+      added: 3,
+      failures: [],
+      limited: false,
+      groupingError: null,
+      comparisonError: null,
+      ...changes,
+    });
+    expect(importMessage(outcome({ listed: 0, added: 0 }))).toBe("No feeds found in that file.");
+    expect(importMessage(outcome({ already: 3, added: 0 }))).toBe("You're already subscribed to every feed in that file.");
+    expect(importMessage(outcome({}))).toBe("Imported 3 feeds.");
+    expect(importMessage(outcome({ listed: 1, added: 1 }))).toBe("Imported 1 feed.");
+    expect(
+      importMessage(outcome({ listed: 5, already: 1, added: 2, failures: ["Byteward: Couldn't find byteward.example.", "Wirefold: That address isn't an RSS or Atom feed."] })),
+    ).toBe("Imported 2 of 4 feeds. You were already subscribed to one other feed. Couldn't add Byteward: Couldn't find byteward.example. 1 more failed too.");
+    expect(importMessage(outcome({ listed: 6, already: 3, added: 1, limited: true }))).toBe(
+      "Imported 1 of 3 feeds. You were already subscribed to the other 3. The hourly feed limit was reached, so import the file again later for the rest.",
+    );
+    expect(importMessage(outcome({ listed: 1, added: 0, failures: ["Byteward: Couldn't find byteward.example."] }))).toBe(
+      "No feeds were imported. Couldn't add Byteward: Couldn't find byteward.example.",
+    );
+    expect(importMessage(outcome({ comparisonError: "Live comparisons aren't set up on this server" }))).toBe(
+      "Imported 3 feeds. Some stories couldn't be compared: Live comparisons aren't set up on this server.",
+    );
   });
 });
 
