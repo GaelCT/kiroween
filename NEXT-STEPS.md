@@ -24,7 +24,7 @@ Once the key is set, run these in order:
 | #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
 | #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Its `timeout` now sits where Kiro reads it, so the rerun gets five minutes instead of the default 60 seconds. Kiro loads hooks when a session starts, so check `/hooks` in a new session. Needs a first real score. |
-| #15 Story clustering | Built, without AI: matches all 34 starter-pack stories, including keeping the Nimbusfold and Deepcask outages apart. X already fixes wrong groupings. On real feeds (Nov 18), it grouped two different Google Search stories at a similarity of 0.227, next to a correct pair at 0.251. Splitting them takes a threshold above 0.227, but the starter pack breaks first: at 0.228, two of its stories split (`npm run sample:cluster -- --threshold 0.228`). The threshold alone can't fix it. |
+| #15 Story clustering | **Open, handed off.** Improved in 19db733, with one known wrong grouping left. See "Handoff: #15" below. Don't close it yet. |
 | #20 Add Feed | Built: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Checked in a browser on Nov 18 with three real feeds: without the key, stories show "Comparison unavailable" and stay readable. Once the key is set, still to check: a real comparison and the per-visitor cap. |
 | #21 Archive | Closed. Checked in a browser: when a feed stops listing articles, Reader keeps them, even after a reload. |
 | #22 Deploy to Vercel | **Needs your Vercel account.** Import the GitHub repo at vercel.com/new, add the `.env.example` variables under Environment Variables, deploy, and test in a private window. |
@@ -39,6 +39,15 @@ Once the key is set, run these in order:
 
 - **#16, the AI half of the starter pack.** It's unblocked once step 1 above runs: the loader already uses `data/sample/results/` when it exists, and the "Sample data" tooltip updates itself. Still to do: check the "+" lines and update the disclosure line in `docs/demo-script.md`.
 - **#27, the demo video.** Record after #16. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
+
+## Handoff: #15 story clustering
+
+- **Done (19db733):** `src/pipeline/cluster.ts` blocks a match when one shared term supplies more than 60% of a pair's similarity (`MAX_TERM_SHARE`). Names and numbers count twice as much as other words (`NAME_WEIGHT`), and `DEFAULT_THRESHOLD` is 0.22.
+- **Results:** on 495 real articles from 20 tech feeds (Nov 18), labeled by hand, grouped pairs that report the same event went from 55% to 89%. Same-event pairs that end up grouped went from 95% to 84%. The starter pack still matches its story files at any threshold from 0.06 to 0.24, and X works on live stories, with Undo.
+- **Left:** with only The Verge, Ars Technica, TechCrunch, and Tom's Hardware subscribed, two different Google Search stories still group. TechCrunch's extracted article starts with "Image Credits:…" and a timestamp, so only its headline counts, and that headline shares "Google" and "Search" with The Verge's.
+- **Tried and rejected:** counting a multi-word name like "Google Search" once, and skipping short paragraphs that don't end like a sentence. Both split that pair, but each kept more real same-event pairs apart without catching more wrong ones. A narrower fix that only drops image credits, bylines, and timestamps hasn't been tried.
+- **Tools:** the labeled snapshot and the evaluation scripts are in the gitignored `.cache/cluster-eval/` on the machine that made them, and its `README.md` lists them. Real article text can't be committed, so on another machine, refetch with `fetch-snapshot.mts` and label again.
+- **Rules:** any change must keep `npm run sample:cluster` exact and `npm test` passing.
 
 ## Notes
 
