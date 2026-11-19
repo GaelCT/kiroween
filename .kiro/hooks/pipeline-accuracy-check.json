@@ -4,13 +4,13 @@
     {
       "name": "Pipeline accuracy check",
       "trigger": "PostFileSave",
-      "description": "When a file under src/pipeline/ is saved, reruns the AI pipeline on three starter-pack stories and fails if fewer than 8 of every 10 \"+\" lines match the fact tables (issue #14).",
+      "description": "When Kiro saves a file under src/pipeline/, reruns the AI pipeline on three starter-pack stories and fails if fewer than 8 of every 10 \"+\" lines match the fact tables (issue #14).",
       "matcher": "src[\\\\/]pipeline[\\\\/].*\\.ts$",
       "action": {
         "type": "command",
-        "command": "node --import tsx scripts/accuracy-check.ts --rerun",
-        "timeout": 300
-      }
+        "command": "node --import tsx scripts/accuracy-check.ts --rerun"
+      },
+      "timeout": 300
     }
   ]
 }

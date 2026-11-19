@@ -37,13 +37,13 @@ We checked that the tests catch real bugs by breaking the code on purpose. Ignor
 
 ## The accuracy-check hook
 
-`.kiro/hooks/pipeline-accuracy-check.json` is an agent hook. When a file under `src/pipeline/` is saved, it runs `scripts/accuracy-check.ts --rerun`:
+`.kiro/hooks/pipeline-accuracy-check.json` is an agent hook. When Kiro saves a file under `src/pipeline/`, it runs `scripts/accuracy-check.ts --rerun`:
 
 1. It reruns the AI pipeline on three starter-pack stories. Replies are cached in `.cache/ai/`, so a rerun only pays for prompts that changed.
 2. It compares every "+" line with the story files, which are the answer key. A line is right only if its sentence is one the answer key marks with a fact, and the primary article doesn't state that fact.
 3. It fails when fewer than 8 of every 10 lines are right, and prints each wrong line with the reason.
 
-That makes the Day-3 bar a check that runs while the pipeline is being edited, instead of a one-time test.
+That makes the Day-3 bar a check that runs while the pipeline is being edited, instead of a one-time test. The hook gives the check up to five minutes. It only fires on Kiro's own edits: file-save hooks don't run when you save a file in the editor.
 
 **To do:** add the first real score once the AI key is set.
 

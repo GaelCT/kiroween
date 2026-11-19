@@ -21,17 +21,17 @@ Once the key is set, run these in order:
 |---|---|
 | #10 AI provider and key | Code supports Anthropic and OpenAI. **Needs your choice and a key.** |
 | #11 Extract facts | Built in `src/pipeline/facts.ts` and tested with a fake model. Needs a real run (step 1). |
-| #12 Full text for excerpt feeds | Done. Checked on The Verge, Ars Technica, TechCrunch, and Engadget. |
+| #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
-| #14 Accuracy-check hook | Done: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Needs a first real score. |
-| #15 Story clustering | Done, without AI: matches all 34 starter-pack stories, including keeping the Nimbusfold and Deepcask outages apart. X already fixes wrong groupings. |
-| #20 Add Feed | Done: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Comparisons show "Comparison unavailable" until the server has the key. |
-| #21 Archive | Done: live articles are kept in the browser and never deleted. |
+| #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Its `timeout` now sits where Kiro reads it, so the rerun gets five minutes instead of the default 60 seconds. Kiro loads hooks when a session starts, so check `/hooks` in a new session. Needs a first real score. |
+| #15 Story clustering | Built, without AI: matches all 34 starter-pack stories, including keeping the Nimbusfold and Deepcask outages apart. X already fixes wrong groupings. On real feeds (Nov 18), it grouped two different Google Search stories at a similarity of 0.227, next to a correct pair at 0.251. Splitting them takes a threshold above 0.227, but the starter pack only groups correctly up to 0.2 (`npm run sample:cluster -- --threshold 0.23` splits two stories), so the threshold alone can't fix it. |
+| #20 Add Feed | Built: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Checked in a browser on Nov 18 with three real feeds: without the key, stories show "Comparison unavailable" and stay readable. Once the key is set, still to check: a real comparison and the per-visitor cap. |
+| #21 Archive | Closed. Checked in a browser: when a feed stops listing articles, Reader keeps them, even after a reload. |
 | #22 Deploy to Vercel | **Needs your Vercel account.** Import the GitHub repo at vercel.com/new, add the `.env.example` variables under Environment Variables, deploy, and test in a private window. |
 | #24 MCP | **Needs you.** Kiro can't write `.kiro/settings/` for you. Create a GitHub token, set it as an environment variable, add the GitHub MCP server to `.kiro/settings/mcp.json`, use it once, and add it to the write-up. |
 | #25 Journalist feedback | **Needs people.** |
 | #28 Kiro write-up | Draft in `docs/kiro-write-up.md`. Fill in the "To do" sections. |
-| #29 README | Done except screenshots. |
+| #29 README | Closed. Screenshots would still help. |
 | #30 Submit | **Needs you.** Checklist in the issue. |
 | #32 OPML import | Not started. It's on the cut list. |
 
