@@ -34,7 +34,9 @@ The narration is about 320 words, which takes roughly 2:10 at a calm pace. That 
 
 **Narration:** "Ohm & Bit adds price, date, power, and heat. And Launch Desk now says 'No significant new information', so I can skip it. I read three sources, skipped the fourth, and every new fact was highlighted for me."
 
-## 1:30–1:55 When the AI groups something wrong
+## 1:30–1:55 When grouping goes wrong
+
+Story grouping compares headlines and opening paragraphs, with no AI call, so don't call it "the AI" in the narration.
 
 **Action:** click the Thrushwell Pulse 3 recall story in the list, then click its **Launch Desk** tab. Its article is about the new Pulse 4, not the recall.
 
@@ -54,7 +56,7 @@ The narration is about 320 words, which takes roughly 2:10 at a calm pace. That 
 
 **Narration:** "We planned it with a custom Kiro agent called grill-me, a panel of five critics that questioned the plan before we wrote code. Its verdict is in the repo. Steering docs hold the rules for what counts as new. A spec defines the comparison in EARS requirements, and property tests check eight rules on random reading histories."
 
-**Fill in at recording time:** one sentence each for the Kiro pieces that exist by then, such as the accuracy-check hook (#14) and MCP (#24). Only mention what's built.
+**Fill in at recording time:** one sentence each for the Kiro pieces that exist by then, such as the accuracy-check hook (#14) and MCP (#24). Only mention what's built. The hook exists, but only quote its score if a real run produced one, and only mention MCP once it's been used.
 
 ## 2:45–2:55 Close
 
@@ -62,18 +64,22 @@ The narration is about 320 words, which takes roughly 2:10 at a calm pace. That 
 
 **Narration:** "Feed readers survived to organize information. Ours tells you what each source actually adds."
 
-**Lower third, for the whole video:** "Sample data: fictional outlets and events. AI results computed ahead of time."
+**Lower third, for the whole video:** before recording, hover over the "Sample data" badge and read its note.
+- If the note says the AI pipeline extracted the facts ahead of time, use: "Sample data: fictional outlets and events. AI results computed ahead of time."
+- If it says the facts come from hand-written fact tables, use: "Sample data: fictional outlets and events. Facts from hand-written fact tables."
 
 ## Notes
 
 - "Hundreds of users every year" is cut. Nobody found a source for it.
-- Keep the AI disclosure honest. Until the pipeline in #11 and #15 runs on the starter pack, the facts come from the hand-written fact tables. Change the lower third to match what's true when you record.
-- Never show real publisher articles or logos in the video. If you demo Add Feed (#20), use one of the sample feeds in `public/sample-feeds/`.
+- Keep the AI disclosure honest. The starter pack's facts come from the hand-written fact tables until `npm run pipeline:sample` has run with a real model and its results are committed in `data/sample/results/` (#16). The badge's note always says which, so match the lower third to it.
+- Never show real publisher articles or logos in the video. If you demo Add Feed (#20), add one of the sample feeds from the deployed site, such as `https://<your-app>.vercel.app/sample-feeds/byteward.xml`. Reader refuses `localhost` addresses on purpose, so this only works on the deployed site.
 
 ## Recording checklist (#27)
 
 - Browser at 1440×900 or 1920×1080, zoom 100%, a fresh profile with no extensions, notifications off.
+- Record on the deployed site (#22), so it's the same app judges will open.
 - Press **Reset reading** first, then reload.
+- Hover over the "Sample data" badge and set the lower third to match its note.
 - Record the screen with narration. The rules say no copyrighted music, so use silence or music you have rights to.
 - Keep it under 3:00. Judges don't have to watch past three minutes.
 - Upload to YouTube as public, add captions, and put the link in the Devpost form.
