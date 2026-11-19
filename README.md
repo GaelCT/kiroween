@@ -59,6 +59,25 @@ Scripts such as `npm run pipeline:sample` read `.env.local` on their own. When t
 
 In production, set the same variables in your host's environment settings (on Vercel: Project → Settings → Environment Variables). `LIVE_ARTICLE_LIMIT` caps how many articles one visitor can send for comparison per day (default 60).
 
+## Deploy to Vercel
+
+No `vercel.json` is needed. Vercel detects Next.js. The API routes set their own time limits, 60 seconds for `/api/feeds` and 120 for `/api/compare`, which every Vercel plan allows.
+
+1. At [vercel.com/new](https://vercel.com/new), import this GitHub repo.
+2. Under **Environment Variables**, add:
+
+   | Variable | Value |
+   |---|---|
+   | `AI_PROVIDER` | `openrouter` |
+   | `AI_MODEL` | the same `vendor/model` ID you use locally |
+   | `OPENROUTER_API_KEY` | your OpenRouter key; mark it **Sensitive** |
+   | `LIVE_ARTICLE_LIMIT` | optional, articles per visitor per day for live comparison (default 60) |
+
+3. Deploy, then open the site in a private window, so the reading history starts empty.
+4. Check that the starter pack opens on 127 articles. Then add a real feed and open a story with two sources to see a live comparison.
+
+The starter pack is built into the home page when Vercel builds the site. After you commit new results in `data/sample/results/`, redeploy so the site shows them. Without the variables, the site still works, but live stories show "Comparison unavailable".
+
 ## Commands
 
 | Command | What it does |
