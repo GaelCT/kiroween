@@ -55,8 +55,13 @@ async function main(): Promise<void> {
   }
 
   const report = scoreStories(stories, results);
-  console.log(formatReport(report, verbose));
-  if (!report.passed) process.exitCode = 1;
+  if (report.passed) {
+    console.log(formatReport(report, verbose));
+    return;
+  }
+  // When a hook command fails, Kiro passes only its stderr to the agent, so the wrong lines go there.
+  console.error(formatReport(report, verbose));
+  process.exitCode = 1;
 }
 
 main().catch((error: unknown) => {
