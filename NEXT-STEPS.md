@@ -37,7 +37,13 @@ The script is in the gitignored `.cache/browser-e2e/`.
 
 **Not verified, worth checking (#15):** live-feed grouping reads each article's first two paragraphs. Since `c05289f`, those no longer include bylines or credits. The Nov 18 notes below say a similar filter made grouping less precise in the local labeled evaluation. That evaluation is on the other laptop, in `.cache/cluster-eval/`, and wasn't rerun. The starter pack is unaffected: it never goes through page extraction, and its three checks above are still exact. Whoever has `.cache/cluster-eval/` should rerun it. If live precision dropped, the options are tuning the threshold or grouping on the uncleaned lead.
 
-**AI key: set up on Jason's laptop (Nov 19, late).** `.env.local` uses `AI_PROVIDER=openrouter` and `AI_MODEL=z-ai/glm-5.3-flash`. That's a paid model at $0.04 per million input tokens and $0.08 per million output. One tiny real request through the adapter came back with the expected JSON in 0.66 seconds. `deepseek/deepseek-v4.1-flash-1017` also worked, but costs about 15 times as much. The key's spending cap is $50. Earlier, the free `google/gemma-4-31b-it:free` returned HTTP 429 from its provider twice, so avoid free models for full runs. Nothing bigger has run yet: #11's run on the sample, #13, #14's first score, #16's results, and #20's real comparison are still to do. Steps 1 to 4 below are the order.
+**AI key: set up on Jason's laptop (Nov 19, late).** `.env.local` uses `AI_PROVIDER=openrouter` and `AI_MODEL=z-ai/glm-5.3-flash`. That's a paid model at $0.04 per million input tokens and $0.08 per million output. One tiny real request through the adapter came back with the expected JSON in 0.66 seconds. `deepseek/deepseek-v4.1-flash-1017` also worked, but costs about 15 times as much. The key's spending cap is $50. Earlier, the free `google/gemma-4-31b-it:free` returned HTTP 429 from its provider twice, so avoid free models for full runs. **First real run (Nov 19, late):** `npm run pipeline:sample` scored **223 of 238 "+" lines right (94%)** across all 34 stories, above the 80% bar. The results are committed in `data/sample/results/`, so the app now shows AI facts, and the "Sample data" note says so. The run cost about $0.08 in all, including two failed attempts.
+- **First attempt:** 11 stories failed. Fixes in `492b7a3`: low reasoning effort, one retry for malformed JSON, and a clearer token-limit error. Each fix has a test that failed first.
+- **The demo's RV-90 story** still plays as scripted. FrameTime adds the 38%, 142 fps, and 320 W lines. Ohm & Bit's list shrinks after FrameTime is read. Launch Desk ends at "No significant new information". The wording changed slightly: "Drew 320 W under load", not "Draws".
+- **The 15 wrong lines** are mostly restatements of a primary fact that matching didn't recognize (Aurelith, Brightmesh, Gloamstream, and Nimbusfold have 3 or more each). One is a sentence the answer key marks as no fact. They pass the bar, but #16 asks for wrong lines to be fixed in the pipeline. The next step is the matching prompt in `src/pipeline/facts.ts`.
+- **The hook's command**, run by hand, scored 30 of 33 (91%). The hook firing on its own in a session still hasn't been seen.
+
+Still to do: #13 (real feeds, checked by hand) and #20's real comparison.
 
 ## The one thing blocking everything: the AI key (#10)
 
@@ -55,10 +61,10 @@ Once the key is set, run these in order:
 | Issue | Status |
 |---|---|
 | #10 AI provider and key | **OpenRouter chosen and the adapter built** (`c750a6d`, not pushed yet). Needs your key in `.env.local`. |
-| #11 Extract facts | Built in `src/pipeline/facts.ts` and tested with a fake model. Bad replies are no longer cached (`0fc9fdd`). Needs a real run (step 1). |
+| #11 Extract facts | Run on the starter pack with a real model and compared with the answer key: 223 of 238 right (94%). Every box is met. |
 | #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
-| #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Checked against Kiro's docs on Nov 19: `timeout` belongs at the hook level, in seconds, so 300 gives five minutes. `PostFileSave` only fires when Kiro's agent edits a file. A failing report now reaches the agent (`0199744`). The hook hasn't been seen firing in a real session yet: in the IDE, check the Agent Hooks panel; in Kiro CLI V3, use `/hooks`. Needs a first real score. |
+| #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Checked against Kiro's docs on Nov 19: `timeout` belongs at the hook level, in seconds, so 300 gives five minutes. `PostFileSave` only fires when Kiro's agent edits a file. A failing report now reaches the agent (`0199744`). Its command, run by hand with the real model, scored 30 of 33 (91%), and the write-up describes it. The hook hasn't been seen firing in a real session yet: in the IDE, check the Agent Hooks panel; in Kiro CLI V3, use `/hooks`. |
 | #15 Story clustering | **Closed.** The known wrong grouping is separated. See "Resolution: #15" below. |
 | #20 Add Feed | Built: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Checked in a browser on Nov 18 and again on Nov 19 (20 of 20 checks, above). The per-visitor cap is tested through the route with a fake provider (`385b69c`). Page furniture is gone from extracted text (`c05289f`). Still to check with the key: a real comparison. |
 | #21 Archive | Closed. Checked in a browser: when a feed stops listing articles, Reader keeps them, even after a reload. |
@@ -72,7 +78,7 @@ Once the key is set, run these in order:
 
 ## Left on label A
 
-- **#16, the AI half of the starter pack.** It's unblocked once step 1 above runs: the loader already uses `data/sample/results/` when it exists, and the "Sample data" tooltip updates itself. Both are now tested (`8fec491`). Still to do: check the "+" lines. The demo script now picks its disclosure line from the tooltip, so it no longer needs editing.
+- **#16, the AI half of the starter pack.** The AI results are precomputed and committed (Nov 19), and the app uses them, so judging needs no AI calls. Every "+" line was checked against the fact tables: 223 of 238 right. Still open: fix the 15 wrong lines by improving the matching prompt and rerunning `npm run pipeline:sample`. The demo script picks its disclosure line from the tooltip, so with these results it uses "AI results computed ahead of time".
 - **#27, the demo video.** Record after #16, on the deployed site. `docs/demo-script.md` has the script and the recording checklist. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
 
 ## Setting up MCP (#24)

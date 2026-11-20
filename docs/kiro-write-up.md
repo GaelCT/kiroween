@@ -49,7 +49,14 @@ We checked the hook against Kiro's documentation on Nov 19 and found one real pr
 
 Until there's an AI key, the pipeline is tested with a fake model that answers from the fact tables. Run on the whole starter pack, a model that answered that well would get 235 of 235 "+" lines right. That only shows the scoring and plumbing work. It says nothing about a real model.
 
-**To do:** add the first real score once the AI key is set, and note whether the hook was seen firing in a session.
+**First real score (Nov 19):** with `z-ai/glm-5.3-flash` through OpenRouter, the pipeline got 223 of 238 "+" lines right across the whole starter pack, which is 94%. The hook's own command, run by hand on its three check stories, scored 30 of 33, or 91%. The first real run also turned up three problems, which we fixed in the pipeline rather than the output:
+- The model reasons at maximum effort by default, which used up the token limit on 8 stories. It's now asked for low effort.
+- On 3 stories, it sent malformed JSON, such as a missing bracket. A malformed reply now gets one more try.
+- A reply cut off partway through had been reported as bad JSON. It's now reported as hitting the token limit.
+
+Most of the 15 wrong lines are restatements of the primary article's facts that the matching step didn't recognize, such as "Priced at $1,499" next to "Costs $1,499".
+
+**To do:** note whether the hook was seen firing in a session. So far its command has only been run by hand.
 
 ## Kiro IDE and Kiro CLI
 
