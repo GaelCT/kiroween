@@ -62,7 +62,13 @@ describe("OpenRouter", () => {
   interface Seen {
     url: string;
     headers: Record<string, string>;
-    body: { model: string; max_tokens?: number; max_completion_tokens?: number; messages: { role: string; content: string }[] };
+    body: {
+      model: string;
+      max_tokens?: number;
+      max_completion_tokens?: number;
+      reasoning?: { effort: string };
+      messages: { role: string; content: string }[];
+    };
   }
 
   /** A fake fetch that answers each call with the next response and records what was sent. */
@@ -101,6 +107,8 @@ describe("OpenRouter", () => {
     expect(seen[0].body).toEqual({
       model: "vendor/test-model",
       max_tokens: 1234,
+      // Low effort leaves most of max_tokens for the answer on models that always reason.
+      reasoning: { effort: "low" },
       messages: [
         { role: "system", content: "sys" },
         { role: "user", content: "usr" },
@@ -159,6 +167,15 @@ describe("OpenRouter", () => {
     expect(String(error)).toMatch(/token limit/);
   });
 
+  it("explains a reply cut off partway through at the token limit", async () => {
+    const { fetchImpl } = replies(answer('{"facts": [{"fact": "Costs $5", "sentence": "It cos', "length"));
+    const error = await modelFromEnv(env, fetchImpl)
+      .completeJson({ system: "s", user: "u", listKey: "facts" })
+      .catch((caught: Error) => caught);
+    expect(error).toBeInstanceOf(ModelError);
+    expect(String(error)).toMatch(/token limit/);
+  });
+
   it("turns a reply that isn't JSON into a ModelError", async () => {
     const { fetchImpl } = replies(() => new Response("<html>gateway</html>", { status: 200, headers: { "content-type": "text/html" } }));
     const error = await modelFromEnv(env, fetchImpl)
@@ -190,17 +207,33 @@ describe("the reply's list", () => {
   it("rejects a reply without the list, so it never reaches the disk cache", async () => {
     const dir = await mkdtemp(path.join(tmpdir(), "reader-ai-cache-"));
     try {
-      const { fetchImpl, calls } = answering('{"answer": "I found some facts"}', '{"facts": []}');
+      const bad = '{"answer": "I found some facts"}';
+      const { fetchImpl, calls } = answering(bad, bad, '{"facts": []}');
       const cached = withDiskCache(modelFromEnv(env, fetchImpl), dir);
       const request = { system: "s", user: "u", listKey: "facts" };
       await expect(cached.completeJson(request)).rejects.toThrow(/"facts" list/);
       expect(await readdir(dir)).toEqual([]);
       // Rerunning asks the model again instead of replaying the bad reply.
       expect(await cached.completeJson(request)).toEqual({ facts: [] });
-      expect(calls()).toBe(2);
+      expect(calls()).toBe(3);
     } finally {
       await rm(dir, { recursive: true, force: true });
     }
+  });
+
+  it("asks once more when a reply is malformed, as a real model's was on Nov 19", async () => {
+    // The real reply was missing the closing bracket of its list.
+    const { fetchImpl, calls } = answering('{"groups": [[0, 5], [1], [2]}', '{"groups": [[0, 5], [1], [2]]}');
+    expect(await modelFromEnv(env, fetchImpl).completeJson({ system: "s", user: "u", listKey: "groups" })).toEqual({
+      groups: [[0, 5], [1], [2]],
+    });
+    expect(calls()).toBe(2);
+  });
+
+  it("gives up after a second malformed reply", async () => {
+    const { fetchImpl, calls } = answering('{"groups": [[0]}');
+    await expect(modelFromEnv(env, fetchImpl).completeJson({ system: "s", user: "u", listKey: "groups" })).rejects.toThrow(ModelError);
+    expect(calls()).toBe(2);
   });
 });
 

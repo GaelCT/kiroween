@@ -87,6 +87,11 @@ const PROVIDERS: Record<string, ProviderConfig> = {
       }, {
         model,
         max_tokens: request.maxTokens ?? 4096,
+        // Reasoning shares max_tokens with the answer. Some models always reason, at "max"
+        // effort by default, which used up the whole limit on 8 of 34 starter-pack stories
+        // (Nov 19). "Low" keeps reasoning to about a fifth of the limit. OpenRouter ignores it
+        // for models that don't reason.
+        reasoning: { effort: "low" },
         messages: [
           { role: "system", content: request.system },
           { role: "user", content: request.user },
@@ -99,16 +104,15 @@ const PROVIDERS: Record<string, ProviderConfig> = {
 
 export const PROVIDER_NAMES = Object.keys(PROVIDERS);
 
-/** The reply text of a chat completion. An empty reply cut off at the token limit gets its own error. */
+/** The reply text of a chat completion. A reply cut off at the token limit, empty or partway through, gets its own error. */
 function chatCompletionText(response: unknown): string {
   const choices = (response as { choices?: { message?: { content?: string | null }; finish_reason?: string }[] }).choices ?? [];
-  const text = choices[0]?.message?.content ?? "";
-  if (!text && choices[0]?.finish_reason === "length") {
+  if (choices[0]?.finish_reason === "length") {
     throw new ModelError(
-      "The model hit its token limit before answering. Reasoning models can spend the whole limit thinking; pick a model without reasoning or raise maxTokens.",
+      "The model hit its token limit before finishing its answer. Reasoning models can spend most of the limit thinking; pick a model that reasons less, or raise maxTokens.",
     );
   }
-  return text;
+  return choices[0]?.message?.content ?? "";
 }
 
 /** Errors worth retrying, as OpenRouter types them in `error.metadata.error_type`. */
@@ -225,7 +229,16 @@ export function modelFromEnv(env: Env = process.env, fetchImpl: typeof fetch = f
   return {
     name: `${providerName}/${model}`,
     async completeJson(request) {
-      return withList(parseJsonReply(await provider.send(key, model, request, fetchImpl)), request.listKey);
+      // Models sometimes slip on JSON, such as a missing bracket (3 of 34 starter-pack stories
+      // on Nov 19). Asking again usually works, so a malformed reply gets one more try.
+      for (let attempt = 0; ; attempt++) {
+        const text = await provider.send(key, model, request, fetchImpl);
+        try {
+          return withList(parseJsonReply(text), request.listKey);
+        } catch (error) {
+          if (attempt >= 1) throw error;
+        }
+      }
     },
   };
 }
