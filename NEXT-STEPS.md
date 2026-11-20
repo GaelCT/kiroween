@@ -6,7 +6,7 @@ The code for label B's pipeline is built. What's left mostly needs an AI key, an
 
 ## The Nov 19 session
 
-**Pushed on Nov 19**, on top of `1a35e10`. No issue was closed or commented on, and nothing was deployed.
+**Pushed on Nov 19**, on top of `1a35e10`. #10 and #11 were closed as completed on Nov 19, each with a comment giving the evidence. Nothing has been deployed.
 
 | Commit | Issue | What changed | How it was checked |
 |---|---|---|---|
@@ -60,8 +60,8 @@ Once the key is set, run these in order:
 
 | Issue | Status |
 |---|---|
-| #10 AI provider and key | **OpenRouter chosen and the adapter built** (`c750a6d`, not pushed yet). Needs your key in `.env.local`. |
-| #11 Extract facts | Run on the starter pack with a real model and compared with the answer key: 223 of 238 right (94%). Every box is met. |
+| #10 AI provider and key | **Closed.** OpenRouter adapter (`c750a6d`). Real requests work with `z-ai/glm-5.3-flash`. |
+| #11 Extract facts | **Closed.** Run on the starter pack with a real model and compared with the answer key: 223 of 238 right (94%). |
 | #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
 | #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
 | #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Checked against Kiro's docs on Nov 19: `timeout` belongs at the hook level, in seconds, so 300 gives five minutes. `PostFileSave` only fires when Kiro's agent edits a file. A failing report now reaches the agent (`0199744`). Its command, run by hand with the real model, scored 30 of 33 (91%), and the write-up describes it. The hook hasn't been seen firing in a real session yet: in the IDE, check the Agent Hooks panel; in Kiro CLI V3, use `/hooks`. |
