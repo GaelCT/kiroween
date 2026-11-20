@@ -6,7 +6,7 @@ The code for label B's pipeline is built. What's left mostly needs an AI key, an
 
 ## The Nov 19 session
 
-**Not pushed yet.** These commits exist only on Jason's laptop, on top of `1a35e10`. Push them with `git push origin main` before anyone else works on `main`. No issue was closed or commented on, and nothing was deployed.
+**Pushed on Nov 19**, on top of `1a35e10`. No issue was closed or commented on, and nothing was deployed.
 
 | Commit | Issue | What changed | How it was checked |
 |---|---|---|---|
@@ -37,7 +37,7 @@ The script is in the gitignored `.cache/browser-e2e/`.
 
 **Not verified, worth checking (#15):** live-feed grouping reads each article's first two paragraphs. Since `c05289f`, those no longer include bylines or credits. The Nov 18 notes below say a similar filter made grouping less precise in the local labeled evaluation. That evaluation is on the other laptop, in `.cache/cluster-eval/`, and wasn't rerun. The starter pack is unaffected: it never goes through page extraction, and its three checks above are still exact. Whoever has `.cache/cluster-eval/` should rerun it. If live precision dropped, the options are tuning the threshold or grouping on the uncleaned lead.
 
-**Blocked on the AI key:** no provider is set up on this laptop. The app's own config check reports `modelConfigured(): false`. Until there's a key, nothing has had a real model run: #11's run on the sample, #13, #14's first score, #16's results, and #20's real comparison. Steps 1 to 4 below are still the order.
+**AI key: set up on Jason's laptop (Nov 19, late).** `.env.local` uses `AI_PROVIDER=openrouter` and `AI_MODEL=deepseek/deepseek-v4.1-flash-1017`. One tiny real request through the adapter came back with the expected JSON in about 2 seconds. The key's spending cap is $1. Earlier, the free `google/gemma-4-31b-it:free` returned HTTP 429 from its provider twice, so avoid free models for full runs. Nothing bigger has run yet: #11's run on the sample, #13, #14's first score, #16's results, and #20's real comparison are still to do. Steps 1 to 4 below are the order.
 
 ## The one thing blocking everything: the AI key (#10)
 
