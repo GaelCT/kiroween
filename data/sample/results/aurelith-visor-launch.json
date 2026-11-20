@@ -1,0 +1,146 @@
+{
+  "story": "aurelith-visor-launch",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.784Z",
+  "facts": {
+    "f01": "Aurelith launched the Visor on Monday",
+    "f02": "The Visor costs $1,499",
+    "f03": "Ships December 4",
+    "f04": "Will only be sold in the US and Canada at launch",
+    "f05": "The headset weighs 545 g",
+    "f06": "Priced at $1,499",
+    "f07": "Each eye has a 3,400 by 3,400 pixel display",
+    "f08": "Aurelith rates the battery for 2.5 hours of use",
+    "f09": "App store will open with 320 apps",
+    "f10": "Aurelith's Visor mixed-reality headset launched today",
+    "f11": "10 of 12 games tested held a steady 90 fps",
+    "f12": "Glasshollow averaged 71 fps at high settings",
+    "f13": "Battery lasted 2 hours and 10 minutes in gaming runs",
+    "f14": "Visor is Aurelith's first mixed-reality headset",
+    "f15": "Battery sits in a separate 210 g pack on a cable",
+    "f16": "Field of view is 100° horizontally",
+    "f17": "Apps see only selection confirmations, not raw eye-tracking data",
+    "f18": "Aurelith says eye-tracking data is processed on the headset",
+    "f19": "The Gaze Data Privacy Act would ban the sale of eye-tracking data",
+    "f20": "Fines could reach $7,500 per affected user"
+  },
+  "articles": {
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Aurelith launched the Visor on Monday, its first mixed-reality headset."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The Visor costs $1,499."
+      },
+      {
+        "factId": "f03",
+        "sentence": "It ships December 4."
+      },
+      {
+        "factId": "f04",
+        "sentence": "At launch, it will only be sold in the US and Canada."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The headset weighs 545 g."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Aurelith on Monday introduced the Visor, the company's first mixed-reality headset."
+      },
+      {
+        "factId": "f06",
+        "sentence": "It's priced at $1,499."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Each eye gets its own 3,400 by 3,400 pixel display."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Aurelith rates the battery for 2.5 hours of use."
+      },
+      {
+        "factId": "f09",
+        "sentence": "The Visor's app store will open with 320 apps."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f10",
+        "sentence": "Aurelith's first mixed-reality headset, the Visor, launched today."
+      },
+      {
+        "factId": "f11",
+        "sentence": "In our testing, 10 of the 12 games we tried held a steady 90 frames per second."
+      },
+      {
+        "factId": "f12",
+        "sentence": "The toughest, Glasshollow, averaged 71 fps at high settings."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Aurelith quotes 2.5 hours of battery life."
+      },
+      {
+        "factId": "f13",
+        "sentence": "In our gaming runs, the battery lasted 2 hours and 10 minutes."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f14",
+        "sentence": "Aurelith has unveiled the Visor, its first mixed-reality headset."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The headset itself weighs 545 g."
+      },
+      {
+        "factId": "f15",
+        "sentence": "The battery rides in a separate 210 g pack on a cable."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Behind the lenses sit two 3,400 by 3,400 pixel displays, one per eye."
+      },
+      {
+        "factId": "f16",
+        "sentence": "The field of view is 100° horizontally."
+      },
+      {
+        "factId": "f17",
+        "sentence": "Apps never see raw eye-tracking data, only the moment the wearer confirms a selection."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Aurelith released the Visor, its first mixed-reality headset, on Monday."
+      },
+      {
+        "factId": "f18",
+        "sentence": "Aurelith says raw eye-tracking data is processed on the headset and never sent to its servers."
+      },
+      {
+        "factId": "f19",
+        "sentence": "A pending bill, the Gaze Data Privacy Act, would ban the sale of eye-tracking data."
+      },
+      {
+        "factId": "f20",
+        "sentence": "Companies that break it would face fines of up to $7,500 per affected user."
+      }
+    ]
+  },
+  "dropped": {
+    "launch-desk": 0,
+    "byteward": 0,
+    "frametime": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

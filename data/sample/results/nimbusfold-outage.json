@@ -1,0 +1,125 @@
+{
+  "story": "nimbusfold-outage",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.900Z",
+  "facts": {
+    "f01": "Problems started at 04:10 UTC on Friday",
+    "f02": "Nimbusfold says services were restored by 08:25 UTC",
+    "f03": "About 3,100 business customers were affected",
+    "f04": "The food delivery app Tinbowl was affected",
+    "f05": "Nimbusfold outage on Friday knocked apps and sites offline for hours",
+    "f06": "A Nimbusfold cloud outage knocked apps and websites offline for hours this morning",
+    "f07": "Servers for Embercoast and Quenmoor Online went down",
+    "f08": "Thornwick Games says no player accounts or purchases were lost",
+    "f09": "Every Embercoast player gets three days of free premium time",
+    "f10": "Nimbusfold blamed a faulty network configuration change",
+    "f11": "The change reached every region at once",
+    "f12": "The change was undone by hand, one region at a time",
+    "f13": "National Cyber Readiness Office asked for a written report by November 20",
+    "f14": "Affected customers qualify for a 10% credit on the month's bill",
+    "f15": "Customers have 30 days to claim the credit"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Problems started at 04:10 UTC, according to the company's status page."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Nimbusfold said all services were restored by 08:25 UTC."
+      },
+      {
+        "factId": "f03",
+        "sentence": "“About 3,100 business customers were affected,” the company said in a statement."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Among them were the food delivery app Tinbowl and the online bank Brassmint."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f05",
+        "sentence": "Apps and websites went dark for hours Friday when Nimbusfold's cloud failed."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Delivery app Tinbowl and online bank Brassmint were among the casualties."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Everything was back up by 08:25 UTC."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f06",
+        "sentence": "A Nimbusfold cloud outage knocked apps and websites offline for hours this morning."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Servers for Embercoast and Quenmoor Online went down with it."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Thornwick Games, which publishes Embercoast, says no player accounts or purchases were lost."
+      },
+      {
+        "factId": "f09",
+        "sentence": "To make up for the downtime, every Embercoast player gets three days of free premium time."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Nimbusfold has blamed a faulty network configuration change."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f10",
+        "sentence": "Nimbusfold's preliminary report traces the outage to a faulty network configuration change."
+      },
+      {
+        "factId": "f01",
+        "sentence": "The first errors appeared at 04:10 UTC."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Instead of rolling out one region at a time, the change reached every region at once."
+      },
+      {
+        "factId": "f12",
+        "sentence": "In the end, they undid the change by hand, one region at a time."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Service was fully back by 08:25 UTC."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f05",
+        "sentence": "Nimbusfold's cloud outage took down apps and websites for hours on Friday."
+      },
+      {
+        "factId": "f13",
+        "sentence": "By midday, the National Cyber Readiness Office had asked the company for a written report by November 20."
+      },
+      {
+        "factId": "f14",
+        "sentence": "Under Nimbusfold's standard contract, affected customers qualify for a 10% credit on the month's bill."
+      },
+      {
+        "factId": "f15",
+        "sentence": "They have 30 days to claim it."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 1,
+    "launch-desk": 1,
+    "frametime": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

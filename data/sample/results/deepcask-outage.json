@@ -1,0 +1,60 @@
+{
+  "story": "deepcask-outage",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:09.948Z",
+  "facts": {
+    "f01": "A Deepcask storage outage broke apps and websites on Friday morning",
+    "f02": "The outage lasted 2 hours and 10 minutes",
+    "f03": "A cooling failure at Deepcask's Ohio data center was the cause",
+    "f04": "Deepcask shut down 1,800 storage servers to protect the drives",
+    "f05": "Deepcask says no customer data was lost",
+    "f06": "Shutterkin and Layloft were among services unable to open files",
+    "f07": "Deepcask will publish a full incident report within 14 days"
+  },
+  "articles": {
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "A Deepcask storage outage broke apps and websites on Friday morning, leaving images missing and uploads stuck."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The outage lasted 2 hours and 10 minutes."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The cause was physical rather than digital: a cooling failure at Deepcask's Ohio data center."
+      },
+      {
+        "factId": "f04",
+        "sentence": "To protect the drives, Deepcask shut down 1,800 storage servers."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Deepcask says no customer data was lost."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "An outage at cloud storage provider Deepcask left apps and websites unable to load files for part of Friday morning."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The company blamed a cooling failure at its data center in Ohio."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The photo app Shutterkin and the design tool Layloft were among the services that couldn't open files."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Deepcask says it will publish a full incident report within 14 days."
+      }
+    ]
+  },
+  "dropped": {
+    "ohm-and-bit": 0,
+    "byteward": 0
+  }
+}

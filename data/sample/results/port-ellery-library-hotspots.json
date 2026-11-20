@@ -1,0 +1,12 @@
+{
+  "story": "port-ellery-library-hotspots",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.906Z",
+  "facts": {},
+  "articles": {
+    "byteward": []
+  },
+  "dropped": {
+    "byteward": 0
+  }
+}

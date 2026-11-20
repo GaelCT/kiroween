@@ -1,0 +1,140 @@
+{
+  "story": "corvid-rv90",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.800Z",
+  "facts": {
+    "f01": "Corvid announced the RV-90 on Monday",
+    "f02": "Built on Nocturne, Corvid's new graphics architecture",
+    "f03": "Ships with 24 GB of GDDR7 memory",
+    "f04": "Chip is made on a 3 nm process",
+    "f05": "Corvid says it is twice as fast as the RV-80 at ray tracing",
+    "f06": "Costs $899",
+    "f07": "Goes on sale December 10",
+    "f08": "Ran 38% faster than the RV-80 at 4K in testing",
+    "f09": "Averaged 142 fps at 1440p in ray-traced games",
+    "f10": "Drew 320 W under load",
+    "f11": "Corvid recommends an 850 W power supply",
+    "f12": "Ran at 84 °C under sustained load",
+    "f13": "Only 14 games support frame generation at launch"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Corvid announced the RV-90 on Monday, its new flagship graphics card for desktop PCs."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The card is built on Nocturne, Corvid's new graphics architecture."
+      },
+      {
+        "factId": "f03",
+        "sentence": "It ships with 24 GB of GDDR7 memory."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The chip is made on a 3 nm process."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Corvid says the RV-90 is twice as fast as last year's RV-80 at ray tracing."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Corvid has launched the RV-90, its new flagship graphics card."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The card will cost $899."
+      },
+      {
+        "factId": "f07",
+        "sentence": "It goes on sale December 10."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Under the hood is Nocturne, the company's new graphics architecture."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The card carries 24 GB of GDDR7 memory."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Corvid claims the RV-90 doubles the RV-80's ray-tracing performance."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f01",
+        "sentence": "Corvid revealed the RV-90 today, its new flagship graphics card."
+      },
+      {
+        "factId": "f08",
+        "sentence": "At 4K, the RV-90 ran 38% faster than the RV-80 in our testing."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Across our ray-traced games, it averaged 142 frames per second at 1440p."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Our power meter showed the card drawing 320 W under load."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Its 24 GB of GDDR7 memory leaves plenty of headroom at high resolutions."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Corvid unveiled the RV-90 on Monday, its new flagship graphics card."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The card uses Corvid's new Nocturne architecture."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Corvid makes the chip on a 3 nm process."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Corvid has set the price at $899."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Cards arrive in stores on December 10."
+      },
+      {
+        "factId": "f08",
+        "sentence": "In our benchmarks, it was 38 percent faster than the RV-80 at 4K."
+      },
+      {
+        "factId": "f10",
+        "sentence": "We measured 320 W of power draw under load."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Corvid recommends an 850 W power supply for the card."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Under sustained load, the GPU ran at 84 °C."
+      },
+      {
+        "factId": "f13",
+        "sentence": "At launch, only 14 games support the card's frame generation feature."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0,
+    "frametime": 0,
+    "ohm-and-bit": 0
+  }
+}

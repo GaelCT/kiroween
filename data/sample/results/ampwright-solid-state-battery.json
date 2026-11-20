@@ -1,0 +1,76 @@
+{
+  "story": "ampwright-solid-state-battery",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.784Z",
+  "facts": {
+    "f01": "Showed solid-state battery cells for phones on Thursday",
+    "f02": "Ampwright claims 1,050 Wh per liter energy density",
+    "f03": "Ampwright claims charging to 80% in 12 minutes",
+    "f04": "Kept 90% capacity after 1,200 cycles in Ampwright's tests",
+    "f05": "Mass production planned to begin in 2028",
+    "f06": "Ampwright announced $310 million in new funding",
+    "f07": "The round values Ampwright at $2.1 billion",
+    "f08": "Ampwright will open a pilot production line in 2027"
+  },
+  "articles": {
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Ampwright Labs showed off solid-state battery cells built for phones on Thursday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Ampwright says the cells store 1,050 Wh per liter."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The company also claims the cells charge to 80% in 12 minutes."
+      },
+      {
+        "factId": "f04",
+        "sentence": "In Ampwright's own tests, a cell kept 90% of its capacity after 1,200 charge cycles."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Ampwright Labs on Thursday showed solid-state battery cells designed for smartphones."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The company says they store 1,050 Wh per liter."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Ampwright plans to begin mass production in 2028."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Ampwright Labs has shown solid-state battery cells for phones."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The startup also announced $310 million in new funding."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The round values it at $2.1 billion."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Ampwright will open a pilot production line in 2027."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Mass production is planned for 2028."
+      }
+    ]
+  },
+  "dropped": {
+    "ohm-and-bit": 0,
+    "byteward": 0,
+    "launch-desk": 0
+  }
+}

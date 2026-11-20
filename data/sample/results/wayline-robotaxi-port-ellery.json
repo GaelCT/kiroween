@@ -1,0 +1,122 @@
+{
+  "story": "wayline-robotaxi-port-ellery",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:09.960Z",
+  "facts": {
+    "f01": "Wayline began charging for robotaxi rides in Port Ellery on Saturday",
+    "f02": "The cars have no safety driver behind the wheel",
+    "f03": "The service launches with 40 cars",
+    "f04": "Its service area covers 31 square miles of the city",
+    "f05": "Rides are available from 6 a.m. to midnight",
+    "f06": "Fares are $3 to start plus $1.90 per mile",
+    "f07": "Plans to grow fleet to 200 cars by mid-2027",
+    "f08": "Company raised $600 million in September",
+    "f09": "Pays the city 25 cents for every ride",
+    "f10": "The permit caps Wayline's fleet at 100 cars",
+    "f11": "The city will review the permit in May",
+    "f12": "Wayline must report any crash to the city within 12 hours",
+    "f13": "Each car carries five lidar sensors",
+    "f14": "Wayline caps the cars at 45 mph",
+    "f15": "Remote operators can suggest a route but can't steer"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Wayline began charging for robotaxi rides in Port Ellery on Saturday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The cars have no safety driver behind the wheel."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The service launches with 40 cars."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Its service area covers 31 square miles of the city."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Rides are available from 6 a.m. to midnight."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Wayline has started paid robotaxi service in Port Ellery."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Fares are $3 to start plus $1.90 per mile."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The launch fleet is 40 cars."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Wayline plans to grow that to 200 cars by mid-2027."
+      },
+      {
+        "factId": "f08",
+        "sentence": "The company raised $600 million in September."
+      },
+      {
+        "factId": "f09",
+        "sentence": "It pays the city 25 cents for every ride."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Wayline started paid robotaxi rides in Port Ellery on Saturday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Its cars run with no safety driver."
+      },
+      {
+        "factId": "f10",
+        "sentence": "The permit caps Wayline's fleet at 100 cars."
+      },
+      {
+        "factId": "f11",
+        "sentence": "The city will review the permit in May."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Wayline must report any crash to the city within 12 hours."
+      },
+      {
+        "factId": "f09",
+        "sentence": "It also pays the city a fee of 25 cents per ride."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Wayline's robotaxis began paid rides in Port Ellery on Saturday."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Each car carries five lidar sensors, which map the street around it with laser pulses."
+      },
+      {
+        "factId": "f14",
+        "sentence": "Wayline caps the cars at 45 mph."
+      },
+      {
+        "factId": "f15",
+        "sentence": "Remote operators can suggest a route when a car gets stuck, but they can't steer it."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 1,
+    "launch-desk": 0,
+    "bench-and-bill": 0,
+    "ohm-and-bit": 0
+  }
+}

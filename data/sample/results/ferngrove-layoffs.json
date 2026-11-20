@@ -1,0 +1,70 @@
+{
+  "story": "ferngrove-layoffs",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.864Z",
+  "facts": {
+    "f01": "Ferngrove is cutting 2,000 jobs",
+    "f02": "Cuts equal about 4% of its workforce",
+    "f03": "Most cuts land on smart home division Hearth",
+    "f04": "Ferngrove expects $310 million in charges",
+    "f05": "The costs arrive right away",
+    "f06": "CEO Lena Marchbanks announced the cuts in a memo to staff",
+    "f07": "Ferngrove will stop selling its Hearth Panel smart display",
+    "f08": "Laid-off workers will get at least 16 weeks of pay",
+    "f09": "The company's second round of cuts included 900 jobs in March"
+  },
+  "articles": {
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Ferngrove is cutting 2,000 jobs."
+      },
+      {
+        "factId": "f02",
+        "sentence": "That's about 4% of its workforce."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Most of the cuts land on Hearth, the company's smart home division."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Ferngrove expects to book $310 million in charges, most of it for severance."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The costs arrive right away."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Ferngrove plans to lay off about 2,000 employees."
+      },
+      {
+        "factId": "f06",
+        "sentence": "CEO Lena Marchbanks announced the cuts in a memo to staff."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Most of the affected jobs are in Hearth, the company's smart home unit."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Ferngrove will also stop selling its Hearth Panel smart display."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Laid-off workers will get at least 16 weeks of pay."
+      },
+      {
+        "factId": "f09",
+        "sentence": "It's the company's second round of cuts this year, after 900 jobs went in March."
+      }
+    ]
+  },
+  "dropped": {
+    "launch-desk": 0,
+    "byteward": 0
+  }
+}

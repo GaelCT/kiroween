@@ -1,0 +1,159 @@
+{
+  "story": "forge-deck-2",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.872Z",
+  "facts": {
+    "f01": "Pixelforge announced the Forge Deck 2 on Saturday",
+    "f02": "Starts at $549",
+    "f03": "Goes on sale February 18",
+    "f04": "Has an 8-inch screen",
+    "f05": "Pixelforge claims 2.5 times the graphics performance of the original",
+    "f06": "Base model comes with 512 GB of storage",
+    "f07": "Has a 60 Wh battery",
+    "f08": "Pixelforge is cutting the original Forge Deck's price to $349",
+    "f09": "1 TB Forge Deck 2 model costs $649",
+    "f10": "Preorders open November 20",
+    "f11": "Pixelforge says it sold 6.2 million Forge Decks",
+    "f12": "Weighs 690 g",
+    "f13": "Chip can draw up to 18 W in games",
+    "f14": "Battery is held in with screws rather than glue",
+    "f15": "Handheld consoles must carry a repairability score starting July 1, 2027 under the Parts and Manuals Act",
+    "f16": "Pixelforge says it will print the label on the box from day one",
+    "f17": "Pixelforge gives the console a repairability score of 8 out of 10"
+  },
+  "articles": {
+    "frametime": [
+      {
+        "factId": "f01",
+        "sentence": "Pixelforge announced the Forge Deck 2 on Saturday, the successor to its handheld game console."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It will start at $549."
+      },
+      {
+        "factId": "f03",
+        "sentence": "It goes on sale February 18."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The new model has an 8-inch screen."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Pixelforge claims it delivers 2.5 times the graphics performance of the original Forge Deck."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Pixelforge on Saturday announced the Forge Deck 2, a new version of its handheld game console."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Prices start at $549."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The base model comes with 512 GB of storage."
+      },
+      {
+        "factId": "f07",
+        "sentence": "It has a 60 Wh battery."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Pixelforge is also cutting the price of the original Forge Deck to $349."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Pixelforge has announced the Forge Deck 2 handheld console."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Pricing starts at $549."
+      },
+      {
+        "factId": "f09",
+        "sentence": "A model with 1 TB of storage costs $649."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Preorders open November 20."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The console reaches stores February 18."
+      },
+      {
+        "factId": "f08",
+        "sentence": "The original Forge Deck drops to $349."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Pixelforge says it has sold 6.2 million of them."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Pixelforge has unveiled the Forge Deck 2, the second generation of its handheld console."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The screen measures 8 inches diagonally."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Behind it sits a 60 Wh battery."
+      },
+      {
+        "factId": "f12",
+        "sentence": "All that battery brings the weight to 690 g."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Pixelforge lets the chip draw up to 18 W in games."
+      },
+      {
+        "factId": "f14",
+        "sentence": "The battery is held in with screws rather than glue."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Pixelforge announced the Forge Deck 2, its next handheld console, on Saturday."
+      },
+      {
+        "factId": "f15",
+        "sentence": "Under the Parts and Manuals Act, handheld consoles must carry a repairability score starting July 1, 2027."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The Forge Deck 2 goes on sale February 18."
+      },
+      {
+        "factId": "f16",
+        "sentence": "Pixelforge says it will print the label on the box from day one anyway."
+      },
+      {
+        "factId": "f17",
+        "sentence": "The company gives the console a repairability score of 8 out of 10."
+      },
+      {
+        "factId": "f14",
+        "sentence": "Its battery is fastened with screws, not glue."
+      }
+    ]
+  },
+  "dropped": {
+    "frametime": 0,
+    "byteward": 0,
+    "launch-desk": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

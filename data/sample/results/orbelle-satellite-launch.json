@@ -1,0 +1,107 @@
+{
+  "story": "orbelle-satellite-launch",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.907Z",
+  "facts": {
+    "f01": "Orbelle launched 40 internet satellites overnight",
+    "f02": "It was the company's 11th launch",
+    "f03": "All 40 satellites made contact with ground control, Orbelle says",
+    "f04": "Fleet now totals 412 satellites in orbit",
+    "f05": "Internet service sales planned for mid-2027",
+    "f06": "Will cost $89 a month",
+    "f07": "Has raised $2.3 billion so far",
+    "f08": "Needs 1,200 satellites in orbit by March 2030 to keep its spectrum license",
+    "f09": "Satellites will operate at an altitude of 590 km",
+    "f10": "Each satellite weighs 310 kg",
+    "f11": "License can shrink to 600 satellites if Orbelle falls short",
+    "f12": "Dead satellites must be deorbited within five years"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Orbelle launched 40 internet satellites overnight."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It was the company's 11th launch."
+      },
+      {
+        "factId": "f03",
+        "sentence": "All 40 satellites have made contact with ground control, Orbelle said."
+      },
+      {
+        "factId": "f04",
+        "sentence": "That brings the company's fleet to 412 satellites in orbit."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Orbelle plans to start selling internet service in mid-2027."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Orbelle put 40 more internet satellites into orbit overnight."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Service starts in mid-2027."
+      },
+      {
+        "factId": "f06",
+        "sentence": "It will cost $89 a month."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The company has raised $2.3 billion so far."
+      },
+      {
+        "factId": "f08",
+        "sentence": "It needs 1,200 satellites in orbit by March 2030 to keep its spectrum license."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Orbelle's latest launch carried 40 internet satellites."
+      },
+      {
+        "factId": "f09",
+        "sentence": "They'll operate at an altitude of 590 km, low enough to keep the delay on a connection short."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Each satellite weighs 310 kg."
+      },
+      {
+        "factId": "f04",
+        "sentence": "With this batch, Orbelle has 412 satellites in orbit."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f04",
+        "sentence": "The latest launch brings Orbelle to 412 satellites in orbit."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Under its Federal Spectrum Office license, the company must have 1,200 in orbit by March 2030."
+      },
+      {
+        "factId": "f11",
+        "sentence": "If it falls short, the office can shrink the license to cover 600 satellites."
+      },
+      {
+        "factId": "f12",
+        "sentence": "The license also requires Orbelle to move dead satellites out of orbit within five years."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

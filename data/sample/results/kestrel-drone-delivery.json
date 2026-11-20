@@ -1,0 +1,118 @@
+{
+  "story": "kestrel-drone-delivery",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.881Z",
+  "facts": {
+    "f01": "The Aviation Operations Board approved Kestrel Aerial's drone delivery service on Thursday",
+    "f02": "A single pilot can oversee up to 20 drones at once",
+    "f03": "Flights are allowed only between sunrise and sunset",
+    "f04": "Kestrel must report any crash or injury to the board within 24 hours",
+    "f05": "The approval lasts 2 years",
+    "f06": "Deliveries start December 1",
+    "f07": "Launches first in the suburbs of Phoenix and Dallas",
+    "f08": "Each delivery will cost customers $3.99",
+    "f09": "Pantryfield is Kestrel's first retail partner",
+    "f10": "Kestrel raised $180 million from investors in May",
+    "f11": "Kestrel's drones carry packages of up to 5 pounds",
+    "f12": "The drones have a round-trip range of 12 miles",
+    "f13": "Each drone hovers at 80 feet and lowers the package on a tether",
+    "f14": "One pilot can supervise as many as 20 drones at a time",
+    "f15": "Each drone carries a small radar that spots other aircraft on its own"
+  },
+  "articles": {
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "The Aviation Operations Board on Thursday approved Kestrel Aerial's drone delivery service."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Under the approval, a single pilot can oversee up to 20 drones at once."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Flights are allowed only between sunrise and sunset."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Kestrel must report any crash or injury to the board within 24 hours."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The approval lasts 2 years, after which Kestrel will have to apply again."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Kestrel Aerial has won approval from the Aviation Operations Board to deliver packages by drone."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Deliveries start December 1."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Kestrel will launch first in the suburbs of Phoenix and Dallas."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The drones will only fly during daylight."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Kestrel Aerial is cleared to start drone deliveries."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The first orders fly on December 1."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Each delivery will cost customers $3.99."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Grocery chain Pantryfield is Kestrel's first retail partner."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Kestrel raised $180 million from investors in May."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Kestrel Aerial now has approval to run drone deliveries."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Kestrel's drones carry packages of up to 5 pounds."
+      },
+      {
+        "factId": "f12",
+        "sentence": "They have a round-trip range of 12 miles."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Instead of landing, each drone hovers at 80 feet and lowers the package on a tether."
+      },
+      {
+        "factId": "f14",
+        "sentence": "One pilot can supervise as many as 20 of them at a time."
+      },
+      {
+        "factId": "f15",
+        "sentence": "To make that safe, each drone carries a small radar that spots other aircraft on its own."
+      }
+    ]
+  },
+  "dropped": {
+    "bench-and-bill": 0,
+    "byteward": 0,
+    "launch-desk": 0,
+    "ohm-and-bit": 0
+  }
+}

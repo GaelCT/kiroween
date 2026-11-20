@@ -1,0 +1,107 @@
+{
+  "story": "gloamstream-price-increase",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.879Z",
+  "facts": {
+    "f01": "Ad-supported plan goes from $7.99 to $8.99 a month",
+    "f02": "Standard plan goes from $13.99 to $15.99 a month",
+    "f03": "Premium plan goes from $19.99 to $22.99 a month",
+    "f04": "New prices take effect for current subscribers on December 12",
+    "f05": "Gloamstream is increasing the price of every plan",
+    "f06": "Ad plan's 1080p streams averaged 4.1 Mbps in testing",
+    "f07": "Standard's 1080p streams averaged 7.8 Mbps",
+    "f08": "Premium's 4K streams averaged 16.2 Mbps",
+    "f09": "Annual plans bought before December 12 keep the old rate",
+    "f10": "The Subscription Exit Act requires 30 days' notice before a subscription price increase",
+    "f11": "Gloamstream's December 12 date clears the 30-day notice bar by two days",
+    "f12": "The law requires online cancellation in two steps or fewer"
+  },
+  "articles": {
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "The ad-supported plan goes from $7.99 to $8.99 a month."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Standard rises from $13.99 to $15.99."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Premium climbs from $19.99 to $22.99."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Current subscribers will pay the new prices from December 12."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f05",
+        "sentence": "Gloamstream is increasing the price of every plan it offers."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The Standard plan moves from $13.99 to $15.99 a month."
+      },
+      {
+        "factId": "f04",
+        "sentence": "People who already subscribe will see the higher price starting December 12."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f05",
+        "sentence": "Gloamstream is raising prices across all three of its plans."
+      },
+      {
+        "factId": "f06",
+        "sentence": "In our testing, the ad plan's 1080p streams averaged 4.1 Mbps."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Standard's 1080p streams averaged 7.8 Mbps, nearly double."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Premium's 4K streams averaged 16.2 Mbps."
+      },
+      {
+        "factId": "f09",
+        "sentence": "If you'd rather lock in today's price, annual plans bought before December 12 keep the old rate."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f05",
+        "sentence": "Gloamstream is raising prices on every plan."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Existing subscribers will pay more starting December 12."
+      },
+      {
+        "factId": "f10",
+        "sentence": "The Subscription Exit Act requires 30 days' notice before a subscription's price goes up."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Gloamstream's December 12 date clears that bar by two days."
+      },
+      {
+        "factId": "f12",
+        "sentence": "The same law requires services to let customers cancel online in two steps or fewer."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Customers who would rather stay can lock in the current price by buying an annual plan before December 12."
+      }
+    ]
+  },
+  "dropped": {
+    "launch-desk": 0,
+    "byteward": 0,
+    "frametime": 0,
+    "bench-and-bill": 0
+  }
+}

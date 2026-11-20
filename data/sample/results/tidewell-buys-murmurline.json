@@ -1,0 +1,111 @@
+{
+  "story": "tidewell-buys-murmurline",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:09.959Z",
+  "facts": {
+    "f01": "Tidewell agreed to buy the messaging app Murmurline",
+    "f02": "Deal price is $3.2 billion",
+    "f03": "Tidewell is paying entirely in cash",
+    "f04": "Murmurline has 85 million monthly users",
+    "f05": "Companies expect the deal to close by mid-2027",
+    "f06": "Tidewell already owns Skerry",
+    "f07": "Two lawmakers asked antitrust regulators to review the deal",
+    "f08": "Tidewell owes Murmurline a $250 million breakup fee if regulators block the deal",
+    "f09": "Tidewell has promised to keep Murmurline's end-to-end encryption",
+    "f10": "Murmurline encrypts every message end to end",
+    "f11": "Tidewell's Skerry doesn't encrypt end to end",
+    "f12": "Tidewell wants Murmurline and Skerry interoperable by 2028"
+  },
+  "articles": {
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Tidewell has agreed to buy the messaging app Murmurline."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The price is $3.2 billion."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Tidewell is paying entirely in cash, with no stock in the mix."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Murmurline has 85 million monthly users."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The companies expect the deal to close by mid-2027."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Tidewell is buying Murmurline, the popular messaging app."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The deal values Murmurline at $3.2 billion."
+      },
+      {
+        "factId": "f04",
+        "sentence": "About 85 million people use Murmurline every month."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Tidewell has agreed to buy Murmurline, the messaging app."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The deal is worth $3.2 billion."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Tidewell already owns Skerry, a messaging app with 140 million users."
+      },
+      {
+        "factId": "f07",
+        "sentence": "Two lawmakers have already asked antitrust regulators to take a close look at the deal."
+      },
+      {
+        "factId": "f08",
+        "sentence": "If regulators block it, Tidewell owes Murmurline a $250 million breakup fee."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Tidewell has also promised to keep Murmurline's end-to-end encryption."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Tidewell is buying the messaging app Murmurline."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Murmurline encrypts every message end to end, so only the sender and the recipient can read it."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Tidewell says Murmurline will keep that protection."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Tidewell's own messaging app, Skerry, doesn't encrypt messages end to end."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Tidewell wants Murmurline and Skerry users to be able to message each other by 2028."
+      }
+    ]
+  },
+  "dropped": {
+    "launch-desk": 0,
+    "byteward": 0,
+    "bench-and-bill": 1,
+    "ohm-and-bit": 0
+  }
+}

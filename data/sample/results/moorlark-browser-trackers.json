@@ -1,0 +1,60 @@
+{
+  "story": "moorlark-browser-trackers",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.899Z",
+  "facts": {
+    "f01": "Moorlark browser blocks third-party trackers by default",
+    "f02": "Released in version 31 on Wednesday",
+    "f03": "Blocked an average of 23 trackers per page in Moorlark's tests",
+    "f04": "Moorlark has about 48 million users",
+    "f05": "Open Ad Markets Coalition filed a complaint on Wednesday",
+    "f06": "Online Tracking Consent Act takes effect March 1",
+    "f07": "Law fines websites up to $5,000 per violation"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "The Moorlark browser now blocks third-party trackers by default."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The change arrives in version 31, which the Moorlark Foundation released on Wednesday."
+      },
+      {
+        "factId": "f03",
+        "sentence": "In Moorlark's own tests, the browser blocked an average of 23 of them per page."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Moorlark has about 48 million users."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Moorlark now blocks third-party trackers by default."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The browser has about 48 million users."
+      },
+      {
+        "factId": "f05",
+        "sentence": "On Wednesday, the Open Ad Markets Coalition filed a complaint with competition regulators, arguing that the change shuts small ad firms out of the market."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The change also lands ahead of the Online Tracking Consent Act, which takes effect March 1."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The law will fine websites up to $5,000 per violation for tracking people without opt-in consent."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "bench-and-bill": 0
+  }
+}

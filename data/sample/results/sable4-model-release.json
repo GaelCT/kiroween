@@ -1,0 +1,137 @@
+{
+  "story": "sable4-model-release",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.916Z",
+  "facts": {
+    "f01": "Sable Labs released Sable 4 on Wednesday",
+    "f02": "Comes in 8B, 32B, and 120B parameter sizes",
+    "f03": "Company claims 18% higher coding test score than Sable 3",
+    "f04": "API costs $1.20 per million input tokens",
+    "f05": "8B and 32B versions are free to download",
+    "f06": "32B version at 4-bit precision needs about 20 GB of graphics memory",
+    "f07": "Generated 41 tokens per second on a 24 GB card in our testing",
+    "f08": "8B version hit 118 tokens per second on a 12 GB card",
+    "f09": "120B version is a mixture-of-experts design",
+    "f10": "Reads up to 200,000 tokens per prompt",
+    "f11": "Sable Labs says compression costs about 2% on accuracy tests",
+    "f12": "Sent a 48-page safety report to the National Cyber Readiness Office",
+    "f13": "Outside testers say Sable 4 refused 96% of malware-writing requests",
+    "f14": "Sable Labs committed to reporting serious misuse within 72 hours",
+    "f15": "No rule required the filing"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Sable Labs released Sable 4 on Wednesday, the newest version of its AI model."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It comes in three sizes, with 8 billion, 32 billion, and 120 billion parameters."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The company says Sable 4 scores 18% higher than Sable 3 on its in-house coding tests."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Developers can use Sable 4 through the company's API for $1.20 per million input tokens."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The 8 billion and 32 billion parameter versions are also free to download and run on your own computer."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Sable Labs has launched Sable 4, the latest version of its AI model."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Developers pay $1.20 per million input tokens to use it through the API."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The two smaller versions, with 8 billion and 32 billion parameters, cost nothing to download."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f01",
+        "sentence": "Sable Labs released Sable 4 today, its newest AI model."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Its 8-billion and 32-billion-parameter versions are free to download."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Squeezed to 4-bit precision, the 32-billion-parameter version needs about 20 GB of graphics memory."
+      },
+      {
+        "factId": "f07",
+        "sentence": "On a 24 GB card, it generated 41 tokens per second in our testing."
+      },
+      {
+        "factId": "f08",
+        "sentence": "The 8-billion-parameter version hit 118 tokens per second on a 12 GB card."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Sable Labs unveiled Sable 4 on Wednesday, the latest version of its AI model."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It ships in three sizes: 8 billion, 32 billion, and 120 billion parameters."
+      },
+      {
+        "factId": "f09",
+        "sentence": "The 120-billion-parameter version is a mixture-of-experts design, so it uses only 15 billion parameters for each token it writes."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Every version can read up to 200,000 tokens in a single prompt."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Compressed to 4-bit precision, the 32-billion-parameter version fits in roughly 20 GB of memory."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Sable Labs says that compression costs about 2% on its accuracy tests."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Sable Labs released Sable 4 on Wednesday, its newest AI model."
+      },
+      {
+        "factId": "f12",
+        "sentence": "The company also sent a 48-page safety report to the National Cyber Readiness Office."
+      },
+      {
+        "factId": "f13",
+        "sentence": "In that report, outside testers say Sable 4 refused 96% of requests to write malware."
+      },
+      {
+        "factId": "f14",
+        "sentence": "Sable Labs committed to telling the office about serious misuse within 72 hours of finding it."
+      },
+      {
+        "factId": "f15",
+        "sentence": "No rule required the filing, and Sable Labs made it voluntarily."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0,
+    "frametime": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "story": "tallow-db-license-change",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:09.949Z",
+  "facts": {
+    "f01": "Tallow DB is moving to a source-available license",
+    "f02": "The new license applies starting with version 9.0",
+    "f03": "Cloud providers can't sell Tallow DB as a hosted service without a commercial agreement with Tallow DB Inc",
+    "f04": "Versions released before 9.0 stay under the old open source license",
+    "f05": "Tallow DB Inc. says rival cloud hosts were undercutting its hosted service",
+    "f06": "Tallow DB Cloud brings in 70% of the company's revenue",
+    "f07": "The company raised $95 million in July"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Tallow DB, the popular open source database, is moving to a source-available license."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The new license applies starting with version 9.0."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Under it, cloud providers can't sell Tallow DB as a hosted service without a commercial agreement with Tallow DB Inc., the company behind the project."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Versions released before 9.0 stay under the old open source license, so nobody loses access to code they already use."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Tallow DB is switching to a source-available license."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Cloud companies will need a paid deal to offer it as a service."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The company behind it, Tallow DB Inc., says rival cloud hosts were undercutting its own hosted service."
+      },
+      {
+        "factId": "f06",
+        "sentence": "That service, Tallow DB Cloud, brings in 70% of the company's revenue."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The company raised $95 million in July."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0
+  }
+}

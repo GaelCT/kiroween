@@ -1,0 +1,56 @@
+{
+  "story": "brindle-2-release",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.794Z",
+  "facts": {
+    "f01": "Brindle 2.0 was released on Sunday",
+    "f02": "First major Brindle release since 2022",
+    "f03": "Maintainers say version 2.0 compiles code up to 40% faster than 1.9",
+    "f04": "Version 2.0 adds an official package manager",
+    "f05": "Brindle 1 gets security fixes until June 2028",
+    "f06": "Compiled programs are about 15 percent smaller",
+    "f07": "Maintainers say migration tool handles about 90 percent of async syntax updates automatically"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Version 2.0 of Brindle, the open-source programming language, was released on Sunday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It's the language's first major release since 2022."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Brindle's maintainers say the new version compiles code up to 40% faster than Brindle 1.9."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The release also adds an official package manager."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Brindle 1 will keep getting security fixes until June 2028."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f03",
+        "sentence": "The headline number in Brindle 2.0 is compile speed: up to 40 percent faster than version 1.9."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Compiled programs also come out about 15 percent smaller."
+      },
+      {
+        "factId": "f07",
+        "sentence": "A migration tool handles about 90 percent of that work automatically, according to the maintainers."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "ohm-and-bit": 0
+  }
+}

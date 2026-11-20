@@ -1,0 +1,108 @@
+{
+  "story": "ferrolith-fab",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.868Z",
+  "facts": {
+    "f01": "Ferrolith will build a chip plant in Ashford Flats, Texas",
+    "f02": "Plant costs $14 billion",
+    "f03": "Construction starts in March 2027",
+    "f04": "Production is set to begin in 2029",
+    "f05": "Plant will employ 2,200 people at full speed",
+    "f06": "Varden County approved $1.1 billion in tax breaks for the project",
+    "f07": "First phase will process 40,000 wafers a month",
+    "f08": "Site expected to draw up to 400 megawatts of power",
+    "f09": "Will use up to 6 million gallons of water a day",
+    "f10": "Ferrolith says it will recycle 85 percent of the water",
+    "f11": "Breaks can be clawed back if fewer than 1,800 workers by 2031",
+    "f12": "Permit application says up to 6 million gallons of water daily",
+    "f13": "Water permit hearing set for January 14"
+  },
+  "articles": {
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Memory chipmaker Ferrolith will build a chip plant in Ashford Flats, Texas."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The price tag: $14 billion."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Construction starts in March 2027."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Production is set to begin in 2029."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Once it's running at full speed, the plant will employ 2,200 people."
+      }
+    ],
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Ferrolith plans to build a memory chip plant in the town of Ashford Flats, Texas."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The company puts the cost at $14 billion."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Varden County, which includes Ashford Flats, has approved $1.1 billion in tax breaks for the project."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f07",
+        "sentence": "At full output, its first phase will process 40,000 wafers a month."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Ferrolith expects the site to draw up to 400 megawatts of power."
+      },
+      {
+        "factId": "f09",
+        "sentence": "It will also use up to 6 million gallons of water a day, mostly to rinse wafers between steps."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Ferrolith says it will recycle 85 percent of that water."
+      },
+      {
+        "factId": "f04",
+        "sentence": "The first chips are due in 2029."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f05",
+        "sentence": "Ferrolith's plant in Ashford Flats is expected to employ 2,200 people."
+      },
+      {
+        "factId": "f06",
+        "sentence": "On Monday, Varden County commissioners approved $1.1 billion in property tax breaks for the project."
+      },
+      {
+        "factId": "f11",
+        "sentence": "The county can claw back the breaks if the plant has fewer than 1,800 workers by 2031."
+      },
+      {
+        "factId": "f12",
+        "sentence": "According to Ferrolith's permit application, the plant would use up to 6 million gallons of water a day."
+      },
+      {
+        "factId": "f13",
+        "sentence": "A public hearing on the water permit is set for January 14."
+      }
+    ]
+  },
+  "dropped": {
+    "launch-desk": 0,
+    "byteward": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

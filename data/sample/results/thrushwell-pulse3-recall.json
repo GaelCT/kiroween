@@ -1,0 +1,118 @@
+{
+  "story": "thrushwell-pulse3-recall",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.930Z",
+  "facts": {
+    "f01": "Thrushwell is recalling its Pulse 3 smartwatch",
+    "f02": "The company says the battery can swell and push the screen out of the case",
+    "f03": "About 410,000 watches are covered by the recall",
+    "f04": "Thrushwell is telling owners to stop using the watch right away",
+    "f05": "Owners who return the watch will get a full refund",
+    "f06": "Thrushwell traced the faulty cells to a single supplier",
+    "f07": "The separator was thinner than specified",
+    "f08": "Only watches made between March and June 2025 are affected",
+    "f09": "A software update puts a recall alert on affected watches",
+    "f10": "The office received 37 reports of batteries swelling",
+    "f11": "Four people reported minor burns",
+    "f12": "They were sold from April 2025 through October 2026",
+    "f13": "Costs $299",
+    "f14": "Ships December 3",
+    "f15": "Thrushwell says the battery lasts up to four days on a charge"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Thrushwell is recalling its Pulse 3 smartwatch, the company announced today."
+      },
+      {
+        "factId": "f02",
+        "sentence": "It says the watch's battery can swell and push the screen out of the case."
+      },
+      {
+        "factId": "f03",
+        "sentence": "About 410,000 watches are covered by the recall."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Thrushwell is telling owners to stop using the watch right away."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Owners who return the watch will get a full refund."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f02",
+        "sentence": "The Pulse 3's problem is a battery that can swell until it pushes the screen out."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Thrushwell traced the faulty cells to a single supplier."
+      },
+      {
+        "factId": "f07",
+        "sentence": "In those cells, the separator, the thin film that keeps the electrodes apart, was thinner than specified."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Only watches made between March and June 2025 are affected."
+      },
+      {
+        "factId": "f03",
+        "sentence": "That still adds up to about 410,000 watches."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Thrushwell is also pushing a software update that puts a recall alert on affected watches."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "The Consumer Device Safety Office today posted Thrushwell's recall of its Pulse 3 smartwatch."
+      },
+      {
+        "factId": "f10",
+        "sentence": "According to the notice, the office has received 37 reports of batteries swelling."
+      },
+      {
+        "factId": "f11",
+        "sentence": "Four people reported minor burns."
+      },
+      {
+        "factId": "f08",
+        "sentence": "The recall covers only watches made between March and June 2025."
+      },
+      {
+        "factId": "f12",
+        "sentence": "They were sold from April 2025 through October 2026."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Owners are entitled to a full refund."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f13",
+        "sentence": "It costs $299."
+      },
+      {
+        "factId": "f14",
+        "sentence": "It ships December 3."
+      },
+      {
+        "factId": "f15",
+        "sentence": "Thrushwell says the battery lasts up to four days on a charge."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "ohm-and-bit": 1,
+    "bench-and-bill": 0,
+    "launch-desk": 0
+  }
+}

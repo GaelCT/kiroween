@@ -1,0 +1,142 @@
+{
+  "story": "meridian-cable-cut",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.896Z",
+  "facts": {
+    "f01": "Meridian undersea cable was damaged on Saturday",
+    "f02": "Internet slowed in six West African countries",
+    "f03": "Fault is about 140 km off the coast of Senegal",
+    "f04": "Meridian runs 8,700 km from Portugal to South Africa",
+    "f05": "Cable is owned by a group of carriers led by Talvera Networks",
+    "f06": "Talvera expects repairs to take about three weeks",
+    "f07": "The repair ship Vela Constance is due at the site on November 20",
+    "f08": "Ping to a London game server rose from 98 ms to 231 ms",
+    "f09": "Packet loss reached 3% during the evening peak in our testing",
+    "f10": "Bramblefire Games opened temporary servers in Johannesburg",
+    "f11": "Cable rests about 3,200 m down at the fault spot",
+    "f12": "Crew will splice in about 8 km of new cable",
+    "f13": "Ships may not anchor within 2 nautical miles of a charted cable under Seabed Infrastructure Council rules",
+    "f14": "Ships responsible for cable damage can be fined up to $2 million",
+    "f15": "Operators must report damage to the council within 24 hours",
+    "f16": "Talvera asked the council to identify every ship that passed near the cable that day"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "The Meridian undersea cable was damaged on Saturday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Internet service has slowed in six West African countries as a result."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The fault is about 140 km off the coast of Senegal."
+      },
+      {
+        "factId": "f04",
+        "sentence": "Meridian runs 8,700 km along the Atlantic floor, from Portugal to South Africa."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The cable is owned by a group of carriers led by Talvera Networks."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "The Meridian undersea cable was damaged on Saturday."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Talvera Networks leads the group of carriers that owns it."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Talvera expects repairs to take about three weeks."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The repair ship Vela Constance is due at the site on November 20."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f01",
+        "sentence": "The Meridian undersea cable was damaged on Saturday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Since then, six West African countries have seen slower internet."
+      },
+      {
+        "factId": "f08",
+        "sentence": "From a test machine in Accra, our ping to a London game server rose from 98 ms to 231 ms."
+      },
+      {
+        "factId": "f09",
+        "sentence": "Packet loss reached 3% during the evening peak in our testing."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Bramblefire Games has opened temporary servers in Johannesburg for players in the region."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "The Meridian undersea cable was damaged on Saturday."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The fault lies about 140 km off Senegal's coast."
+      },
+      {
+        "factId": "f11",
+        "sentence": "At that spot, the cable rests about 3,200 m down."
+      },
+      {
+        "factId": "f07",
+        "sentence": "The repair ship Vela Constance is due on site November 20."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Its crew will cut out the damaged stretch and splice in about 8 km of new cable."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Talvera expects the work to take about three weeks."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "The Meridian undersea cable was damaged on Saturday."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Under the Seabed Infrastructure Council's rules, ships may not anchor within 2 nautical miles of a charted cable."
+      },
+      {
+        "factId": "f14",
+        "sentence": "A ship found responsible for damage can be fined up to $2 million."
+      },
+      {
+        "factId": "f15",
+        "sentence": "Operators must report damage to the council within 24 hours."
+      },
+      {
+        "factId": "f16",
+        "sentence": "In its report, Talvera asked the council to identify every ship that passed near the cable that day."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0,
+    "frametime": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

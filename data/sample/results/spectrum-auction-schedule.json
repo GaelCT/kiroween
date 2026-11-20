@@ -1,0 +1,12 @@
+{
+  "story": "spectrum-auction-schedule",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.915Z",
+  "facts": {},
+  "articles": {
+    "bench-and-bill": []
+  },
+  "dropped": {
+    "bench-and-bill": 0
+  }
+}

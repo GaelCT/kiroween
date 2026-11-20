@@ -1,0 +1,144 @@
+{
+  "story": "lumora-arc7-launch",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.892Z",
+  "facts": {
+    "f01": "Lumora announced the Arc 7 on Thursday",
+    "f02": "Arc 7 uses the in-house Facet 3 chip",
+    "f03": "Display measures 6.4 inches diagonally",
+    "f04": "Main camera uses a 50-megapixel sensor",
+    "f05": "Battery is 5,000 mAh",
+    "f06": "Lumora launched the Arc 7 phone",
+    "f07": "Costs $799",
+    "f08": "Sales start November 20",
+    "f09": "Will be sold in 14 countries at launch",
+    "f10": "Finished 24% ahead of the Arc 6 in a multi-core CPU test",
+    "f11": "Averaged 58 fps in Pinefall Arena at maximum settings",
+    "f12": "Held 71% of peak speed after 20 minutes of stress testing",
+    "f13": "Lumora has the chip made on a 2 nm process",
+    "f14": "Vapor chamber is 30 percent larger than the Arc 6's",
+    "f15": "Lumora filed a repair plan under the Parts and Manuals Act the same day",
+    "f16": "Lumora commits to selling Arc 7 spare parts for seven years",
+    "f17": "Repair manuals will be free to download from launch day",
+    "f18": "The plan says the battery can be removed with a standard screwdriver"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "Lumora on Thursday announced the Arc 7, its new flagship phone."
+      },
+      {
+        "factId": "f02",
+        "sentence": "At its center is the Facet 3, the latest chip Lumora designs in-house."
+      },
+      {
+        "factId": "f03",
+        "sentence": "The display measures 6.4 inches diagonally."
+      },
+      {
+        "factId": "f04",
+        "sentence": "On the back, the main camera uses a 50-megapixel sensor."
+      },
+      {
+        "factId": "f05",
+        "sentence": "Powering it all is a 5,000 mAh battery."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f06",
+        "sentence": "Lumora has launched the Arc 7, its latest flagship phone."
+      },
+      {
+        "factId": "f07",
+        "sentence": "It costs $799."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Sales start November 20."
+      },
+      {
+        "factId": "f09",
+        "sentence": "The phone will be sold in 14 countries at launch."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Inside is the Facet 3, Lumora's newest in-house chip."
+      }
+    ],
+    "frametime": [
+      {
+        "factId": "f01",
+        "sentence": "Lumora announced the Arc 7 today, its new flagship phone."
+      },
+      {
+        "factId": "f02",
+        "sentence": "Driving it is the Facet 3, Lumora's newest in-house chip."
+      },
+      {
+        "factId": "f10",
+        "sentence": "In our multi-core CPU test, the Arc 7 finished 24% ahead of the Arc 6."
+      },
+      {
+        "factId": "f11",
+        "sentence": "In Pinefall Arena at maximum settings, it averaged 58 frames per second."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Sustained load is another story: after 20 minutes of our stress test, the phone was holding just 71% of its peak speed."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f02",
+        "sentence": "The Arc 7 is built around the Facet 3, Lumora's newest in-house chip."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Lumora has it made on a 2 nm process."
+      },
+      {
+        "factId": "f14",
+        "sentence": "To spread that heat, the phone uses a vapor chamber 30 percent larger than the Arc 6's."
+      },
+      {
+        "factId": "f12",
+        "sentence": "It helps, up to a point: in our 20-minute stress test, the Arc 7 settled at 71 percent of its peak performance."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The battery is a 5,000 mAh cell."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Lumora announced the Arc 7 on Thursday, the newest phone in its flagship line."
+      },
+      {
+        "factId": "f15",
+        "sentence": "The same day, it filed a repair plan for the phone under the Parts and Manuals Act."
+      },
+      {
+        "factId": "f16",
+        "sentence": "In the filing, Lumora commits to selling spare parts for the Arc 7 for seven years."
+      },
+      {
+        "factId": "f17",
+        "sentence": "Repair manuals will be free to download from the day the phone goes on sale."
+      },
+      {
+        "factId": "f18",
+        "sentence": "The plan also says the battery can be removed with a standard screwdriver."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "launch-desk": 0,
+    "frametime": 0,
+    "ohm-and-bit": 0,
+    "bench-and-bill": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "story": "kindling-thermostat-teardown",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.881Z",
+  "facts": {},
+  "articles": {
+    "ohm-and-bit": []
+  },
+  "dropped": {
+    "ohm-and-bit": 0
+  }
+}

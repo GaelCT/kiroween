@@ -1,0 +1,116 @@
+{
+  "story": "marrowfield-health-ransomware",
+  "model": "openrouter/z-ai/glm-5.3-flash",
+  "generatedAt": "2026-11-20T07:31:08.892Z",
+  "facts": {
+    "f01": "A ransomware attack hit Marrowfield Health's systems on Friday",
+    "f02": "The chain runs 11 hospitals across Merrow County and neighbors",
+    "f03": "Ambulances are being diverted from four of the hospitals",
+    "f04": "A group calling itself Brinewolf claimed responsibility",
+    "f05": "The attackers demanded $8 million",
+    "f06": "Investigators believe attackers got in through a remote-access gateway flaw",
+    "f07": "National Cyber Readiness Office ordered hospitals to patch the flaw within 72 hours",
+    "f08": "Missed deadline fines reach up to $25,000 a day",
+    "f09": "Reported $3.4 billion in revenue last year",
+    "f10": "Elective surgeries postponed through Tuesday",
+    "f11": "A fix for the flaw has been available since September",
+    "f12": "Ransomware encrypted about 1,900 computers",
+    "f13": "Marrowfield Health's offline backups weren't touched"
+  },
+  "articles": {
+    "byteward": [
+      {
+        "factId": "f01",
+        "sentence": "A ransomware attack hit Marrowfield Health's computer systems on Friday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The chain runs 11 hospitals across Merrow County and its neighbors."
+      },
+      {
+        "factId": "f03",
+        "sentence": "Ambulances are being diverted away from four of those hospitals."
+      },
+      {
+        "factId": "f04",
+        "sentence": "A group calling itself Brinewolf has claimed responsibility for the attack."
+      }
+    ],
+    "bench-and-bill": [
+      {
+        "factId": "f01",
+        "sentence": "Marrowfield Health was hit by ransomware on Friday."
+      },
+      {
+        "factId": "f04",
+        "sentence": "A group called Brinewolf says it carried out the attack."
+      },
+      {
+        "factId": "f05",
+        "sentence": "According to a notice Marrowfield Health filed with state regulators, the group demanded $8 million."
+      },
+      {
+        "factId": "f06",
+        "sentence": "Investigators believe the attackers got in through a flaw in a remote-access gateway."
+      },
+      {
+        "factId": "f07",
+        "sentence": "On Saturday, the National Cyber Readiness Office ordered hospitals to patch that flaw within 72 hours."
+      },
+      {
+        "factId": "f08",
+        "sentence": "Hospitals that miss the deadline face fines of up to $25,000 a day."
+      }
+    ],
+    "launch-desk": [
+      {
+        "factId": "f01",
+        "sentence": "Ransomware struck Marrowfield Health on Friday."
+      },
+      {
+        "factId": "f02",
+        "sentence": "The company operates 11 hospitals."
+      },
+      {
+        "factId": "f09",
+        "sentence": "It reported $3.4 billion in revenue last year."
+      },
+      {
+        "factId": "f05",
+        "sentence": "The attackers want $8 million."
+      },
+      {
+        "factId": "f10",
+        "sentence": "Marrowfield Health has postponed elective surgeries through Tuesday."
+      }
+    ],
+    "ohm-and-bit": [
+      {
+        "factId": "f01",
+        "sentence": "Ransomware hit Marrowfield Health on Friday."
+      },
+      {
+        "factId": "f06",
+        "sentence": "The entry point was a flaw in a remote-access gateway, the box staff use to log in from outside."
+      },
+      {
+        "factId": "f11",
+        "sentence": "A fix for that flaw has been available since September."
+      },
+      {
+        "factId": "f12",
+        "sentence": "Once inside, the ransomware encrypted about 1,900 computers."
+      },
+      {
+        "factId": "f13",
+        "sentence": "Marrowfield Health's offline backups weren't touched."
+      }
+    ]
+  },
+  "dropped": {
+    "byteward": 0,
+    "bench-and-bill": 0,
+    "launch-desk": 0,
+    "ohm-and-bit": 0
+  }
+}
