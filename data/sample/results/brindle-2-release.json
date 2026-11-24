@@ -1,7 +1,7 @@
 {
   "story": "brindle-2-release",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:40.121Z",
+  "generatedAt": "2026-11-24T06:51:41.182Z",
   "facts": {
     "f01": "Brindle 2.0 was released on Sunday",
     "f02": "It's Brindle's first major release since 2022",

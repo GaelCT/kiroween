@@ -1,7 +1,7 @@
 {
   "story": "tallow-db-license-change",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:45.716Z",
+  "generatedAt": "2026-11-24T06:51:47.982Z",
   "facts": {
     "f01": "Tallow DB is moving to a source-available license",
     "f02": "The new license applies starting with version 9.0",

@@ -1,7 +1,7 @@
 {
   "story": "aurelith-visor-launch",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:39.427Z",
+  "generatedAt": "2026-11-24T06:51:40.262Z",
   "facts": {
     "f01": "Aurelith launched the Visor on Monday",
     "f02": "The Visor costs $1,499",

@@ -1,7 +1,7 @@
 {
   "story": "wayline-robotaxi-port-ellery",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:48.618Z",
+  "generatedAt": "2026-11-24T06:51:51.339Z",
   "facts": {
     "f01": "Wayline began paid robotaxi rides in Port Ellery on Saturday",
     "f02": "The robotaxis have no safety driver behind the wheel",

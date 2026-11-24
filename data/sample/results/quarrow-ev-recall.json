@@ -1,7 +1,7 @@
 {
   "story": "quarrow-ev-recall",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:44.326Z",
+  "generatedAt": "2026-11-24T06:51:46.873Z",
   "facts": {
     "f01": "Quarrow Motors is recalling 80,000 electric cars",
     "f02": "The company says a software flaw can cut power to the motors while driving",

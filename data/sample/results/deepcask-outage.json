@@ -1,7 +1,7 @@
 {
   "story": "deepcask-outage",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:41.139Z",
+  "generatedAt": "2026-11-24T06:51:41.056Z",
   "facts": {
     "f01": "Deepcask storage outage broke apps and websites on Friday morning",
     "f02": "The outage lasted 2 hours and 10 minutes",

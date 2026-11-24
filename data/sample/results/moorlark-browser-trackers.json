@@ -1,7 +1,7 @@
 {
   "story": "moorlark-browser-trackers",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:45.989Z",
+  "generatedAt": "2026-11-24T06:51:46.862Z",
   "facts": {
     "f01": "Moorlark browser blocks third-party trackers by default",
     "f02": "The change arrives in version 31",

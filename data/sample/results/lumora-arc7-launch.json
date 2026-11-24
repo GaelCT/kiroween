@@ -1,7 +1,7 @@
 {
   "story": "lumora-arc7-launch",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:44.080Z",
+  "generatedAt": "2026-11-24T06:51:44.814Z",
   "facts": {
     "f01": "Lumora announced the Arc 7 phone on Thursday",
     "f02": "The Arc 7 uses the Facet 3 chip",

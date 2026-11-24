@@ -1,7 +1,7 @@
 {
   "story": "ampwright-solid-state-battery",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:39.436Z",
+  "generatedAt": "2026-11-24T06:51:40.140Z",
   "facts": {
     "f01": "Ampwright Labs showed solid-state battery cells for phones on Thursday",
     "f02": "Ampwright says the cells store 1,050 Wh per liter",

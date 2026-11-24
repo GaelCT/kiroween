@@ -1,7 +1,7 @@
 {
   "story": "sable4-model-release",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:46.642Z",
+  "generatedAt": "2026-11-24T06:51:47.792Z",
   "facts": {
     "f01": "Sable Labs released Sable 4 on Wednesday",
     "f02": "Sable 4 comes in 8B, 32B, and 120B parameter sizes",

@@ -1,22 +1,23 @@
 {
   "story": "nimbusfold-outage",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:44.104Z",
+  "generatedAt": "2026-11-24T06:51:46.460Z",
   "facts": {
     "f01": "A Nimbusfold outage took down apps and websites for hours on Friday",
     "f02": "Problems started at 04:10 UTC",
     "f03": "Nimbusfold said all services were restored by 08:25 UTC",
     "f04": "Nimbusfold said about 3,100 business customers were affected",
     "f05": "The food delivery app Tinbowl was among those affected",
-    "f06": "Thornwick Games says no player accounts or purchases were lost",
-    "f07": "Every Embercoast player gets three days of free premium time",
-    "f08": "Nimbusfold blames a faulty network configuration change",
-    "f09": "The change reached every region at once",
-    "f10": "Rollback tools ran on the same failed network",
-    "f11": "Engineers undid the change by hand, one region at a time",
-    "f12": "National Cyber Readiness Office asked for a written report by November 20",
-    "f13": "Affected customers qualify for a 10% credit on the month's bill",
-    "f14": "Customers have 30 days to claim the credit"
+    "f06": "Servers for Embercoast and Quenmoor Online went down",
+    "f07": "Thornwick Games says no player accounts or purchases were lost",
+    "f08": "Every Embercoast player gets three days of free premium time",
+    "f09": "Nimbusfold blames a faulty network configuration change",
+    "f10": "The change reached every region at once",
+    "f11": "Rollback tools ran on the same failed network",
+    "f12": "Engineers undid the change by hand, one region at a time",
+    "f13": "National Cyber Readiness Office asked for a written report by November 20",
+    "f14": "Affected customers qualify for a 10% credit on the month's bill",
+    "f15": "Customers have 30 days to claim the credit"
   },
   "articles": {
     "byteward": [
@@ -61,25 +62,25 @@
         "sentence": "A Nimbusfold cloud outage knocked apps and websites offline for hours this morning."
       },
       {
-        "factId": "f05",
+        "factId": "f06",
         "sentence": "Servers for Embercoast and Quenmoor Online went down with it."
       },
       {
-        "factId": "f06",
+        "factId": "f07",
         "sentence": "Thornwick Games, which publishes Embercoast, says no player accounts or purchases were lost."
       },
       {
-        "factId": "f07",
+        "factId": "f08",
         "sentence": "To make up for the downtime, every Embercoast player gets three days of free premium time."
       },
       {
-        "factId": "f08",
+        "factId": "f09",
         "sentence": "Nimbusfold has blamed a faulty network configuration change."
       }
     ],
     "ohm-and-bit": [
       {
-        "factId": "f08",
+        "factId": "f09",
         "sentence": "Nimbusfold's preliminary report traces the outage to a faulty network configuration change."
       },
       {
@@ -87,15 +88,15 @@
         "sentence": "The first errors appeared at 04:10 UTC."
       },
       {
-        "factId": "f09",
+        "factId": "f10",
         "sentence": "Instead of rolling out one region at a time, the change reached every region at once."
       },
       {
-        "factId": "f10",
+        "factId": "f11",
         "sentence": "Worse, the tools engineers use to roll back changes ran on the same network that had failed."
       },
       {
-        "factId": "f11",
+        "factId": "f12",
         "sentence": "In the end, they undid the change by hand, one region at a time."
       },
       {
@@ -109,15 +110,15 @@
         "sentence": "Nimbusfold's cloud outage took down apps and websites for hours on Friday."
       },
       {
-        "factId": "f12",
+        "factId": "f13",
         "sentence": "By midday, the National Cyber Readiness Office had asked the company for a written report by November 20."
       },
       {
-        "factId": "f13",
+        "factId": "f14",
         "sentence": "Under Nimbusfold's standard contract, affected customers qualify for a 10% credit on the month's bill."
       },
       {
-        "factId": "f14",
+        "factId": "f15",
         "sentence": "They have 30 days to claim it."
       }
     ]

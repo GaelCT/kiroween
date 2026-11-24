@@ -1,7 +1,7 @@
 {
   "story": "brightmesh-router-flaw",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:39.884Z",
+  "generatedAt": "2026-11-24T06:51:40.580Z",
   "facts": {
     "f01": "A flaw in Brightmesh routers lets attackers take full control over the internet",
     "f02": "The flaw affects 11 router models in the BX series",

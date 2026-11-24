@@ -1,7 +1,7 @@
 {
   "story": "corvid-rv90",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:39.500Z",
+  "generatedAt": "2026-11-24T06:51:40.277Z",
   "facts": {
     "f01": "Corvid announced the RV-90 on Monday",
     "f02": "Built on Corvid's Nocturne graphics architecture",

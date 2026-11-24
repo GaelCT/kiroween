@@ -1,7 +1,7 @@
 {
   "story": "ticketriver-breach",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:46.953Z",
+  "generatedAt": "2026-11-24T06:51:48.729Z",
   "facts": {
     "f01": "Hackers stole data from 9 million TicketRiver accounts",
     "f02": "TicketRiver hired an outside security firm to investigate",

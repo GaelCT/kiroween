@@ -1,7 +1,7 @@
 {
   "story": "marrowfield-health-ransomware",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-24T05:46:44.305Z",
+  "generatedAt": "2026-11-24T06:51:49.293Z",
   "facts": {
     "f01": "A ransomware attack hit Marrowfield Health's systems on Friday",
     "f02": "The chain runs 11 hospitals across Merrow County and its neighbors",
