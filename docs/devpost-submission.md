@@ -2,7 +2,7 @@
 
 Deadline: Friday, Dec 4, 2026 at 2:00 PM PT. Aim for Thursday, Dec 3.
 
-## Checklist, as of Nov 19
+## Checklist, as of Nov 23
 
 | Item | Status | How it was checked |
 |---|---|---|
@@ -13,7 +13,7 @@ Deadline: Friday, Dec 4, 2026 at 2:00 PM PT. Aim for Thursday, Dec 3.
 | Demo video: public, under three minutes | Blocked on #27 | Script and checklist in `docs/demo-script.md` |
 | Text description | Draft below | Fill in the parts marked **To do** |
 | Kiro write-up | Draft | `docs/kiro-write-up.md`. Its "To do" sections need the CLI story and MCP (#24) |
-| Disclosure that the starter pack is sample data with precomputed AI results | Waits on #16 | Use the line below that matches the "Sample data" note in the deployed app |
+| Disclosure that the starter pack is sample data with precomputed AI results | Ready | The AI results are committed (#16), and the built app's note says "The AI pipeline extracted the facts ahead of time". Use the first line below, after checking the deployed app's note. |
 
 ## Disclosure
 
@@ -33,7 +33,7 @@ Google Reader was shut down in 2013. The problem it solved got worse: twenty out
 Reader is a feed reader for journalists and researchers who follow many sources.
 - It groups articles about the same event into one story.
 - It opens each story on one primary article.
-- Next to that article, a panel lists what every other source adds that you haven't read yet. Each "+" line is a fact, such as "Draws 320 W under load", and it links to the exact sentence that states it.
+- Next to that article, a panel lists what every other source adds that you haven't read yet. Each "+" line is a fact, such as "Drew 320 W under load", and it links to the exact sentence that states it.
 - As you read, the lists shrink. A source with nothing left says "No significant new information".
 - X pulls an article out of a story that was grouped wrongly.
 - It keeps Reader's habits: "All items", stars, unread counts, "Mark all as read", J/K keys, and OPML import.
@@ -53,8 +53,10 @@ Reader is a feed reader for journalists and researchers who follow many sources.
 
 - Keeping AI output checkable: a fact without its exact sentence is dropped.
 - Real news pages include bylines, author bios, and photo credits. Text extraction had to remove them before the AI saw the text.
-
-**To do:** add the accuracy work once there's a real score.
+- Not telling readers something is new when it isn't.
+  - The first real run on the starter pack got 223 of 238 "+" lines right. Most of the misses were the main article's facts reworded by another source.
+  - A final AI check, which quotes the main article's own sentence when it already says the same thing, brought the starter pack to 227 of 227.
+  - On real feeds, three stories checked line by line scored 26 of 31 (84%), above our 80% bar.
 
 ### What's next
 

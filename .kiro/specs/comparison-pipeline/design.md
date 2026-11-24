@@ -4,7 +4,7 @@
 
 The work splits into two halves.
 
-- **Pipeline** (`src/pipeline/`, server or build time). It reads feeds, gets full text, extracts facts with evidence sentences, matches facts across a cluster, and saves the result. For the starter pack it runs once ahead of time, and the output is committed. For feeds a user adds, it runs on the server.
+- **Pipeline** (`src/pipeline/`, server or build time). It reads feeds and gets full text. It extracts facts with evidence sentences and matches facts across a cluster. Then it checks every statement still left out of the primary's facts against the primary article's full text, and saves the result. For the starter pack it runs once ahead of time, and the output is committed. For feeds a user adds, it runs on the server.
 - **Comparison** (`src/lib/adds.ts`, browser). It takes the saved facts and the user's reading history and works out each source's "+" lines, duplicate score, and highlights, plus the cluster's read state. It never calls an AI model.
 
 ```mermaid
@@ -13,12 +13,13 @@ flowchart LR
   parse --> text[Full text]
   text --> facts[Extract facts with evidence]
   facts --> match[Match facts across the cluster]
-  match --> saved[(Saved cluster data)]
+  match --> check[Check leftovers against the primary article]
+  check --> saved[(Saved cluster data)]
   saved --> compare[Browser: adds, duplicate score, highlights]
   history[(Reading history in localStorage)] --> compare
 ```
 
-In the skeleton, the fact table stands in for the AI steps (tasks 4.2 and 4.3). The loader reads the sample feeds with the same parser that will read real feeds, then attaches facts from the fact table.
+The loader reads the sample feeds with the same parser that reads real feeds. It then attaches the AI pipeline's saved facts from `data/sample/results/`. A story without saved results falls back to its hand-written fact table.
 
 ## Data model
 

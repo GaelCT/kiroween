@@ -54,9 +54,32 @@ Until there's an AI key, the pipeline is tested with a fake model that answers f
 - On 3 stories, it sent malformed JSON, such as a missing bracket. A malformed reply now gets one more try.
 - A reply cut off partway through had been reported as bad JSON. It's now reported as hitting the token limit.
 
-Most of the 15 wrong lines are restatements of the primary article's facts that the matching step didn't recognize, such as "Priced at $1,499" next to "Costs $1,499".
+Most of the 15 wrong lines were restatements of the primary article's facts that the pipeline didn't recognize, such as "Priced at $1,499" next to "Costs $1,499". Sorting them showed two causes:
+- In 8 lines, matching missed a paraphrase.
+- In 6 lines, extraction had skipped the primary article's lead, so there was nothing to match.
 
-**To do:** note whether the hook was seen firing in a session. So far its command has only been run by hand.
+The fix was a new step: one more AI call checks every statement about to be shown as new against the primary article's full text. When the primary already says it, the call quotes the primary's sentence. The quote must be verbatim, or it's ignored.
+
+After that fix and two prompt fixes, the starter pack scored **227 of 227 (100%)** on Nov 23. All of it was done by changing the pipeline and rerunning it. Nobody edited the saved results.
+
+**The hook firing on its own (Nov 23):** we never ran the check by hand during this work, so the evidence below comes from Kiro alone.
+- Kiro's agent saved `src/pipeline/facts.ts` three times, at 20:39, 21:42, and 22:49.
+- Each time, within 2 to 7 seconds, the check's result files in `.cache/accuracy/` were rewritten.
+- The rewritten files were real runs with the real model. The last one scored 29 of 29.
+- The hook's output didn't appear in the agent's chat. Only its result files show that it ran.
+
+## The Day-3 test on real feeds
+
+On Nov 23, `npm run pipeline:try` fetched nine real tech feeds and compared the three stories with the most sources: 4, 3, and 3. Kiro checked every "+" line against the primary article by hand, using the rule from the plan: a line is right only if its sentence says it and the primary article doesn't. Borderline calls went against the pipeline.
+- **First run:** 24 of 30 right (80%), which just meets the bar. It turned up two problems, which were fixed in the pipeline:
+  - A source could show another source's wording, "$35 or $280 for a set", although its own sentence never said $280.
+  - A quotation that both articles carried was shown as new.
+- **Second run, after the fixes:** 26 of 31 (84%).
+- **What's still wrong:**
+  - Restatements that are hard to see: "on Monday" next to "today", and "nine total styles" next to "eight styles plus a rare ninth".
+  - A price that the primary article only gives in its headline. The pipeline only uses sentences from the article body as evidence.
+
+The articles themselves stay out of the repo.
 
 ## Kiro IDE and Kiro CLI
 

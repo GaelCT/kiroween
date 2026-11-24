@@ -22,11 +22,11 @@ The narration is about 320 words, which takes roughly 2:10 at a calm pace. That 
 
 **Narration:** "Say I'm a tech reporter filing on the RV-90, and I need benchmarks. Reader opened the story on Byteward. The panel shows what every other source adds that I haven't read yet."
 
-**Action:** point at FrameTime's lines: "+ 38% faster than the RV-80 at 4K in testing" and "+ Draws 320 W under load".
+**Action:** point at FrameTime's 38% line and its 320 W line. With the Nov 23 AI results, they read "+ Ran 38% faster than the RV-80 at 4K in testing" and "+ Drew 320 W under load on the power meter". The wording can change whenever `npm run pipeline:sample` runs again, so check it before recording.
 
 **Narration:** "FrameTime has the benchmarks. Every line is a fact, not a topic. I'll click the one I need."
 
-**Action:** click **+ Draws 320 W under load**. FrameTime opens, and the sentence flashes, highlighted in the article.
+**Action:** click the **320 W** line. FrameTime opens, and the sentence flashes, highlighted in the article.
 
 **Narration:** "It jumps to the exact sentence, so I can check it before I quote it. Now look at the panel. Ohm & Bit's list just shrank, because I've already read the benchmark it repeats."
 

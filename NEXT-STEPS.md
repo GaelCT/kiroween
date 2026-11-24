@@ -1,85 +1,102 @@
 # Next steps
 
-Updated 2026-11-19. Kiroween submissions close **Friday, December 4, 2026 at 2:00 PM PT**. Aim to submit Thursday, December 3.
+Updated 2026-11-23. Kiroween submissions close **Friday, December 4, 2026 at 2:00 PM PT**. Aim to submit Thursday, December 3.
 
-The code for label B's pipeline is built. What's left mostly needs an AI key, an account, or a person. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues).
+The code work is done. What's left needs an account or a person. The full backlog is in [GitHub issues](https://github.com/GaelCT/kiroween/issues).
 
-## The Nov 19 session
+## What's left, in order
 
-**Pushed on Nov 19**, on top of `1a35e10`. #10 and #11 were closed as completed on Nov 19, each with a comment giving the evidence. Nothing has been deployed.
+1. **#22 Deploy to Vercel.** The steps and variables are in the README, under "Deploy to Vercel". This needs a Vercel account. The production build passes. Nothing has been deployed.
+2. **#24 MCP.** Follow the steps under "Setting up MCP" below. This needs a GitHub token, and a person has to create the config file.
+3. **#25 Journalist feedback.** Once the app is deployed, send `docs/feedback-request.md` to three journalists or researchers.
+4. **#27 Demo video.** Record it on the deployed site, following `docs/demo-script.md`.
+5. **#28 Kiro write-up.** `docs/kiro-write-up.md` still needs two sections: the Kiro CLI, covering only what actually happened in it, and MCP.
+6. **#30 Submit.** The checklist and a draft description are in `docs/devpost-submission.md`. Also add a description and the app's URL to the repo's About section.
+
+## The Nov 23 session
+
+#13, #14, #16, and #20 were closed as completed, each with a comment giving the evidence.
 
 | Commit | Issue | What changed | How it was checked |
 |---|---|---|---|
-| `c750a6d` | #10 | OpenRouter adapter in `src/pipeline/ai.ts`. It also handles error bodies sent with HTTP 200, `Retry-After`, empty replies cut off at the token limit, and replies that aren't JSON. `.env.example`, the README, and `tech.md` now use the real variable names. | 7 new tests in `tests/ai.test.ts`: all failed first (no `openrouter` provider), then passed. A full starter-pack run through the adapter, with fake OpenRouter replies taken from the answer key, scored 235 of 235. That checks the plumbing only, not a real model. |
-| `0199744` | #14 | A failing accuracy report now goes to stderr. Kiro's docs say a hook that exits non-zero only passes stderr to the agent, so before this the agent never saw the wrong lines. | In a scratch copy with one deliberately broken results file: before, 29 lines on stdout and 0 on stderr; after, 0 and 29, exit code 1. A passing report still goes to stdout with exit code 0. |
-| `0fc9fdd` | #11 | A reply without its `facts` or `groups` list is now rejected before it's cached, and a bare list counts as that list. Before, a bad reply stayed in `.cache/ai/` for good, so rerunning `pipeline:sample` could never retry it. | 2 new tests failed first (the bad reply was returned and cached), then passed. |
-| `8fec491` | #16 | Tests that saved results replace a story's facts and evidence, and that the "Sample data" note says where facts came from. | New `tests/sample-results.test.tsx`. With the loader deliberately made to ignore results, 2 of its 4 tests failed. |
-| `385b69c` | #20 | Tests for `/api/compare`, `/api/feeds`, and `/api/stories`, called the way Next.js calls them, with a fake OpenRouter. They cover the per-visitor caps, 503 without a key, 502 on provider errors, and bad input. | New `tests/api-routes.test.ts`, 9 tests. With the cap check deliberately removed, the cap test failed. |
-| `c05289f` | #20, #13 | Extracted article text no longer includes skip links, bylines, author bios, "In Brief"/"Posted:" labels, or image credits. Before, these became story snippets and the AI's input. | 4 new tests in `tests/fulltext.test.ts`, modeled on real page structure with invented text. Two failed before the fix. One failed against the first version of the fix, which dropped a review's "Pros" and "Cons" labels. The fourth checks that a sentence merely naming the author stays. On The Verge, Ars Technica, TechCrunch, and Engadget, furniture paragraphs went from 21, 5, 21, and 20 to 0, 0, 0, and 0. Each feed kept 93 to 99% of its text, and no article was lost. Every removed paragraph was read: the only article text among them was image captions. |
-| `afcb1a6` | #20 | RSS authors written as `email (Name)` now show just the name. | 1 new test failed first, then passed. |
+| `6a4a79c` | #16 | A third AI call now checks every statement about to be shown as new against the primary article. The extraction and matching prompts got stricter rules. The route tests now load their modules before running. | The new test failed first. The starter pack went from 223 of 238 lines right to 227 of 230 after the prompt rules, then to 226 of 226 with the check. The route tests timed out once on a busy machine. The same two tests failed when run with a 1-second limit and no warm-up, and passed once the warm-up was added. |
+| `8482c51` | #13, #16 | The check now reads the primary article's full text and quotes its sentence. That also covers leads that extraction skipped. A source whose sentence lacks a number in the line it would show gets its own fact. The Day-3 checklist now includes the primary article's text. | 4 new tests and 1 updated test. 4 of them failed first. The fifth checks that the pipeline ignores an answer quoting text the primary doesn't have. |
+| `a56ca58`, `b30d96b` | #16 | New starter-pack results. | `npm run pipeline:sample`: 227 of 227 "+" lines right, with 8 answer-key lines not shown. Nobody edited the results by hand. |
 
-The docs commits update `docs/demo-script.md` (#27), `docs/kiro-write-up.md` (#28), and the README's Vercel steps (#22). They also add `docs/feedback-request.md` (#25) and `docs/devpost-submission.md` (#30).
-
-**Final checks:**
-- `npm test`: 152 passing.
+**Checks:**
+- `npm test`: 160 passing.
 - `npm run lint`, `npm run typecheck`, and `npm run build`: clean.
-- `npm run sample:cluster` at 0.22 (the default), 0.06, and 0.24: exact every time, with 34 stories and 100% precision and recall.
+- `npm run sample:cluster` at 0.22, 0.06, and 0.24: 34 stories, 100% precision and recall each time. `cluster.ts` is unchanged.
 
-**Browser run, not saved in the repo.** The run used a scripted headless Chrome against `npm run build` + `npm start`, with no AI key. All 20 checks passed, both before and after `c05289f`:
-- Clear errors for a private address, a page that isn't a feed, and an unknown host. A failed add adds nothing.
-- Ars Technica and The Verge added, with full text for 30 of 30 articles.
-- An OPML import kept its Gadgets and Startups folders and skipped a feed that was already subscribed.
-- A live story with two sources showed "Comparison unavailable" and its article stayed readable.
-- The archive and subscriptions survived a reload.
-- X and Undo on the Thrushwell story worked.
+**Real live comparison, not saved in the repo.** This used a scripted headless Chrome against `npm run build` + `npm start`, with the real key. The script is `.cache/browser-e2e/run-live.ts`.
+- Four real feeds added: Ars Technica, The Verge, TechCrunch, and Engadget.
+- All 5 stories with two or more full sources were compared, and each comparison found facts.
+- An opened story listed 2 "+" lines. Clicking one opened its source with the sentence highlighted.
 
-The script is in the gitignored `.cache/browser-e2e/`.
+**Per-visitor cap on a real server**, started with `LIVE_ARTICLE_LIMIT=2` and the real key:
+- The first two-article comparison returned 200, with 21 facts.
+- The second returned 429 in 7 ms, before any AI call.
+- A second visitor still got 200.
 
-**Not verified, worth checking (#15):** live-feed grouping reads each article's first two paragraphs. Since `c05289f`, those no longer include bylines or credits. The Nov 18 notes below say a similar filter made grouping less precise in the local labeled evaluation. That evaluation is on the other laptop, in `.cache/cluster-eval/`, and wasn't rerun. The starter pack is unaffected: it never goes through page extraction, and its three checks above are still exact. Whoever has `.cache/cluster-eval/` should rerun it. If live precision dropped, the options are tuning the threshold or grouping on the uncleaned lead.
+**The hook firing on its own.** Nobody ran the check by hand during this session.
+- Kiro's agent saved `src/pipeline/facts.ts` at 20:39, 21:42, and 22:49.
+- Each time, the check's result files in `.cache/accuracy/` were rewritten 2 to 7 seconds later.
+- The rewritten files came from real runs with the real model, and the latest scored 29 of 29.
+- The hook's output never appeared in the agent's chat. Only the result files show it ran.
 
-**AI key: set up on Jason's laptop (Nov 19, late).** `.env.local` uses `AI_PROVIDER=openrouter` and `AI_MODEL=z-ai/glm-5.3-flash`. That's a paid model at $0.04 per million input tokens and $0.08 per million output. One tiny real request through the adapter came back with the expected JSON in 0.66 seconds. `deepseek/deepseek-v4.1-flash-1017` also worked, but costs about 15 times as much. The key's spending cap is $50. Earlier, the free `google/gemma-4-31b-it:free` returned HTTP 429 from its provider twice, so avoid free models for full runs. **First real run (Nov 19, late):** `npm run pipeline:sample` scored **223 of 238 "+" lines right (94%)** across all 34 stories, above the 80% bar. The results are committed in `data/sample/results/`, so the app now shows AI facts, and the "Sample data" note says so. The run cost about $0.08 in all, including two failed attempts.
-- **First attempt:** 11 stories failed. Fixes in `492b7a3`: low reasoning effort, one retry for malformed JSON, and a clearer token-limit error. Each fix has a test that failed first.
-- **The demo's RV-90 story** still plays as scripted. FrameTime adds the 38%, 142 fps, and 320 W lines. Ohm & Bit's list shrinks after FrameTime is read. Launch Desk ends at "No significant new information". The wording changed slightly: "Drew 320 W under load", not "Draws".
-- **The 15 wrong lines** are mostly restatements of a primary fact that matching didn't recognize (Aurelith, Brightmesh, Gloamstream, and Nimbusfold have 3 or more each). One is a sentence the answer key marks as no fact. They pass the bar, but #16 asks for wrong lines to be fixed in the pipeline. The next step is the matching prompt in `src/pipeline/facts.ts`.
-- **The hook's command**, run by hand, scored 30 of 33 (91%). The hook firing on its own in a session still hasn't been seen.
+**Day-3 test (#13).** This used nine real tech feeds and compared the three stories with the most sources: 4, 3, and 3.
+- **First run:** 24 of 30 lines right (80%).
+- **Second run, after `8482c51`:** 26 of 31 (84%). If the one borderline line counts as wrong, it's 25 of 31 (81%).
+- **Who checked:** Kiro, line by line, not a person. The review is in the gitignored `.cache/day3/review.md`, because it quotes the articles. A person may want to spot-check it.
+- **What's still wrong:** restatements the check missed ("on Monday" next to "today"), a price the primary only gives in its headline, and arithmetic ("nine total" next to "eight plus a ninth").
 
-Still to do: #13 (real feeds, checked by hand) and #20's real comparison.
+**Spend:** $0.11 so far on the OpenRouter key, all sessions included, out of a $50 cap.
 
-## The one thing blocking everything: the AI key (#10)
+**Known limits:**
+- A fact that the primary article only states in its headline can't be matched, because evidence must be a sentence in the article body. So other sources show it as new.
+- The "+" wording on the starter pack can change whenever `npm run pipeline:sample` runs again. The demo script says to check it before recording.
 
-**Decision (Nov 18): OpenRouter.** The adapter is built (`c750a6d`, above). Put `AI_PROVIDER=openrouter`, `AI_MODEL=<a vendor/model ID from openrouter.ai/models>`, and `OPENROUTER_API_KEY` in `.env.local`, which is gitignored. Never commit the key. On Vercel, add the same three variables. Prefer a model without reasoning: a reasoning model can spend the whole token limit thinking and return nothing, and the adapter now reports that as its own error. The adapter leaves out OpenRouter's optional `HTTP-Referer` and `X-OpenRouter-Title` headers, because they would list the app in OpenRouter's public rankings.
+**Not verified (#15):** live-feed grouping reads each article's first two paragraphs. Since `c05289f`, those no longer include bylines or credits. The Nov 18 notes below say a similar filter made grouping less precise in the local labeled evaluation. That evaluation lives on the other laptop, in `.cache/cluster-eval/`, and wasn't rerun. The Day-3 run's three stories were each grouped correctly, and the starter pack's checks above are still exact. Whoever has `.cache/cluster-eval/` should rerun it.
 
-Once the key is set, run these in order:
+## Running the AI pipeline
 
-1. `npm run pipeline:sample`: runs the AI on the starter pack, saves `data/sample/results/`, and prints the accuracy score. That's the first score for #11 and #14, and the AI half of A's #16.
-2. If the score is under 8 of 10, read the wrong lines it prints, fix the prompts in `src/pipeline/facts.ts`, and rerun. Never edit the results by hand.
-3. `npm run pipeline:try -- <4 to 6 tech feed URLs>`: the Day-3 test (#13). Mark each line in the checklist it writes to `.cache/day3/`, then post only the score on #13.
-4. Commit `data/sample/results/`.
+`.env.local` (gitignored) sets three variables:
+- `AI_PROVIDER=openrouter`
+- `AI_MODEL`: a `vendor/model` ID from openrouter.ai/models. Jason's laptop uses `z-ai/glm-5.3-flash`, a paid model at $0.04 per million input tokens and $0.08 per million output.
+- `OPENROUTER_API_KEY`
+
+Never commit the key. On Vercel, add the same three variables.
+
+Avoid free `:free` models for full runs: `google/gemma-4-31b-it:free` returned HTTP 429 twice. The adapter asks for low reasoning effort, retries a malformed reply once, and reports a reply cut off at the token limit. It leaves out OpenRouter's optional `HTTP-Referer` and `X-OpenRouter-Title` headers, which would list the app in OpenRouter's public rankings.
+
+- `npm run pipeline:sample`: reruns the starter pack, saves `data/sample/results/`, and prints the score. If a line is wrong, fix the prompts in `src/pipeline/facts.ts` and rerun. Never edit the results by hand. Commit the results, then redeploy.
+- `npm run accuracy`: scores the saved results. With `-- --rerun`, it reruns the hook's three check stories first.
+- `npm run pipeline:try -- <feed URLs>`: the Day-3 test on real feeds. It writes a checklist, including each primary article's text, to `.cache/day3/`.
 
 ## Label B status
 
 | Issue | Status |
 |---|---|
-| #10 AI provider and key | **Closed.** OpenRouter adapter (`c750a6d`). Real requests work with `z-ai/glm-5.3-flash`. |
-| #11 Extract facts | **Closed.** Run on the starter pack with a real model and compared with the answer key: 223 of 238 right (94%). |
-| #12 Full text for excerpt feeds | Closed. Rechecked on Nov 18: The Verge, Ars Technica, and TechCrunch come back as full articles. |
-| #13 Day-3 test | Script ready (step 3). Needs the key and a person to check lines. |
-| #14 Accuracy-check hook | Built: `npm run accuracy` and `.kiro/hooks/pipeline-accuracy-check.json`. Checked against Kiro's docs on Nov 19: `timeout` belongs at the hook level, in seconds, so 300 gives five minutes. `PostFileSave` only fires when Kiro's agent edits a file. A failing report now reaches the agent (`0199744`). Its command, run by hand with the real model, scored 30 of 33 (91%), and the write-up describes it. The hook hasn't been seen firing in a real session yet: in the IDE, check the Agent Hooks panel; in Kiro CLI V3, use `/hooks`. |
-| #15 Story clustering | **Closed.** The known wrong grouping is separated. See "Resolution: #15" below. |
-| #20 Add Feed | Built: "Add a subscription" in the sidebar, `/api/feeds`, `/api/stories`, `/api/compare`, capped per visitor. Checked in a browser on Nov 18 and again on Nov 19 (20 of 20 checks, above). The per-visitor cap is tested through the route with a fake provider (`385b69c`). Page furniture is gone from extracted text (`c05289f`). Still to check with the key: a real comparison. |
-| #21 Archive | Closed. Checked in a browser: when a feed stops listing articles, Reader keeps them, even after a reload. |
-| #22 Deploy to Vercel | **Needs your Vercel account.** Steps and variables are in the README under "Deploy to Vercel". The production build passes. The home page is built in at build time, so redeploy after committing `data/sample/results/`. Not deployed yet. |
-| #24 MCP | **Needs you.** Kiro blocks its agent from writing `.kiro/settings/`, so a person creates the file. Steps below. |
-| #25 Journalist feedback | **Needs people.** The message and five questions are in `docs/feedback-request.md`. |
-| #28 Kiro write-up | Draft in `docs/kiro-write-up.md`, updated Nov 19. The CLI story, MCP, and the first real score are still "To do". |
+| #10 AI provider and key | **Closed.** OpenRouter adapter (`c750a6d`). |
+| #11 Extract facts | **Closed.** First real run: 223 of 238 (94%). |
+| #12 Full text for excerpt feeds | Closed. |
+| #13 Day-3 test | **Closed.** 26 of 31 lines right (84%) on three real stories, checked line by line by Kiro. |
+| #14 Accuracy-check hook | **Closed.** Seen firing on its own three times, with real runs. A failing report reaches the agent (`0199744`). |
+| #15 Story clustering | **Closed.** See "Resolution: #15" below. |
+| #20 Add Feed | **Closed.** Real comparison checked in a browser, and the per-visitor cap on a real server. |
+| #21 Archive | Closed. |
+| #22 Deploy to Vercel | **Needs a Vercel account.** README, "Deploy to Vercel". |
+| #24 MCP | **Needs a person.** Steps below. |
+| #25 Journalist feedback | **Needs people.** `docs/feedback-request.md`. |
+| #28 Kiro write-up | Draft in `docs/kiro-write-up.md`, updated Nov 23. The Kiro CLI and MCP sections are still "To do". |
 | #29 README | Closed. Screenshots would still help. |
-| #30 Submit | **Needs you.** The checklist audit, the disclosure lines, and a draft text description are in `docs/devpost-submission.md`. Add a description and the app URL to the repo's About section. |
-| #32 OPML import | Closed. "Import subscriptions (OPML)" is in the "Add a subscription" form. Folders come along, and the hourly feed limit stops a big import early. |
+| #30 Submit | **Needs a person.** `docs/devpost-submission.md`. |
+| #32 OPML import | Closed. |
 
-## Left on label A
+## Label A
 
-- **#16, the AI half of the starter pack.** The AI results are precomputed and committed (Nov 19), and the app uses them, so judging needs no AI calls. Every "+" line was checked against the fact tables: 223 of 238 right. Still open: fix the 15 wrong lines by improving the matching prompt and rerunning `npm run pipeline:sample`. The demo script picks its disclosure line from the tooltip, so with these results it uses "AI results computed ahead of time".
-- **#27, the demo video.** Record after #16, on the deployed site. `docs/demo-script.md` has the script and the recording checklist. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
+- **#16, the AI half of the starter pack.** **Closed.** The AI results are committed, and the app uses them, so judging makes no AI calls. Every "+" line was checked against the fact tables, and the 15 wrong lines from the first run were fixed in the pipeline. The score is now 227 of 227.
+- **#27, the demo video.** Record it on the deployed site, using the script and recording checklist in `docs/demo-script.md`. The RV-90 story still plays the way the script describes. Add Feed only works with public URLs, so if you demo it, use the deployed site's `/sample-feeds/*.xml`, not localhost.
 
 ## Setting up MCP (#24)
 
@@ -106,7 +123,24 @@ Kiro won't let its agent write `.kiro/settings/`, so these steps are for a perso
    This needs Docker Desktop running. The file only names the variable, so it holds no secret. Never paste the token itself into it.
 4. When Kiro asks to approve `GITHUB_TOKEN`, approve it.
 5. Open the MCP servers tab in the Kiro panel and check that `github` is connected. If it isn't, read "Kiro - MCP Logs" in the Output panel.
-6. Use it for one real task, such as asking Kiro to post the Day-3 score on #13. Then describe that task in `docs/kiro-write-up.md`.
+6. Use it for one real task, such as asking Kiro to comment on an issue. Then describe that task in `docs/kiro-write-up.md`.
+
+## The Nov 19 session
+
+Pushed on Nov 19, on top of `1a35e10`. #10 and #11 were closed as completed.
+
+| Commit | Issue | What changed | How it was checked |
+|---|---|---|---|
+| `c750a6d` | #10 | OpenRouter adapter in `src/pipeline/ai.ts`. It also handles error bodies sent with HTTP 200, `Retry-After`, replies cut off at the token limit, and replies that aren't JSON. | 7 new tests: all failed first, then passed. |
+| `0199744` | #14 | A failing accuracy report goes to stderr. Kiro's docs say a hook that exits non-zero only passes stderr to the agent. | Scratch copy with a broken results file: before, 29 lines on stdout and 0 on stderr; after, 0 and 29, exit code 1. |
+| `0fc9fdd` | #11 | A reply without its list is rejected before it's cached, so a rerun retries it. | 2 new tests failed first. |
+| `8fec491` | #16 | Tests that saved results replace the fact tables, and that the "Sample data" note says where facts came from. | With the loader deliberately made to ignore results, 2 of 4 failed. |
+| `385b69c` | #20 | Tests for the three API routes with a fake OpenRouter, including the per-visitor caps. | With the cap check deliberately removed, the cap test failed. |
+| `c05289f` | #20, #13 | Extracted article text drops skip links, bylines, author bios, "In Brief" and "Posted:" labels, and image credits. | 4 new tests. On four real feeds, furniture paragraphs went from 21, 5, 21, and 20 to 0, with 93 to 99% of the text kept. |
+| `afcb1a6` | #20 | RSS authors written as `email (Name)` show just the name. | 1 new test failed first. |
+| `492b7a3` | #11 | Low reasoning effort, one retry for malformed JSON, and a clearer token-limit error. | 3 new tests failed first. The first real run had failed on 11 stories. |
+
+The first real run scored 223 of 238 (94%). A no-key browser run passed 20 of 20 checks, covering errors, OPML folders, "Comparison unavailable", reloads, and X with Undo.
 
 ## Resolution: #15 story clustering
 
@@ -119,5 +153,6 @@ Kiro won't let its agent write `.kiro/settings/`, so these steps are for a perso
 
 ## Notes
 
-- Story clustering uses word similarity, not AI, so it's free and gives the same answer every time. The starter pack groups exactly like the story files, including the Pulse 4 article in the Thrushwell story that the X demo relies on. A pair of articles can't match on one shared word, such as a company name. If real feeds group badly in the Day-3 test, tune `DEFAULT_THRESHOLD` (0.22) in `src/pipeline/cluster.ts` and rerun `npm run sample:cluster`: the starter pack only matches exactly from 0.06 to 0.24.
+- Story clustering uses word similarity, not AI, so it's free and gives the same answer every time. The starter pack groups exactly like the story files, including the Pulse 4 article in the Thrushwell story that the X demo relies on. A pair of articles can't match on one shared word, such as a company name. If real feeds group badly, tune `DEFAULT_THRESHOLD` (0.22) in `src/pipeline/cluster.ts` and rerun `npm run sample:cluster`: the starter pack only matches exactly from 0.06 to 0.24.
 - The per-visitor cap lives in server memory, so on Vercel each instance counts separately. It's a soft limit.
+- Each live story with two full sources costs three AI calls, plus one per extra source. With `z-ai/glm-5.3-flash`, that's a fraction of a cent.
