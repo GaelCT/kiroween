@@ -1,23 +1,24 @@
 {
   "story": "thrushwell-pulse3-recall",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.930Z",
+  "generatedAt": "2026-11-24T05:46:55.620Z",
   "facts": {
-    "f01": "Thrushwell is recalling its Pulse 3 smartwatch",
-    "f02": "The company says the battery can swell and push the screen out of the case",
+    "f01": "Thrushwell is recalling the Pulse 3 smartwatch",
+    "f02": "Thrushwell says the battery can swell and push the screen out",
     "f03": "About 410,000 watches are covered by the recall",
-    "f04": "Thrushwell is telling owners to stop using the watch right away",
-    "f05": "Owners who return the watch will get a full refund",
+    "f04": "Owners are told to stop using the watch right away",
+    "f05": "Owners who return the watch get a full refund",
     "f06": "Thrushwell traced the faulty cells to a single supplier",
-    "f07": "The separator was thinner than specified",
+    "f07": "The separator in the faulty cells was thinner than specified",
     "f08": "Only watches made between March and June 2025 are affected",
     "f09": "A software update puts a recall alert on affected watches",
-    "f10": "The office received 37 reports of batteries swelling",
+    "f10": "The office has received 37 reports of batteries swelling",
     "f11": "Four people reported minor burns",
-    "f12": "They were sold from April 2025 through October 2026",
-    "f13": "Costs $299",
-    "f14": "Ships December 3",
-    "f15": "Thrushwell says the battery lasts up to four days on a charge"
+    "f12": "The watches were sold from April 2025 through October 2026",
+    "f13": "Thrushwell unveiled the Pulse 4 smartwatch",
+    "f14": "The Pulse 4 costs $299",
+    "f15": "The Pulse 4 ships December 3",
+    "f16": "Thrushwell claims up to four days of battery life"
   },
   "articles": {
     "byteward": [
@@ -97,21 +98,25 @@
     "launch-desk": [
       {
         "factId": "f13",
-        "sentence": "It costs $299."
+        "sentence": "Thrushwell has unveiled the Pulse 4, its next smartwatch."
       },
       {
         "factId": "f14",
-        "sentence": "It ships December 3."
+        "sentence": "It costs $299."
       },
       {
         "factId": "f15",
+        "sentence": "It ships December 3."
+      },
+      {
+        "factId": "f16",
         "sentence": "Thrushwell says the battery lasts up to four days on a charge."
       }
     ]
   },
   "dropped": {
     "byteward": 0,
-    "ohm-and-bit": 1,
+    "ohm-and-bit": 0,
     "bench-and-bill": 0,
     "launch-desk": 0
   }

@@ -1,23 +1,22 @@
 {
   "story": "kestrel-drone-delivery",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.881Z",
+  "generatedAt": "2026-11-24T05:46:43.151Z",
   "facts": {
     "f01": "The Aviation Operations Board approved Kestrel Aerial's drone delivery service on Thursday",
-    "f02": "A single pilot can oversee up to 20 drones at once",
+    "f02": "One pilot may oversee up to 20 drones at once",
     "f03": "Flights are allowed only between sunrise and sunset",
-    "f04": "Kestrel must report any crash or injury to the board within 24 hours",
+    "f04": "Kestrel must report any crash or injury within 24 hours",
     "f05": "The approval lasts 2 years",
     "f06": "Deliveries start December 1",
-    "f07": "Launches first in the suburbs of Phoenix and Dallas",
+    "f07": "Kestrel launches first in the suburbs of Phoenix and Dallas",
     "f08": "Each delivery will cost customers $3.99",
     "f09": "Pantryfield is Kestrel's first retail partner",
     "f10": "Kestrel raised $180 million from investors in May",
-    "f11": "Kestrel's drones carry packages of up to 5 pounds",
-    "f12": "The drones have a round-trip range of 12 miles",
-    "f13": "Each drone hovers at 80 feet and lowers the package on a tether",
-    "f14": "One pilot can supervise as many as 20 drones at a time",
-    "f15": "Each drone carries a small radar that spots other aircraft on its own"
+    "f11": "Drones carry packages of up to 5 pounds",
+    "f12": "Drones have a round-trip range of 12 miles",
+    "f13": "Drones hover at 80 feet and lower packages on a tether",
+    "f14": "Each drone carries a radar that spots other aircraft on its own"
   },
   "articles": {
     "bench-and-bill": [
@@ -100,11 +99,11 @@
         "sentence": "Instead of landing, each drone hovers at 80 feet and lowers the package on a tether."
       },
       {
-        "factId": "f14",
+        "factId": "f02",
         "sentence": "One pilot can supervise as many as 20 of them at a time."
       },
       {
-        "factId": "f15",
+        "factId": "f14",
         "sentence": "To make that safe, each drone carries a small radar that spots other aircraft on its own."
       }
     ]

@@ -1,21 +1,20 @@
 {
   "story": "ferrolith-fab",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.868Z",
+  "generatedAt": "2026-11-24T05:46:41.809Z",
   "facts": {
     "f01": "Ferrolith will build a chip plant in Ashford Flats, Texas",
-    "f02": "Plant costs $14 billion",
+    "f02": "The plant will cost $14 billion",
     "f03": "Construction starts in March 2027",
     "f04": "Production is set to begin in 2029",
-    "f05": "Plant will employ 2,200 people at full speed",
-    "f06": "Varden County approved $1.1 billion in tax breaks for the project",
+    "f05": "The plant will employ 2,200 people at full speed",
+    "f06": "Varden County approved $1.1 billion in tax breaks",
     "f07": "First phase will process 40,000 wafers a month",
-    "f08": "Site expected to draw up to 400 megawatts of power",
+    "f08": "Ferrolith expects the site to draw up to 400 megawatts of power",
     "f09": "Will use up to 6 million gallons of water a day",
     "f10": "Ferrolith says it will recycle 85 percent of the water",
-    "f11": "Breaks can be clawed back if fewer than 1,800 workers by 2031",
-    "f12": "Permit application says up to 6 million gallons of water daily",
-    "f13": "Water permit hearing set for January 14"
+    "f11": "Tax breaks can be clawed back if the plant has fewer than 1,800 workers by 2031",
+    "f12": "Public hearing on the water permit is set for January 14"
   },
   "articles": {
     "launch-desk": [
@@ -56,6 +55,10 @@
     ],
     "ohm-and-bit": [
       {
+        "factId": "f01",
+        "sentence": "Ferrolith's new plant in Ashford Flats will make memory chips."
+      },
+      {
         "factId": "f07",
         "sentence": "At full output, its first phase will process 40,000 wafers a month."
       },
@@ -90,11 +93,11 @@
         "sentence": "The county can claw back the breaks if the plant has fewer than 1,800 workers by 2031."
       },
       {
-        "factId": "f12",
+        "factId": "f09",
         "sentence": "According to Ferrolith's permit application, the plant would use up to 6 million gallons of water a day."
       },
       {
-        "factId": "f13",
+        "factId": "f12",
         "sentence": "A public hearing on the water permit is set for January 14."
       }
     ]

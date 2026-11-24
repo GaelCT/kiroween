@@ -1,13 +1,13 @@
 {
   "story": "tallow-db-license-change",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:09.949Z",
+  "generatedAt": "2026-11-24T05:46:45.716Z",
   "facts": {
     "f01": "Tallow DB is moving to a source-available license",
     "f02": "The new license applies starting with version 9.0",
-    "f03": "Cloud providers can't sell Tallow DB as a hosted service without a commercial agreement with Tallow DB Inc",
-    "f04": "Versions released before 9.0 stay under the old open source license",
-    "f05": "Tallow DB Inc. says rival cloud hosts were undercutting its hosted service",
+    "f03": "Cloud providers need a commercial agreement with Tallow DB Inc. to sell it as a hosted service",
+    "f04": "Versions before 9.0 stay under the old open source license",
+    "f05": "Tallow DB Inc. says rival cloud hosts were undercutting its own hosted service",
     "f06": "Tallow DB Cloud brings in 70% of the company's revenue",
     "f07": "The company raised $95 million in July"
   },

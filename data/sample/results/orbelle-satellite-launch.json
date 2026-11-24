@@ -1,20 +1,21 @@
 {
   "story": "orbelle-satellite-launch",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.907Z",
+  "generatedAt": "2026-11-24T05:46:44.862Z",
   "facts": {
     "f01": "Orbelle launched 40 internet satellites overnight",
     "f02": "It was the company's 11th launch",
-    "f03": "All 40 satellites made contact with ground control, Orbelle says",
-    "f04": "Fleet now totals 412 satellites in orbit",
-    "f05": "Internet service sales planned for mid-2027",
-    "f06": "Will cost $89 a month",
-    "f07": "Has raised $2.3 billion so far",
-    "f08": "Needs 1,200 satellites in orbit by March 2030 to keep its spectrum license",
+    "f03": "Orbelle said all 40 satellites made contact with ground control",
+    "f04": "Fleet is now 412 satellites in orbit",
+    "f05": "Orbelle plans to start selling internet service in mid-2027",
+    "f06": "It will cost $89 a month",
+    "f07": "The company has raised $2.3 billion so far",
+    "f08": "It needs 1,200 satellites in orbit by March 2030 to keep its spectrum license",
     "f09": "Satellites will operate at an altitude of 590 km",
     "f10": "Each satellite weighs 310 kg",
-    "f11": "License can shrink to 600 satellites if Orbelle falls short",
-    "f12": "Dead satellites must be deorbited within five years"
+    "f11": "The satellites pass data to each other by laser",
+    "f12": "Office can shrink license to cover 600 satellites if short",
+    "f13": "License requires dead satellites moved out of orbit within five years"
   },
   "articles": {
     "byteward": [
@@ -75,6 +76,10 @@
         "sentence": "Each satellite weighs 310 kg."
       },
       {
+        "factId": "f11",
+        "sentence": "Instead of bouncing every signal off the ground, the satellites pass data to each other by laser."
+      },
+      {
         "factId": "f04",
         "sentence": "With this batch, Orbelle has 412 satellites in orbit."
       }
@@ -89,11 +94,11 @@
         "sentence": "Under its Federal Spectrum Office license, the company must have 1,200 in orbit by March 2030."
       },
       {
-        "factId": "f11",
+        "factId": "f12",
         "sentence": "If it falls short, the office can shrink the license to cover 600 satellites."
       },
       {
-        "factId": "f12",
+        "factId": "f13",
         "sentence": "The license also requires Orbelle to move dead satellites out of orbit within five years."
       }
     ]

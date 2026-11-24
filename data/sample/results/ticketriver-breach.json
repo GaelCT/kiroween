@@ -1,20 +1,20 @@
 {
   "story": "ticketriver-breach",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:10.717Z",
+  "generatedAt": "2026-11-24T05:46:46.953Z",
   "facts": {
     "f01": "Hackers stole data from 9 million TicketRiver accounts",
-    "f02": "TicketRiver says it hired an outside security firm to investigate",
-    "f03": "Stolen data includes names, emails, phone numbers, and hashed passwords",
-    "f04": "TicketRiver says no payment card numbers were taken",
-    "f05": "Every TicketRiver user must reset their password at next login",
-    "f06": "Will pay for 2 years of credit monitoring for affected customers",
-    "f07": "Shares fell 9% in afternoon trading",
-    "f08": "Attackers used a password stolen from a customer support contractor",
+    "f02": "TicketRiver hired an outside security firm to investigate",
+    "f03": "TicketRiver says no payment card numbers were taken",
+    "f04": "All users must reset passwords on next login",
+    "f05": "The company will pay for 2 years of credit monitoring",
+    "f06": "TicketRiver shares fell 9% in afternoon trading",
+    "f07": "Attackers used a password stolen from a customer support contractor",
+    "f08": "The contractor's account didn't require a second login step",
     "f09": "TicketRiver found the intruders on October 28",
     "f10": "TicketRiver hashed passwords with an outdated method",
     "f11": "TicketRiver disclosed the breach in a regulatory filing",
-    "f12": "Two customers have filed a class-action lawsuit over the breach"
+    "f12": "Two customers have filed a class-action lawsuit"
   },
   "articles": {
     "byteward": [
@@ -28,14 +28,10 @@
       },
       {
         "factId": "f03",
-        "sentence": "The stolen data includes names, email addresses, phone numbers, and hashed passwords."
-      },
-      {
-        "factId": "f04",
         "sentence": "TicketRiver says no payment card numbers were taken."
       },
       {
-        "factId": "f05",
+        "factId": "f04",
         "sentence": "Every TicketRiver user will have to reset their password the next time they log in."
       }
     ],
@@ -45,11 +41,11 @@
         "sentence": "TicketRiver says a breach exposed 9 million customer accounts."
       },
       {
-        "factId": "f06",
+        "factId": "f05",
         "sentence": "The company will pay for 2 years of credit monitoring for affected customers."
       },
       {
-        "factId": "f07",
+        "factId": "f06",
         "sentence": "TicketRiver shares fell 9% in afternoon trading."
       }
     ],
@@ -59,8 +55,12 @@
         "sentence": "TicketRiver has confirmed a breach affecting 9 million accounts."
       },
       {
-        "factId": "f08",
+        "factId": "f07",
         "sentence": "They logged in with a password stolen from a contractor who handled customer support."
+      },
+      {
+        "factId": "f08",
+        "sentence": "That contractor's account didn't require a second login step, such as a code sent to a phone."
       },
       {
         "factId": "f09",
@@ -85,7 +85,7 @@
         "sentence": "According to the filing, TicketRiver discovered the intrusion on October 28."
       },
       {
-        "factId": "f06",
+        "factId": "f05",
         "sentence": "TicketRiver is offering affected customers 2 years of free credit monitoring."
       },
       {

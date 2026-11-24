@@ -1,15 +1,15 @@
 {
   "story": "deepcask-outage",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:09.948Z",
+  "generatedAt": "2026-11-24T05:46:41.139Z",
   "facts": {
-    "f01": "A Deepcask storage outage broke apps and websites on Friday morning",
+    "f01": "Deepcask storage outage broke apps and websites on Friday morning",
     "f02": "The outage lasted 2 hours and 10 minutes",
-    "f03": "A cooling failure at Deepcask's Ohio data center was the cause",
-    "f04": "Deepcask shut down 1,800 storage servers to protect the drives",
+    "f03": "Cause was a cooling failure at Deepcask's Ohio data center",
+    "f04": "Deepcask shut down 1,800 storage servers",
     "f05": "Deepcask says no customer data was lost",
     "f06": "Shutterkin and Layloft were among services unable to open files",
-    "f07": "Deepcask will publish a full incident report within 14 days"
+    "f07": "Deepcask says it will publish a full incident report within 14 days"
   },
   "articles": {
     "ohm-and-bit": [

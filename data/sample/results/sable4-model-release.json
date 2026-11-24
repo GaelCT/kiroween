@@ -1,23 +1,23 @@
 {
   "story": "sable4-model-release",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.916Z",
+  "generatedAt": "2026-11-24T05:46:46.642Z",
   "facts": {
     "f01": "Sable Labs released Sable 4 on Wednesday",
-    "f02": "Comes in 8B, 32B, and 120B parameter sizes",
-    "f03": "Company claims 18% higher coding test score than Sable 3",
-    "f04": "API costs $1.20 per million input tokens",
-    "f05": "8B and 32B versions are free to download",
-    "f06": "32B version at 4-bit precision needs about 20 GB of graphics memory",
-    "f07": "Generated 41 tokens per second on a 24 GB card in our testing",
+    "f02": "Sable 4 comes in 8B, 32B, and 120B parameter sizes",
+    "f03": "The company claims Sable 4 scores 18% higher than Sable 3 on its coding tests",
+    "f04": "Sable 4 costs $1.20 per million input tokens via the company's API",
+    "f05": "The 8B and 32B versions are free to download and run locally",
+    "f06": "32B version at 4-bit needs about 20 GB of graphics memory",
+    "f07": "32B version hit 41 tokens per second on a 24 GB card in testing",
     "f08": "8B version hit 118 tokens per second on a 12 GB card",
-    "f09": "120B version is a mixture-of-experts design",
-    "f10": "Reads up to 200,000 tokens per prompt",
-    "f11": "Sable Labs says compression costs about 2% on accuracy tests",
-    "f12": "Sent a 48-page safety report to the National Cyber Readiness Office",
+    "f09": "The 120B version is a mixture-of-experts design",
+    "f10": "Every version reads up to 200,000 tokens per prompt",
+    "f11": "Sable Labs says compression costs about 2% on its accuracy tests",
+    "f12": "Sable Labs sent a 48-page safety report to the National Cyber Readiness Office",
     "f13": "Outside testers say Sable 4 refused 96% of malware-writing requests",
     "f14": "Sable Labs committed to reporting serious misuse within 72 hours",
-    "f15": "No rule required the filing"
+    "f15": "No rule required the filing, which was made voluntarily"
   },
   "articles": {
     "byteward": [
@@ -129,7 +129,7 @@
   },
   "dropped": {
     "byteward": 0,
-    "launch-desk": 0,
+    "launch-desk": 1,
     "frametime": 0,
     "ohm-and-bit": 0,
     "bench-and-bill": 0

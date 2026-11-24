@@ -1,15 +1,15 @@
 {
   "story": "moorlark-browser-trackers",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.899Z",
+  "generatedAt": "2026-11-24T05:46:45.989Z",
   "facts": {
     "f01": "Moorlark browser blocks third-party trackers by default",
-    "f02": "Released in version 31 on Wednesday",
-    "f03": "Blocked an average of 23 trackers per page in Moorlark's tests",
+    "f02": "The change arrives in version 31",
+    "f03": "Moorlark's tests blocked an average of 23 trackers per page",
     "f04": "Moorlark has about 48 million users",
-    "f05": "Open Ad Markets Coalition filed a complaint on Wednesday",
-    "f06": "Online Tracking Consent Act takes effect March 1",
-    "f07": "Law fines websites up to $5,000 per violation"
+    "f05": "The Open Ad Markets Coalition filed a complaint with competition regulators on Wednesday",
+    "f06": "The Online Tracking Consent Act takes effect March 1",
+    "f07": "The law will fine websites up to $5,000 per violation"
   },
   "articles": {
     "byteward": [

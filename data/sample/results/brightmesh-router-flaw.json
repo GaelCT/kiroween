@@ -1,26 +1,25 @@
 {
   "story": "brightmesh-router-flaw",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.784Z",
+  "generatedAt": "2026-11-24T05:46:39.884Z",
   "facts": {
-    "f01": "A flaw lets attackers take full control of Brightmesh routers over the internet",
+    "f01": "A flaw in Brightmesh routers lets attackers take full control over the internet",
     "f02": "The flaw affects 11 router models in the BX series",
-    "f03": "Firmware version 4.2.1 was released Wednesday to fix the flaw",
-    "f04": "Quillstone researchers found the flaw",
+    "f03": "Brightmesh released firmware version 4.2.1 on Wednesday to fix it",
+    "f04": "Researchers at Quillstone found the flaw",
     "f05": "Auto-update routers will install the fix within 48 hours",
-    "f06": "Firmware 4.2.1 closes the router takeover flaw",
-    "f07": "Three older models won't get the fix",
-    "f08": "Brightmesh will replace affected routers for free",
-    "f09": "Brightmesh shares fell 6% in early trading",
-    "f10": "The update took 6 minutes to install, including a restart",
-    "f11": "Download speeds dropped 3% in our testing",
-    "f12": "Latency went from 14 ms to 15 ms",
-    "f13": "The flaw is in the routers' remote management service",
-    "f14": "The update switches remote management off by default",
-    "f15": "Older models lack storage for the new firmware",
-    "f16": "The National Cyber Readiness Office issued the order on Wednesday",
-    "f17": "Agencies have until November 25 to comply",
-    "f18": "The office says attackers are already exploiting the flaw"
+    "f06": "Three older models won't get the fix",
+    "f07": "Brightmesh will replace those routers for free",
+    "f08": "Brightmesh shares fell 6% in early trading",
+    "f09": "The update took 6 minutes to install, including a restart",
+    "f10": "Download speeds dropped 3% after the update in our testing",
+    "f11": "Latency in online games went from 14 ms to 15 ms",
+    "f12": "The bug sits in the routers' remote management service",
+    "f13": "The update switches remote management off by default",
+    "f14": "The old models lack storage for the new firmware",
+    "f15": "Cyber office ordered federal agencies to patch or unplug routers Wednesday",
+    "f16": "Agencies have until November 25 to comply",
+    "f17": "Office says attackers are already exploiting the flaw"
   },
   "articles": {
     "byteward": [
@@ -47,19 +46,23 @@
     ],
     "launch-desk": [
       {
-        "factId": "f06",
+        "factId": "f01",
+        "sentence": "Brightmesh is scrambling after a flaw let attackers hijack its home routers."
+      },
+      {
+        "factId": "f03",
         "sentence": "Firmware 4.2.1, out now, closes the hole."
       },
       {
-        "factId": "f07",
+        "factId": "f06",
         "sentence": "Three older models won't get the fix."
       },
       {
-        "factId": "f08",
+        "factId": "f07",
         "sentence": "Brightmesh says it will replace those routers for free."
       },
       {
-        "factId": "f09",
+        "factId": "f08",
         "sentence": "Brightmesh shares fell 6% in early trading."
       }
     ],
@@ -69,19 +72,19 @@
         "sentence": "Brightmesh has patched a flaw that let attackers take over its home routers."
       },
       {
-        "factId": "f06",
+        "factId": "f03",
         "sentence": "The fix arrives in firmware 4.2.1."
       },
       {
-        "factId": "f10",
+        "factId": "f09",
         "sentence": "The update took 6 minutes to install, including a restart."
       },
       {
-        "factId": "f11",
+        "factId": "f10",
         "sentence": "Download speeds dropped 3% after the update in our testing."
       },
       {
-        "factId": "f12",
+        "factId": "f11",
         "sentence": "Latency in online games went from 14 ms to 15 ms."
       }
     ],
@@ -95,37 +98,41 @@
         "sentence": "Eleven models in the BX series are affected."
       },
       {
-        "factId": "f13",
+        "factId": "f12",
         "sentence": "The bug sits in the routers' remote management service, the part that answers requests from the internet."
       },
       {
-        "factId": "f14",
+        "factId": "f13",
         "sentence": "Along with the fix, the update switches remote management off by default."
       },
       {
-        "factId": "f07",
+        "factId": "f06",
         "sentence": "Three older BX models won't be patched."
       },
       {
-        "factId": "f15",
+        "factId": "f14",
         "sentence": "They don't have enough storage to hold the new firmware."
       }
     ],
     "bench-and-bill": [
       {
-        "factId": "f06",
+        "factId": "f01",
+        "sentence": "A flaw in Brightmesh home routers lets attackers take them over remotely."
+      },
+      {
+        "factId": "f03",
         "sentence": "Brightmesh has released a fix in firmware 4.2.1."
       },
       {
-        "factId": "f16",
+        "factId": "f15",
         "sentence": "On Wednesday, the National Cyber Readiness Office ordered federal agencies to patch or unplug any affected Brightmesh routers on their networks."
       },
       {
-        "factId": "f17",
+        "factId": "f16",
         "sentence": "Agencies have until November 25 to comply."
       },
       {
-        "factId": "f18",
+        "factId": "f17",
         "sentence": "The office says attackers are already exploiting the flaw."
       }
     ]

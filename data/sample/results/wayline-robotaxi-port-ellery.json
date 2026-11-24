@@ -1,20 +1,20 @@
 {
   "story": "wayline-robotaxi-port-ellery",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:09.960Z",
+  "generatedAt": "2026-11-24T05:46:48.618Z",
   "facts": {
-    "f01": "Wayline began charging for robotaxi rides in Port Ellery on Saturday",
-    "f02": "The cars have no safety driver behind the wheel",
+    "f01": "Wayline began paid robotaxi rides in Port Ellery on Saturday",
+    "f02": "The robotaxis have no safety driver behind the wheel",
     "f03": "The service launches with 40 cars",
-    "f04": "Its service area covers 31 square miles of the city",
+    "f04": "The service area covers 31 square miles of the city",
     "f05": "Rides are available from 6 a.m. to midnight",
     "f06": "Fares are $3 to start plus $1.90 per mile",
-    "f07": "Plans to grow fleet to 200 cars by mid-2027",
-    "f08": "Company raised $600 million in September",
-    "f09": "Pays the city 25 cents for every ride",
+    "f07": "Wayline plans to grow the fleet to 200 cars by mid-2027",
+    "f08": "Wayline raised $600 million in September",
+    "f09": "Wayline pays the city 25 cents per ride",
     "f10": "The permit caps Wayline's fleet at 100 cars",
     "f11": "The city will review the permit in May",
-    "f12": "Wayline must report any crash to the city within 12 hours",
+    "f12": "Wayline must report crashes to the city within 12 hours",
     "f13": "Each car carries five lidar sensors",
     "f14": "Wayline caps the cars at 45 mph",
     "f15": "Remote operators can suggest a route but can't steer"
@@ -114,7 +114,7 @@
     ]
   },
   "dropped": {
-    "byteward": 1,
+    "byteward": 0,
     "launch-desk": 0,
     "bench-and-bill": 0,
     "ohm-and-bit": 0

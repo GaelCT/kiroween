@@ -1,19 +1,17 @@
 {
   "story": "quarrow-ev-recall",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.912Z",
+  "generatedAt": "2026-11-24T05:46:44.326Z",
   "facts": {
     "f01": "Quarrow Motors is recalling 80,000 electric cars",
     "f02": "The company says a software flaw can cut power to the motors while driving",
     "f03": "Recall covers Pavane SUVs from the 2025 and 2026 model years",
-    "f04": "Fix will be a free over-the-air update",
-    "f05": "Company says it knows of three minor crashes linked to the flaw",
-    "f06": "Roughly 6,000 cars must visit a dealer for the fix",
+    "f04": "Quarrow will fix the problem with a free over-the-air update",
+    "f05": "The company says it knows of three minor crashes linked to the flaw",
+    "f06": "Roughly 6,000 cars must visit a dealer",
     "f07": "Quarrow expects the recall to cost about $9 million",
-    "f08": "Quarrow says the flaw only occurs below -10 °C",
-    "f09": "The office had been investigating since August",
-    "f10": "Power loss only occurs when the battery is below -10 °C",
-    "f11": "Owner notification letters will go out starting January 8"
+    "f08": "The Office of Vehicle Safety had been investigating since August",
+    "f09": "Owner letters go out starting January 8"
   },
   "articles": {
     "byteward": [
@@ -44,6 +42,10 @@
         "sentence": "Quarrow Motors is recalling 80,000 of its electric cars."
       },
       {
+        "factId": "f04",
+        "sentence": "The fix is a free over-the-air update."
+      },
+      {
         "factId": "f06",
         "sentence": "Roughly 6,000 cars will have to visit a dealer instead."
       },
@@ -54,7 +56,7 @@
     ],
     "ohm-and-bit": [
       {
-        "factId": "f08",
+        "factId": "f02",
         "sentence": "According to Quarrow, it only happens when the battery is colder than -10 °C."
       },
       {
@@ -68,11 +70,11 @@
         "sentence": "Quarrow Motors filed a recall covering 80,000 electric cars with the Office of Vehicle Safety on Monday."
       },
       {
-        "factId": "f09",
+        "factId": "f08",
         "sentence": "The office had been investigating the problem since August."
       },
       {
-        "factId": "f10",
+        "factId": "f02",
         "sentence": "The filing says the power loss only occurs when the battery is below -10 °C."
       },
       {
@@ -80,7 +82,7 @@
         "sentence": "In a separate filing to investors, Quarrow estimated the recall's cost at $9 million."
       },
       {
-        "factId": "f11",
+        "factId": "f09",
         "sentence": "Owner notification letters will go out starting January 8."
       }
     ]

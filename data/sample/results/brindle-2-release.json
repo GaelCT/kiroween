@@ -1,15 +1,15 @@
 {
   "story": "brindle-2-release",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.794Z",
+  "generatedAt": "2026-11-24T05:46:40.121Z",
   "facts": {
     "f01": "Brindle 2.0 was released on Sunday",
-    "f02": "First major Brindle release since 2022",
-    "f03": "Maintainers say version 2.0 compiles code up to 40% faster than 1.9",
+    "f02": "It's Brindle's first major release since 2022",
+    "f03": "Maintainers say 2.0 compiles code up to 40% faster than 1.9",
     "f04": "Version 2.0 adds an official package manager",
     "f05": "Brindle 1 gets security fixes until June 2028",
     "f06": "Compiled programs are about 15 percent smaller",
-    "f07": "Maintainers say migration tool handles about 90 percent of async syntax updates automatically"
+    "f07": "Maintainers say the migration tool automates about 90 percent of updates"
   },
   "articles": {
     "byteward": [

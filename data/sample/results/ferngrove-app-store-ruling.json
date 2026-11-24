@@ -1,21 +1,21 @@
 {
   "story": "ferngrove-app-store-ruling",
   "model": "openrouter/z-ai/glm-5.3-flash",
-  "generatedAt": "2026-11-20T07:31:08.863Z",
+  "generatedAt": "2026-11-24T05:46:41.010Z",
   "facts": {
     "f01": "Judge ruled Ferngrove's Canopy app store rules broke antitrust law",
     "f02": "The case was brought by Kettlebrook Games",
     "f03": "Judge ordered Ferngrove to let apps offer other payment options",
     "f04": "Ferngrove has 90 days to comply",
     "f05": "Ferngrove says it will appeal",
-    "f06": "Canopy is currently the only way to install apps on Ferngrove phones",
-    "f07": "The ruling does not require Ferngrove to allow apps from other sources",
+    "f06": "Canopy is the only way to install apps on Ferngrove phones",
+    "f07": "The ruling doesn't require Ferngrove to allow apps from other sources",
     "f08": "Ferngrove's standard in-app purchase cut is 30%",
     "f09": "Canopy brought in $11.4 billion in commissions last year",
     "f10": "Ferngrove shares fell 5% in afternoon trading",
-    "f11": "Developers earning under $1 million a year pay 15%",
+    "f11": "Developers earning under $1 million a year pay a 15% rate",
     "f12": "Kettlebrook paid Ferngrove $214 million in commissions last year",
-    "f13": "Ruling doesn't say if Ferngrove can still fee outside purchases"
+    "f13": "The ruling doesn't say whether Ferngrove can still fee outside purchases"
   },
   "articles": {
     "bench-and-bill": [
