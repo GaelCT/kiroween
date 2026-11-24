@@ -3,7 +3,7 @@
 // the story file's fact IDs.
 
 import type { ModelClient, ModelRequest } from "@/pipeline/ai";
-import { EXTRACT_SYSTEM, MATCH_SYSTEM } from "@/pipeline/facts";
+import { EXTRACT_SYSTEM, MATCH_SYSTEM, REPEATS_SYSTEM } from "@/pipeline/facts";
 import { parseMarkedParagraph, type StoryFile } from "@/pipeline/sample-format";
 
 interface KeyArticle {
@@ -45,6 +45,23 @@ export function answerKeyModel(stories: readonly StoryFile[]): ModelClient & { c
           groups.set(fact.factId, [...(groups.get(fact.factId) ?? []), Number(index)]);
         }
         return { groups: [...groups.values()] };
+      }
+      if (request.system === REPEATS_SYSTEM) {
+        // A statement repeats a primary fact when the story file gives both sentences the same fact ID.
+        const keyOf = (sentence: string) =>
+          [...byTitle.values()].flat().flatMap((entry) => entry.facts).find((fact) => fact.sentence === sentence)?.factId;
+        const sentences = (prefix: string) =>
+          [...request.user.matchAll(new RegExp(`^${prefix}(\\d+)\\. .* \\(sentence: "(.*)"\\)$`, "gm"))].map((match) => ({
+            index: Number(match[1]),
+            key: keyOf(match[2]),
+          }));
+        const primary = sentences("P");
+        return {
+          repeats: sentences("C").map((candidate) => ({
+            candidate: candidate.index,
+            primary: primary.find((fact) => fact.key !== undefined && fact.key === candidate.key)?.index ?? null,
+          })),
+        };
       }
       throw new Error("Unexpected prompt");
     },

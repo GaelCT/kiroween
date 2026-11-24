@@ -2,7 +2,7 @@
 // a fake fetch that answers like OpenRouter, so this checks the routes and the pipeline, not a
 // real model.
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Article } from "@/lib/types";
 
 // Invented articles about an invented event.
@@ -40,6 +40,9 @@ function fakeOpenRouter() {
     if (user.startsWith("Title: ")) {
       const sentences = user.split("\n\nArticle:\n")[1].split("\n\n");
       reply = { facts: sentences.map((sentence) => ({ fact: sentence.replace(/\.$/, ""), sentence })) };
+    } else if (user.startsWith("Primary article facts:")) {
+      // The check against the primary: nothing left over repeats it.
+      reply = { repeats: [...user.matchAll(/^C(\d+)\. /gm)].map((match) => ({ candidate: Number(match[1]), primary: null })) };
     } else {
       const lines = [...user.matchAll(/^(\d+)\. .*$/gm)].map((match) => ({ index: Number(match[1]), text: match[0] }));
       const money = lines.filter((line) => line.text.includes("$40 million")).map((line) => line.index);
@@ -49,6 +52,16 @@ function fakeOpenRouter() {
   });
   return { fetchImpl, calls };
 }
+
+// Loading the routes' modules the first time takes about 2 seconds on an idle machine, mostly the
+// HTML parser and the article extractor. During a full test run on a busy machine, that pushed
+// the first test past Vitest's 5-second limit once (Nov 23). Loading them here, with room to spare,
+// keeps that cost out of the tests. Each test still gets fresh modules from vi.resetModules().
+beforeAll(async () => {
+  await import("@/app/api/compare/route");
+  await import("@/app/api/feeds/route");
+  await import("@/app/api/stories/route");
+}, 60_000);
 
 beforeEach(() => {
   vi.resetModules();
@@ -88,7 +101,8 @@ describe("POST /api/compare", () => {
     expect(response.status).toBe(200);
     const body = (await response.json()) as { facts: Record<string, { text: string }>; evidence: Record<string, { factId: string; sentence: string }[]> };
     expect(fake.calls.every((url) => url === "https://openrouter.ai/api/v1/chat/completions")).toBe(true);
-    expect(fake.calls).toHaveLength(3);
+    // Two extractions, one matching call, and one check against the primary.
+    expect(fake.calls).toHaveLength(4);
     // The $40 million fact is shared, so only the 2028 fact is new in the second article.
     expect(body.evidence.a.map((item) => item.factId)).toEqual(["f01"]);
     expect(body.evidence.b.map((item) => item.factId)).toEqual(["f01", "f02"]);
