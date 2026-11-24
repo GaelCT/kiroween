@@ -40,9 +40,9 @@ function fakeOpenRouter() {
     if (user.startsWith("Title: ")) {
       const sentences = user.split("\n\nArticle:\n")[1].split("\n\n");
       reply = { facts: sentences.map((sentence) => ({ fact: sentence.replace(/\.$/, ""), sentence })) };
-    } else if (user.startsWith("Primary article facts:")) {
+    } else if (user.startsWith("Primary article:")) {
       // The check against the primary: nothing left over repeats it.
-      reply = { repeats: [...user.matchAll(/^C(\d+)\. /gm)].map((match) => ({ candidate: Number(match[1]), primary: null })) };
+      reply = { repeats: [...user.matchAll(/^C(\d+)\. /gm)].map((match) => ({ candidate: Number(match[1]), sentence: null })) };
     } else {
       const lines = [...user.matchAll(/^(\d+)\. .*$/gm)].map((match) => ({ index: Number(match[1]), text: match[0] }));
       const money = lines.filter((line) => line.text.includes("$40 million")).map((line) => line.index);

@@ -4,6 +4,7 @@
 // It fetches the feeds, gets full text, clusters stories, and compares the three stories with the
 // most sources. It writes a checklist to .cache/day3/ (gitignored) so you can mark each "+" line
 // right or wrong by hand. A line is right if its sentence says it and the primary article doesn't.
+// The checklist includes the primary article's text as the pipeline read it.
 // Real article text stays in .cache/: never copy it into the repo.
 
 import "./env";
@@ -67,6 +68,15 @@ async function main(): Promise<void> {
     const cluster = { ...story, facts: comparison.facts, comparison: "ready" as const };
     const primary = withEvidence[story.primaryArticleId];
     report.push(`## ${story.title}`, "", `Primary: ${name(primary)}, ${primary.url}`, "");
+    // The text the pipeline compared, so each line can be checked against it even if the page changes.
+    report.push(
+      "<details><summary>Primary article, as the pipeline read it</summary>",
+      "",
+      ...primary.paragraphs.flatMap((paragraph) => [`> ${paragraph}`, ">"]),
+      "",
+      "</details>",
+      "",
+    );
     for (const id of story.articleIds.slice(1)) {
       const article = withEvidence[id];
       if (article.limited) {

@@ -4,8 +4,12 @@
 // Step 2: the model groups statements from different articles that say the same thing, so they
 //         share a fact ID (Requirement 3). Statements that differ in a number, date, or name stay apart.
 // Step 3: the statements step 2 left out of every primary fact would be shown as new, so the model
-//         checks each against the primary article's facts once more. On Nov 19, step 2 alone
-//         missed restatements such as "is buying" for "agreed to buy".
+//         checks each against the primary article's full text once more and quotes the primary's
+//         sentence when it already says the same thing. On Nov 19, step 2 alone missed
+//         restatements such as "is buying" for "agreed to buy", and extraction sometimes skipped
+//         the primary's lead, so there was no primary fact to match.
+// Step 4: sources grouped under one fact all show the same "+" wording, so a source whose own
+//         sentence lacks a number in that wording gets its own fact instead.
 // The output has the same shape as a story file's fact table: facts, plus evidence per article.
 
 import type { Evidence, Fact, FactId } from "@/lib/types";
@@ -211,17 +215,18 @@ export function parseMatching(reply: unknown, statements: readonly Statement[]):
 
 export const REPEATS_SYSTEM = `You check a feed reader's list of new facts against the article the reader opens first.
 
-You get the facts of that primary article, numbered P0, P1, and so on, and statements from other articles about the same event, numbered C0, C1, and so on. Every C statement is about to be shown as new. For each one, say which P fact it repeats, if any.
+You get that primary article, then statements from other articles about the same event, numbered C0, C1, and so on. Each C statement is about to be shown to the reader as new. For each one, decide whether the primary article already says it.
 
 Return JSON only, in this shape:
-{"repeats": [{"candidate": 0, "primary": 2}, {"candidate": 1, "primary": null}]}
+{"repeats": [{"candidate": 0, "sentence": "The sentence from the primary article that says it."}, {"candidate": 1, "sentence": null}]}
 
 Rules:
-- A statement repeats a P fact when it makes the same claim, whatever the wording. "Is buying Quillfern" repeats "Agreed to acquire Quillfern", and "Launched the Arc 7" repeats "Announced the Arc 7".
-- Detail that doesn't add a number, a calendar date, or a name doesn't make a statement new: "today", "for hours", or "its latest phone".
-- A statement with a different number, unit, calendar date, or name is new. So is one that adds a number, a date, or a name the P fact doesn't have.
+- When the primary article already makes the same claim, in any words, give the one sentence from the primary article that makes it, copied character for character from its text. "Is buying Quillfern" is the same claim as "Agreed to acquire Quillfern", "Launched the Arc 7" is the same claim as "Announced the Arc 7", and the same quotation from a different source is the same claim.
+- Detail that doesn't add a number, a calendar date, or a name doesn't make a statement new: "today", "on Monday", "for hours", or "its latest phone".
+- A statement is new, so answer null, when it has a number, unit, calendar date, or name that the primary article doesn't give for that claim.
 - A company's claim and a measured test result are different facts.
-- Give a P number only when the claim is clearly the same. Otherwise answer null, so a real new fact is never hidden.
+- Only quote the primary article's text, never its title.
+- Answer null unless the primary article clearly says the same thing, so a real new fact is never hidden.
 - Answer for every C statement, once.`;
 
 interface Statement {
@@ -229,69 +234,130 @@ interface Statement {
   fact: ExtractedFact;
 }
 
-export function repeatsRequest(primary: readonly Statement[], candidates: readonly Statement[]): ModelRequest {
-  const line = (prefix: string, statement: Statement, index: number) =>
-    `${prefix}${index}. ${statement.fact.text} (sentence: "${statement.fact.sentence}")`;
+export function repeatsRequest(primary: ArticleText, candidates: readonly Statement[]): ModelRequest {
+  const lines = candidates.map((statement, index) => `C${index}. ${statement.fact.text} (sentence: "${statement.fact.sentence}")`);
   return {
     system: REPEATS_SYSTEM,
     user:
-      `Primary article facts:\n${primary.map((statement, index) => line("P", statement, index)).join("\n")}\n\n` +
-      `Statements from other articles:\n${candidates.map((statement, index) => line("C", statement, index)).join("\n")}`,
-    maxTokens: 2048,
+      `Primary article:\nTitle: ${primary.title}\n\n${primary.paragraphs.join("\n\n")}\n\n` +
+      `Statements from other articles:\n${lines.join("\n")}`,
+    maxTokens: 4096,
     listKey: "repeats",
   };
 }
 
-/** Reads the check's reply: candidate number to primary number, for candidates that repeat a primary fact. */
-export function parseRepeats(reply: unknown, candidates: number, primary: number): Map<number, number> {
+/** Reads the check's reply: candidate number to the primary sentence the model quoted for it. */
+export function parseRepeats(reply: unknown, candidates: number): Map<number, string> {
   const raw = (reply as { repeats?: unknown })?.repeats;
   if (!Array.isArray(raw)) throw new ModelError('The check reply has no "repeats" list.');
-  const found = new Map<number, number>();
+  const found = new Map<number, string>();
   for (const item of raw) {
-    const { candidate, primary: target } = (item ?? {}) as { candidate?: unknown; primary?: unknown };
-    if (target === null || target === undefined) continue;
-    const from = Number(candidate);
-    const to = Number(target);
-    if (!Number.isInteger(from) || from < 0 || from >= candidates || found.has(from)) continue;
-    if (!Number.isInteger(to) || to < 0 || to >= primary) continue;
-    found.set(from, to);
+    const { candidate, sentence } = (item ?? {}) as { candidate?: unknown; sentence?: unknown };
+    const index = Number(candidate);
+    if (typeof sentence !== "string" || !sentence.trim()) continue;
+    if (!Number.isInteger(index) || index < 0 || index >= candidates || found.has(index)) continue;
+    found.set(index, sentence);
   }
   return found;
 }
 
+function overlaps(a: string, b: string): boolean {
+  return a === b || a.includes(b) || b.includes(a);
+}
+
 /**
- * Step 3: asks the model whether any group without a primary statement repeats a primary fact,
- * and moves the ones that do into that fact's group. A statement whose article already has one
- * in the target group stays where it was, so no article states one fact twice.
+ * Step 3: asks the model whether the primary article already says what each group without a
+ * primary statement says, and moves the groups it does into the primary's fact. When extraction
+ * missed that primary sentence, it's added as a primary statement. Answers that aren't verbatim in
+ * the primary article are ignored. A statement whose article already has one in the target group
+ * stays where it was, so no article states one fact twice.
  */
-async function checkRepeats(model: ModelClient, statements: readonly Statement[], groups: readonly number[][]): Promise<number[][]> {
-  const primary = statements.map((_, index) => index).filter((index) => statements[index].articleIndex === 0);
-  const candidateGroups = groups
-    .map((_, index) => index)
-    .filter((index) => groups[index].every((statement) => statements[statement].articleIndex !== 0));
-  if (primary.length === 0 || candidateGroups.length === 0) return groups.map((group) => [...group]);
-
-  const representative = (group: readonly number[]) => statements[Math.min(...group)];
-  const reply = await model.completeJson(
-    repeatsRequest(
-      primary.map((index) => statements[index]),
-      candidateGroups.map((index) => representative(groups[index])),
-    ),
-  );
-  const found = parseRepeats(reply, candidateGroups.length, primary.length);
-
+async function checkRepeats(
+  model: ModelClient,
+  articles: readonly ArticleText[],
+  statements: readonly Statement[],
+  groups: readonly number[][],
+): Promise<{ statements: Statement[]; groups: number[][] }> {
+  const all = [...statements];
   const result = groups.map((group) => [...group]);
-  const groupOf = new Map<number, number>();
-  result.forEach((group, index) => group.forEach((statement) => groupOf.set(statement, index)));
-  for (const [candidate, target] of found) {
+  const candidateGroups = result
+    .map((_, index) => index)
+    .filter((index) => result[index].every((statement) => all[statement].articleIndex !== 0));
+  if (candidateGroups.length === 0) return { statements: all, groups: result };
+
+  const representative = (group: readonly number[]) => all[Math.min(...group)];
+  const reply = await model.completeJson(repeatsRequest(articles[0], candidateGroups.map((index) => representative(result[index]))));
+  const found = parseRepeats(reply, candidateGroups.length);
+
+  for (const [candidate, quoted] of found) {
+    const located = findVerbatim(quoted, articles[0].paragraphs);
+    if (!located) continue;
     const from = candidateGroups[candidate];
-    const to = groupOf.get(primary[target])!;
-    const articlesThere = new Set(result[to].map((statement) => statements[statement].articleIndex));
-    const moving = result[from].filter((statement) => !articlesThere.has(statements[statement].articleIndex));
+    const to = result.findIndex((group) => group.some((index) => all[index].articleIndex === 0 && overlaps(all[index].fact.sentence, located.sentence)));
+    if (to === -1) {
+      // Extraction missed this primary sentence: it becomes the primary's statement of the fact.
+      all.push({ articleIndex: 0, fact: { text: representative(result[from]).fact.text, sentence: located.sentence } });
+      result[from].push(all.length - 1);
+      continue;
+    }
+    if (to === from) continue;
+    const articlesThere = new Set(result[to].map((index) => all[index].articleIndex));
+    const moving = result[from].filter((index) => !articlesThere.has(all[index].articleIndex));
     result[to].push(...moving);
-    result[from] = result[from].filter((statement) => !moving.includes(statement));
+    result[from] = result[from].filter((index) => !moving.includes(index));
   }
-  return result.filter((group) => group.length > 0);
+  return { statements: all, groups: result.filter((group) => group.length > 0) };
+}
+
+const NUMBER_WORDS: Record<string, string> = {
+  zero: "0", one: "1", two: "2", three: "3", four: "4", five: "5", six: "6", seven: "7", eight: "8", nine: "9", ten: "10",
+  eleven: "11", twelve: "12", thirteen: "13", fourteen: "14", fifteen: "15", sixteen: "16", seventeen: "17", eighteen: "18",
+  nineteen: "19", twenty: "20", thirty: "30", forty: "40", fifty: "50", sixty: "60", seventy: "70", eighty: "80", ninety: "90",
+  hundred: "100", first: "1", second: "2", third: "3", fourth: "4", fifth: "5", sixth: "6", seventh: "7", eighth: "8",
+  ninth: "9", tenth: "10",
+};
+
+/** The numbers written in digits: "$1,500" is 1500, "04:10" is 4 and 10, "38%" is 38. */
+function digitsIn(text: string): string[] {
+  return (text.match(/\d[\d,.]*\d|\d/g) ?? []).map((raw) => raw.replace(/,/g, "").replace(/^0+(?=\d)/, ""));
+}
+
+/**
+ * Whether a sentence backs every number a "+" line shows. Numbers can be in digits or words in the
+ * sentence, or in its article's title, where product names such as "Pulse 3" often are.
+ */
+export function supportsNumbers(line: string, sentence: string, title: string): boolean {
+  const available = new Set([...digitsIn(sentence), ...digitsIn(title)]);
+  for (const word of sentence.toLowerCase().match(/[a-z]+/g) ?? []) if (NUMBER_WORDS[word]) available.add(NUMBER_WORDS[word]);
+  return digitsIn(line).every((number) => available.has(number));
+}
+
+/**
+ * Step 4: in a group with no primary statement, every source shows the first statement's wording.
+ * A statement whose sentence lacks a number in that wording leaves the group, so its "+" line
+ * never claims more than its highlighted sentence says. Statements that leave together stay together.
+ */
+function splitUnsupported(articles: readonly ArticleText[], statements: readonly Statement[], groups: readonly number[][]): number[][] {
+  const position = statements.map((statement) => findVerbatim(statement.fact.sentence, articles[statement.articleIndex].paragraphs)!);
+  const byReading = (a: number, b: number) =>
+    statements[a].articleIndex - statements[b].articleIndex ||
+    position[a].paragraph - position[b].paragraph ||
+    position[a].offset - position[b].offset;
+  const result: number[][] = [];
+  const queue = groups.map((group) => [...group]);
+  for (let group = queue.shift(); group; group = queue.shift()) {
+    if (group.length < 2 || group.some((index) => statements[index].articleIndex === 0)) {
+      result.push(group);
+      continue;
+    }
+    const [shown, ...others] = [...group].sort(byReading);
+    const supported = (index: number) =>
+      supportsNumbers(statements[shown].fact.text, statements[index].fact.sentence, articles[statements[index].articleIndex].title);
+    result.push([shown, ...others.filter(supported)]);
+    const rest = others.filter((index) => !supported(index));
+    if (rest.length > 0) queue.push(rest);
+  }
+  return result;
 }
 
 function factId(n: number): FactId {
@@ -308,15 +374,15 @@ export async function compareArticles(model: ModelClient, articles: readonly Art
     return assembleClusterFacts(articles, articles.map(() => ({ facts: [], dropped: [] })), [], []);
   }
   const extractions = await Promise.all(articles.map((article) => extractFacts(model, article)));
-  const statements: Statement[] = extractions.flatMap((extraction, articleIndex) =>
+  const extracted: Statement[] = extractions.flatMap((extraction, articleIndex) =>
     extraction.facts.map((fact) => ({ articleIndex, fact })),
   );
   const matched =
-    statements.length > 1
-      ? parseMatching(await model.completeJson(matchRequest(articles, statements)), statements)
-      : statements.map((_, index) => [index]);
-  const groups = await checkRepeats(model, statements, matched);
-  return assembleClusterFacts(articles, extractions, statements, groups);
+    extracted.length > 1
+      ? parseMatching(await model.completeJson(matchRequest(articles, extracted)), extracted)
+      : extracted.map((_, index) => [index]);
+  const { statements, groups } = await checkRepeats(model, articles, extracted, matched);
+  return assembleClusterFacts(articles, extractions, statements, splitUnsupported(articles, statements, groups));
 }
 
 export function assembleClusterFacts(

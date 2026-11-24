@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { ModelClient } from "@/pipeline/ai";
-import { compareArticles, findVerbatim, parseExtraction, parseMatching, type ArticleText } from "@/pipeline/facts";
+import { compareArticles, findVerbatim, parseExtraction, parseMatching, supportsNumbers, type ArticleText } from "@/pipeline/facts";
 import { loadSampleData, readSampleFiles } from "@/pipeline/sample";
 import { runStory } from "@/pipeline/sample-pipeline";
 import { answerKeyModel } from "./support/answer-key-model";
@@ -52,8 +52,8 @@ describe("parseMatching", () => {
 });
 
 describe("checking restatements against the primary article", () => {
-  // Invented articles. Matching misses that B's first sentence restates A's first fact, the way
-  // a real model did on Nov 19.
+  // Invented articles. Matching misses that B's first sentence restates A's first sentence, the
+  // way a real model did on Nov 19.
   const a: ArticleText = {
     id: "a",
     title: "Velmont agrees to buy Quillfern",
@@ -64,47 +64,97 @@ describe("checking restatements against the primary article", () => {
     title: "Velmont is buying Quillfern",
     paragraphs: ["Velmont is buying the note-taking app Quillfern.", "Quillfern has 4 million users."],
   };
-  const facts: Record<string, { fact: string; sentence: string }[]> = {
-    [a.title]: [
-      { fact: "Velmont agreed to acquire Quillfern", sentence: a.paragraphs[0] },
-      { fact: "The deal values Quillfern at $2 billion", sentence: a.paragraphs[1] },
-    ],
-    [b.title]: [
-      { fact: "Velmont is buying Quillfern", sentence: b.paragraphs[0] },
-      { fact: "Quillfern has 4 million users", sentence: b.paragraphs[1] },
-    ],
-  };
+  const leadOfA = { fact: "Velmont agreed to acquire Quillfern", sentence: a.paragraphs[0] };
+  const valueOfA = { fact: "The deal values Quillfern at $2 billion", sentence: a.paragraphs[1] };
+  const factsOfB = [
+    { fact: "Velmont is buying Quillfern", sentence: b.paragraphs[0] },
+    { fact: "Quillfern has 4 million users", sentence: b.paragraphs[1] },
+  ];
 
-  function scripted(): ModelClient & { calls: string[] } {
+  /** A model whose check says B's "is buying" statement repeats `answer`, a sentence of A or not. */
+  function scripted(factsOfA: { fact: string; sentence: string }[], answer: string): ModelClient & { calls: string[]; asked: string[] } {
     const calls: string[] = [];
+    const asked: string[] = [];
     return {
       name: "test/scripted",
       calls,
+      asked,
       async completeJson(request) {
         calls.push(request.listKey ?? "");
-        if (request.listKey === "facts") return { facts: facts[request.user.match(/^Title: (.*)$/m)![1]] };
-        if (request.listKey === "groups") return { groups: [[0], [1], [2], [3]] };
-        // The check against the primary: the candidate that says "is buying" repeats the primary's "agreed to acquire".
-        const primary = [...request.user.matchAll(/^P(\d+)\. (.*)$/gm)];
+        if (request.listKey === "facts") return { facts: request.user.startsWith(`Title: ${a.title}`) ? factsOfA : factsOfB };
+        if (request.listKey === "groups") {
+          const count = [...request.user.matchAll(/^\d+\. \[Article/gm)].length;
+          return { groups: Array.from({ length: count }, (_, index) => [index]) };
+        }
+        asked.push(request.user);
         const candidates = [...request.user.matchAll(/^C(\d+)\. (.*)$/gm)];
-        const target = primary.find((line) => line[2].includes("agreed to acquire"))!;
         return {
-          repeats: candidates.map((line) => ({
-            candidate: Number(line[1]),
-            primary: line[2].includes("is buying") ? Number(target[1]) : null,
-          })),
+          repeats: candidates.map((line) => ({ candidate: Number(line[1]), sentence: line[2].includes("is buying") ? answer : null })),
         };
       },
     };
   }
 
   it("gives a restatement the primary's fact ID, so it isn't shown as new", async () => {
-    const model = scripted();
+    const model = scripted([leadOfA, valueOfA], a.paragraphs[0]);
     const result = await compareArticles(model, [a, b]);
     expect(model.calls).toEqual(["facts", "facts", "groups", "repeats"]);
+    // The check reads the primary article itself, not only the facts extracted from it.
+    expect(model.asked[0]).toContain(a.paragraphs[1]);
     expect(result.evidence.b[0].factId).toBe(result.evidence.a[0].factId);
     expect(result.evidence.b[1].factId).not.toBe(result.evidence.a[1].factId);
     expect(Object.keys(result.facts)).toHaveLength(3);
+  });
+
+  it("adds the primary's sentence as a fact when extraction missed it", async () => {
+    // Extraction skipped the primary's lead, as it did for two starter-pack stories on Nov 19.
+    const model = scripted([valueOfA], a.paragraphs[0]);
+    const result = await compareArticles(model, [a, b]);
+    expect(result.evidence.a.map((item) => item.sentence)).toEqual(a.paragraphs);
+    expect(result.evidence.b[0].factId).toBe(result.evidence.a[0].factId);
+  });
+
+  it("ignores an answer that isn't a sentence of the primary article", async () => {
+    const model = scripted([valueOfA], "Velmont is acquiring Quillfern, the companies said.");
+    const result = await compareArticles(model, [a, b]);
+    expect(result.evidence.a).toHaveLength(1);
+    expect(Object.values(result.evidence.a).map((item) => item.factId)).not.toContain(result.evidence.b[0].factId);
+  });
+});
+
+describe("lines that claim more than their sentence", () => {
+  // Invented articles. Matching put B's and C's prices together, so C's line would have shown
+  // B's wording, "$280 for a set", which C's sentence never says. That happened on Nov 23.
+  const a: ArticleText = { id: "a", title: "Harrow unveils the Glint tracker", paragraphs: ["Harrow has unveiled the Glint, a tracker with a small screen."] };
+  const b: ArticleText = { id: "b", title: "Harrow's Glint tracker goes on sale", paragraphs: ["The Glint costs $35 on its own or $280 for a set of nine."] };
+  const c: ArticleText = { id: "c", title: "Hands-on with the Glint 2 tracker", paragraphs: ["You can order one tracker for $35, and the whole set is also available."] };
+
+  function grouping(groups: (count: number) => number[][]): ModelClient {
+    return {
+      name: "test/grouping",
+      async completeJson(request) {
+        if (request.listKey === "facts") {
+          const article = [a, b, c].find((candidate) => request.user.startsWith(`Title: ${candidate.title}`))!;
+          const text = article === a ? "Harrow unveiled the Glint" : article === b ? "Costs $35, or $280 for a set of nine" : "Costs $35 for one tracker";
+          return { facts: [{ fact: text, sentence: article.paragraphs[0] }] };
+        }
+        if (request.listKey === "groups") return { groups: groups([...request.user.matchAll(/^\d+\. \[Article/gm)].length) };
+        return { repeats: [...request.user.matchAll(/^C(\d+)\. /gm)].map((line) => ({ candidate: Number(line[1]), sentence: null })) };
+      },
+    };
+  }
+
+  it("splits off a statement whose sentence lacks a number in the line it would show", async () => {
+    const result = await compareArticles(grouping(() => [[0], [1, 2]]), [a, b, c]);
+    expect(result.evidence.c[0].factId).not.toBe(result.evidence.b[0].factId);
+    expect(result.facts[result.evidence.c[0].factId].text).toBe("Costs $35 for one tracker");
+  });
+
+  it("keeps a statement whose sentence has the numbers, in words or in its article's title", () => {
+    expect(supportsNumbers("Returned 2 weeks later", "Two weeks later, she was back.", "")).toBe(true);
+    expect(supportsNumbers("Glint 2 costs $35", "It costs $35.", c.title)).toBe(true);
+    expect(supportsNumbers("Costs $35, or $280 for a set of nine", "You can order one tracker for $35.", c.title)).toBe(false);
+    expect(supportsNumbers("Raised $1,500 at 04:10", "It raised $1500 at 4:10.", "")).toBe(true);
   });
 });
 

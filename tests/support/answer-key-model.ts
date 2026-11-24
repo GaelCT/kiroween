@@ -47,20 +47,16 @@ export function answerKeyModel(stories: readonly StoryFile[]): ModelClient & { c
         return { groups: [...groups.values()] };
       }
       if (request.system === REPEATS_SYSTEM) {
-        // A statement repeats a primary fact when the story file gives both sentences the same fact ID.
+        // A statement repeats the primary when the story file marks a primary sentence with its fact ID.
+        const [, title, lead] = request.user.match(/^Primary article:\nTitle: (.*)\n\n(.*)$/m)!;
+        const primary = byTitle.get(title)!.find((candidate) => candidate.lead === lead)!;
         const keyOf = (sentence: string) =>
           [...byTitle.values()].flat().flatMap((entry) => entry.facts).find((fact) => fact.sentence === sentence)?.factId;
-        const sentences = (prefix: string) =>
-          [...request.user.matchAll(new RegExp(`^${prefix}(\\d+)\\. .* \\(sentence: "(.*)"\\)$`, "gm"))].map((match) => ({
-            index: Number(match[1]),
-            key: keyOf(match[2]),
-          }));
-        const primary = sentences("P");
         return {
-          repeats: sentences("C").map((candidate) => ({
-            candidate: candidate.index,
-            primary: primary.find((fact) => fact.key !== undefined && fact.key === candidate.key)?.index ?? null,
-          })),
+          repeats: [...request.user.matchAll(/^C(\d+)\. .* \(sentence: "(.*)"\)$/gm)].map((match) => {
+            const key = keyOf(match[2]);
+            return { candidate: Number(match[1]), sentence: primary.facts.find((fact) => key !== undefined && fact.factId === key)?.sentence ?? null };
+          }),
         };
       }
       throw new Error("Unexpected prompt");
