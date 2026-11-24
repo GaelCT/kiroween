@@ -63,8 +63,9 @@ The fix was a new step: one more AI call checks every statement about to be show
 After that fix and two prompt fixes, the starter pack scored **227 of 227 (100%)** on Nov 23. All of it was done by changing the pipeline and rerunning it. Nobody edited the saved results.
 
 **The hook firing on its own (Nov 23):** we never ran the check by hand during this work, so the evidence below comes from Kiro alone.
-- Kiro's agent saved `src/pipeline/facts.ts` three times, at 20:39, 21:42, and 22:49.
-- Each time, within 2 to 7 seconds, the check's result files in `.cache/accuracy/` were rewritten.
+- Each of three times Kiro's agent saved `src/pipeline/facts.ts`, the check's result files in `.cache/accuracy/` were rewritten.
+- Saves at 21:42:40 and 22:49:04 were followed by rewrites 5 and 2 seconds later.
+- For the first save, at about 20:39, only the rewrite time is known: 20:39:47.
 - The rewritten files were real runs with the real model. The last one scored 29 of 29.
 - The hook's output didn't appear in the agent's chat. Only its result files show that it ran.
 

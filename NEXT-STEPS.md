@@ -39,8 +39,8 @@ The code work is done. What's left needs an account or a person. The full backlo
 - A second visitor still got 200.
 
 **The hook firing on its own.** Nobody ran the check by hand during this session.
-- Kiro's agent saved `src/pipeline/facts.ts` at 20:39, 21:42, and 22:49.
-- Each time, the check's result files in `.cache/accuracy/` were rewritten 2 to 7 seconds later.
+- Each of three times Kiro's agent saved `src/pipeline/facts.ts`, the check's result files in `.cache/accuracy/` were rewritten.
+- Saves at 21:42:40 and 22:49:04 were followed by rewrites 5 and 2 seconds later. After the first save, at about 20:39, the files were rewritten at 20:39:47.
 - The rewritten files came from real runs with the real model, and the latest scored 29 of 29.
 - The hook's output never appeared in the agent's chat. Only the result files show it ran.
 
