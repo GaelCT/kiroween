@@ -52,6 +52,26 @@ export function markRead(state: ReadingState, articleIds: readonly string[]): Re
   return unread.length === 0 ? state : { ...state, history: [...state.history, ...unread] };
 }
 
+/** Drops deleted articles and follows story IDs when deletion chooses a new primary article. */
+export function pruneReading(
+  state: ReadingState,
+  articleIds: readonly string[],
+  storyIds: Readonly<Record<string, string | null>>,
+): ReadingState {
+  const removed = new Set(articleIds);
+  const starred = state.starred.flatMap((id): string[] => {
+    const replacement = storyIds[id];
+    if (replacement === null) return [];
+    return [replacement ?? id];
+  });
+  return {
+    ...state,
+    history: state.history.filter((id) => !removed.has(id)),
+    detached: state.detached.filter((id) => !removed.has(id)),
+    starred: [...new Set(starred)],
+  };
+}
+
 // Storage, with an in-memory fallback when localStorage is blocked or full.
 let memory: string | null = null;
 let memoryOnly = false;

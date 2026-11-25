@@ -66,10 +66,13 @@ interface ArticleRowProps {
   collapsing: boolean;
   onOpen: () => void;
   onStar: () => void;
+  /** Present only for articles in the visitor's live archive, never sample data. */
+  onDelete?: () => void;
+  deleteDisabled?: boolean;
 }
 
 /** One article in the ungrouped list, the way the old Reader showed every item. */
-export function ArticleRow({ articleId, cluster, data, read, starred, collapsing, onOpen, onStar }: ArticleRowProps) {
+export function ArticleRow({ articleId, cluster, data, read, starred, collapsing, onOpen, onStar, onDelete, deleteDisabled }: ArticleRowProps) {
   const article = data.articles[articleId];
   const isPrimary = articleId === cluster.primaryArticleId;
   const others = cluster.articleIds.length - 1;
@@ -88,6 +91,18 @@ export function ArticleRow({ articleId, cluster, data, read, starred, collapsing
         </span>
         <time className="row-date" dateTime={article.publishedAt}>{formatShortDate(article.publishedAt)}</time>
       </button>
+      {onDelete ? (
+        <button
+          type="button"
+          className="row-delete"
+          aria-label={`Delete ${article.title}`}
+          title="Delete this article from your archive"
+          disabled={deleteDisabled}
+          onClick={onDelete}
+        >
+          ×
+        </button>
+      ) : null}
     </div>
   );
 }
