@@ -12,7 +12,7 @@
 //         sentence lacks a number in that wording gets its own fact instead.
 // The output has the same shape as a story file's fact table: facts, plus evidence per article.
 
-import type { Evidence, Fact, FactId } from "@/lib/types";
+import type { Contradiction, Evidence, Fact, FactId } from "@/lib/types";
 import { ModelError, type ModelClient, type ModelRequest } from "./ai";
 import { normalizeWhitespace } from "./html";
 
@@ -39,6 +39,7 @@ export interface ClusterFacts {
   facts: Record<FactId, Fact>;
   /** Keyed by article ID, in reading order. */
   evidence: Record<string, Evidence[]>;
+  contradictions: Contradiction[];
   dropped: Record<string, ExtractedFact[]>;
 }
 
@@ -261,6 +262,66 @@ export function parseRepeats(reply: unknown, candidates: number): Map<number, st
   return found;
 }
 
+export const CONTRADICTION_SYSTEM = `You find genuinely contradictory claims in news articles about the same event.
+
+You get numbered atomic statements, each labeled with its article and exact source sentence. Identify only claims that cannot all be true as written because they disagree about the same subject, time, and context.
+
+Return JSON only, in this shape:
+{"contradictions": [{"topic": "Units sold", "statements": [0, 4]}]}
+
+Rules:
+- A contradiction needs at least two statements from different articles.
+- Different numbers, dates, prices, names, decisions, or outcomes can conflict when they describe the same thing.
+- Added detail is not a conflict. A company forecast and a later measured result are not a conflict. Claims about different dates, regions, products, or test conditions are not a conflict.
+- Different wording, attribution, or emphasis alone is not a conflict.
+- When the disagreement is inconclusive or merely possible, omit it.
+- "topic" is a short neutral label, never a verdict about which source is right.
+- Use only the supplied statement numbers. Do not invent quotes or claims. Return an empty list when nothing clearly conflicts.`;
+
+function contradictionRequest(statements: readonly Statement[]): ModelRequest {
+  const lines = statements.map(
+    (statement, index) => `${index}. [Article ${statement.articleIndex + 1}] ${statement.fact.text} (sentence: "${statement.fact.sentence}")`,
+  );
+  return { system: CONTRADICTION_SYSTEM, user: `Statements:\n${lines.join("\n")}`, maxTokens: 2048, listKey: "contradictions" };
+}
+
+/** Accepts only resolvable cross-article pairs; all quotes come from the already verified statements. */
+export function parseContradictions(
+  reply: unknown,
+  statements: readonly Statement[],
+  cluster: Pick<ClusterFacts, "evidence">,
+): Contradiction[] {
+  const raw = (reply as { contradictions?: unknown })?.contradictions;
+  if (!Array.isArray(raw)) throw new ModelError('The contradiction reply has no "contradictions" list.');
+  const result: Contradiction[] = [];
+  const seen = new Set<string>();
+  for (const item of raw) {
+    const rawTopic = (item as { topic?: unknown })?.topic;
+    const topic = typeof rawTopic === "string" ? normalizeWhitespace(rawTopic) : "";
+    const indices = (item as { statements?: unknown })?.statements;
+    if (!topic || topic.length > 160 || !Array.isArray(indices)) continue;
+    const unique = [...new Set(indices.map(Number))];
+    if (
+      unique.some((index) => !Number.isInteger(index) || index < 0 || index >= statements.length) ||
+      unique.length < 2 ||
+      new Set(unique.map((index) => statements[index].articleIndex)).size !== unique.length
+    ) continue;
+    unique.sort((a, b) => a - b);
+    const key = unique.join(",");
+    if (seen.has(key)) continue;
+    const claims = unique.map((index) => {
+      const statement = statements[index];
+      const articleId = Object.keys(cluster.evidence)[statement.articleIndex];
+      const evidence = cluster.evidence[articleId]?.find((item) => item.sentence === statement.fact.sentence);
+      return evidence ? { articleId, factId: evidence.factId, quote: statement.fact.sentence } : null;
+    });
+    if (claims.some((claim) => claim === null)) continue;
+    seen.add(key);
+    result.push({ id: `c${String(result.length + 1).padStart(2, "0")}`, topic, claims: claims as Contradiction["claims"] });
+  }
+  return result;
+}
+
 function overlaps(a: string, b: string): boolean {
   return a === b || a.includes(b) || b.includes(a);
 }
@@ -382,7 +443,10 @@ export async function compareArticles(model: ModelClient, articles: readonly Art
       ? parseMatching(await model.completeJson(matchRequest(articles, extracted)), extracted)
       : extracted.map((_, index) => [index]);
   const { statements, groups } = await checkRepeats(model, articles, extracted, matched);
-  return assembleClusterFacts(articles, extractions, statements, splitUnsupported(articles, statements, groups));
+  const cluster = assembleClusterFacts(articles, extractions, statements, splitUnsupported(articles, statements, groups));
+  if (statements.length < 2) return cluster;
+  const reply = await model.completeJson(contradictionRequest(statements));
+  return { ...cluster, contradictions: parseContradictions(reply, statements, cluster) };
 }
 
 export function assembleClusterFacts(
@@ -420,5 +484,5 @@ export function assembleClusterFacts(
     evidence[articles[statements[index].articleIndex].id].push({ factId: id, sentence: statements[index].fact.sentence });
   }
   const dropped = Object.fromEntries(articles.map((article, index) => [article.id, extractions[index].dropped]));
-  return { facts, evidence, dropped };
+  return { facts, evidence, contradictions: [], dropped };
 }

@@ -14,6 +14,21 @@ export interface Evidence {
   sentence: string;
 }
 
+/** One article's side of a disagreement, with the exact sentence readers can inspect. */
+export interface ContradictionClaim {
+  articleId: string;
+  factId: FactId;
+  quote: string;
+}
+
+export interface Contradiction {
+  id: string;
+  /** A neutral label for the disputed claim, not a verdict about either source. */
+  topic: string;
+  /** At least two claims, each from a different article. */
+  claims: ContradictionClaim[];
+}
+
 export interface Source {
   id: string;
   name: string;
@@ -52,6 +67,8 @@ export interface Cluster {
   /** Primary first, then by publish time. */
   articleIds: string[];
   facts: Record<FactId, Fact>;
+  /** Missing on older/sample stories means no detected disagreements. */
+  contradictions?: Contradiction[];
   /** Missing means "ready". */
   comparison?: ComparisonStatus;
 }

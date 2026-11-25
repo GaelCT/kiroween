@@ -3,7 +3,7 @@
 // the story file's fact IDs.
 
 import type { ModelClient, ModelRequest } from "@/pipeline/ai";
-import { EXTRACT_SYSTEM, MATCH_SYSTEM, REPEATS_SYSTEM } from "@/pipeline/facts";
+import { CONTRADICTION_SYSTEM, EXTRACT_SYSTEM, MATCH_SYSTEM, REPEATS_SYSTEM } from "@/pipeline/facts";
 import { parseMarkedParagraph, type StoryFile } from "@/pipeline/sample-format";
 
 interface KeyArticle {
@@ -46,6 +46,7 @@ export function answerKeyModel(stories: readonly StoryFile[]): ModelClient & { c
         }
         return { groups: [...groups.values()] };
       }
+      if (request.system === CONTRADICTION_SYSTEM) return { contradictions: [] };
       if (request.system === REPEATS_SYSTEM) {
         // A statement repeats the primary when the story file marks a primary sentence with its fact ID.
         const [, title, lead] = request.user.match(/^Primary article:\nTitle: (.*)\n\n(.*)$/m)!;

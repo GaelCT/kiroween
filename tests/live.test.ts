@@ -85,6 +85,7 @@ describe("live stories", () => {
     const compared = saveComparison(state, signature, {
       facts: { f01: { id: "f01", text: "Event happened" }, f02: { id: "f02", text: "Costs $5" } },
       evidence: { a1: [{ factId: "f01", sentence: "One." }], b1: [{ factId: "f01", sentence: "One." }, { factId: "f02", sentence: "Two." }] },
+      contradictions: [],
     });
     expect(storiesToCompare(compared)).toEqual([]);
     const data = liveReaderData(compared);
@@ -94,6 +95,29 @@ describe("live stories", () => {
       ["b1", "adds", ["f02"]],
       ["b2", "limited", []],
     ]);
+  });
+
+  it("regenerates a legacy comparison once and carries contradictions into the story", () => {
+    let state = applyGrouping(twoFeeds(), new Set(["a1", "b1", "b2"]), grouping);
+    const signature = storySignature(state.stories[0], state.articles);
+    const comparison = {
+      facts: { f01: { id: "f01", text: "Event happened" }, f02: { id: "f02", text: "Event did not happen" } },
+      evidence: { a1: [{ factId: "f01", sentence: "One." }], b1: [{ factId: "f02", sentence: "Two." }] },
+    };
+    state = saveComparison(state, signature, comparison);
+    expect(storiesToCompare(state).map((story) => story.id)).toEqual(["live:a1"]);
+
+    const contradiction = {
+      id: "c01",
+      topic: "Whether the event happened",
+      claims: [
+        { articleId: "a1", factId: "f01", quote: "One." },
+        { articleId: "b1", factId: "f02", quote: "Two." },
+      ],
+    };
+    state = saveComparison(state, signature, { ...comparison, contradictions: [contradiction] });
+    expect(storiesToCompare(state)).toEqual([]);
+    expect(liveReaderData(state).clusters[0].contradictions).toEqual([contradiction]);
   });
 
   it("needs comparing again when a story gains a source, and lets the old result go", () => {

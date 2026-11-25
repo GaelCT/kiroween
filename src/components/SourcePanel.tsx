@@ -3,6 +3,7 @@
 import type { SourceComparison } from "@/lib/adds";
 import { formatPercent } from "@/lib/format";
 import type { Cluster, ComparisonStatus, FactId, ReaderData } from "@/lib/types";
+import { Contradictions } from "./Contradictions";
 
 interface Props {
   cluster: Cluster;
@@ -44,6 +45,9 @@ export function SourcePanel({ cluster, comparisons, data, currentArticleId, onOp
       ) : (
         <p className="panel-note">{nothingLeft ? "Nothing new left in this story." : "Facts you haven’t read yet in this story."}</p>
       )}
+      {status === "ready" ? (
+        <Contradictions contradictions={cluster.contradictions ?? []} sourceName={sourceName} onPick={onPick} />
+      ) : null}
       <ol className="panel-sources">
         {comparisons.map((comparison) => (
           <li

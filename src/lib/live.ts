@@ -4,7 +4,7 @@
 // them, so the archive reaches back past what a feed currently lists.
 
 import type { OpmlFeed } from "./opml";
-import type { Article, Cluster, Evidence, Fact, FactId, ReaderData, Source } from "./types";
+import type { Article, Cluster, Contradiction, Evidence, Fact, FactId, ReaderData, Source } from "./types";
 
 export interface LiveSource extends Source {
   /** ISO 8601. When the feed was last fetched. */
@@ -24,6 +24,8 @@ export interface SavedComparison {
   facts: Record<FactId, Fact>;
   /** Keyed by article ID. */
   evidence: Record<string, Evidence[]>;
+  /** Missing only in comparisons and backups made before contradiction detection. */
+  contradictions?: Contradiction[];
 }
 
 export interface LiveState {
@@ -128,9 +130,12 @@ export function storySignature(story: LiveStory, articles: Readonly<Record<strin
 
 /** Stories with two or more full articles and no saved comparison. */
 export function storiesToCompare(state: LiveState): LiveStory[] {
-  return state.stories.filter(
-    (story) => comparableIds(story, state.articles).length > 1 && !(storySignature(story, state.articles) in state.comparisons),
-  );
+  return state.stories.filter((story) => {
+    if (comparableIds(story, state.articles).length < 2) return false;
+    const saved = state.comparisons[storySignature(story, state.articles)];
+    // Comparisons saved before #44 are regenerated once to look for contradictions.
+    return !saved || !Array.isArray(saved.contradictions);
+  });
 }
 
 export function saveComparison(state: LiveState, signature: string, comparison: SavedComparison): LiveState {
@@ -241,7 +246,7 @@ export function liveReaderData(state: LiveState, failed: ReadonlySet<string> = n
     const saved = state.comparisons[signature];
     if (!saved) return { ...base, facts: {}, comparison: failed.has(signature) ? "failed" : "pending" };
     for (const id of story.articleIds) articles[id] = { ...state.articles[id], evidence: saved.evidence[id] ?? [] };
-    return { ...base, facts: saved.facts };
+    return { ...base, facts: saved.facts, contradictions: saved.contradictions ?? [] };
   });
   return { sources: state.sources, articles, clusters };
 }

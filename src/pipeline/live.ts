@@ -4,7 +4,7 @@
 // in the visitor's browser, never in the repo.
 
 import { createHash } from "node:crypto";
-import type { Article, Cluster, Evidence, Fact, FactId, Source } from "@/lib/types";
+import type { Article, Cluster, Contradiction, Evidence, Fact, FactId, Source } from "@/lib/types";
 import type { ModelClient } from "./ai";
 import { clusterArticles } from "./cluster";
 import { compareArticles } from "./facts";
@@ -99,6 +99,7 @@ export interface LiveComparison {
   facts: Record<FactId, Fact>;
   /** Keyed by article ID. */
   evidence: Record<string, Evidence[]>;
+  contradictions: Contradiction[];
 }
 
 /** Extracts and matches facts for one live story. `articles` starts with the primary. */
@@ -108,5 +109,5 @@ export async function compareLiveCluster(model: ModelClient, articles: readonly 
     model,
     comparable.map((article) => ({ id: article.id, title: article.title, paragraphs: article.paragraphs })),
   );
-  return { facts: result.facts, evidence: result.evidence };
+  return { facts: result.facts, evidence: result.evidence, contradictions: result.contradictions };
 }
