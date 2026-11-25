@@ -40,7 +40,7 @@ function locate(clusters: Cluster[], position: Position | null): { cluster: Clus
   const cluster =
     clusters.find((candidate) => candidate.id === position.clusterId && candidate.articleIds.includes(position.articleId)) ??
     clusters.find((candidate) => candidate.articleIds.includes(position.articleId));
-  return cluster ? { cluster, articleId } : null;
+  return cluster ? { cluster, articleId: position.articleId } : null;
 }
 
 function isTyping(target: EventTarget | null): boolean {
