@@ -19,6 +19,7 @@ import type { ScrollTarget } from "./ArticleView";
 import { Sidebar } from "./Sidebar";
 import { ArticleRow, StoryRow } from "./StoryRow";
 import { StoryView } from "./StoryView";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 interface Position {
   clusterId: string;
@@ -39,7 +40,7 @@ function locate(clusters: Cluster[], position: Position | null): { cluster: Clus
   const cluster =
     clusters.find((candidate) => candidate.id === position.clusterId && candidate.articleIds.includes(position.articleId)) ??
     clusters.find((candidate) => candidate.articleIds.includes(position.articleId));
-  return cluster ? { cluster, articleId: position.articleId } : null;
+  return cluster ? { cluster, articleId } : null;
 }
 
 function isTyping(target: EventTarget | null): boolean {
@@ -313,6 +314,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
         <span className="key-hints">
           <kbd>J</kbd>/<kbd>K</kbd> story · <kbd>N</kbd>/<kbd>P</kbd> source · <kbd>S</kbd> star · <kbd>X</kbd> not this story
         </span>
+        <ThemeSwitcher />
         <button type="button" className="topbar-button" onClick={reset}>
           Reset reading
         </button>
