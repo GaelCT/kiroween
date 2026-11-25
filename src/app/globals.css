@@ -162,16 +162,6 @@ kbd {
   text-decoration: underline;
 }
 
-.subscribe-button:hover,
-.subscribe-add:hover:not(:disabled) {
-  background: linear-gradient(#dd4b39, #c53727);
-}
-
-.subscribe-add:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
 .subscribe-form {
   margin: 0 0 12px 8px;
   padding: 8px;
@@ -229,6 +219,32 @@ kbd {
 
 .subscribe-import-button:hover:not(:disabled) {
   text-decoration: underline;
+}
+
+.backup-button {
+  margin-top: -4px;
+}
+
+.backup-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.backup-panel .subscribe-cancel {
+  margin-top: 8px;
+}
+
+.subscribe-button:hover,
+.subscribe-add:hover:not(:disabled) {
+  background: linear-gradient(#dd4b39, #c53727);
+}
+
+.subscribe-add:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .subscribe-import-button:disabled,
