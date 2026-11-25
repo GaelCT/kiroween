@@ -46,11 +46,29 @@ describe("archive removal", () => {
     expect(removal.state.sources.map((source) => source.id)).toEqual([feedA.id, feedB.id, saved.id]);
 
     const reading = pruneReading(
-      { history: ["a1", "b1", "a2"], detached: ["a1"], starred: ["live:a1", "live:a2"], grouped: true },
+      {
+        history: ["a1", "b1", "a2"],
+        detached: ["a1"],
+        starred: ["live:a1", "live:a2"],
+        grouped: true,
+        storyVisits: {
+          "live:a1": { visitedAt: "2026-11-20T00:00:00.000Z", facts: { f01: "Before" } },
+          "live:a2": { visitedAt: "2026-11-21T00:00:00.000Z", facts: {} },
+        },
+      },
       ["a1"],
       removal.storyIds,
     );
-    expect(reading).toEqual({ history: ["b1", "a2"], detached: [], starred: ["live:b1", "live:a2"], grouped: true });
+    expect(reading).toEqual({
+      history: ["b1", "a2"],
+      detached: [],
+      starred: ["live:b1", "live:a2"],
+      grouped: true,
+      storyVisits: {
+        "live:b1": { visitedAt: "2026-11-20T00:00:00.000Z", facts: { f01: "Before" } },
+        "live:a2": { visitedAt: "2026-11-21T00:00:00.000Z", facts: {} },
+      },
+    });
     expect(before.articles.a1).toBeDefined();
   });
 
@@ -59,11 +77,17 @@ describe("archive removal", () => {
     expect(removal.state.sources.map((source) => source.id)).toEqual([feedA.id, feedB.id]);
     expect(removal.storyIds["live:s1"]).toBeNull();
     const reading = pruneReading(
-      { history: ["s1"], detached: ["s1"], starred: ["live:s1"], grouped: false },
+      {
+        history: ["s1"],
+        detached: ["s1"],
+        starred: ["live:s1"],
+        grouped: false,
+        storyVisits: { "live:s1": { visitedAt: "2026-11-20T00:00:00.000Z", facts: {} } },
+      },
       ["s1"],
       removal.storyIds,
     );
-    expect(reading).toEqual({ history: [], detached: [], starred: [], grouped: false });
+    expect(reading).toEqual({ history: [], detached: [], starred: [], grouped: false, storyVisits: {} });
   });
 
   it("unsubscribes a feed and removes all of its articles without touching other sources", () => {
