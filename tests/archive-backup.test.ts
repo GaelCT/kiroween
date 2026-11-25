@@ -49,7 +49,18 @@ function archive(): LiveState {
   };
 }
 
-const reading: ReadingState = { history: [feedArticle.id], detached: [savedArticle.id], starred: ["live:feed-a:a1"], grouped: true };
+const reading: ReadingState = {
+  history: [feedArticle.id],
+  detached: [savedArticle.id],
+  starred: ["live:feed-a:a1"],
+  grouped: true,
+  storyVisits: {
+    "live:feed-a:a1": {
+      visitedAt: "2026-11-25T20:00:00.000Z",
+      facts: { f01: "A shared fact." },
+    },
+  },
+};
 
 function serialized(): string {
   return serializeArchiveBackup(archive(), reading, new Date("2026-11-26T00:00:00.000Z"));
@@ -68,11 +79,13 @@ describe("archive backup format", () => {
     expect(serialized()).toContain("\n  \"archive\"");
   });
 
-  it("still accepts comparisons saved before contradiction detection", () => {
+  it("still accepts comparisons and reading state saved before their newest fields", () => {
     const value = JSON.parse(serialized());
     delete value.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions;
+    delete value.reading.storyVisits;
     const restored = parseArchiveBackup(JSON.stringify(value));
     expect(restored.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions).toBeUndefined();
+    expect(restored.reading.storyVisits).toEqual({});
   });
 
   it("rejects malformed JSON, wrong formats, and unsupported versions", () => {
@@ -86,6 +99,8 @@ describe("archive backup format", () => {
   it("rejects structural damage instead of importing a partial archive", () => {
     const cases: Array<(value: ReturnType<typeof JSON.parse>) => void> = [
       (value) => { value.reading.history = [feedArticle.id, feedArticle.id]; },
+      (value) => { value.reading.storyVisits["live:feed-a:a1"].visitedAt = "yesterday"; },
+      (value) => { value.reading.storyVisits["live:feed-a:a1"].facts.f01 = 42; },
       (value) => { value.archive.sources[1].feedUrl = "https://saved.example/rss"; },
       (value) => { value.archive.articles[feedArticle.id].sourceId = "missing"; },
       (value) => { value.archive.stories[0].articleIds = [feedArticle.id, "missing"]; },
