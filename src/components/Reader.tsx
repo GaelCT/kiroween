@@ -2,6 +2,7 @@
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
+import { downloadArchiveBackup, readArchiveBackupFile, replaceArchiveBackup } from "@/lib/backup-store";
 import { combineReaderData, isFeedSource, liveReaderData } from "@/lib/live";
 import {
   addArticle,
@@ -277,6 +278,32 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     }
   }
 
+  function exportBackup() {
+    setToast(downloadArchiveBackup());
+  }
+
+  async function importBackup(file: File): Promise<boolean> {
+    if (live.busy) {
+      setToast({ message: "Wait for the current feed work to finish, then restore the backup again." });
+      return false;
+    }
+    try {
+      const backup = await readArchiveBackupFile(file);
+      const count = Object.keys(backup.archive.articles).length;
+      if (!window.confirm(`Replace this browser’s current archive and reading state with the backup’s ${count} ${count === 1 ? "article" : "articles"}? This cannot be undone.`)) {
+        return false;
+      }
+      const result = replaceArchiveBackup(backup);
+      setPosition(null);
+      setView({ kind: "all" });
+      setToast(result);
+      return result.ok;
+    } catch (error) {
+      setToast({ message: `Couldn't restore that backup: ${(error as Error).message}` });
+      return false;
+    }
+  }
+
   async function refresh() {
     const result = await refreshFeeds(true);
     if (result) setToast({ message: result.message });
@@ -383,6 +410,8 @@ export function Reader({ data: sample }: { data: ReaderData }) {
           onAddArticle={saveArticle}
           onImport={importSubscriptions}
           onUnsubscribe={unsubscribe}
+          onExportBackup={exportBackup}
+          onImportBackup={importBackup}
         />
 
         <main className="list-pane">

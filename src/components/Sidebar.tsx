@@ -6,6 +6,7 @@ import { formatCount, groupByFolder, sameView, type UnreadCounts, type View } fr
 import type { Source } from "@/lib/types";
 import { AddArticle } from "./AddArticle";
 import { AddSubscription } from "./AddSubscription";
+import { ArchiveBackup } from "./ArchiveBackup";
 
 interface Props {
   sources: Source[];
@@ -20,9 +21,24 @@ interface Props {
   onAddArticle: (url: string) => Promise<boolean>;
   onImport: (file: File, onProgress: (done: number, total: number) => void) => Promise<boolean>;
   onUnsubscribe: (sourceId: string) => void;
+  onExportBackup: () => void;
+  onImportBackup: (file: File) => Promise<boolean>;
 }
 
-export function Sidebar({ sources, counts, view, onView, busy, removableFeedIds, onAddFeed, onAddArticle, onImport, onUnsubscribe }: Props) {
+export function Sidebar({
+  sources,
+  counts,
+  view,
+  onView,
+  busy,
+  removableFeedIds,
+  onAddFeed,
+  onAddArticle,
+  onImport,
+  onUnsubscribe,
+  onExportBackup,
+  onImportBackup,
+}: Props) {
   const [closed, setClosed] = useState<string[]>([]);
   const feeds = sources.filter(isFeedSource);
   const saved = sources.filter((source) => source.saved);
@@ -61,6 +77,7 @@ export function Sidebar({ sources, counts, view, onView, busy, removableFeedIds,
     <nav className="sidebar" aria-label="Feeds and saved pages">
       <AddSubscription busy={busy} onAdd={onAddFeed} onImport={onImport} />
       <AddArticle busy={busy} onAdd={onAddArticle} />
+      <ArchiveBackup busy={busy} onExport={onExportBackup} onImport={onImportBackup} />
       {item({ kind: "all" }, "All items", counts.all, "nav-all")}
       {item({ kind: "starred" }, "Starred items", null, "nav-starred")}
       <h2 className="nav-heading">Subscriptions</h2>
