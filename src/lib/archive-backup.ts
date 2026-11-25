@@ -3,7 +3,7 @@
 
 import type { LiveSource, LiveState, LiveStory, SavedComparison } from "./live";
 import type { ReadingState } from "./reading-store";
-import type { Article, Evidence, Fact } from "./types";
+import type { Article, Contradiction, ContradictionClaim, Evidence, Fact } from "./types";
 
 export const ARCHIVE_BACKUP_FORMAT = "reader-archive";
 export const ARCHIVE_BACKUP_VERSION = 1;
@@ -110,11 +110,21 @@ function validFact(value: unknown): value is Fact {
   return isRecord(value) && isString(value.id) && isString(value.text);
 }
 
+function validContradictionClaim(value: unknown): value is ContradictionClaim {
+  return isRecord(value) && isString(value.articleId) && isString(value.factId) && isString(value.quote);
+}
+
+function validContradiction(value: unknown): value is Contradiction {
+  return isRecord(value) && isString(value.id) && isString(value.topic) &&
+    Array.isArray(value.claims) && value.claims.length >= 2 && value.claims.every(validContradictionClaim);
+}
+
 function validComparison(value: unknown): value is SavedComparison {
   if (!isRecord(value) || !isRecord(value.facts) || !isRecord(value.evidence)) return false;
   return (
     Object.entries(value.facts).every(([id, fact]) => validFact(fact) && fact.id === id) &&
-    Object.values(value.evidence).every((evidence) => Array.isArray(evidence) && evidence.every(validEvidence))
+    Object.values(value.evidence).every((evidence) => Array.isArray(evidence) && evidence.every(validEvidence)) &&
+    (value.contradictions === undefined || (Array.isArray(value.contradictions) && value.contradictions.every(validContradiction)))
   );
 }
 
@@ -154,6 +164,16 @@ export function parseArchiveBackup(raw: string): ArchiveBackupData {
 
   if (!isRecord(candidate.comparisons) || !Object.values(candidate.comparisons).every(validComparison)) return invalid();
   const comparisons = candidate.comparisons as Record<string, SavedComparison>;
+  for (const comparison of Object.values(comparisons)) {
+    for (const contradiction of comparison.contradictions ?? []) {
+      for (const claim of contradiction.claims) {
+        const evidence = comparison.evidence[claim.articleId];
+        if (!(claim.factId in comparison.facts) || !evidence?.some(
+          (item) => item.factId === claim.factId && item.sentence === claim.quote,
+        )) return invalid();
+      }
+    }
+  }
 
   return {
     archive: { sources, articles, stories, comparisons },
