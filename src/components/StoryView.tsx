@@ -1,8 +1,10 @@
 "use client";
 
 import { compareCluster, highlightsFor, type History } from "@/lib/adds";
+import type { StoryVisit } from "@/lib/reading-store";
 import type { Cluster, FactId, ReaderData } from "@/lib/types";
 import { ArticleView, type ScrollTarget } from "./ArticleView";
+import { SinceLastRead } from "./SinceLastRead";
 import { SourcePanel } from "./SourcePanel";
 import { StarButton } from "./StoryRow";
 
@@ -13,6 +15,8 @@ interface Props {
   history: History;
   starred: boolean;
   scrollTarget: ScrollTarget | null;
+  /** The prior ready snapshot, captured before this visit replaces it. */
+  previousVisit?: StoryVisit;
   onOpen: (articleId: string) => void;
   onPick: (articleId: string, factId: FactId) => void;
   onStar: () => void;
@@ -22,7 +26,7 @@ interface Props {
   deleteDisabled?: boolean;
 }
 
-export function StoryView({ cluster, articleId, data, history, starred, scrollTarget, onOpen, onPick, onStar, onPull, onDelete, deleteDisabled }: Props) {
+export function StoryView({ cluster, articleId, data, history, starred, scrollTarget, previousVisit, onOpen, onPick, onStar, onPull, onDelete, deleteDisabled }: Props) {
   const article = data.articles[articleId];
   const source = data.sources.find((candidate) => candidate.id === article.sourceId);
   const comparisons = compareCluster(cluster, data.articles, history);
@@ -74,6 +78,9 @@ export function StoryView({ cluster, articleId, data, history, starred, scrollTa
           </div>
         </div>
       </header>
+      {previousVisit && cluster.comparison === undefined ? (
+        <SinceLastRead cluster={cluster} data={data} previous={previousVisit} onPick={onPick} />
+      ) : null}
       <div className="story-body">
         {source ? <ArticleView article={article} source={source} highlights={highlights} scrollTarget={scrollTarget} /> : null}
         <SourcePanel
