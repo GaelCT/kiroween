@@ -4,6 +4,7 @@ import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalSt
 import { applyDetached, pullOut } from "@/lib/clusters";
 import { downloadArchiveBackup, readArchiveBackupFile, replaceArchiveBackup } from "@/lib/backup-store";
 import { combineReaderData, isFeedSource, liveReaderData } from "@/lib/live";
+import { useOnlineStatus } from "@/lib/online-status";
 import {
   addArticle,
   addFeed,
@@ -31,6 +32,7 @@ import {
 } from "@/lib/reading-store";
 import type { Cluster, FactId, ReaderData } from "@/lib/types";
 import type { ScrollTarget } from "./ArticleView";
+import { PwaControls } from "./PwaControls";
 import { Sidebar } from "./Sidebar";
 import { ArticleRow, StoryRow } from "./StoryRow";
 import { StoryView } from "./StoryView";
@@ -88,6 +90,7 @@ function viewTitle(view: View, data: ReaderData): string {
 }
 
 export function Reader({ data: sample }: { data: ReaderData }) {
+  const online = useOnlineStatus();
   const reading = useSyncExternalStore(subscribeReading, getReadingSnapshot, getServerReadingSnapshot);
   const live = useSyncExternalStore(subscribeLive, getLiveSnapshot, getServerLiveSnapshot);
   const data = useMemo(
@@ -255,12 +258,20 @@ export function Reader({ data: sample }: { data: ReaderData }) {
   }
 
   async function subscribe(url: string): Promise<boolean> {
+    if (!online) {
+      setToast({ message: "Reconnect to add a feed. Your saved archive is still available offline." });
+      return false;
+    }
     const result = await addFeed(url);
     setToast({ message: result.message });
     return result.ok;
   }
 
   async function saveArticle(url: string): Promise<boolean> {
+    if (!online) {
+      setToast({ message: "Reconnect to save a new URL. Your saved articles are still readable offline." });
+      return false;
+    }
     const result = await addArticle(url);
     setToast({ message: result.message });
     return result.ok;
@@ -268,6 +279,10 @@ export function Reader({ data: sample }: { data: ReaderData }) {
 
   /** Google Reader's "Import your subscriptions", from an OPML file another reader exported. */
   async function importSubscriptions(file: File, onProgress: (done: number, total: number) => void): Promise<boolean> {
+    if (!online) {
+      setToast({ message: "Reconnect to import subscriptions. JSON archive restore still works offline." });
+      return false;
+    }
     try {
       const result = await importOpmlFile(file, onProgress);
       setToast({ message: result.message });
@@ -305,6 +320,10 @@ export function Reader({ data: sample }: { data: ReaderData }) {
   }
 
   async function refresh() {
+    if (!online) {
+      setToast({ message: "Reconnect to refresh feeds. You can keep reading the saved archive offline." });
+      return;
+    }
     const result = await refreshFeeds(true);
     if (result) setToast({ message: result.message });
   }
@@ -337,12 +356,13 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     action();
   });
 
-  // Live feeds refresh once per visit when they're out of date, and finish any comparisons left over.
+  // Refresh stale feeds on an online visit, and recover automatically when connectivity returns.
   useEffect(() => {
+    if (!online) return;
     void refreshFeeds().then((result) => {
       if (result) setToast({ message: result.message });
     });
-  }, []);
+  }, [online]);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => onKey(event);
@@ -373,6 +393,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
             Sample data
           </span>
         ) : null}
+        {!online ? <span className="offline-badge">Offline</span> : null}
         <form className="search" role="search" onSubmit={(event) => event.preventDefault()}>
           <input
             ref={searchRef}
@@ -390,6 +411,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
             }}
           />
         </form>
+        <PwaControls />
         <span className="key-hints">
           <kbd>J</kbd>/<kbd>K</kbd> story · <kbd>N</kbd>/<kbd>P</kbd> source · <kbd>S</kbd> star · <kbd>X</kbd> not this story
         </span>
@@ -405,6 +427,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
           view={view}
           onView={changeView}
           busy={live.busy}
+          online={online}
           removableFeedIds={new Set(live.state.sources.filter(isFeedSource).map((source) => source.id))}
           onAddFeed={subscribe}
           onAddArticle={saveArticle}
@@ -432,8 +455,14 @@ export function Reader({ data: sample }: { data: ReaderData }) {
               </button>
             </div>
             {hasLiveFeeds ? (
-              <button type="button" className="toolbar-button" onClick={() => void refresh()} disabled={live.busy}>
-                {live.busy ? "Refreshing…" : "Refresh"}
+              <button
+                type="button"
+                className="toolbar-button"
+                onClick={() => void refresh()}
+                disabled={live.busy || !online}
+                title={online ? undefined : "Refreshing feeds requires an internet connection"}
+              >
+                {live.busy ? "Refreshing…" : online ? "Refresh" : "Offline"}
               </button>
             ) : null}
             <button
@@ -447,6 +476,11 @@ export function Reader({ data: sample }: { data: ReaderData }) {
           </div>
 
           <div className="list" ref={listRef}>
+            {!online ? (
+              <p className="offline-note" role="status">
+                You’re offline. Saved article text, stars, deletion, and JSON backup still work. Feed refresh, new URLs, and AI comparisons need a connection.
+              </p>
+            ) : null}
             {live.storageFull ? (
               <p className="storage-note" role="status">
                 This browser’s storage is full, so new articles only last until you reload.

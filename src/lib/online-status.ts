@@ -1,0 +1,26 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
+
+function subscribe(listener: () => void): () => void {
+  window.addEventListener("online", listener);
+  window.addEventListener("offline", listener);
+  return () => {
+    window.removeEventListener("online", listener);
+    window.removeEventListener("offline", listener);
+  };
+}
+
+function getSnapshot(): boolean {
+  return navigator.onLine;
+}
+
+function getServerSnapshot(): boolean {
+  // The server-rendered page assumes online; React updates it immediately for an offline client.
+  return true;
+}
+
+/** Browser connectivity as an SSR-safe external store. */
+export function useOnlineStatus(): boolean {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
