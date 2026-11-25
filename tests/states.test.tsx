@@ -80,6 +80,20 @@ describe("comparison states", () => {
     expect(html).toContain("Outlet 3 only publishes a summary in its feed");
   });
 
+  it("marks primary-source evidence selected by a contradiction citation", () => {
+    const { data } = setup([{ id: "a", facts: ["f01"] }]);
+    const html = renderToStaticMarkup(
+      <ArticleView
+        article={data.articles.a}
+        source={data.sources[0]}
+        highlights={new Set()}
+        scrollTarget={{ articleId: "a", factId: "f01", nonce: 1 }}
+      />,
+    );
+    expect(html).toContain('data-evidence="f01"');
+    expect(html).toContain("Quoted source evidence");
+  });
+
   it("falls back to plain read and unread until a story is compared", () => {
     const { cluster, data } = setup(FOUR, "pending");
     expect(clusterState(cluster, data.articles, ["a"])).toBe("partly-read");

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { ModelClient } from "@/pipeline/ai";
-import { compareArticles, findVerbatim, parseExtraction, parseMatching, supportsNumbers, type ArticleText } from "@/pipeline/facts";
+import { compareArticles, findVerbatim, parseContradictions, parseExtraction, parseMatching, supportsNumbers, type ArticleText } from "@/pipeline/facts";
 import { loadSampleData, readSampleFiles } from "@/pipeline/sample";
 import { runStory } from "@/pipeline/sample-pipeline";
 import { answerKeyModel } from "./support/answer-key-model";
@@ -51,6 +51,52 @@ describe("parseMatching", () => {
   });
 });
 
+describe("contradictory claims", () => {
+  const statements = [
+    { articleIndex: 0, fact: { text: "Sold 12,000 units", sentence: "The recall covers 12,000 units sold in 2026." } },
+    { articleIndex: 1, fact: { text: "Sold 9,500 units", sentence: "The recall covers 9,500 units sold in 2026." } },
+    { articleIndex: 1, fact: { text: "Costs $40", sentence: "The replacement part costs $40." } },
+  ];
+  const evidence = {
+    a: [{ factId: "f01", sentence: statements[0].fact.sentence }],
+    b: [
+      { factId: "f02", sentence: statements[1].fact.sentence },
+      { factId: "f03", sentence: statements[2].fact.sentence },
+    ],
+  };
+
+  it("keeps a numeric conflict with its exact source, fact, and quote attribution", () => {
+    expect(parseContradictions(
+      { contradictions: [{ topic: "Units covered by the recall", statements: [1, 0] }] },
+      statements,
+      { evidence },
+    )).toEqual([{
+      id: "c01",
+      topic: "Units covered by the recall",
+      claims: [
+        { articleId: "a", factId: "f01", quote: statements[0].fact.sentence },
+        { articleId: "b", factId: "f02", quote: statements[1].fact.sentence },
+      ],
+    }]);
+  });
+
+  it("rejects same-article, unknown, malformed, and duplicate answers", () => {
+    expect(parseContradictions({ contradictions: [
+      { topic: "Same article", statements: [1, 2] },
+      { topic: "Unknown statement", statements: [0, 99] },
+      { topic: 42, statements: [0, 1] },
+      { topic: "Too few", statements: [0] },
+      { topic: "Valid once", statements: [0, 1] },
+      { topic: "Duplicate", statements: [1, 0] },
+    ] }, statements, { evidence }).map((item) => item.topic)).toEqual(["Valid once"]);
+    expect(parseContradictions({ contradictions: [] }, statements, { evidence })).toEqual([]);
+  });
+
+  it("fails closed when the response has no contradiction list", () => {
+    expect(() => parseContradictions({}, statements, { evidence })).toThrow(/contradictions/);
+  });
+});
+
 describe("checking restatements against the primary article", () => {
   // Invented articles. Matching misses that B's first sentence restates A's first sentence, the
   // way a real model did on Nov 19.
@@ -86,6 +132,7 @@ describe("checking restatements against the primary article", () => {
           const count = [...request.user.matchAll(/^\d+\. \[Article/gm)].length;
           return { groups: Array.from({ length: count }, (_, index) => [index]) };
         }
+        if (request.listKey === "contradictions") return { contradictions: [] };
         asked.push(request.user);
         const candidates = [...request.user.matchAll(/^C(\d+)\. (.*)$/gm)];
         return {
@@ -98,7 +145,7 @@ describe("checking restatements against the primary article", () => {
   it("gives a restatement the primary's fact ID, so it isn't shown as new", async () => {
     const model = scripted([leadOfA, valueOfA], a.paragraphs[0]);
     const result = await compareArticles(model, [a, b]);
-    expect(model.calls).toEqual(["facts", "facts", "groups", "repeats"]);
+    expect(model.calls).toEqual(["facts", "facts", "groups", "repeats", "contradictions"]);
     // The check reads the primary article itself, not only the facts extracted from it.
     expect(model.asked[0]).toContain(a.paragraphs[1]);
     expect(result.evidence.b[0].factId).toBe(result.evidence.a[0].factId);
@@ -139,6 +186,7 @@ describe("lines that claim more than their sentence", () => {
           return { facts: [{ fact: text, sentence: article.paragraphs[0] }] };
         }
         if (request.listKey === "groups") return { groups: groups([...request.user.matchAll(/^\d+\. \[Article/gm)].length) };
+        if (request.listKey === "contradictions") return { contradictions: [] };
         return { repeats: [...request.user.matchAll(/^C(\d+)\. /gm)].map((line) => ({ candidate: Number(line[1]), sentence: null })) };
       },
     };
@@ -162,7 +210,7 @@ describe("compareArticles", () => {
   it("skips the AI for a story with one source", async () => {
     const model: ModelClient = { name: "none", completeJson: () => Promise.reject(new Error("called")) };
     const article: ArticleText = { id: "a", title: "T", paragraphs };
-    expect(await compareArticles(model, [article])).toEqual({ facts: {}, evidence: { a: [] }, dropped: { a: [] } });
+    expect(await compareArticles(model, [article])).toEqual({ facts: {}, evidence: { a: [] }, contradictions: [], dropped: { a: [] } });
   });
 
   it("reproduces the RV-90 fact table when the model answers perfectly", async () => {
@@ -172,8 +220,8 @@ describe("compareArticles", () => {
     const model = answerKeyModel(files.stories);
     const result = await runStory(model, story, data);
 
-    // Four extractions, one matching call, and one check against the primary.
-    expect(model.calls).toHaveLength(6);
+    // Four extractions, one matching call, one primary check, and one contradiction check.
+    expect(model.calls).toHaveLength(7);
     expect(Object.keys(result.facts)).toHaveLength(Object.keys(story.facts).length);
     // Fact IDs follow reading order, so compare each sentence's fact wording instead of IDs.
     for (const [outlet, evidence] of Object.entries(result.articles)) {
