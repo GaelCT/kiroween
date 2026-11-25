@@ -13,6 +13,7 @@ import {
   importMessage,
   isFeedSource,
   parseLiveState,
+  removeFromArchive,
   saveComparison,
   storiesToCompare,
   storySignature,
@@ -153,6 +154,41 @@ async function compareStories(): Promise<string | null> {
 export interface LiveResult {
   ok: boolean;
   message: string;
+}
+
+export interface LiveRemoval {
+  /** Complete state to put back if the reader chooses Undo. */
+  before: LiveState;
+  articleIds: string[];
+  storyIds: Record<string, string | null>;
+}
+
+/** Deletes archived articles immediately, without fetching or regrouping anything. */
+export function removeLiveArticles(articleIds: readonly string[]): LiveRemoval | null {
+  const before = getLiveSnapshot().state;
+  const existing = articleIds.filter((id) => id in before.articles);
+  if (existing.length === 0) return null;
+  const removal = removeFromArchive(before, existing);
+  publish({ state: removal.state, failed: new Set() });
+  return { before, articleIds: existing, storyIds: removal.storyIds };
+}
+
+/** Unsubscribes from one feed and removes its archived articles. */
+export function removeLiveFeed(sourceId: string): LiveRemoval | null {
+  const before = getLiveSnapshot().state;
+  const source = before.sources.find((candidate) => candidate.id === sourceId && isFeedSource(candidate));
+  if (!source) return null;
+  const articleIds = Object.values(before.articles)
+    .filter((article) => article.sourceId === sourceId)
+    .map((article) => article.id);
+  const removal = removeFromArchive(before, articleIds, sourceId);
+  publish({ state: removal.state, failed: new Set() });
+  return { before, articleIds, storyIds: removal.storyIds };
+}
+
+/** Restores a complete archive snapshot, including sources, groups, and comparisons. */
+export function restoreLiveState(state: LiveState): void {
+  publish({ state, failed: new Set() });
 }
 
 /** Subscribes to a feed: fetches it, regroups stories, and compares the new ones. */
