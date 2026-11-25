@@ -123,7 +123,7 @@ describe("POST /api/compare", () => {
     expect(fake.calls).toHaveLength(callsBefore);
 
     // Another visitor still has their own allowance.
-    expect((await POST(post({ articles: [first, second] }, "198.51.100.9")))).status).toBe(200);
+    expect((await POST(post({ articles: [first, second] }, "198.51.100.9"))).status).toBe(200);
   });
 
   it("doesn't count excerpt-only articles against the cap", async () => {
@@ -170,7 +170,7 @@ describe("POST /api/feeds", () => {
     const capped = await POST(post({ url: "http://localhost/" }));
     expect(capped.status).toBe(429);
     expect(await capped.json()).toEqual({ error: "Too many feed requests. Try again in an hour." });
-    expect((await POST(post({ url: "http://localhost/" }, "198.51.100.9")))).status).toBe(400);
+    expect((await POST(post({ url: "http://localhost/" }, "198.51.100.9"))).status).toBe(400);
   });
 });
 
@@ -184,6 +184,6 @@ describe("POST /api/stories", () => {
     const { clusters } = (await response.json()) as { clusters: { articleIds: string[]; comparison?: string }[] };
     expect(clusters).toEqual([expect.objectContaining({ articleIds: ["a", "b"], comparison: "pending" })]);
     expect(fetchSpy).not.toHaveBeenCalled();
-    expect((await POST(post({ articles: "nope" })))).status).toBe(400);
+    expect((await POST(post({ articles: "nope" }))).status).toBe(400);
   });
 });
