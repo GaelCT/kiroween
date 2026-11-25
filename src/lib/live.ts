@@ -137,9 +137,14 @@ export function saveComparison(state: LiveState, signature: string, comparison: 
   return { ...state, comparisons: { ...state.comparisons, [signature]: comparison } };
 }
 
+/** Feed subscriptions, excluding sites that only have individually saved pages. */
+export function isFeedSource(source: Source): boolean {
+  return source.saved !== true;
+}
+
 /** Feeds from an imported file that aren't subscribed yet. */
 export function feedsToImport(state: LiveState, feeds: readonly OpmlFeed[]): OpmlFeed[] {
-  const subscribed = new Set(state.sources.map((source) => source.feedUrl));
+  const subscribed = new Set(state.sources.filter(isFeedSource).map((source) => source.feedUrl));
   return feeds.filter((feed) => !subscribed.has(feed.url));
 }
 
