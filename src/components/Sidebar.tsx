@@ -15,6 +15,8 @@ interface Props {
   onView: (view: View) => void;
   /** True while live feeds are being fetched. */
   busy: boolean;
+  /** False disables only operations that need the network. */
+  online: boolean;
   /** Live feed IDs; sample-data feeds cannot be unsubscribed. */
   removableFeedIds: ReadonlySet<string>;
   onAddFeed: (url: string) => Promise<boolean>;
@@ -31,6 +33,7 @@ export function Sidebar({
   view,
   onView,
   busy,
+  online,
   removableFeedIds,
   onAddFeed,
   onAddArticle,
@@ -75,8 +78,8 @@ export function Sidebar({
 
   return (
     <nav className="sidebar" aria-label="Feeds and saved pages">
-      <AddSubscription busy={busy} onAdd={onAddFeed} onImport={onImport} />
-      <AddArticle busy={busy} onAdd={onAddArticle} />
+      <AddSubscription busy={busy} offline={!online} onAdd={onAddFeed} onImport={onImport} />
+      <AddArticle busy={busy} offline={!online} onAdd={onAddArticle} />
       <ArchiveBackup busy={busy} onExport={onExportBackup} onImport={onImportBackup} />
       {item({ kind: "all" }, "All items", counts.all, "nav-all")}
       {item({ kind: "starred" }, "Starred items", null, "nav-starred")}

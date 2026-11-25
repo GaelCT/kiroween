@@ -9,6 +9,8 @@ interface Progress {
 
 interface Props {
   busy: boolean;
+  /** Feed fetching and OPML subscription imports need a connection. */
+  offline?: boolean;
   /** Resolves to true when the feed was added, so the form can close. */
   onAdd: (url: string) => Promise<boolean>;
   /** Imports the feeds in an OPML file. Resolves to true when it subscribed to any, so the form can close. */
@@ -16,7 +18,7 @@ interface Props {
 }
 
 /** Google Reader's "Add a subscription" button, with a form for a feed URL or an OPML file. */
-export function AddSubscription({ busy, onAdd, onImport }: Props) {
+export function AddSubscription({ busy, offline = false, onAdd, onImport }: Props) {
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [importing, setImporting] = useState(false);
@@ -24,13 +26,15 @@ export function AddSubscription({ busy, onAdd, onImport }: Props) {
   const inputId = useId();
   const input = useRef<HTMLInputElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
-  const locked = busy || importing;
+  const locked = busy || importing || offline;
 
   if (!open) {
     return (
       <button
         type="button"
         className="subscribe-button"
+        disabled={offline}
+        title={offline ? "Adding a feed requires an internet connection" : undefined}
         onClick={() => {
           setOpen(true);
           window.setTimeout(() => input.current?.focus(), 0);
@@ -81,7 +85,7 @@ export function AddSubscription({ busy, onAdd, onImport }: Props) {
       />
       <div className="subscribe-actions">
         <button type="submit" className="subscribe-add" disabled={locked || !url.trim()}>
-          {busy && !importing ? "Adding…" : "Add"}
+          {offline ? "Offline" : busy && !importing ? "Adding…" : "Add"}
         </button>
         <button type="button" className="subscribe-cancel" disabled={locked} onClick={() => setOpen(false)}>
           Cancel
@@ -109,7 +113,9 @@ export function AddSubscription({ busy, onAdd, onImport }: Props) {
           {progress.done < progress.total ? `Importing feeds: ${progress.done} of ${progress.total}…` : "Grouping and comparing stories…"}
         </p>
       ) : null}
-      <p className="subscribe-note">Real feeds run live: articles stay in this browser, and stories are compared by AI.</p>
+      <p className="subscribe-note">
+        {offline ? "Reconnect to add or import feeds. Your existing archive remains available offline." : "Real feeds run live: articles stay in this browser, and stories are compared by AI."}
+      </p>
     </form>
   );
 }
