@@ -2,8 +2,8 @@
 
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
-import { combineReaderData, liveReaderData } from "@/lib/live";
-import { addFeed, getLiveSnapshot, getServerLiveSnapshot, importOpmlFile, refreshFeeds, subscribeLive } from "@/lib/live-store";
+import { combineReaderData, isFeedSource, liveReaderData } from "@/lib/live";
+import { addArticle, addFeed, getLiveSnapshot, getServerLiveSnapshot, importOpmlFile, refreshFeeds, subscribeLive } from "@/lib/live-store";
 import { articlesInView, storiesInView, unreadCounts, type View } from "@/lib/reader-view";
 import {
   EMPTY_READING_STATE,
@@ -79,7 +79,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     () => combineReaderData(sample, liveReaderData(live.state, live.failed)),
     [sample, live.state, live.failed],
   );
-  const hasLiveFeeds = live.state.sources.length > 0;
+  const hasLiveFeeds = live.state.sources.some(isFeedSource);
   const clusters = useMemo(
     () => applyDetached(data.clusters, data.articles, reading.detached),
     [data, reading.detached],
@@ -212,6 +212,12 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     return result.ok;
   }
 
+  async function saveArticle(url: string): Promise<boolean> {
+    const result = await addArticle(url);
+    setToast({ message: result.message });
+    return result.ok;
+  }
+
   /** Google Reader's "Import your subscriptions", from an OPML file another reader exported. */
   async function importSubscriptions(file: File, onProgress: (done: number, total: number) => void): Promise<boolean> {
     try {
@@ -326,6 +332,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
           onView={changeView}
           busy={live.busy}
           onAddFeed={subscribe}
+          onAddArticle={saveArticle}
           onImport={importSubscriptions}
         />
 

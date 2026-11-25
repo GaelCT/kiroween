@@ -106,6 +106,9 @@ export const comparisonLimit = new UsageLimit(articleLimit(), DAY_MS);
 /** Feed fetches per visitor per hour. They cost no AI, but each one fetches up to 30 pages. */
 export const feedLimit = new UsageLimit(60, DAY_MS / 24);
 
+/** Individual article pages each visitor can save per hour. */
+export const pageLimit = new UsageLimit(30, DAY_MS / 24);
+
 let model: ModelClient | null = null;
 
 /** One model client per server instance, with a cache so repeated articles are extracted once. */

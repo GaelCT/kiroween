@@ -11,6 +11,7 @@ import {
   EMPTY_LIVE_STATE,
   feedsToImport,
   importMessage,
+  isFeedSource,
   parseLiveState,
   saveComparison,
   storiesToCompare,
@@ -170,6 +171,39 @@ export async function addFeed(url: string): Promise<LiveResult> {
   }
 }
 
+/** Saves one extracted page, then groups and compares it without creating a feed subscription. */
+export async function addArticle(url: string): Promise<LiveResult> {
+  publish({ busy: true });
+  let fetched: { source: Source; article: Article };
+  let isNew: boolean;
+  try {
+    fetched = await post<{ source: Source; article: Article }>("/api/articles", { url });
+    isNew = !(fetched.article.id in getLiveSnapshot().state.articles);
+    update((state) => addFetched(state, fetched.source, [fetched.article], new Date()));
+  } catch (error) {
+    publish({ busy: false });
+    return { ok: false, message: `Couldn't save that article: ${(error as Error).message}` };
+  }
+
+  if (!isNew) {
+    publish({ busy: false });
+    return { ok: true, message: "That article is already in your archive." };
+  }
+
+  let groupingError: string | null = null;
+  try {
+    await regroup();
+  } catch (error) {
+    groupingError = (error as Error).message;
+  }
+  publish({ busy: false });
+  const comparisonError = groupingError ? null : await compareStories();
+  const message = `Saved “${fetched.article.title}”.`;
+  if (groupingError) return { ok: true, message: `${message} It couldn't be grouped into stories: ${groupingError}` };
+  if (comparisonError) return { ok: true, message: `${message} Some stories couldn't be compared: ${comparisonError}` };
+  return { ok: true, message };
+}
+
 /** How many feeds an import fetches at once. Each fetch also reads up to 30 article pages on the server. */
 const IMPORT_CONCURRENCY = 3;
 
@@ -247,8 +281,9 @@ async function importFeeds(feeds: readonly OpmlFeed[], onProgress?: (done: numbe
 /** Fetches every feed that's out of date (or all of them with `force`), then regroups and compares. */
 export async function refreshFeeds(force = false): Promise<LiveResult | null> {
   const { state, busy } = getLiveSnapshot();
-  if (busy || state.sources.length === 0) return null;
-  const stale = state.sources.filter((source) => force || Date.now() - Date.parse(source.fetchedAt) > STALE_MS);
+  const feeds = state.sources.filter(isFeedSource);
+  if (busy || feeds.length === 0) return null;
+  const stale = feeds.filter((source) => force || Date.now() - Date.parse(source.fetchedAt) > STALE_MS);
   publish({ busy: true });
   const errors: string[] = [];
   const before = Object.keys(state.articles).length;
