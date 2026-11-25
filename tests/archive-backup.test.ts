@@ -32,7 +32,18 @@ function archive(): LiveState {
     comparisons: {
       "feed-a:a1\nsaved-s:s1": {
         facts: { f01: { id: "f01", text: "A shared fact." } },
-        evidence: { [feedArticle.id]: [{ factId: "f01", sentence: "First paragraph." }], [savedArticle.id]: [] },
+        evidence: {
+          [feedArticle.id]: [{ factId: "f01", sentence: "First paragraph." }],
+          [savedArticle.id]: [{ factId: "f01", sentence: "Second paragraph." }],
+        },
+        contradictions: [{
+          id: "c01",
+          topic: "Shared claim",
+          claims: [
+            { articleId: feedArticle.id, factId: "f01", quote: "First paragraph." },
+            { articleId: savedArticle.id, factId: "f01", quote: "Second paragraph." },
+          ],
+        }],
       },
     },
   };
@@ -57,6 +68,13 @@ describe("archive backup format", () => {
     expect(serialized()).toContain("\n  \"archive\"");
   });
 
+  it("still accepts comparisons saved before contradiction detection", () => {
+    const value = JSON.parse(serialized());
+    delete value.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions;
+    const restored = parseArchiveBackup(JSON.stringify(value));
+    expect(restored.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions).toBeUndefined();
+  });
+
   it("rejects malformed JSON, wrong formats, and unsupported versions", () => {
     expect(() => parseArchiveBackup("{bad")).toThrow("isn’t readable JSON");
     expect(() => parseArchiveBackup(JSON.stringify({ format: "opml", version: 1 }))).toThrow("valid Reader archive backup");
@@ -73,6 +91,8 @@ describe("archive backup format", () => {
       (value) => { value.archive.stories[0].articleIds = [feedArticle.id, "missing"]; },
       (value) => { value.archive.stories.push({ ...value.archive.stories[0], id: "duplicate-membership" }); },
       (value) => { value.archive.comparisons["feed-a:a1\nsaved-s:s1"].evidence[feedArticle.id] = [{ factId: "f01" }]; },
+      (value) => { value.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions[0].claims[0].quote = "Fabricated quote."; },
+      (value) => { value.archive.comparisons["feed-a:a1\nsaved-s:s1"].contradictions[0].claims[0].factId = "missing"; },
       (value) => { value.archive.articles[feedArticle.id].publishedAt = "soon"; },
     ];
     for (const change of cases) {
