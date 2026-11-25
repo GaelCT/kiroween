@@ -21,7 +21,9 @@ interface Props {
 
 export function ArticleView({ article, source, highlights, scrollTarget }: Props) {
   const body = useRef<HTMLDivElement>(null);
-  const marks = article.evidence.filter((evidence) => highlights.has(evidence.factId));
+  const targeted = scrollTarget?.articleId === article.id ? scrollTarget.factId : null;
+  // Contradiction citations can point to the primary article, whose facts aren't "new" highlights.
+  const marks = article.evidence.filter((evidence) => highlights.has(evidence.factId) || evidence.factId === targeted);
 
   useEffect(() => {
     if (!scrollTarget || scrollTarget.articleId !== article.id) return;
@@ -48,7 +50,7 @@ export function ArticleView({ article, source, highlights, scrollTarget }: Props
       ) : null}
       <div className="article-body" ref={body}>
         {article.paragraphs.map((paragraph, index) => (
-          <p key={index}>{withMarks(paragraph, marks)}</p>
+          <p key={index}>{withMarks(paragraph, marks, highlights)}</p>
         ))}
       </div>
     </article>
@@ -56,7 +58,7 @@ export function ArticleView({ article, source, highlights, scrollTarget }: Props
 }
 
 /** Wraps each highlighted evidence sentence in a <mark>. */
-function withMarks(paragraph: string, marks: Evidence[]): ReactNode[] {
+function withMarks(paragraph: string, marks: Evidence[], highlights: ReadonlySet<FactId>): ReactNode[] {
   const found = marks
     .map((evidence) => ({ ...evidence, start: paragraph.indexOf(evidence.sentence) }))
     .filter((evidence) => evidence.start >= 0)
@@ -67,7 +69,7 @@ function withMarks(paragraph: string, marks: Evidence[]): ReactNode[] {
     if (evidence.start < cursor) continue;
     if (evidence.start > cursor) nodes.push(paragraph.slice(cursor, evidence.start));
     nodes.push(
-      <mark key={evidence.factId} data-evidence={evidence.factId} title="New to you in this story">
+      <mark key={evidence.factId} data-evidence={evidence.factId} title={highlights.has(evidence.factId) ? "New to you in this story" : "Quoted source evidence"}>
         {evidence.sentence}
       </mark>,
     );

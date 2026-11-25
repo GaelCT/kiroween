@@ -1,0 +1,62 @@
+.contradictions {
+  margin: 16px 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.title {
+  margin: 0;
+  color: #8a3a00;
+  font-size: 12px;
+}
+
+.note {
+  margin: 4px 0 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contradiction + .contradiction {
+  margin-top: 16px;
+}
+
+.topic {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.quote {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-left: 2px solid #d6a15f;
+  background: #fffaf2;
+}
+
+.quote p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.quote footer {
+  font-size: 11px;
+}
+
+.quote button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-dark);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quote button:hover {
+  text-decoration: underline;
+}
