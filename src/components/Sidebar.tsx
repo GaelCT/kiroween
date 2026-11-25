@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { isFeedSource } from "@/lib/live";
 import { formatCount, groupByFolder, sameView, type UnreadCounts, type View } from "@/lib/reader-view";
 import type { Source } from "@/lib/types";
+import { AddArticle } from "./AddArticle";
 import { AddSubscription } from "./AddSubscription";
 
 interface Props {
@@ -13,11 +15,14 @@ interface Props {
   /** True while live feeds are being fetched. */
   busy: boolean;
   onAddFeed: (url: string) => Promise<boolean>;
+  onAddArticle: (url: string) => Promise<boolean>;
   onImport: (file: File, onProgress: (done: number, total: number) => void) => Promise<boolean>;
 }
 
-export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onImport }: Props) {
+export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onAddArticle, onImport }: Props) {
   const [closed, setClosed] = useState<string[]>([]);
+  const feeds = sources.filter(isFeedSource);
+  const saved = sources.filter((source) => source.saved);
 
   const item = (target: View, label: string, count: number | null, className = "") => (
     <button
@@ -36,13 +41,14 @@ export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onImpo
   );
 
   return (
-    <nav className="sidebar" aria-label="Feeds">
+    <nav className="sidebar" aria-label="Feeds and saved pages">
       <AddSubscription busy={busy} onAdd={onAddFeed} onImport={onImport} />
+      <AddArticle busy={busy} onAdd={onAddArticle} />
       {item({ kind: "all" }, "All items", counts.all, "nav-all")}
       {item({ kind: "starred" }, "Starred items", null, "nav-starred")}
       <h2 className="nav-heading">Subscriptions</h2>
       <ul className="nav-feeds">
-        {groupByFolder(sources).map(({ folder, sources: members }) => {
+        {groupByFolder(feeds).map(({ folder, sources: members }) => {
           if (!folder) return members.map(feed);
           const open = !closed.includes(folder);
           const total = members.reduce((sum, source) => sum + (counts.bySource[source.id] ?? 0), 0);
@@ -65,6 +71,12 @@ export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onImpo
           );
         })}
       </ul>
+      {saved.length > 0 ? (
+        <>
+          <h2 className="nav-heading">Saved pages</h2>
+          <ul className="nav-feeds">{saved.map(feed)}</ul>
+        </>
+      ) : null}
     </nav>
   );
 }
