@@ -18,7 +18,10 @@ export interface Source {
   id: string;
   name: string;
   homepage: string;
+  /** Empty for a saved-page source, which is never fetched as a feed. */
   feedUrl: string;
+  /** True for a site represented only by individually saved articles. */
+  saved?: boolean;
   description?: string;
   folder?: string;
 }
