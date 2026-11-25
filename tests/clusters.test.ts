@@ -29,7 +29,7 @@ describe("pullOut (X)", () => {
   it("recomputes what the remaining sources add", () => {
     const before = compareCluster(cluster, articles, ["a"]).find((entry) => entry.articleId === "b");
     const [left] = pullOut([cluster], articles, "a");
-    const after = compareCluster(left, articles, ["a", "b"]).find((entry) => entry.articleId === "c");
+    const after = compareCluster(left, articles, ["a"]).find((entry) => entry.articleId === "c");
     expect(before?.adds).toEqual(["f03"]);
     expect(after?.adds).toEqual(["f04"]);
   });
@@ -52,6 +52,7 @@ describe("reading state", () => {
       detached: [],
       starred: ["s1"],
       grouped: false,
+      storyVisits: {},
     });
     expect(parseReadingState("not json")).toEqual(EMPTY_READING_STATE);
     expect(parseReadingState(null)).toEqual(EMPTY_READING_STATE);
