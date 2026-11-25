@@ -25,6 +25,10 @@ import {
 
 const STORAGE_KEY = "reader:live:v1";
 
+function isOffline(): boolean {
+  return typeof navigator !== "undefined" && navigator.onLine === false;
+}
+
 /** Feeds fetched more recently than this aren't fetched again on load. */
 const STALE_MS = 15 * 60_000;
 
@@ -193,6 +197,7 @@ export function restoreLiveState(state: LiveState): void {
 
 /** Subscribes to a feed: fetches it, regroups stories, and compares the new ones. */
 export async function addFeed(url: string): Promise<LiveResult> {
+  if (isOffline()) return { ok: false, message: "You're offline. Reconnect to add a feed." };
   publish({ busy: true });
   try {
     const { source, articles } = await fetchFeed(url);
@@ -209,6 +214,7 @@ export async function addFeed(url: string): Promise<LiveResult> {
 
 /** Saves one extracted page, then groups and compares it without creating a feed subscription. */
 export async function addArticle(url: string): Promise<LiveResult> {
+  if (isOffline()) return { ok: false, message: "You're offline. Reconnect to save a new URL." };
   publish({ busy: true });
   let fetched: { source: Source; article: Article };
   let isNew: boolean;
@@ -245,6 +251,7 @@ const IMPORT_CONCURRENCY = 3;
 
 /** Reads an OPML file the visitor picked and subscribes to its feeds. The file never leaves the browser. */
 export async function importOpmlFile(file: File, onProgress?: (done: number, total: number) => void): Promise<LiveResult> {
+  if (isOffline()) return { ok: false, message: "You're offline. Reconnect to import subscriptions." };
   // Loaded on first use, so the XML parser isn't in the bundle every visitor downloads.
   const { MAX_OPML_BYTES, OpmlParseError, parseOpml } = await import("./opml");
   if (file.size > MAX_OPML_BYTES) return { ok: false, message: "That file is too big to be a subscription list." };
@@ -316,6 +323,7 @@ async function importFeeds(feeds: readonly OpmlFeed[], onProgress?: (done: numbe
 
 /** Fetches every feed that's out of date (or all of them with `force`), then regroups and compares. */
 export async function refreshFeeds(force = false): Promise<LiveResult | null> {
+  if (isOffline()) return force ? { ok: false, message: "You're offline. Reconnect to refresh feeds." } : null;
   const { state, busy } = getLiveSnapshot();
   const feeds = state.sources.filter(isFeedSource);
   if (busy || feeds.length === 0) return null;
