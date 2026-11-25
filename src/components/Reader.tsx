@@ -3,16 +3,30 @@
 import { useEffect, useEffectEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { applyDetached, pullOut } from "@/lib/clusters";
 import { combineReaderData, isFeedSource, liveReaderData } from "@/lib/live";
-import { addArticle, addFeed, getLiveSnapshot, getServerLiveSnapshot, importOpmlFile, refreshFeeds, subscribeLive } from "@/lib/live-store";
+import {
+  addArticle,
+  addFeed,
+  getLiveSnapshot,
+  getServerLiveSnapshot,
+  importOpmlFile,
+  refreshFeeds,
+  removeLiveArticles,
+  removeLiveFeed,
+  restoreLiveState,
+  subscribeLive,
+  type LiveRemoval,
+} from "@/lib/live-store";
 import { articlesInView, storiesInView, unreadCounts, type View } from "@/lib/reader-view";
 import {
   EMPTY_READING_STATE,
   getReadingSnapshot,
   getServerReadingSnapshot,
   markRead,
+  pruneReading,
   subscribeReading,
   toggleStar,
   updateReading,
+  type ReadingState,
 } from "@/lib/reading-store";
 import type { Cluster, FactId, ReaderData } from "@/lib/types";
 import type { ScrollTarget } from "./ArticleView";
@@ -206,6 +220,39 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     setToast(null);
   }
 
+  function finishRemoval(removal: LiveRemoval, beforeReading: ReadingState, message: string) {
+    updateReading((state) => pruneReading(state, removal.articleIds, removal.storyIds));
+    if (position && removal.articleIds.includes(position.articleId)) setPosition(null);
+    if (view.kind === "source" && !getLiveSnapshot().state.sources.some((source) => source.id === view.sourceId)) {
+      setView({ kind: "all" });
+    }
+    setToast({
+      message,
+      undo: () => {
+        restoreLiveState(removal.before);
+        updateReading(() => beforeReading);
+        setToast(null);
+      },
+    });
+  }
+
+  function deleteArticle(articleId: string) {
+    const article = live.state.articles[articleId];
+    if (!article || live.busy) return;
+    const removal = removeLiveArticles([articleId]);
+    if (removal) finishRemoval(removal, reading, `Deleted “${article.title}”.`);
+  }
+
+  function unsubscribe(sourceId: string) {
+    const source = live.state.sources.find((candidate) => candidate.id === sourceId && isFeedSource(candidate));
+    if (!source || live.busy) return;
+    const count = Object.values(live.state.articles).filter((article) => article.sourceId === sourceId).length;
+    const articles = `${count} archived ${count === 1 ? "article" : "articles"}`;
+    if (!window.confirm(`Unsubscribe from ${source.name} and delete its ${articles}? You can undo this right afterward.`)) return;
+    const removal = removeLiveFeed(sourceId);
+    if (removal) finishRemoval(removal, reading, `Unsubscribed from ${source.name} and deleted ${articles}.`);
+  }
+
   async function subscribe(url: string): Promise<boolean> {
     const result = await addFeed(url);
     setToast({ message: result.message });
@@ -331,9 +378,11 @@ export function Reader({ data: sample }: { data: ReaderData }) {
           view={view}
           onView={changeView}
           busy={live.busy}
+          removableFeedIds={new Set(live.state.sources.filter(isFeedSource).map((source) => source.id))}
           onAddFeed={subscribe}
           onAddArticle={saveArticle}
           onImport={importSubscriptions}
+          onUnsubscribe={unsubscribe}
         />
 
         <main className="list-pane">
@@ -401,6 +450,8 @@ export function Reader({ data: sample }: { data: ReaderData }) {
                         onPick={pickFact}
                         onStar={() => star(cluster.id)}
                         onPull={pull}
+                        onDelete={current.articleId in live.state.articles ? () => deleteArticle(current.articleId) : undefined}
+                        deleteDisabled={live.busy}
                       />
                     </div>
                   ) : (
@@ -428,6 +479,8 @@ export function Reader({ data: sample }: { data: ReaderData }) {
                       collapsing={collapsing}
                       onOpen={() => groupIntoStories(cluster)}
                       onStar={() => star(cluster.id)}
+                      onDelete={articleId in live.state.articles ? () => deleteArticle(articleId) : undefined}
+                      deleteDisabled={live.busy}
                     />
                   );
                 })}

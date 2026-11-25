@@ -17,9 +17,12 @@ interface Props {
   onPick: (articleId: string, factId: FactId) => void;
   onStar: () => void;
   onPull: () => void;
+  /** Present only for articles in the visitor's live archive, never sample data. */
+  onDelete?: () => void;
+  deleteDisabled?: boolean;
 }
 
-export function StoryView({ cluster, articleId, data, history, starred, scrollTarget, onOpen, onPick, onStar, onPull }: Props) {
+export function StoryView({ cluster, articleId, data, history, starred, scrollTarget, onOpen, onPick, onStar, onPull, onDelete, deleteDisabled }: Props) {
   const article = data.articles[articleId];
   const source = data.sources.find((candidate) => candidate.id === article.sourceId);
   const comparisons = compareCluster(cluster, data.articles, history);
@@ -51,11 +54,24 @@ export function StoryView({ cluster, articleId, data, history, starred, scrollTa
               );
             })}
           </div>
-          {cluster.articleIds.length > 1 ? (
-            <button type="button" className="pull-button" onClick={onPull} title="Move this article into its own story">
-              Not this story <kbd>X</kbd>
-            </button>
-          ) : null}
+          <div className="story-actions">
+            {cluster.articleIds.length > 1 ? (
+              <button type="button" className="pull-button" onClick={onPull} title="Move this article into its own story">
+                Not this story <kbd>X</kbd>
+              </button>
+            ) : null}
+            {onDelete ? (
+              <button
+                type="button"
+                className="delete-button"
+                disabled={deleteDisabled}
+                onClick={onDelete}
+                title="Delete this article from your archive"
+              >
+                Delete article
+              </button>
+            ) : null}
+          </div>
         </div>
       </header>
       <div className="story-body">

@@ -1,7 +1,7 @@
 // Feeds the visitor added (issue #20), their archive (issue #21), and OPML imports (issue #32).
 // Pure functions, browser-safe.
-// Everything lives in this browser's localStorage. Fetched articles are never deleted, so the
-// archive reaches back past what a feed currently lists.
+// Everything lives in this browser's localStorage. Fetched articles stay until the reader deletes
+// them, so the archive reaches back past what a feed currently lists.
 
 import type { OpmlFeed } from "./opml";
 import type { Article, Cluster, Evidence, Fact, FactId, ReaderData, Source } from "./types";
@@ -135,6 +135,49 @@ export function storiesToCompare(state: LiveState): LiveStory[] {
 
 export function saveComparison(state: LiveState, signature: string, comparison: SavedComparison): LiveState {
   return { ...state, comparisons: { ...state.comparisons, [signature]: comparison } };
+}
+
+export interface ArchiveRemoval {
+  state: LiveState;
+  /** Old story ID to its replacement, or null when the whole story was removed. */
+  storyIds: Record<string, string | null>;
+}
+
+/** Removes articles without a network request and keeps the remaining archive internally consistent. */
+export function removeFromArchive(state: LiveState, articleIds: readonly string[], unsubscribedSourceId?: string): ArchiveRemoval {
+  const removed = new Set(articleIds.filter((id) => id in state.articles));
+  if (removed.size === 0 && !unsubscribedSourceId) return { state, storyIds: {} };
+
+  const articles = Object.fromEntries(Object.entries(state.articles).filter(([id]) => !removed.has(id)));
+  const storyIds: Record<string, string | null> = {};
+  const stories = state.stories.flatMap((story): LiveStory[] => {
+    const remaining = story.articleIds.filter((id) => !removed.has(id));
+    if (remaining.length === 0) {
+      storyIds[story.id] = null;
+      return [];
+    }
+    if (remaining.includes(story.primaryArticleId)) return [{ ...story, articleIds: remaining }];
+    const primaryArticleId = remaining[0];
+    const next = {
+      id: `live:${primaryArticleId}`,
+      title: articles[primaryArticleId].title,
+      primaryArticleId,
+      articleIds: remaining,
+    };
+    storyIds[story.id] = next.id;
+    return [next];
+  });
+
+  const sourceIdsInUse = new Set(Object.values(articles).map((article) => article.sourceId));
+  const sources = state.sources.filter(
+    (source) =>
+      source.id !== unsubscribedSourceId &&
+      // A saved-page site exists only to organize its pages. Feed subscriptions survive article deletion.
+      (!source.saved || sourceIdsInUse.has(source.id)),
+  );
+  const used = new Set(stories.map((story) => storySignature(story, articles)));
+  const comparisons = Object.fromEntries(Object.entries(state.comparisons).filter(([signature]) => used.has(signature)));
+  return { state: { sources, articles, stories, comparisons }, storyIds };
 }
 
 /** Feed subscriptions, excluding sites that only have individually saved pages. */

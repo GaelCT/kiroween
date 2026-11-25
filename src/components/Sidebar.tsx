@@ -14,12 +14,15 @@ interface Props {
   onView: (view: View) => void;
   /** True while live feeds are being fetched. */
   busy: boolean;
+  /** Live feed IDs; sample-data feeds cannot be unsubscribed. */
+  removableFeedIds: ReadonlySet<string>;
   onAddFeed: (url: string) => Promise<boolean>;
   onAddArticle: (url: string) => Promise<boolean>;
   onImport: (file: File, onProgress: (done: number, total: number) => void) => Promise<boolean>;
+  onUnsubscribe: (sourceId: string) => void;
 }
 
-export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onAddArticle, onImport }: Props) {
+export function Sidebar({ sources, counts, view, onView, busy, removableFeedIds, onAddFeed, onAddArticle, onImport, onUnsubscribe }: Props) {
   const [closed, setClosed] = useState<string[]>([]);
   const feeds = sources.filter(isFeedSource);
   const saved = sources.filter((source) => source.saved);
@@ -37,7 +40,21 @@ export function Sidebar({ sources, counts, view, onView, busy, onAddFeed, onAddA
   );
 
   const feed = (source: Source) => (
-    <li key={source.id}>{item({ kind: "source", sourceId: source.id }, source.name, counts.bySource[source.id] ?? 0)}</li>
+    <li key={source.id} className="nav-feed-row">
+      {item({ kind: "source", sourceId: source.id }, source.name, counts.bySource[source.id] ?? 0)}
+      {removableFeedIds.has(source.id) ? (
+        <button
+          type="button"
+          className="nav-remove"
+          aria-label={`Unsubscribe from ${source.name}`}
+          title={`Unsubscribe from ${source.name} and delete its archived articles`}
+          disabled={busy}
+          onClick={() => onUnsubscribe(source.id)}
+        >
+          ×
+        </button>
+      ) : null}
+    </li>
   );
 
   return (
