@@ -43,6 +43,8 @@ function fakeOpenRouter() {
     } else if (user.startsWith("Primary article:")) {
       // The check against the primary: nothing left over repeats it.
       reply = { repeats: [...user.matchAll(/^C(\d+)\. /gm)].map((match) => ({ candidate: Number(match[1]), sentence: null })) };
+    } else if (user.startsWith("Statements:")) {
+      reply = { contradictions: [] };
     } else {
       const lines = [...user.matchAll(/^(\d+)\. .*$/gm)].map((match) => ({ index: Number(match[1]), text: match[0] }));
       const money = lines.filter((line) => line.text.includes("$40 million")).map((line) => line.index);
@@ -101,8 +103,8 @@ describe("POST /api/compare", () => {
     expect(response.status).toBe(200);
     const body = (await response.json()) as { facts: Record<string, { text: string }>; evidence: Record<string, { factId: string; sentence: string }[]> };
     expect(fake.calls.every((url) => url === "https://openrouter.ai/api/v1/chat/completions")).toBe(true);
-    // Two extractions, one matching call, and one check against the primary.
-    expect(fake.calls).toHaveLength(4);
+    // Two extractions, one matching call, one primary check, and one contradiction check.
+    expect(fake.calls).toHaveLength(5);
     // The $40 million fact is shared, so only the 2028 fact is new in the second article.
     expect(body.evidence.a.map((item) => item.factId)).toEqual(["f01"]);
     expect(body.evidence.b.map((item) => item.factId)).toEqual(["f01", "f02"]);
@@ -121,7 +123,7 @@ describe("POST /api/compare", () => {
     expect(fake.calls).toHaveLength(callsBefore);
 
     // Another visitor still has their own allowance.
-    expect((await POST(post({ articles: [first, second] }, "198.51.100.9"))).status).toBe(200);
+    expect((await POST(post({ articles: [first, second] }, "198.51.100.9")))).status).toBe(200);
   });
 
   it("doesn't count excerpt-only articles against the cap", async () => {
@@ -168,7 +170,7 @@ describe("POST /api/feeds", () => {
     const capped = await POST(post({ url: "http://localhost/" }));
     expect(capped.status).toBe(429);
     expect(await capped.json()).toEqual({ error: "Too many feed requests. Try again in an hour." });
-    expect((await POST(post({ url: "http://localhost/" }, "198.51.100.9"))).status).toBe(400);
+    expect((await POST(post({ url: "http://localhost/" }, "198.51.100.9")))).status).toBe(400);
   });
 });
 
@@ -182,6 +184,6 @@ describe("POST /api/stories", () => {
     const { clusters } = (await response.json()) as { clusters: { articleIds: string[]; comparison?: string }[] };
     expect(clusters).toEqual([expect.objectContaining({ articleIds: ["a", "b"], comparison: "pending" })]);
     expect(fetchSpy).not.toHaveBeenCalled();
-    expect((await POST(post({ articles: "nope" }))).status).toBe(400);
+    expect((await POST(post({ articles: "nope" })))).status).toBe(400);
   });
 });
