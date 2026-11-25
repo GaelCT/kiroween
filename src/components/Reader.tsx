@@ -25,10 +25,12 @@ import {
   getServerReadingSnapshot,
   markRead,
   pruneReading,
+  recordStoryVisit,
   subscribeReading,
   toggleStar,
   updateReading,
   type ReadingState,
+  type StoryVisit,
 } from "@/lib/reading-store";
 import type { Cluster, FactId, ReaderData } from "@/lib/types";
 import type { ScrollTarget } from "./ArticleView";
@@ -40,6 +42,11 @@ import { StoryView } from "./StoryView";
 interface Position {
   clusterId: string;
   articleId: string;
+}
+
+interface ReturnVisit {
+  clusterId: string;
+  previous?: StoryVisit;
 }
 
 interface Toast {
@@ -104,6 +111,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
   );
   const [view, setView] = useState<View>({ kind: "all" });
   const [position, setPosition] = useState<Position | null>(null);
+  const [returnVisit, setReturnVisit] = useState<ReturnVisit | null>(null);
   const [scrollTarget, setScrollTarget] = useState<ScrollTarget | null>(null);
   const [toast, setToast] = useState<Toast | null>(null);
   const [collapsing, setCollapsing] = useState(false);
@@ -125,8 +133,13 @@ export function Reader({ data: sample }: { data: ReaderData }) {
     data.sources.find((source) => source.id === data.articles[articleId].sourceId)?.name ?? "Unknown source";
 
   function open(cluster: Cluster, articleId: string) {
+    const sameStory = position?.clusterId === cluster.id;
+    if (!sameStory) setReturnVisit({ clusterId: cluster.id, previous: reading.storyVisits[cluster.id] });
     setPosition({ clusterId: cluster.id, articleId });
-    updateReading((state) => markRead(state, [cluster.primaryArticleId, articleId]));
+    updateReading((state) => {
+      const read = markRead(state, [cluster.primaryArticleId, articleId]);
+      return sameStory ? read : recordStoryVisit(read, cluster, new Date());
+    });
   }
 
   /** Collapses every article into its story, then opens one: the old Reader becomes the new one. */
@@ -509,6 +522,7 @@ export function Reader({ data: sample }: { data: ReaderData }) {
                         history={reading.history}
                         starred={reading.starred.includes(cluster.id)}
                         scrollTarget={scrollTarget}
+                        previousVisit={returnVisit?.clusterId === cluster.id ? returnVisit.previous : undefined}
                         onOpen={(articleId) => open(cluster, articleId)}
                         onPick={pickFact}
                         onStar={() => star(cluster.id)}
