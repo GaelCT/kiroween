@@ -52,6 +52,7 @@ describe("reading state", () => {
       detached: [],
       starred: ["s1"],
       grouped: false,
+      storyVisits: {},
     });
     expect(parseReadingState("not json")).toEqual(EMPTY_READING_STATE);
     expect(parseReadingState(null)).toEqual(EMPTY_READING_STATE);

@@ -1,0 +1,80 @@
+.summary {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  background: var(--panel);
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.heading h3,
+.eyebrow,
+.previous,
+.empty,
+.context {
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.previous,
+.context {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.empty {
+  margin-top: 0.7rem;
+}
+
+.list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fact {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fact:hover,
+.fact:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.context {
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 700px) {
+  .heading {
+    display: block;
+  }
+
+  .previous {
+    margin-top: 0.35rem;
+  }
+}

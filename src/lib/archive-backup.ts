@@ -128,9 +128,17 @@ function validComparison(value: unknown): value is SavedComparison {
   );
 }
 
+function validStoryVisits(value: unknown): boolean {
+  if (!isRecord(value)) return false;
+  return Object.values(value).every((visit) =>
+    isRecord(visit) && isIsoDate(visit.visitedAt) && isRecord(visit.facts) && Object.values(visit.facts).every(isString),
+  );
+}
+
 function validReading(value: unknown): value is ReadingState {
   if (!isRecord(value)) return false;
-  return uniqueStrings(value.history) && uniqueStrings(value.detached) && uniqueStrings(value.starred) && isBoolean(value.grouped);
+  return uniqueStrings(value.history) && uniqueStrings(value.detached) && uniqueStrings(value.starred) && isBoolean(value.grouped) &&
+    (value.storyVisits === undefined || validStoryVisits(value.storyVisits));
 }
 
 /** Parses and fully validates a backup before any browser state is changed. */
@@ -182,6 +190,7 @@ export function parseArchiveBackup(raw: string): ArchiveBackupData {
       detached: value.reading.detached,
       starred: value.reading.starred,
       grouped: value.reading.grouped,
+      storyVisits: value.reading.storyVisits ?? {},
     },
   };
 }
